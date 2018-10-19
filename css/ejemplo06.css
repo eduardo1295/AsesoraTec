@@ -1,0 +1,46 @@
+.caja{
+    height: 150px;
+    width: 250px;
+    border: 1px solid #dfdfdf;
+    margin: 0 auto;
+    animation-name:cambiarColor;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+
+}
+@keyframes cambiarColor {
+    0% {
+        background: #00FF00;
+    }
+    100%{
+        background: #0000ff;
+    }
+}
+.pelota{
+    height:100px;
+    width: 100px;
+    border: 1px solid#d9d9d9;
+    background: brown;
+    border-radius:50%;
+    animation: mover 1s ease-in-out INFINITE;
+}
+.opcion1{
+    background: #0000ff;
+    animation-direction: reverse;
+}
+.opcion2{
+    background: #F0FF00;
+    animation-direction: alternate;
+}
+.opcion3{
+    background: #00FF00;
+    animation-direction: alternate-reverse;
+}
+@keyframes mover{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(500px);
+    }
+}

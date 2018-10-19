@@ -1,0 +1,21 @@
+.bg-verde{
+    background: -webkit-linear-gradient(black,midnightblue);
+    color: white;
+}
+.encabezado{
+    background: -webkit-linear-gradient(black,midnightblue);   
+}
+body{
+    padding-top: 70px;
+}
+.relleno{
+    height: 350px;
+    width: 1000px;
+}
+.copyright{
+    background: -webkit-linear-gradient(black,midnightblue);
+    color:white;
+}
+body{
+    min-height: 100%;
+}

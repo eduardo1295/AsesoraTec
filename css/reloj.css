@@ -1,0 +1,44 @@
+
+.wrap {
+	width: 90%;
+	max-width: 1000px;
+	/*margin:auto;*/
+}
+
+.widget {
+	width: 40%;
+	margin: 2em;
+	/*margin:32px; */
+}
+
+.widget p {
+	display: inline-block;
+	line-height: 1em;
+}
+
+.fecha {
+	text-align: center;
+    color:white;
+	/*margin-bottom: 5px;*/
+    background: -webkit-linear-gradient(black,midnightblue);
+	padding: 20px;
+    width: 100%;
+}
+
+.reloj {
+	width: 100%;
+	padding: 20px;
+	text-align: center;
+    background: -webkit-linear-gradient(black,midnightblue);
+    color:white;
+}
+
+.reloj .caja-segundos {
+	display: inline-block;
+}
+
+.reloj .segundos,
+.reloj .ampm {
+	font-size: 2rem;
+	display: block;
+}

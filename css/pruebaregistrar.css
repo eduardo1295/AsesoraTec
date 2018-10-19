@@ -1,0 +1,57 @@
+body{
+
+}
+label{
+    color: white;
+}
+input{
+    text-align: center;
+}
+
+img{
+    height: 60px;
+}
+h1{
+    color:white;
+    text-align: center;
+}
+.page-header{
+    background: -webkit-linear-gradient(black,midnightblue);
+}
+hr{
+    color:white;
+    background: white;
+}
+select{
+    border-radius: 10px;
+    width: 350px;
+}
+.radio{
+    width: auto;
+    color:white;
+}
+#registrarbtn{
+width: 500px;
+height: 100px;
+}
+input{
+width: 350px;
+
+}
+.forma{
+    width: 500px;
+    background: black;
+    background: -webkit-linear-gradient(black,midnightblue);
+    box-shadow: 2px 2px 5px darkslategrey;
+}
+
+.encabezado{
+    background: black;
+    background-color:rgba(12, 1, 1,0.4);
+}
+h3{
+    color: white;
+}
+p{
+    color:white;
+}

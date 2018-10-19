@@ -1,0 +1,44 @@
+.contenedor{
+background: gainsboro;
+}
+h1{
+    color:white;
+    text-align: center;
+}
+.page-header{
+    background: -webkit-linear-gradient(black,midnightblue);
+}
+
+hr{
+    background: white;
+}
+img{
+    height: 100px; 
+}
+.login{
+    width: 450px;
+    height: 330px;
+    margin:auto;
+    padding: 0px 10px;
+    background: -webkit-linear-gradient(black,midnightblue);
+    border:1px solid white;
+    border-radius: 10px;
+}
+.boton{
+    width: 100%;
+}
+input{
+    text-align: center;
+    font-family: "Verdana";
+    opacity:1; 
+    width: 75%;
+}
+h2{
+    color:white;
+}
+#olvide{
+color:white;
+}
+a, .olvide,#btnregistrar{
+    color:white;
+}

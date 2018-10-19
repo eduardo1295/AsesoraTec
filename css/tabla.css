@@ -1,0 +1,10 @@
+thead{
+    background: -webkit-linear-gradient(black,midnightblue);
+    color: white;
+}
+th:hover{
+    background-color:gray
+}
+table{
+    margin: 0 auto;
+}
