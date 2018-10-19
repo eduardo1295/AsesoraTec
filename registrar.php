@@ -24,27 +24,28 @@
                     <p class="lead mx-2">Información de la cuenta:
                     </p>
                 </div>
+                <form action="" method="post">
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="text" class="cajas lead" placeholder="Usuario">
+                        <input type="text" class="cajas lead" placeholder="Usuario" required>
                     </div>
                 </div>
-                <div class="row my-3 justify-content-center">
+                <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" class="cajas lead" placeholder="Número de control">
+                        <input type="text" class="cajas lead" placeholder="Número de control" required>
                     </div>
                 </div>
-                <div class="row my-3 justify-content-center">
+                <div class="row my-3 justify-content-center" required>
                     <div class="row">
                         <input type="text" class="cajas lead" placeholder="Apellido Paterno">
                     </div>
                 </div>
-                <div class="row my-3 justify-content-center">
+                <div class="row my-3 justify-content-center" required>
                     <div class="row">
                         <input type="text" class="cajas lead" placeholder="Apellido Materno">
                     </div>
                 </div>
-                <div class="row my-3 justify-content-center">
+                <div class="row my-3 justify-content-center" required>
                     <div class="row ">
                         <input type="text" class="cajas lead" placeholder="Nombre">
                     </div>
@@ -59,6 +60,8 @@
                         <label for="No binario" class="radio lead">No binario</label>
                     </div>
                 </div>
+                </form>
+                
 
             </div>
         </div>
