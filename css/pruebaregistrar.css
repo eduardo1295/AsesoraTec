@@ -16,7 +16,7 @@ h1{
     text-align: center;
 }
 .page-header{
-    background: -webkit-linear-gradient(blue,white);
+    background:blue;
 }
 hr{
     color:white;
@@ -40,7 +40,7 @@ width: 350px;
 }
 .forma{
     width: 500px;
-    background: -webkit-linear-gradient(blue,white);
+    background:blue;
 }
 h3{
     color: white;
