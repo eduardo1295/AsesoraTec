@@ -16,7 +16,7 @@ h1{
     text-align: center;
 }
 .page-header{
-    background: -webkit-linear-gradient(black,midnightblue);
+    background: -webkit-linear-gradien(blue,white);
 }
 hr{
     color:white;
@@ -41,7 +41,7 @@ width: 350px;
 .forma{
     width: 500px;
     background: black;
-    background: -webkit-linear-gradient(black,midnightblue);
+    background: -webkit-linear-gradien(blue,white);
     box-shadow: 2px 2px 5px darkslategrey;
 }
 

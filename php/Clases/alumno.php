@@ -1,64 +1,74 @@
 <?php 
 require('conexion.php');
 class Alumno{
-    private $No_Control;
-    private $Usuario;
-    private $Contraseña;
-    private $Nombre;
-    private $Ap_Pat;
-    private $Ap_Mat;
-    private $Carrera;
-    private $Semestre;
-    private $Correo;
-    public function No_Control() {
-        return $this->No_Control;
+    public $No_Control;
+    public $Contraseña;
+    public $Nombre;
+    public $Ap_Pat;
+    public $Ap_Mat;
+    public $Carrera;
+    public $Semestre;
+    public $Correo;
+    public $Sexo;
+    public function setSexo($sexo){
+        $this->Sexo =$sexo;
     }
-    public function Usuario() {
-        return $this->Usuario;
+    public function setNo_Control($nocontrol) {
+       $this->No_Control =$nocontrol;
     }
-    public function Contraseña() {
-        return $this->Contraseña;
+    public function setContraseña($contraseña) {
+        $this->Contraseña =$contraseña;
     }
-    public function Nombre() {
-        return $this->Nombre;
+    public function setNombre($nombre) {
+         $this->Nombre=$nombre;
     }
-    public function Ap_Pat() {
-        return $this->Ap_Pat;
+    public function setAp_Pat($apellidop) {
+        $this->Ap_Pat=$apellidop;
     }
-    public function Ap_Mat() {
-        return $this->Ap_Mat;
+    public function setAp_Mat($apellidom) {
+         $this->Ap_Mat=$apellidom;
     }
-    public function Carrera() {
-        return $this->Carrera;
+    public function setCarrera($carrera) {
+        $this->Carrera = $carrera;
     }
-    public function Semestre() {
-        return $this->Semestre;
+    public function setSemestre($semestre) {
+        $this->Semestre =$semestre;
     }
-    public function Correo() {
-        return $this->Correo;
+    public function setCorreo($correo) {
+        $this->Correo =$correo;
     }
-    public function _construct($NoControl,$Usuario,$Contraseña,$Nombre,$Ap_Pat,$ApMat,$Carrera,$Semestre,$Correo){
-         $this->No_Control =$NoControl;
-         $this->Usuario =$Usuario;
-         $this->Contraseña =$Contraseña;
-         $this->Nombre =$Nombre;
-         $this->Ap_Pat =$Ap_Pat;
-         $this->Ap_Mat =$ApMat;
-         $this->Carrera =$Carrera;
-         $this->Semestre =$Semestre;
-         $this->Correo =$Correo;
+    public function _construct(){
+         $this->No_Control ="";
+         $this->Usuario ="";
+         $this->Contraseña ="";
+         $this->Nombre ="";
+         $this->Ap_Pat ="";
+         $this->Ap_Mat ="";
+         $this->Carrera ="";
+         $this->Semestre =0;
+         $this->Correo ="";
     }
-   public function InsertarAlumno(){
-       
+   public function InsertarAlumno($alumno){
+       try{
         $conexion = abrirBD();
         $SQL= "INSERT INTO ALUMNO VALUES(?,?,?,?,?,?,?,?,?)";
         $sentencia_preparada1 = $conexion->prepare($SQL);
-        $sentencia_preparada1->bind_param("sssssssss",$Numero,$usuario,$$contraseña,$nombre,$apellidop,$apellidom,$carrera,$semestre,$correo);
-        $usuario =$_POST['usuario'];
-        $contraseña =$_POST['contraseña'];
+        $sentencia_preparada1->bind_param("ssssssiss",$nocontrol,$contraseña,$nombre,$apellidop,$apellidom,$carrera,$semestre,$correo,$sexo);
+        $nocontrol =$alumno->No_Control;
+        $contraseña =$alumno->Contraseña;
+        $nombre =$alumno->Nombre;
+        $apellidop =$alumno->Ap_Pat;
+        $apellidom =$alumno->Ap_Mat;
+        $carrera =$alumno->Carrera;
+        $semestre =$alumno->Semestre;
+        $correo =$alumno->Correo;
+        $sexo = $alumno->Sexo;
         $sentencia_preparada1->execute();
-        $sentencia_preparada1->bind_result($numero);
-        $row = $sentencia_preparada1->fetch();
+       }
+       catch (Exception $e){
+        $error = $e->getMessage();
+        echo $error;
+    }
    }
 }
 ?>

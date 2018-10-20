@@ -21,7 +21,6 @@
     <div class="row justify-content-center mt-2">
         <img src="asesor.png" alt="Login">
     </div>
-    <form action="" method="POST">
         <div class="row d-block m-4 justify-content-center">
             <div class="login">
                 <div class="row mt-4 justify-content-center">
@@ -54,10 +53,10 @@
                                         Soy un:
                                         <div class="row mt-2">
                                             <div class="col">
-                                                <a href="registrarmaestro.html" class="btn btn-primary boton lead">Maestro</a>
+                                                <a href="registrarmaestro.php" class="btn btn-primary boton lead">Maestro</a>
                                             </div>
                                             <div class="col">
-                                                <a href="registrar.html" class="btn btn-primary boton lead">Alumno</a>
+                                                <a href="registrar.php" class="btn btn-primary boton lead">Alumno</a>
                                             </div>
 
                                         </div>
@@ -75,8 +74,6 @@
                 </div>
             </div>
         </div>
-    </form>
-
 </body>
 
-</html>
+</html>                 

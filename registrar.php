@@ -24,30 +24,35 @@
                     <p class="lead mx-2">Información de la cuenta:
                     </p>
                 </div>
-                <form action="" method="post">
+        <form action="insertar.php" method="post">
+         <div class="row my-3 justify-content-center" required>
+                    <div class="row">
+                        <input type="text" class="cajas lead" name="nocontrol" placeholder="Número de control" required>
+                    </div>
+                </div>
+                <div class="row my-3 justify-content-center" required>
+                    <div class="row">
+                        <input type="text" class="cajas lead"name="contraseña" placeholder="Contraseña" required>
+                    </div>
+                </div>
+                <div class="row my-3 justify-content-center" required>
+                    <div class="row">
+                        <input type="text" class="cajas lead"name="appat" placeholder="Apellido Paterno" required>
+                    </div>
+                </div>
+                <div class="row my-3 justify-content-center" required>
+                    <div class="row">
+                        <input type="text" class="cajas lead" name="apmat" placeholder="Apellido Materno" required>
+                    </div>
+                </div>
                 <div class="row my-3 justify-content-center">
-                    <div class="row">
-                        <input type="text" class="cajas lead" placeholder="Usuario" required>
-                    </div>
-                </div>
-                <div class="row my-3 justify-content-center" required>
-                    <div class="row">
-                        <input type="text" class="cajas lead" placeholder="Número de control" required>
-                    </div>
-                </div>
-                <div class="row my-3 justify-content-center" required>
-                    <div class="row">
-                        <input type="text" class="cajas lead" placeholder="Apellido Paterno">
-                    </div>
-                </div>
-                <div class="row my-3 justify-content-center" required>
-                    <div class="row">
-                        <input type="text" class="cajas lead" placeholder="Apellido Materno">
-                    </div>
-                </div>
-                <div class="row my-3 justify-content-center" required>
                     <div class="row ">
-                        <input type="text" class="cajas lead" placeholder="Nombre">
+                        <input type="text" class="cajas lead" name="nombre" placeholder="Nombre">
+                    </div>
+                </div>
+                <div class="row my-3 justify-content-center">
+                    <div class="row ">
+                 <input type="e-mail" name="correo" class="cajas lead" placeholder="Correo">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -60,7 +65,6 @@
                         <label for="No binario" class="radio lead">No binario</label>
                     </div>
                 </div>
-                </form>
                 
 
             </div>
@@ -75,7 +79,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="row my-2 ">
-                        <select name="" id="" class="lead">
+                        <select name="carrera" id="" class="lead">
                             <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
                             <option value="Ing. Electromecánica">Ing. Electromecánica</option>
                             <option value="Ing. Civil">Ing. Civil</option>
@@ -84,7 +88,7 @@
                     </div>
                     <div class="row my-3 justify-content-center">
                         <div class="row">
-                            <input type="text" class="cajas lead" placeholder="Semestre">
+                            <input type="text" class="cajas lead" name="semestre"placeholder="Semestre">
                         </div>
                     </div>
                 </div>
@@ -92,32 +96,14 @@
         </div>
     </div>
     <br>
+                 
     <br>
     <div class="mb-2 container w-100">
         <div class="row  justify-content-center">
-            <input type="submit" value="Registrarme" id="registrarbtn" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
-            <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modalLabel">
-                                Mensaje del Sistema
-                            </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Usuario Registrado
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <input type="submit" value="Registrarme" name="registrarbtn" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
         </div>
-    </div>
-</body>
+     </div>
+     </form>
+    </body>
 
 </html>
