@@ -40,9 +40,7 @@ width: 350px;
 }
 .forma{
     width: 500px;
-    background: black;
-    background: -webkit-linear-gradien(blue,white);
-    box-shadow: 2px 2px 5px darkslategrey;
+    background: -webkit-linear-gradient(blue,white);
 }
 
 .encabezado{
