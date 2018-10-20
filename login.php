@@ -26,6 +26,7 @@
                 <div class="row mt-4 justify-content-center">
                     <h2 class="lead display-4">Iniciar Sesión</h2>
                 </div>
+                <form action="logU.php"method="POST">
                 <div class="row justify-content-center">
                     <input class="m-2" type="text" name="usuario" placeholder="Usuario">
                 </div>
@@ -33,8 +34,9 @@
                     <input class="m-2" type="password" placeholder="Contraseña">
                 </div>
                 <div class="row justify-content-center">
-                    <a href="menu1.php" class="btn btn-primary boton mx-5 mb-3 mt-3 lead" onclick="mostrar">Ingresar</a>
+                    <input type="submit" class="btn btn-primary boton mx-5 mb-3 mt-3 lead">Ingresar</a>
                 </div>
+                </form>
                 <div class="row mx-1">
                     <div class="col">
                         <input type="button" id="btnregistrar" value="Registrarme" class="btn btn-link" data-toggle="modal" data-target="#mensaje">
