@@ -33,7 +33,7 @@
                     <input class="m-2" type="password" placeholder="Contraseña">
                 </div>
                 <div class="row justify-content-center">
-                    <a href="menu1.html" class="btn btn-primary boton mx-5 mb-3 mt-3 lead" onclick="mostrar">Ingresar</a>
+                    <a href="menu1.php" class="btn btn-primary boton mx-5 mb-3 mt-3 lead" onclick="mostrar">Ingresar</a>
                 </div>
                 <div class="row mx-1">
                     <div class="col">
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <a href="recuperar.html" id="olvide" class="btn btn-link" value="">Olvide mi contraseña</a>
+                        <a href="recuperar.php" id="olvide" class="btn btn-link" value="">Olvide mi contraseña</a>
                     </div>
                 </div>
             </div>
