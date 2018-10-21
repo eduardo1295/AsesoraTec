@@ -28,13 +28,13 @@
                 </div>
                 <form action="logU.php"method="POST">
                 <div class="row justify-content-center">
-                    <input class="m-2" type="text" name="usuario" placeholder="Usuario">
+                    <input class="m-2" type="text" name="nocontrol" placeholder="Número de Control/Económico">
                 </div>
                 <div class="row justify-content-center">
-                    <input class="m-2" type="password" placeholder="Contraseña">
+                    <input class="m-2" type="password" name="contraseña" placeholder="Contraseña">
                 </div>
                 <div class="row justify-content-center">
-                    <input type="submit" class="btn btn-primary boton mx-5 mb-3 mt-3 lead">Ingresar</a>
+                    <input type="submit" class="btn btn-primary boton mx-5 mb-3 mt-3 lead" value="Ingresar">
                 </div>
                 </form>
                 <div class="row mx-1">

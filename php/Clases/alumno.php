@@ -1,5 +1,5 @@
 <?php 
-require('conexion.php');
+include('conexion.php');
 class Alumno{
     public $No_Control;
     public $Contraseña;
@@ -39,7 +39,6 @@ class Alumno{
     }
     public function _construct(){
          $this->No_Control ="";
-         $this->Usuario ="";
          $this->Contraseña ="";
          $this->Nombre ="";
          $this->Ap_Pat ="";
@@ -64,10 +63,30 @@ class Alumno{
         $correo =$alumno->Correo;
         $sexo = $alumno->Sexo;
         $sentencia_preparada1->execute();
+        $conexion->close();
        }
        catch (Exception $e){
         $error = $e->getMessage();
         echo $error;
+    }
+   }
+   public function LogearAlumno($alumno){
+    try{
+    $conexion = abrirBD();
+    $SQL= "SELECT count(*) FROM alumno WHERE nombre=?";
+    $sentencia_preparada1 = $conexion->prepare($SQL);
+    $sentencia_preparada1->bind_param("s",$nocontrol);
+    $nocontrol =$alumno->No_Control;
+    $contraseña = $alumno->Contraseña;
+    $sentencia_preparada1->execute();
+    $sentencia_preparada1->bind_result($numero);
+    $row = $sentencia_preparada1->fetch();
+    $result =$row['count(*)'];
+    return $result;
+}
+    catch (Exception $e){
+    $error = $e->getMessage();
+    echo $error;
     }
    }
 }
