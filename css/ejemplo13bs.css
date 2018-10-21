@@ -1,9 +1,9 @@
 .bg-verde{
-    background: -webkit-linear-gradient(black,midnightblue);
+    background: blue;
     color: white;
 }
 .encabezado{
-    background: -webkit-linear-gradient(black,midnightblue);   
+    background: blue;
 }
 body{
     padding-top: 70px;
@@ -13,7 +13,7 @@ body{
     width: 1000px;
 }
 .copyright{
-    background: -webkit-linear-gradient(black,midnightblue);
+    background: blue;
     color:white;
 }
 body{

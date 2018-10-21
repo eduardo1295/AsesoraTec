@@ -31,7 +31,7 @@
                     <input class="m-2" type="text" name="nocontrol" placeholder="Número de Control/Económico">
                 </div>
                 <div class="row justify-content-center">
-                    <input class="m-2" type="password" name="contraseña" placeholder="Contraseña">
+                    <input class="m-2" type="password" name="contra" placeholder="Contraseña">
                 </div>
                 <div class="row justify-content-center">
                     <input type="submit" class="btn btn-primary boton mx-5 mb-3 mt-3 lead" value="Ingresar">

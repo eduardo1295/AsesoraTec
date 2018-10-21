@@ -71,20 +71,25 @@ class Alumno{
     }
    }
    public function LogearAlumno($alumno){
-    try{
-    $conexion = abrirBD();
-    $SQL= "SELECT count(*) FROM alumno WHERE nombre=?";
-    $sentencia_preparada1 = $conexion->prepare($SQL);
-    $sentencia_preparada1->bind_param("s",$nocontrol);
-    $nocontrol =$alumno->No_Control;
-    $contraseña = $alumno->Contraseña;
-    $sentencia_preparada1->execute();
-    $sentencia_preparada1->bind_result($numero);
-    $row = $sentencia_preparada1->fetch();
-    $result =$row['count(*)'];
-    return $result;
-}
-    catch (Exception $e){
+    try
+    {
+        $resultado=0;
+        $conexion = abrirBD();
+    if($sentencia_preparada =$conexion->prepare("SELECT count(*) FROM ALUMNO WHERE NOCONTROL=? AND PASS=?"))
+        {
+            $sentencia_preparada->bind_param('ss',$nocontrol,$pass);
+            $nocontrol =$alumno->No_Control;
+            $pass = $alumno->Contraseña;
+            $sentencia_preparada->execute();
+            $sentencia_preparada->bind_result($numero);
+            while($sentencia_preparada->fetch()){
+            $resultado = $numero;
+            }
+        }
+        return $resultado;
+    }
+    catch (Exception $e)
+    {
     $error = $e->getMessage();
     echo $error;
     }

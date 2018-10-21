@@ -7,7 +7,7 @@ p{
     background: lavender;
 }
 .barra a:hover{
-background: -webkit-linear-gradient(black,midnightblue);
+background:blue;
 color:white;
 }
 a,
