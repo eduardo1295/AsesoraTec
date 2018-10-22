@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-
+<?php 
+require_once('php/Clases/alumno.php');
+$alumno = new Alumno();
+$nocontrol= $_GET['nocontrol'];
+$alumno->ObtenerDatos($nocontrol,$alumno);
+$nc = $nocontrol;
+$nombre = $alumno->Nombre;
+$appat = $alumno->Ap_Pat;
+$apmat = $alumno->Ap_Mat;
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +19,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/ejemplo13bs.css">
     <link rel="stylesheet" href="css/menu1.css">
+    
     <link rel="stylesheet" href="css/reloj.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/simple-sidebar.css">
@@ -38,12 +49,12 @@
                     <form action="" class="form-inline" role="search">
                         <div class="dropdown">
                             <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-user fa-fw"></span>
-                            </button>
+                                <span class="fas fa-user fa-fw"></span><?php echo $nombrecompleto?>
+                                </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                                 <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
-                                <a href="a" class="dropdown-item lead">Mi perfil</a>
-                            </div>
+                                <a href='miperfil.php?nc=<?php echo $nc;?>' class="dropdown-item lead">Mi perfil</a>
+                                </div>
                         </div>
                         <div class="dropdown">
                             <button id="acercade" class="btn btn-primary dropdown-toggle  lead" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

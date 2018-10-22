@@ -1,4 +1,4 @@
-<?php 
+7<?php 
 session_start();
  require_once('php/Clases/alumno.php');
 
@@ -13,7 +13,8 @@ $maestro->setNo_Economico($_POST['nocontrol']);
 $maestro->setContraseña($_POST['contra']);
 $resultado2 = $maestro->LogearMaestro($maestro);
 if($resultado>0){
-    header("Location: menu1.php");
+    $nocontrol = $alumno->No_Control;
+    header("Location: menu1.php?nocontrol=$nocontrol");
 }
 else if($resultado2>0){
     header("Location:menu2.php");

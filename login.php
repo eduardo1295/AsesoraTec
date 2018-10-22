@@ -12,6 +12,8 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/mensaje.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body class="contenedor">
@@ -77,5 +79,4 @@
             </div>
         </div>
 </body>
-
 </html> 

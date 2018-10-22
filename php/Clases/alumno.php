@@ -147,5 +147,61 @@ class Alumno{
         echo $error;
        }
    }
+   public function ObtenerDatos($nc,$alumno){
+       try
+       {
+        $conn = abrirBD();
+        if($sentencia_preparada =$conn->prepare("SELECT * FROM ALUMNO WHERE NOCONTROL=?"))
+        {
+            $sentencia_preparada->bind_param('s',$nocontrol);
+            $nocontrol =$nc;
+            $sentencia_preparada->execute();
+            $sentencia_preparada->bind_result($numc,$pass,$nombre,$appat,$apmat,$carrera,$semestre,$correo,$sexo);
+            while($sentencia_preparada->fetch()){
+            $alumno->setNo_Control($numc);
+            $alumno->setContraseña($pass);
+            $alumno->setNombre($nombre);
+            $alumno->setAp_Pat($appat);
+            $alumno->setAp_Mat($apmat);
+            $alumno->setCarrera($carrera);
+            $alumno->setSemestre($semestre);
+            $alumno->setCorreo($correo);
+            $alumno->setSexo($sexo);
+            }
+            $conn->close();
+        }
+       }
+       catch(Exception $e)
+       {
+           $error = $e->getMessage();
+           echo error;
+       }
+   }
+   public function ActualizarDatos($alumno){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("UPDATE ALUMNO SET PASS=?,NOMBRE=?,AP_PAT=?,AP_MAT=?,CARRERA=?,SEMESTRE=?,CORREO=?,SEXO=? WHERE NOCONTROL=?"))
+     {
+         $sentencia_preparada->bind_param('sssssisss',$pass,$nombre,$appat,$apmat,$carrera,$semestre,$correo,$sexo,$nocontrol);
+         $nocontrol = $alumno->No_Control;
+         $pass= $alumno->Contraseña;
+         $nombre = $alumno->Nombre;
+         $appat = $alumno->Ap_Pat;
+         $apmat = $alumno->Ap_Mat;
+         $carrera = $alumno->Carrera;
+         $semestre= $alumno->Semestre;
+         $correo= $alumno->Correo;
+         $sexo = $alumno->Sexo;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
 }
 ?>
