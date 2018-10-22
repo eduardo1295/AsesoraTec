@@ -30,7 +30,8 @@ if(isset($_POST['registrarbtn']))
     $alumno->setAp_Mat($_POST['apmat']);
     $alumno->setCarrera($_POST['carrera']);
     $alumno->setSemestre($_POST['semestre']);
-    $alumno->setSexo("Hombre");
+    $sexo=$_POST['sexo'];
+    $alumno->setSexo($sexo);
     $alumno->setCorreo($_POST['correo']);
     $existe = $alumno->AlumnoExists($_POST['nocontrol']);
     if($existe==0)
@@ -52,7 +53,6 @@ if(isset($_POST['registrarbtn']))
                     <div class="row mt-2 justify-content-center">
                    Usuario creado exitosamente!<br>
                    Redireccionando
-           </div>
                     </div>
                 </div>
                 <div class="modal-footer">
