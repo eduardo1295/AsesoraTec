@@ -23,42 +23,37 @@
                 <p class="lead mx-2">Información de la cuenta:
                 </p>
             </div>
+            <form action='insertarmaestro.php'method="post">
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Usuario">
+                    <input type="text" class="cajas lead" placeholder="Número económico" name="noec" maxlength=8 required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Número económico">
+                    <input type="text" class="cajas lead" placeholder="Contraseña" name="passm"maxlength=20 required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Apellido Paterno">
+                    <input type="text" class="cajas lead" placeholder="Apellido Paterno" name="appatm"maxlength=50 required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Apellido Materno">
+                    <input type="text" class="cajas lead" placeholder="Apellido Materno"name="apmatm"maxlength=50 required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row ">
-                    <input type="text" class="cajas lead" placeholder="Nombre">
+                    <input type="text" class="cajas lead" placeholder="Nombre"maxlength=50 name="nombrem"required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
-                <div class="row">
-                    <input type="radio" name="sexo" id="" class="radio my-2 mx-3 lead">
-                    <label for="hombre" class="radio lead">Hombre</label>
-                    <input type="radio" name="sexo" id="" class="radio my-2 mx-3 lead">
-                    <label for="mujer" class="radio lead">Mujer</label>
-                    <input type="radio" name="sexo" id="" class="radio my-2 mx-3 lead">
-                    <label for="No binario" class="radio lead">No binario</label>
+                <div class="row ">
+                    <input type="email" class="cajas lead" placeholder="Correo"name="correom" maxlength=128 required>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -87,28 +82,15 @@
 <br>
 <div class="mb-2 container w-100">
     <div class="row  justify-content-center">
-        <input type="submit" value="Registrarme" id="registrarbtn" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
-        <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modalLabel">
-                            Mensaje del Sistema
-                        </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Usuario Registrado
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <input type="submit" value="Registrarme" name="registrarm" class="btn btn-primary lead h-50" data-toggle="modal" data-target="#mensaje">
     </div>
 </div>
+</form>
 </body>
 </html>
+<script>
+if(history.forward(1))
+{
+    window.location.href='login.php';
+}
+</script>

@@ -27,32 +27,32 @@
         <form action="insertar.php" method="post">
          <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" class="cajas lead" name="nocontrol" placeholder="Número de control" required>
+                        <input type="text" class="cajas lead" name="nocontrol" placeholder="Número de control"maxlength=8 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" class="cajas lead"name="contraseña" placeholder="Contraseña" required>
+                        <input type="text" class="cajas lead"name="contraseña" placeholder="Contraseña"maxlength=20 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" class="cajas lead"name="appat" placeholder="Apellido Paterno" required>
+                        <input type="text" class="cajas lead"name="appat" placeholder="Apellido Paterno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" class="cajas lead" name="apmat" placeholder="Apellido Materno" required>
+                        <input type="text" class="cajas lead" name="apmat" placeholder="Apellido Materno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" class="cajas lead" name="nombre" placeholder="Nombre">
+                        <input type="text" class="cajas lead" name="nombre" placeholder="Nombre"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                 <input type="e-mail" name="correo" class="cajas lead" placeholder="Correo">
+                 <input type="e-mail" name="correo" class="cajas lead"maxlength=128 placeholder="Correo"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -88,7 +88,7 @@
                     </div>
                     <div class="row my-3 justify-content-center">
                         <div class="row">
-                            <input type="text" class="cajas lead" name="semestre"placeholder="Semestre">
+                            <input type="text" class="cajas lead"maxlength=2 name="semestre"placeholder="Semestre" required>
                         </div>
                     </div>
                 </div>
@@ -105,5 +105,9 @@
      </div>
      </form>
     </body>
-
 </html>
+<script>
+if(history.previous="insertar.php"){
+    
+}
+</script>

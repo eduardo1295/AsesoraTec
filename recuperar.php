@@ -23,19 +23,21 @@
             Restablecimiento de contraseña
         </h3>
         <p class="lead">
-            Pon tu direccion de correo electrónico. Te enviaremos un mensaje con tu nombre y tu contraseña.
+            Pon tu número de control/económico aquí abajo. Te enviaremos un mensaje con tu nombre y tu contraseña a tu correo electrónico.
         </p>
         <div class="row justify-content-center">
             <label for="correo" class="lead">
-                Dirección de correo electrónico:
+                Número:
             </label>
         </div>
+        <form action="contraseña.php" method="post">
         <div class="row justify-content-center">
-                <input class="mb-2 ml-2 w-50 align-text-center" type="email" name="correo" id="correo" placeholder="ejemplo@gmail.com">
+                <input class="mb-2 ml-2 w-50 align-text-center" type="text" name="id" id="nocontrol" placeholder="Número de control/Número económico">
         </div>
         <div class="row justify-content-center mb-3 mt-3">
             <input type="submit" value="Enviar" id="registrarbtn" class="btn btn-primary w-50">
         </div>
+        </form>
         <div class="row justify-content-center mb-3 mt-3">
                 <p>Si aún asi no puedes ingresar, <a href="registrar.html">crea una nueva cuenta</a></p>
             </div>

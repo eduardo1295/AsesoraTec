@@ -102,8 +102,8 @@
             function crearReloj2() {
                 var canvas = document.getElementById("canvas");
                 var ctx = canvas.getContext("2d");
-                var color = 'midnightblue';
-                ctx.strokeStyle = 'midnightblue';
+                var color = 'blue';
+                ctx.strokeStyle = 'blue';
                 ctx.lineWidth = 17;
                 ctx.lineCap = 'round';
                 ctx.shadowBlur = 15;

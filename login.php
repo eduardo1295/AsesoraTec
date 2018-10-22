@@ -28,10 +28,10 @@
                 </div>
                 <form action="logU.php"method="POST">
                 <div class="row justify-content-center">
-                    <input class="m-2" type="text" name="nocontrol" placeholder="Número de Control/Económico">
+                    <input class="m-2 lead" type="text" name="nocontrol" placeholder="Número de Control/Económico" maxlength=8>
                 </div>
                 <div class="row justify-content-center">
-                    <input class="m-2" type="password" name="contra" placeholder="Contraseña">
+                    <input class="m-2 lead" type="password" name="contra" placeholder="Contraseña"maxlength=20>
                 </div>
                 <div class="row justify-content-center">
                     <input type="submit" class="btn btn-primary boton mx-5 mb-3 mt-3 lead" value="Ingresar">

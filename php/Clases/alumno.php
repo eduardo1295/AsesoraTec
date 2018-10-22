@@ -1,5 +1,5 @@
 <?php 
-include('conexion.php');
+require_once('conexion.php');
 class Alumno{
     public $No_Control;
     public $Contraseña;
@@ -70,12 +70,13 @@ class Alumno{
         echo $error;
     }
    }
+   
    public function LogearAlumno($alumno){
     try
     {
         $resultado=0;
-        $conexion = abrirBD();
-    if($sentencia_preparada =$conexion->prepare("SELECT count(*) FROM ALUMNO WHERE NOCONTROL=? AND PASS=?"))
+        $conn = abrirBD();
+    if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ALUMNO WHERE NOCONTROL=? AND PASS=?"))
         {
             $sentencia_preparada->bind_param('ss',$nocontrol,$pass);
             $nocontrol =$alumno->No_Control;
@@ -85,7 +86,9 @@ class Alumno{
             while($sentencia_preparada->fetch()){
             $resultado = $numero;
             }
+            $conn->close();
         }
+
         return $resultado;
     }
     catch (Exception $e)
@@ -93,6 +96,56 @@ class Alumno{
     $error = $e->getMessage();
     echo $error;
     }
+   }
+   public function AlumnoExists($nc){
+       try
+       {
+        $conn = abrirBD();
+        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ALUMNO WHERE NOCONTROL=?"))
+            {
+                $sentencia_preparada->bind_param('s',$nocontrol);
+                $nocontrol =$nc;
+                $sentencia_preparada->execute();
+                $sentencia_preparada->bind_result($numero);
+                while($sentencia_preparada->fetch()){
+                $resultado = $numero;
+                }
+                $conn->close();
+            }
+    
+            return $resultado;
+       }
+       catch(Exception $e)
+       {
+        $error = $e->getMessage();
+        echo $error;
+       }
+   }
+   public function CorreoAlumno($alumno){
+    try
+    {
+           $correoObtenido="";
+           $contra;
+           $conexion = abrirBD();
+        if($sentencia_preparada =$conexion->prepare("SELECT CORREO,PASS FROM ALUMNO WHERE NOCONTROL=?"))
+        {
+            $sentencia_preparada->bind_param('s',$nocontrol);
+            $nocontrol =$alumno->No_Control;
+            $sentencia_preparada->execute();
+            $sentencia_preparada->bind_result($correo,$pass);
+            while($row =$sentencia_preparada->fetch()){
+            $correoObtenido = $correo;
+            $contra=$pass;
+    
+            }
+            echo $correoObtenido;
+            mail(utf8_decode($correoObtenido),utf8_decode("Contraseña olvidada"),utf8_decode("Tu contraseña olvidada es: ".$contra),utf8_decode("From: fer_inzunzavelarde@hotmail.com"));
+       }
+    }
+       catch(Exception $e){
+        $error = $e->getMessage();
+        echo $error;
+       }
    }
 }
 ?>
