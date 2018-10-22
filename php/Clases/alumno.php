@@ -203,5 +203,23 @@ class Alumno{
         echo error;
     }
 }
+public function EliminarAlumno($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM ALUMNO WHERE NOCONTROL=?"))
+     {
+         $sentencia_preparada->bind_param('s',$nocontrol);
+         $nocontrol = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
 }
 ?>

@@ -90,11 +90,11 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     <div id="item-1" class="collapse">
                         <ul class="nav flex-column ml-3">
                             <li class="nav-item">
-                                <a class="nav-link active lead" href="#">
+                                <a class="nav-link active lead"data-toggle="modal" href="#cerrar">
                                     <i class="fas fa fa-power-off fa-fw"></i>Cerrar Sesión</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link lead" href="#">
+                                <a class="nav-link lead" data-toggle="modal" href="#eliminar">
                                     <i class="fas fa fa-trash fa-fw"></i>Eliminar mi cuenta</a>
                             </li>
                             <li class="nav-item lead">
@@ -105,7 +105,52 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </li>
             </ul>
-
+            <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">
+                        Mensaje del Sistema
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2 justify-content-center">
+            ¿Seguro que desea eliminar su cuenta?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <a class="btn btn-danger lead" href='eliminar.php?nc=<?php echo $nc;?>'>Aceptar</a>
+                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+            <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">
+                        Mensaje del Sistema
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2 justify-content-center">
+            ¿Seguro que desea cerrar la sesión?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <a class="btn btn-primary lead" href='login.php'>Aceptar</a>
+                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+</div>
         </div>
     </div>
     <div class="relleno w-100 mb-0">
