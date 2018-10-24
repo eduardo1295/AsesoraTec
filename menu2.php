@@ -65,11 +65,11 @@
                         <i class="fas fa-home fa-fw"></i>Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lead" href="verasesorias.html">
+                    <a class="nav-link lead" href="verasesorias.php">
                         <i class="fas fa fa-eye fa-fw"></i>Ver mis asesorías</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lead" href="agregarasesoria.html">
+                    <a class="nav-link lead" href="agregarasesoria.php">
                         <i class="fas fa fa-search-plus fa-fw"></i>Agregar Asesoría</a>
                 </li>
                 <li class="nav-item">

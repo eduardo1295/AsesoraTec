@@ -59,6 +59,25 @@ class Maestro{
         echo $error;
     }
    }
+   public function AgregarAsesoria($codigo,$nombre,$area,$noMaestro){
+    try{
+     $conexion = abrirBD();
+     $SQL= "INSERT INTO ASESORIA VALUES(?,?,?,?)";
+     $sentencia_preparada1 = $conexion->prepare($SQL);
+     $sentencia_preparada1->bind_param("isss",$cod,$NoMae,$nom,$are);
+     $cod = $codigo;
+     $NoMae = $noMaestro;
+     $nom = $nombre;
+     $are = $area;
+     $sentencia_preparada1->execute();
+     $conexion->close();
+    }
+    catch (Exception $e){
+     $error = $e->getMessage();
+     echo $error;
+}
+}
+
    public function LogearMaestro($maestro){
     try
     {
