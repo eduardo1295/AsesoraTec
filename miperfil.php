@@ -98,7 +98,7 @@
                 <div class="row justify-content-center">
                     <div class="row my-2 ">
                         <select name="carrera" value="<?php echo $carrera?>" id="" class="lead">
-                            <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
+                          <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
                             <option value="Ing. Electromecánica">Ing. Electromecánica</option>
                             <option value="Ing. Civil">Ing. Civil</option>
                             <option value="Contabilidad">Contabilidad</option>
