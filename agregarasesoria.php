@@ -12,6 +12,8 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/mensaje.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/AgregarAsesoria.js"></script>
 </head>
 
 <body>
@@ -20,74 +22,73 @@
             <img src="agregar.png" alt="Login">
         </h1>
     </div>
-    <div class="container mt-3 forma">
-        <div class="row justify-content-center" style="border:1px solid white;">
-            <div class="col">
-                <div class="row  mt-4 justify-content-center">
-                    <p class="lead mx-2">Información de la asesoría:
-                    </p>
-                </div>
-                <div class="row my-3 justify-content-center">
-                    <div class="row">
-                        <input type="text" class="cajas lead" placeholder="Código">
+    
+        <div class="container mt-3 forma">
+            <div class="row justify-content-center" style="border:1px solid white;">
+                <div class="col">
+                    <div class="row  mt-4 justify-content-center">
+                        <p class="lead mx-2">Información de la asesoría:
+                        </p>
                     </div>
-                </div>
-                <div class="row my-3 justify-content-center">
-                    <div class="row">
-                        <input type="text" class="cajas lead" placeholder="Nombre de la asesoría">
+                    <div class="row my-3 justify-content-center">
+                        <div class="row">
+                            <input type="text" class="cajas lead" id="codigo" placeholder="Código">
+                        </div>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="row my-2 ">
-                        <label for="depto"></label>
-                        <select name="depto" id="depto" class="lead">
-                            <option value="Ing. en Sistemas Computacionales">Ciencias Básicas</option>
-                            <option value="Ing. Electromecánica">Especialidad en Desarrollo Web</option>
-                            <option value="Ing. Civil">Especialidad en seguridad en TIC'S</option>
-                            <option value="Contabilidad">Especialidad en Investigación</option>
-                        </select>
+                    <div class="row my-3 justify-content-center">
+                        <div class="row">
+                            <input type="text" class="cajas lead" id="nombrea" placeholder="Nombre de la asesoría">
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <br>
-    <br>
-    <div class="mb-2 container w-100">
-        <div class="row  justify-content-center">
-            <div class="col">
-                <input type="submit" value="Agregar asesoría" id="registrarbtn" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
-                <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="modalLabel">
-                                    Mensaje del Sistema
-                                </h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Asesoría agregada a la lista
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
-                            </div>
+                    <div class="row justify-content-center">
+                        <div class="row my-2 ">
+                            <label for="depto"></label>
+                            <select name="depto" id="depto" class="lead">
+                                <option value="Ciencias Básicas">Ciencias Básicas</option>
+                                <option value="Especialidad en Desarrollo Web">Especialidad en Desarrollo Web</option>
+                                <option value="Especialidad en seguridad en TIC'S">Especialidad en seguridad en TIC'S</option>
+                                <option value="Especialidad en Investigación">Especialidad en Investigación</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <button type="submit" value="" id="registrarbtn" class="btn btn-primary lead mx-4 ">
-                    <i class="fas fa fa-mail-reply lead" onclick="window.location.href='menu2.html'"> Página anterior</i>
-                </button>
+        </div>
+    
+        <br>
+        <br>
+        <div class="mb-2 container w-100">
+            <div class="row  justify-content-center">
+                <div class="col">
+                    <input type="submit" value="Agregar asesoría" id="registrarbtn" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
+                    <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modalLabel">
+                                        Mensaje del Sistema
+                                    </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="mens">
+                                    Asesoría agregada a la lista
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <button type="submit" value="" id="registrarbtn" class="btn btn-primary lead mx-4 ">
+                        <i class="fas fa fa-mail-reply lead" onclick="window.location.href='menu2.html'"> Página anterior</i>
+                    </button>
+                </div>
             </div>
         </div>
-
-    </div>
 
 </body>
 
