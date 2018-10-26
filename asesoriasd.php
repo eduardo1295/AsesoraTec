@@ -118,9 +118,7 @@ $result = mysqli_query($conn,$sql);
             <h4 class="lead">
                 Buscar: 
             <input type="text" name="busqueda" id="busqueda"placeholder="Buscar">  
-            <h4 class="lead ml-4">
-La busqueda es por cualquier columna de la tabla!
-            </h4>
+La busqueda puede ser por cualquier columna de la tabla!
             </h4>
             </div>
         </div>
