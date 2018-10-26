@@ -12,7 +12,6 @@ if(isset($_POST['opcion']) && $_POST['opcion'] == "Agregar"){
     }
     else{
         
-    }
-    
+    } 
 }
 ?>

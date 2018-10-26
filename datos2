@@ -1,0 +1,23 @@
+ <table class="table table-striped" id=asesorias>
+                <thead class="encabezado">
+                    <tr>
+                        <th class="lead">Codigo</th>
+                        <th class="lead">Maestro</th>
+                        <th class="lead">Materia</th>
+                        <th class="lead">Departamento</th>
+                        <th class="lead">Semestre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                        while($row=mysqli_fetch_array($result)){
+                 ?>
+                <tr>
+                    <td><?php echo '<a href="">'.$row[0].'</a>'; ?></td>
+                    <td><?php echo $row[1]; ?></td>
+                    <td><?php echo $row[2]; ?></td>
+                    <td><?php echo $row[3]; ?></td>
+                    <td><?php echo $row[4];} ?></td>
+                </tr>
+                </tbody>
+            </table>

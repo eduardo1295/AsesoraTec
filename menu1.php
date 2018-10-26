@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php 
+session_start();
 require_once('php/Clases/alumno.php');
 $alumno = new Alumno();
-$nocontrol= $_GET['nocontrol'];
+$nocontrol= $_SESSION['nocontrol'];
 $alumno->ObtenerDatos($nocontrol,$alumno);
 $nc = $nocontrol;
 $nombre = $alumno->Nombre;
@@ -17,9 +18,8 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Asesora-TEC</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/ejemplo13bs.css">
+    <link rel="stylesheet" href="css/m1.css">
     <link rel="stylesheet" href="css/menu1.css">
-    
     <link rel="stylesheet" href="css/reloj.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/simple-sidebar.css">
@@ -77,11 +77,11 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <i class="fas fa-home fa-fw"></i>Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lead" href="asesoriaalumno.html">
+                    <a class="nav-link lead" href="asesoriasd.php">
                         <i class="fas fa fa-eye fa-fw"></i>Ver mis asesorías</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lead" href="#">
+                    <a class="nav-link lead" href="asesoriasd.php">
                         <i class="fas fa fa-search-plus fa-fw"></i>Inscribirme en Asesoría</a>
                 </li>
                 <li class="nav-item">

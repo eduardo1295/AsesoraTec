@@ -20,7 +20,7 @@
 	text-align: center;
     color:white;
 	/*margin-bottom: 5px;*/
-    background: -webkit-linear-gradient(black,midnightblue);
+    background:blue;
 	padding: 20px;
     width: 100%;
 }
@@ -29,7 +29,7 @@
 	width: 100%;
 	padding: 20px;
 	text-align: center;
-    background: -webkit-linear-gradient(black,midnightblue);
+    background: blue;
     color:white;
 }
 
