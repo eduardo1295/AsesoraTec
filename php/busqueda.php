@@ -32,8 +32,8 @@ if ($buscarAsesorias->num_rows > 0)
 	{
 		$tabla.=
 		'<tr>
-			<td>'.$fila['Codigo'].'</td>
-			<td>'.$fila['No_Maestro'].'</td>
+        <td><a href="horario.php">'.$fila['Codigo'].'</a></td>
+        <td>'.$fila['No_Maestro'].'</td>
 			<td>'.$fila['Nombre_Materia'].'</td>
 			<td>'.$fila['Departamento'].'</td>
 			<td>'.$fila['Semestre'].'</td>

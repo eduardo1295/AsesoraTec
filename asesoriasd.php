@@ -12,53 +12,6 @@ $appat = $alumno->Ap_Pat;
 $apmat = $alumno->Ap_Mat;
 $semestre = $alumno->Semestre;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
-require_once('php/Clases/conexion.php');
- try
- {
-$conn = abrirBD();
-$where = "WHERE SEMESTRE<=$semestre";
-$texto = "";
-if(isset($_POST['buscar'])){
-    $filtro = $_POST['filtro'];
-    $seleccion;
-    $texto = "'".$_POST['busqueda']."'";
-    if($filtro == 'Ninguno')
-    {
-        $seleccion = "";
-        $texto ="";
-        
-    }
-    else if($filtro == 'Código')
-    {
-        $seleccion = "CODIGO";
-        $where = $where." AND CODIGO=";
-    }
-    else if($filtro =='Maestro')
-    {
-        $seleccion = 'NO_MAESTRO';
-        $where = $where." AND NO_MAESTRO=";
-    }
-    else if($filtro == 'Semestre')
-    {
-        $seleccion = "SEMESTRE";
-        $where = $where." AND SEMESTRE=";
-    }
-    else if($filtro =='Materia')
-    {
-    $seleccion = 'NOMBRE_MATERIA';
-    $where = $where." AND NOMBRE_MATERIA=";
-    }
-    echo $texto;
-}
-$sql = "SELECT * FROM ASESORIAS ".$where.$texto;
-echo $sql;
-$result = mysqli_query($conn,$sql);
-}
- catch(Exception $e)
- {
-  $error = $e->getMessage();
-  echo $error;
- }
 ?>
 <head>
     <meta charset="UTF-8">
@@ -97,7 +50,7 @@ $result = mysqli_query($conn,$sql);
                                 </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                                 <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
-                                <a href='miperfil.php?nc=<?php echo $nc;?>' class="dropdown-item lead">Mi perfil</a>
+                                <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
                                 </div>
                         </div>
                         <div class="dropdown">
@@ -114,11 +67,18 @@ $result = mysqli_query($conn,$sql);
                 </nav>
     </div>
         <div class="row justify-content-center filtros">
-            <div class="alert alert-primary w-100">
+            <div class="alert alert-primary w-100 text-center">
             <h4 class="lead">
                 Buscar: 
             <input type="text" name="busqueda" id="busqueda"placeholder="Buscar">  
-La busqueda puede ser por cualquier columna de la tabla!
+La búsqueda puede ser por cualquier columna de la tabla!
+            </h4>
+            </div>
+        </div>
+        <div class="row">
+        <div class="alert alert-primary w-100 text-center">
+            <h4 class="lead">
+            Selecciona el código de la asesoria para ver el horario!
             </h4>
             </div>
         </div>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php 
+    session_start();
     require_once('php/Clases/alumno.php');
     $alumno = new Alumno();
-    $nocontrol = $_GET['nc'];
+    $nocontrol = $_SESSION['nocontrol'];
     $alumno->ObtenerDatos($nocontrol,$alumno);
     $nombre = $alumno->Nombre;
     $pass = $alumno->Contraseña;
