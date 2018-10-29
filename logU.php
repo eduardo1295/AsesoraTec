@@ -13,6 +13,7 @@ $resultado2 = $maestro->LogearMaestro($maestro);
 if($resultado>0){
     $nocontrol = $alumno->No_Control;
     $_SESSION['nocontrol'] = $nocontrol;
+    $_SESSION['logeado'] = "SI";
     header("Location:menu1.php");
 }
 else if($resultado2>0){

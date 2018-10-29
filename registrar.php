@@ -12,8 +12,9 @@
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/InsertarAlumno.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/InsertarAlumno.js"></script>
+    <script src="js/ToolTip.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -36,7 +37,7 @@
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
                         <input type="password" class="cajas lead ml-4" id="pass" placeholder="Contraseña"maxlength=20 required>
-                        <a class="btn btn-success" onclick="mostrar()"><i class="ojo fas fa fa-eye fa-fw"></i></a>
+                        <a class="btn btn-success" onclick="mostrar()" data-toggle="tooltip" title="Mostrar/Ocultar contraseña"data-placement="right"><i class="ojo fas fa fa-eye fa-fw"></i></a>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
@@ -61,11 +62,11 @@
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="radio" value="Hombre" id="sexo" checked class="radio my-2 mx-3 lead">
-                        <label for="hombre" class="radio lead">Hombre</label>
-                        <input type="radio"value="Mujer" id="sexo" class="radio my-2 mx-3 lead">
-                        <label for="mujer" class="radio lead">Mujer</label>
-                        <input type="radio" id="sexo"  class="radio my-2 mx-3 lead">
+                        <input type="radio"  name="radio"value="Hombre" id="sexo" checked class="radio my-2 mx-3 lead">
+                        <label for="hombre" name="radio"class="radio lead">Hombre</label>
+                        <input type="radio"name="radio"value="Mujer" id="sexo" class="radio my-2 mx-3 lead">
+                        <label for="mujer"name="radio" class="radio lead">Mujer</label>
+                        <input type="radio"name="radio" id="sexo"  class="radio my-2 mx-3 lead">
                         <label for="No binario" value="No binario" class="radio lead">No binario</label>
                     </div>
                 </div>
@@ -117,7 +118,7 @@
                                    Alumno registrado!
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal"onclick="window.location.href='login.php'">Aceptar</button>
                                 </div>
                             </div>
                         </div>

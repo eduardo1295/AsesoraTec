@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <?php 
 session_start();
+if($_SESSION['logeado']!='SI'){
+    header("Location: login.php");
+}
 require_once('php/Clases/alumno.php');
 $alumno = new Alumno();
 $nocontrol= $_SESSION['nocontrol'];
@@ -28,6 +32,8 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/CerrarSesion.js"></script>
     <script src="js/reloj.js"></script>
 
 
@@ -145,7 +151,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </div>
                 <div class="modal-footer">
-                <a class="btn btn-primary lead" href='login.php'>Aceptar</a>
+                <a class="btn btn-primary lead" href="php/cerrarsesion.php">Aceptar</a>
                     <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
@@ -256,5 +262,4 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </body>
     </div>
 </body>
-
 </html>

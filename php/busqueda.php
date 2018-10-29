@@ -32,10 +32,10 @@ if ($buscarAsesorias->num_rows > 0)
 	{
 		$tabla.=
 		'<tr>
-        <td><a href="horario.php">'.$fila['Codigo'].'</a></td>
-        <td>'.$fila['No_Maestro'].'</td>
-			<td>'.$fila['Nombre_Materia'].'</td>
-			<td>'.$fila['Departamento'].'</td>
+        <td><a href="horario.php?cod='.$fila['Codigo'].'">'.$fila['Codigo'].'</a></td>
+        <td>'.utf8_encode($fila['No_Maestro']).'</td>
+			<td>'.utf8_encode($fila['Nombre_Materia']).'</td>
+			<td>'.utf8_encode($fila['Departamento']).'</td>
 			<td>'.$fila['Semestre'].'</td>
 		 </tr>
 		';

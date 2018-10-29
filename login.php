@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+    session_start();
+    if(isset($_SESSION['logeado']))
+    {
+        if($_SESSION['logeado']=='SI'){
+            header("Location: menu1.php");
+        }
+    }
+    ?>
 <!--Aqui esta el comentario -->
 <head>
     <meta charset="UTF-8">
@@ -78,5 +87,6 @@
                 </div>
             </div>
         </div>
+        
 </body>
 </html> 
