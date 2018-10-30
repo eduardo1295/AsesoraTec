@@ -11,7 +11,8 @@
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/InsertarAlumno.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/Contraseña.js"></script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
         </div>
         </form>
         <div class="row justify-content-center mb-3 mt-3">
-                <p>Si aún asi no puedes ingresar, <a href="registrar.html">crea una nueva cuenta</a></p>
+                <p>Si aún asi no puedes ingresar, <a href="registrar.php">crea una nueva cuenta</a></p>
             </div>
     </div>
 </body>
