@@ -128,5 +128,33 @@ class Maestro{
      echo $error;
     }
 }
+public function ObtenerDatos($ne,$maestro){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("SELECT * FROM MAESTROS WHERE NOECON=?"))
+     {
+         $sentencia_preparada->bind_param('s',$nocontrol);
+         $noecon =$nc;
+         $sentencia_preparada->execute();
+         $sentencia_preparada->bind_result($nume,$pass,$nombre,$appat,$apmat,$depto,$correo);
+         while($sentencia_preparada->fetch()){
+         $maestro->setNo_Economico($nume);
+         $maestro->setContraseña($pass);
+         $maestro->setNombre($nombre);
+         $maestro->setAp_Pat($appat);
+         $maestro->setAp_Mat($apmat);
+         $maestro->setDepartamento($depto);
+         $maestro->setCorreo($correo);
+         }
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
 }
 ?>

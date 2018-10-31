@@ -177,6 +177,48 @@ class Alumno{
            echo error;
        }
    }
+   public function InscribirAsesoria($nc,$codigoAsesoria){
+    try{
+        $conexion = abrirBD();
+        $SQL= "INSERT INTO ASESORIASREG VALUES(?,?)";
+        $sentencia_preparada1 = $conexion->prepare($SQL);
+        $sentencia_preparada1->bind_param("ss",$nocontrol,$codigoA);
+        $nocontrol =$nc;
+        $codigoA = $codigoAsesoria;
+        $sentencia_preparada1->execute();
+        $conexion->close();
+       }
+       catch (Exception $e){
+        $error = $e->getMessage();
+        echo $error;
+    }
+}
+public function YaInscrito($nc,$codigoAsesoria){
+    try
+    {
+        $resultado=0;
+        $conn = abrirBD();
+    if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIASREG WHERE CONTROL_ALUMNO=? AND CODIGO_ASESORIA=?"))
+        {
+            $sentencia_preparada->bind_param('ss',$nocontrol,$cod);
+            $nocontrol =$nc;
+            $cod = $codigoAsesoria;
+            $sentencia_preparada->execute();
+            $sentencia_preparada->bind_result($numero);
+            while($sentencia_preparada->fetch()){
+            $resultado = $numero;
+            }
+            $conn->close();
+        }
+
+        return $resultado;
+    }
+    catch (Exception $e)
+    {
+    $error = $e->getMessage();
+    echo $error;
+    }
+}
    public function ActualizarDatos($alumno){
     try
     {

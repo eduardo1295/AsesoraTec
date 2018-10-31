@@ -35,6 +35,7 @@ $conn->close();
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
@@ -129,8 +130,33 @@ $conn->close();
         </div>
     </div>
     <div class="row justify-content-center">
-    <button class="btn btn-primary mt-5"><i class="fa fa-plus lead"></i> Inscribirme</button>
+<form method="post">
+    <button class="btn btn-primary mt-5"name="inscribir"data-toggle="modal" data-target="#mensaje"><i class="fa fa-plus lead"></i> Inscribirme</button>
+</form>
     <button class="btn btn-primary ml-5 mt-5" onclick='window.location.href="asesoriasd.php"'><i class="fa fa-arrow-left lead"></i> Página anterior</button>
     </div>
 </body>
 </html>
+<?php
+if(isset($_POST['inscribir']))
+{
+require_once('php/Clases/alumno.php');
+$alumno = new Alumno();
+$res = $alumno->YaInscrito($nc,$codAsesoria);
+    if($res ==0)
+    {
+    $alumno->InscribirAsesoria($nc,$codAsesoria);
+    echo '<div class="alert alert-success alert-dismissible mt-5">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Exito!</strong> Te has registrado en esta asesoría!
+  </div>';
+   }
+    else
+    {
+        echo '<div class="alert alert-danger alert-dismissible mt-5">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> Ya estabas registrado en esta asesoría!
+      </div>';
+    }
+}
+?>
