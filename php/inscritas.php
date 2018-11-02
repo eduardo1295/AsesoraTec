@@ -15,7 +15,7 @@ if ($buscarAsesorias->num_rows > 0)
 {
 
 	$tabla.= 
-	'<table class="table table-striped">
+	'<table class="table table-striped">.
     <thead class="encabezado">
     <tr>
         <th class="lead">Codigo</th>
