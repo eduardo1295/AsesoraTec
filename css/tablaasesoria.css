@@ -1,0 +1,17 @@
+table{
+    margin: 5% auto;
+
+}
+thead{
+    color:white;
+}
+th{
+    border:1px solid white;
+}
+td{
+    color:black;
+}
+.filtros{
+    margin-top: 7%;
+    margin-left:auto; 
+}

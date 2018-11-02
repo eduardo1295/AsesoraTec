@@ -11,7 +11,8 @@
     <script src="js/popper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/mensaje.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/InsertarMaestro.js"></script>
 </head>
 <body>
     <div class="page-header pb-2 pt-2">
@@ -24,36 +25,35 @@
                 <p class="lead mx-2">Información de la cuenta:
                 </p>
             </div>
-            <form action='insertarmaestro.php'method="post">
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Número económico" name="noec" maxlength=8 required>
+                    <input type="text" class="cajas lead" placeholder="Número económico" id="noec" maxlength=8 required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead ml-4" placeholder="Contraseña" name="passm"maxlength=20 required>
+                    <input type="text" class="cajas lead ml-4" placeholder="Contraseña" id="passm"maxlength=20 required>
                     <a class="btn btn-success" onclick="mostrar()"><i class="ojo fas fa fa-eye fa-fw"></i></a>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Apellido Paterno" name="appatm"maxlength=50 required>
+                    <input type="text" class="cajas lead" placeholder="Apellido Paterno" id="appatm"maxlength=50 required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Apellido Materno"name="apmatm"maxlength=50 required>
+                    <input type="text" class="cajas lead" placeholder="Apellido Materno"id="apmatm"maxlength=50 required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row ">
-                    <input type="text" class="cajas lead" placeholder="Nombre"maxlength=50 name="nombrem"required>
+                    <input type="text" class="cajas lead" placeholder="Nombre"maxlength=50 id="nombrem"required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row ">
-                    <input type="email" class="cajas lead" placeholder="Correo"name="correom" maxlength=128 required>
+                    <input type="email" class="cajas lead" placeholder="Correo"id="correom" maxlength=128 required>
                 </div>
             </div>
         </div>
@@ -69,11 +69,11 @@
             <div class="row justify-content-center">
                 <div class="row my-2 ">
                     <label for="depto"class=lead>Departamento:</label>
-                    <select name="depto" id="depto" class="lead">
-                        <option value="Ing. en Sistemas Computacionales">Ciencias Básicas</option>
-                        <option value="Ing. Electromecánica">Especialidad en Desarrollo Web</option>
-                        <option value="Ing. Civil">Especialidad en seguridad en TIC'S</option>
-                        <option value="Contabilidad">Especialidad en Investigación</option>
+                    <select  id="depto" class="lead">
+                        <option value="Ciencias Básicas">Ciencias Básicas</option>
+                        <option value="Especialidad en Desarrollo Web">Especialidad en Desarrollo Web</option>
+                        <option value="Especialidad en seguridad en TIC's">Especialidad en seguridad en TIC'S</option>
+                        <option value="Especialidad en Investigación">Especialidad en Investigación</option>
                     </select>
                 </div>
             </div>
@@ -82,18 +82,31 @@
 </div>
 <div class="mb-2 mt-2 container w-100">
     <div class="row  justify-content-center">
-        <input type="submit" value="Registrarme" name="registrarm" class="btn btn-primary lead h-50" data-toggle="modal" data-target="#mensaje">
+        <input type="submit" value="Registrarme" id="registrarm" class="btn btn-primary lead h-50" data-toggle="modal" data-target="#mensaje">
+        <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modalLabel">
+                                        Mensaje del Sistema
+                                    </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="mens">
+                                Maestro registrado!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
     </div>
 </div>
-</form>
 </body>
 </html>
-<script>
-if(history.forward(1))
-{
-    window.location.href='login.php';
-}
-</script>
 <script>
   function mostrar(){
       var tipo = document.getElementById("passm");

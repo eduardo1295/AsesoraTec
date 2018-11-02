@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+    session_start();
+    if(isset($_SESSION['logeado']))
+    {
+        if($_SESSION['logeado']=='SI'){
+            header("Location: menu1.php");
+        }
+    }
+    ?>
 <!--Aqui esta el comentario -->
 <head>
     <meta charset="UTF-8">
@@ -11,7 +20,8 @@
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/mensaje.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/Contraseña.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -28,15 +38,15 @@
                 <div class="row mt-4 justify-content-center">
                     <h2 class="lead display-4">Iniciar Sesión</h2>
                 </div>
-                <form action="logU.php"method="POST">
+                <form action="logU.php" method="post">
                 <div class="row justify-content-center">
-                    <input class="m-2 lead" type="text" name="nocontrol" placeholder="Número de Control/Económico" maxlength=8>
+                    <input class="m-2 lead" type="text" name="numero" placeholder="Número de Control/Económico" maxlength=8>
                 </div>
                 <div class="row justify-content-center">
                     <input class="m-2 lead" type="password" name="contra" placeholder="Contraseña"maxlength=20>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="submit" class="btn btn-primary boton mx-5 mb-3 mt-3 lead" value="Ingresar">
+                    <input type="submit" class="btn btn-primary boton mx-5 mb-3 mt-3 lead" id="ingresar" value="Ingresar"> 
                 </div>
                 </form>
                 <div class="row mx-1">
@@ -78,5 +88,6 @@
                 </div>
             </div>
         </div>
+        
 </body>
 </html> 
