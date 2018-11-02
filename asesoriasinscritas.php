@@ -88,11 +88,7 @@ La búsqueda puede ser por cualquier columna de la tabla!
                                     </button>
                                 </div>
                                 <div class="modal-body" id="mens">
-                                  Para inscribirte en una asesoria sigue estos pasos: <br>
-                                    1. Busca la asesoría de tu interés y selecciona el código <br>
-                                    2. El código te llevará al horario de la asesoria <br>
-                                    3. En la pantalla de horarios selecciona "Inscribirme" despúes de revisar los horarios
-                                </div>
+                                  Selecciona una de tus asesorías para ver el horario
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
                                 </div>
