@@ -59,24 +59,45 @@ class Maestro{
         echo $error;
     }
    }
-   public function AgregarAsesoria($codigo,$nombre,$area,$noMaestro){
+   public function AgregarAsesoria($codigo,$noMaestro,$nombre,$area,$semestre,$nombreMaestro){
     try{
      $conexion = abrirBD();
-     $SQL= "INSERT INTO ASESORIA VALUES(?,?,?,?)";
+     $SQL= "INSERT INTO ASESORIA VALUES(?,?,?,?,?,?)";
      $sentencia_preparada1 = $conexion->prepare($SQL);
-     $sentencia_preparada1->bind_param("isss",$cod,$NoMae,$nom,$are);
-     $cod = $codigo;
-     $NoMae = $noMaestro;
-     $nom = $nombre;
-     $are = $area;
+     $sentencia_preparada1->bind_param("isssss",$cod,$NoEcom,$noMae,$nom,$sem,$are);
+     $cod =  utf8_encode($codigo);
+     $NoEcom = utf8_decode($noMaestro);
+     $noMae = utf8_decode($nombreMaestro);
+     $nom = utf8_decode($nombre);
+     $are = utf8_decode($area);
+     $sem = utf8_decode($semestre);
      $sentencia_preparada1->execute();
      $conexion->close();
     }
     catch (Exception $e){
      $error = $e->getMessage();
      echo $error;
-}
-}
+     }
+    }
+
+    public function RegresarNombre($nocontrol){
+        try {
+            $conexion = abrirBD();
+            $SQL = "SELECT nombre FROM maestros WHERE noecon = 33";
+            $STMT = $conexion->prepare($SQL);
+            $STMT->execute();
+            $STMT->bind_result($nombre);
+            while( $fila = $STMT->fetch()){
+                $resultado = $nombre;
+            }
+                
+
+        } catch (PDOException $e) {
+            echo "ERROR: ".$SQL."<br>".$e->getMessage();
+        }   
+        $conexion->close(); 
+        return $resultado;
+    }
 
    public function LogearMaestro($maestro){
     try

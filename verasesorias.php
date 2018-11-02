@@ -13,6 +13,7 @@
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="angular.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
@@ -53,7 +54,7 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <table class="table table-responsive w-50">
+            <table class="table table-responsive w-50" ng-app="myApp" ng-controller="customersCtrl">
                 <thead class="justify-content-center">
                     <tr>
                         <th class="lead">Codigo</th>
@@ -61,31 +62,16 @@
                         <th class="lead">Horario</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody ng-repeat="x in valores">
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td>
-                            <a href="listaasistencia.html" class="btn btn-primary lead"> Ver lista de asistencia</a>
+                            <a href="listaasistencia.php" class="btn btn-primary lead"> Ver lista de asistencia</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="listaasistencia.html" class="btn btn-primary lead"> Ver lista de asistencia</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="listaasistencia.html" class="btn btn-primary lead"> Ver lista de asistencia</a>
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
@@ -95,6 +81,14 @@
             <i class="fas fa fa-mail-reply" onclick="window.location.href='menu2.html'"></i> Página anterior</button>
     </div>
 
+    <script>
+            app = angular.module('myApp',[]);
+            app.controller('customersCtrl',function($scope,$http){
+                $http.get("noti.php?id=0").then(function(response){
+                    $scope.valores = response.data;
+                })
+            });
+    </script>
 </body>
 
 </html>
