@@ -40,6 +40,11 @@
                             <input type="text" class="cajas lead" id="nombrea" placeholder="Nombre de la asesoría">
                         </div>
                     </div>
+                    <div class="row my-3 justify-content-center">
+                        <div class="row">
+                            <input type="text" class="cajas lead" id="semestre" placeholder="Semestre">
+                        </div>
+                    </div>
                     <div class="row justify-content-center">
                         <div class="row my-2 ">
                             <label for="depto"></label>

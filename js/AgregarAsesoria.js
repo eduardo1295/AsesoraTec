@@ -3,7 +3,8 @@ $(document).ready(function(){
         var cod = $("#codigo").val();
         var nom = $("#nombrea").val();
         var dep = $("#depto").val();
-        var mens = $("#mens"); 
+        var mens = $("#mens");
+        var sem = $("#semestre").val();
         $.ajax({
             url: 'php/asesoria.php', 
             method: 'POST',
@@ -11,7 +12,8 @@ $(document).ready(function(){
                 opcion : "Agregar", 
                 codigo : cod,
                 nombre: nom,
-                departamento : dep
+                departamento : dep,
+                semestre : sem
             },
             success: function (data){
                 mens.text(data);
