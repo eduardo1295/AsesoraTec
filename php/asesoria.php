@@ -1,6 +1,7 @@
 <?php
 require_once('Clases/maestro.php');
 session_start();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $codigo = $_POST['codigo'];
         $nombre = $_POST['nombre'];
         $departamento = $_POST['departamento'];
@@ -14,20 +15,19 @@ session_start();
         }
         else{
             echo ("Falta ingresar los datos");
-        }  
-    }
-}
+        }
+    }  
 elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    
-if(isset($_POST['opcion']) && $_POST['opcion'] == "Agregar"){
-    $nombre = $_POST['nombre'];
-    if( $codigo != ""  && $nombre != "" && $nombre != ""){
-        $maestro = new Maestro();
-        $maestro->AgregarAsesoria($codigo,$nombre,$departamento,$_SESSION['noeconomico']);
-        echo ("Se a Registrado Correctamente");
-    }
-    else{
+    if(isset($_POST['opcion']) && $_POST['opcion'] == "Agregar"){
+        $nombre = $_POST['nombre'];
+        if( $codigo != ""  && $nombre != "" && $nombre != ""){
+            $maestro = new Maestro();
+            $maestro->AgregarAsesoria($codigo,$nombre,$departamento,$_SESSION['noeconomico']);
+            echo ("Se a Registrado Correctamente");
+        }
+        else{
         
-    } 
+        } 
+    }
 }
 ?>
