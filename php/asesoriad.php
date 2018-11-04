@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('Clases/asesoria.php');
 session_start();
     $codigo = $_POST['codigo'];

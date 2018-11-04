@@ -91,7 +91,7 @@ La búsqueda puede ser por cualquier columna de la tabla!
                                   Para inscribirte en una asesoria sigue estos pasos: <br>
                                     1. Busca la asesoría de tu interés y selecciona el código <br>
                                     2. El código te llevará al horario de la asesoria <br>
-                                    3. En la pantalla de horarios selecciona "Inscribirme" despúes de revisar los horarios
+                                    3. En la pantalla de horarios selecciona el botón "Inscribirme" despúes de revisar los horarios
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
@@ -116,6 +116,9 @@ La búsqueda puede ser por cualquier columna de la tabla!
             </section>
         </div>
     </div>
+    <div class="row justify-content-end">    
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+</div>
 <?php
 
 ?>    

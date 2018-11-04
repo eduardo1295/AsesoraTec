@@ -82,7 +82,7 @@
 </div>
 <div class="mb-2 mt-2 container w-100">
     <div class="row  justify-content-center">
-        <input type="submit" value="Registrarme" id="registrarm" class="btn btn-primary lead h-50" data-toggle="modal" data-target="#mensaje">
+        <button type="submit" id="registrarm" class="btn btn-primary lead w-25" data-toggle="modal" data-target="#mensaje"> Registrarme C</i></button>
         <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
