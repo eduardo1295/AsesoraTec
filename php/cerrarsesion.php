@@ -5,7 +5,7 @@ if($_SESSION['logeado']!="SI"){
 }
 else{
     session_destroy();
-    header("Location: http://localhost/proyecto/login.php");
+    header("Location: /login.php");
 }
 
 ?>

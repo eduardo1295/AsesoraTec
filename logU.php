@@ -17,8 +17,9 @@ if($resultado>0){
     header("Location:menu1.php");
 }
 else if($resultado2>0){
-$_SESSION['noeconomico'] = $maestro->No_Economico;
-header("Location: menu2.php");
+    $_SESSION['noeconomico'] = $maestro->No_Economico;
+    $_SESSION['logeado'] = "SI";
+    header("Location: menu2.php");
 }
 else{
 header("Location: login.php");

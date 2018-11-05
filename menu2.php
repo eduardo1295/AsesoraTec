@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+<?php 
+session_start();
+if($_SESSION['logeado']!='SI'){
+    header("Location: login.php");
+}
+require_once('php/Clases/maestro.php');
+$maestro = new Maestro();
+$noecom= $_SESSION['noeconomico'];
+$maestro->ObtenerDatos($noecom,$maestro);
+
+$nombre = utf8_encode( $maestro->Nombre);
+$appat = utf8_encode( $maestro->Ap_Pat);
+$apmat = utf8_encode($maestro->Ap_Mat);
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -37,7 +52,7 @@
         <form action="" class="form-inline" role="search">
             <div class="dropdown">
                 <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="fas fa-user fa-fw"></span>
+                    <span class="fas fa-user fa-fw"></span><?php echo $nombrecompleto?>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                     <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
@@ -78,7 +93,7 @@
                     <div id="item-1" class="collapse">
                         <ul class="nav flex-column ml-3">
                             <li class="nav-item">
-                                <a class="nav-link active lead" href="#">
+                                <a class="nav-link active lead" data-toggle="modal" href="#cerrar">
                                     <i class="fas fa fa-power-off fa-fw"></i>Cerrar Sesión</a>
                             </li>
                             <li class="nav-item">
@@ -93,7 +108,28 @@
                     </div>
                 </li>
             </ul>
-
+            <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">
+                        Mensaje del Sistema
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2 justify-content-center">
+            ¿Seguro que desea cerrar la sesión?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <a class="btn btn-primary lead" href="php/cerrarsesion.php">Aceptar</a>
+                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
     <div class="relleno w-100 mb-0">

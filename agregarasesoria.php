@@ -13,6 +13,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/AgregarAsesoria.js"></script>
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
 
 <body>
@@ -55,6 +56,58 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row  mt-4 justify-content-center">
+                        <p class="lead mx-2">Horario:
+                        </p>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                          <th scope="col">Seleccionar</th>
+                          <th scope="col">Dia</th>
+                          <th scope="col">Hora</th>
+                          <th scope="col">Salón</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row" class = "d-flex justify-content-center"> 
+                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
+                          <td class="lead mx-2"><p>Lunes</p></td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class = "d-flex justify-content-center"> 
+                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
+                          <td class="lead mx-2"> <p> Martes </p> </td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class = "d-flex justify-content-center"> 
+                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
+                          <td class="lead mx-2"> <p> Miercoles </p></td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class = "d-flex justify-content-center"> 
+                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
+                          <td class="lead mx-2"><p>Jueves</p> </td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class = "d-flex justify-content-center"> 
+                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
+                          <td class="lead mx-2"> <p> Vienes </p> </td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                          <td><input type="text" name="" id="" class="catexto"></td>
+                        </tr>
+                      </tbody>
+                    </table>
                 </div>
             </div>
         </div>
