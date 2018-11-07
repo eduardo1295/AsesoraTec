@@ -59,17 +59,16 @@ class Maestro{
         echo $error;
     }
    }
-   public function AgregarAsesoria($codigo,$noMaestro,$nombre,$area,$semestre,$nombreMaestro){
+   public function AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$departamento,$semestre){
     try{
      $conexion = abrirBD();
-     $SQL= "INSERT INTO ASESORIA VALUES(?,?,?,?,?,?)";
+     $SQL= "INSERT INTO ASESORIAS VALUES(?,?,?,?,?)";
      $sentencia_preparada1 = $conexion->prepare($SQL);
-     $sentencia_preparada1->bind_param("isssss",$cod,$NoEcom,$noMae,$nom,$sem,$are);
+     $sentencia_preparada1->bind_param("sssss",$cod,$No_Maestro,$nom_Materia,$depto,$sem);
      $cod =  utf8_encode($codigo);
-     $NoEcom = utf8_decode($noMaestro);
-     $noMae = utf8_decode($nombreMaestro);
-     $nom = utf8_decode($nombre);
-     $are = utf8_decode($area);
+     $No_Maestro = utf8_decode($nombreMaestro);
+     $nom_Materia = utf8_decode($nombreMateria);
+     $depto = utf8_decode($departamento);
      $sem = utf8_decode($semestre);
      $sentencia_preparada1->execute();
      $conexion->close();
@@ -155,8 +154,8 @@ public function ObtenerDatos($ne,$maestro){
      $conn = abrirBD();
      if($sentencia_preparada =$conn->prepare("SELECT * FROM MAESTROS WHERE NOECON=?"))
      {
-         $sentencia_preparada->bind_param('s',$nocontrol);
-         $noecon =$nc;
+         $sentencia_preparada->bind_param('s',$noecon);
+         $noecon =$ne;
          $sentencia_preparada->execute();
          $sentencia_preparada->bind_result($nume,$pass,$nombre,$appat,$apmat,$depto,$correo);
          while($sentencia_preparada->fetch()){

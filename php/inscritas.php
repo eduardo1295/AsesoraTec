@@ -1,8 +1,10 @@
 <?php 
+session_start();
 require_once('Clases/conexion.php');
 $conn = abrirBD();
 $tabla ="";
-$nocontrol = "14310699";
+$nocontrol = $_SESSION['nocontrol'];
+
 $query = "SELECT *FROM ASESORIASREG WHERE CONTROL_ALUMNO=$nocontrol";
 if(isset($_POST['busqueda']))
 {

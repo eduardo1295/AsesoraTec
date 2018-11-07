@@ -8,7 +8,7 @@ function inicializarHora  () {
     var diaDelMes = fecha.getDate();
     var aActual = fecha.getFullYear();
     var amOpm;
-    var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+    var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     var esteMes = meses[mesActual];
     var diasDeLaSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Sábado"]
     var diaDeHoy = diasDeLaSemana[diaActual];

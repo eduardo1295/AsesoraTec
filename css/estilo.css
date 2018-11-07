@@ -1,0 +1,26 @@
+.seleccionardo{
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+.catexto{
+    width: 75px;
+}
+table th{
+    color: white;
+}
+table input {
+    width: 100%;
+    display: block;
+    background-color: transparent;
+    border:  none;
+    border-bottom: 1px solid white;
+    color: white;
+    
+}
+
+
+#horario{
+    margin-bottom: 10px;
+    
+}

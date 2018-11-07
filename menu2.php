@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+<?php 
+session_start();
+if($_SESSION['maestrologeado']!='SI'){
+    header("Location: login.php");
+}
+require_once('php/Clases/maestro.php');
+$maestro = new Maestro();
+$noecom= $_SESSION['noeconomico'];
+$maestro->ObtenerDatos($noecom,$maestro);
+
+$nombre = utf8_encode( $maestro->Nombre);
+$appat = utf8_encode( $maestro->Ap_Pat);
+$apmat = utf8_encode($maestro->Ap_Mat);
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -18,8 +33,6 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/reloj.js"></script>
-
-
 </head>
 
 <body>
@@ -29,15 +42,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a href="#" class="navbar-brand">
-            <h1 class="lead display-5">Asesora-TEC</h1>
+            <h1 class="lead display-4">Asesora-TEC</h1>
         </a>
         <div class="collapse navbar-collapse justify-content-end" id="nav-content"></div>
         <ul class="navbar-nav">
         </ul>
         <form action="" class="form-inline" role="search">
             <div class="dropdown">
-                <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     <span class="fas fa-user fa-fw"></span>
+                    <?php echo $nombrecompleto?>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                     <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
@@ -45,7 +60,8 @@
                 </div>
             </div>
             <div class="dropdown">
-                <button id="acercade" class="btn btn-primary dropdown-toggle  lead" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button id="acercade" class="btn btn-primary dropdown-toggle  lead" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     <span class="fas fa-cog fa-fw"></span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acercade">
@@ -78,7 +94,7 @@
                     <div id="item-1" class="collapse">
                         <ul class="nav flex-column ml-3">
                             <li class="nav-item">
-                                <a class="nav-link active lead" href="#">
+                                <a class="nav-link active lead" data-toggle="modal" href="#cerrar">
                                     <i class="fas fa fa-power-off fa-fw"></i>Cerrar Sesión</a>
                             </li>
                             <li class="nav-item">
@@ -93,76 +109,132 @@
                     </div>
                 </li>
             </ul>
-
-        </div>
-    </div>
-    <div class="relleno w-100 mb-0">
-        <script type="text/javascript">
-
-            function crearReloj() {
-                var ahora = new Date();
-                var h = ahora.getHours();
-                var m = ahora.getMinutes();
-                var s = ahora.getSeconds();
-                var mesActual = ahora.getMonth();
-                var diaActual = ahora.getDay();
-                var diaDelMes = ahora.getDate();
-                var aActual = ahora.getFullYear();
-                var amOpm;
-                var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-                var esteMes = meses[mesActual];
-                var diasDeLaSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Sábado"]
-                var diaDeHoy = diasDeLaSemana[diaActual];
-                var amOpm;
-                if (h > 12)
-                    amOpm = "pm."
-                else
-                    amOpm = "am.";
-                m = corregirHora(m);
-                s = corregirHora(s);
-                document.getElementById('fecha').innerHTML = "Hoy es " + diaDeHoy + " " + diaDelMes + " de " + esteMes + " del " + aActual;
-                document.getElementById('reloj').innerHTML ="Hora Actual: "+ h + ":" + m + ":" + s + " " + amOpm;
-                var t = setTimeout(function () { crearReloj() }, 1000);
-            }
-            function corregirHora(i) {
-                if (i < 10) { i = "0" + i };
-                return i;
-            }
-        </script>
-        </head>
-
-        <body onLoad="crearReloj()">
-            <div class="container--fluid">
-                <div class="row justify-content-center mt-5 lead pt-4 pb-4 bg-verde">
-                    <div id="fecha"></div>
-                </div>
-                <div class="row justify-content-center mt-3 lead pt-4 pb-4 bg-verde">
-                    <div id="reloj"></div>
+            <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalLabel">
+                                Mensaje del Sistema
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mt-2 justify-content-center">
+                                ¿Seguro que desea cerrar la sesión?
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-primary lead" href="php/cerrarsesion.php">Aceptar</a>
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </body>
-
-</html>
-
-</div>
-<div class="copyright">
-    <div class="container">
-        <div class="col py-3">
-            <div class="col text-center">
-                Copyright 2018. &copy;
-                <a class="btn btn-block btn-social btn-twitter d-inline">
-                    <span class="fa fa-twitter"></span>
-                </a>
-                <a class="btn btn-block btn-social btn-twitter d-inline">
-                    <span class="fa fa-facebook"></span>
-                </a>
-                <a class="btn btn-block btn-social btn-twitter d-inline">
-                    <span class="fa fa-instagram"></span>
-                </a>
-            </div>
         </div>
-    </div>
-</div>
-</body>
-
-</html>
+        <div class="relleno w-100 mb-0">
+            <script type="text/javascript">
+                function crearReloj2() {
+                    var canvas = document.getElementById("canvas");
+                    var ctx = canvas.getContext("2d");
+                    var color = 'blue';
+                    ctx.strokeStyle = 'blue';
+                    ctx.lineWidth = 17;
+                    ctx.lineCap = 'round';
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = 'black';
+                    function degToRoad(degree) {
+                        var factor = Math.PI / 180;
+                        return factor * degree;
+                    }
+    
+                    function renderTime() {
+                        var now = new Date();
+                        var today = now.toDateString();
+    
+                        var hours = now.getHours();
+                        var amOpm;
+                        if (hours > 12)
+                            amOpm = "pm."
+                        else
+                            amOpm = "am.";
+                        var time = "       " + now.toLocaleTimeString() + " " + amOpm;
+                        var minutes = now.getMinutes();
+                        var seconds = now.getSeconds();
+                        var milliseconds = now.getMilliseconds();
+    
+                        var ahora = new Date();
+                        var mesActual = ahora.getMonth();
+                        var diaDelMes = ahora.getDate();
+                        var aActual = ahora.getFullYear();
+    
+                        var newSconds = seconds + (milliseconds / 1000);
+                        var hoy = " " + diaDelMes + "/" + mesActual + "/" + aActual;
+                        //background
+                        var gradient = ctx.createRadialGradient(250, 250, 1, 250, 250, 300);
+                        gradient.addColorStop(0, 'white');
+                        gradient.addColorStop(1, 'white');
+    
+                        ctx.fillStyle = gradient;
+                        //ctx.fillStyle = '#333333';
+                        ctx.fillRect(0, 0, 500, 500);
+    
+                        //hours
+                        ctx.beginPath();
+                        ctx.arc(250, 250, 150, degToRoad(270), degToRoad((hours * 15) - 90));
+                        ctx.stroke();
+    
+                        //minutes
+                        ctx.beginPath();
+                        ctx.arc(250, 250, 120, degToRoad(270), degToRoad((minutes * 6) - 90));
+                        ctx.stroke();
+    
+                        //seconds
+    
+                        ctx.beginPath();
+                        ctx.arc(250, 250, 90, degToRoad(270), degToRoad((newSconds * 6) - 90));
+                        ctx.stroke();
+    
+                        //date
+                        ctx.fillStyle = color;
+                        ctx.font = '24px Verdana';
+                        ctx.fillText(hoy, 170, 250);
+    
+                        //time
+                        ctx.fillStyle = color;
+                        ctx.font = '16px Arial';
+                        ctx.fillText(time, 170, 280);
+                    }
+                    setInterval(renderTime, 40);
+                }
+            </script>
+            </head>
+    
+            <body onLoad="crearReloj2()">
+                <div class="row justify-content-center">
+                    <canvas id="canvas" width="500px" height="500px"></canvas>
+                </div>
+                <div class="copyright">
+                    <div class="container">
+                        <div class="col py-3">
+                            <div class="col text-center">
+                                Copyright 2018. &copy;
+                                <a class="btn btn-block btn-social btn-twitter d-inline">
+                                    <span class="fa fa-twitter"></span>
+                                </a>
+                                <a class="btn btn-block btn-social btn-twitter d-inline">
+                                    <span class="fa fa-facebook"></span>
+                                </a>
+                                <a class="btn btn-block btn-social btn-twitter d-inline">
+                                    <span class="fa fa-instagram"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </div>
+    </body>
+    
+    </html>

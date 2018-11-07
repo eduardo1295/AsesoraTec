@@ -13,6 +13,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/AgregarAsesoria.js"></script>
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src=""></script>
 </head>
 
 <body>
@@ -55,6 +57,41 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row  mt-4 justify-content-center">
+                        <p class="lead mx-2">Horario:</p>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Lunes</th>
+                          <th scope="col">martes</th>
+                          <th scope="col">miercoles</th>
+                          <th scope="col">jueves</th>
+                          <th scope="col">viernes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Hora</th>
+                          <td><input type="text" name="" id="h1" class=""> </td>
+                          <td><input type="text" name="" id="h2" class=""> </td>
+                          <td><input type="text" name="" id="h3" class=""> </td>
+                          <td><input type="text" name="" id="h4" class=""> </td>
+                          <td><input type="text" name="" id="h5" class=""> </td>
+                          
+                        </tr>
+                        <tr>
+                            <th scope="row">Salón</th>
+                              <td><input type="text" name="" id="s1" class=""> </td>
+                              <td><input type="text" name="" id="s2" class=""> </td>
+                              <td><input type="text" name="" id="s3" class=""> </td>
+                              <td><input type="text" name="" id="s4" class=""> </td>
+                              <td><input type="text" name="" id="s5" class=""> </td>
+                            </tr>
+                        
+                      </tbody>
+                    </table>
                 </div>
             </div>
         </div>
