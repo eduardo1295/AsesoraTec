@@ -33,7 +33,6 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/CerrarSesion.js"></script>
     <script src="js/reloj.js"></script>
 
 
@@ -196,7 +195,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     var aActual = ahora.getFullYear();
                     
                     var newSconds = seconds + (milliseconds / 1000);
-                    var hoy =" "+diaDelMes+"/"+mesActual+"/"+aActual;
+                    var hoy =" "+diaDelMes+"/"+(mesActual+1)+"/"+aActual;
                     //background
                     var gradient = ctx.createRadialGradient(250, 250, 1, 250, 250, 300);
                     gradient.addColorStop(0, 'white');
