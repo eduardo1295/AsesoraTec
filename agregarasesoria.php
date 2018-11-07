@@ -58,55 +58,38 @@
                         </div>
                     </div>
                     <div class="row  mt-4 justify-content-center">
-                        <p class="lead mx-2">Horario:
-                        </p>
+                        <p class="lead mx-2">Horario:</p>
                     </div>
-
                     <table class="table">
                         <thead>
                         <tr>
-                          <th scope="col">Seleccionar</th>
-                          <th scope="col">Dia</th>
-                          <th scope="col">Hora</th>
-                          <th scope="col">Salón</th>
+                          <th scope="col"></th>
+                          <th scope="col">Lunes</th>
+                          <th scope="col">martes</th>
+                          <th scope="col">miercoles</th>
+                          <th scope="col">jueves</th>
+                          <th scope="col">viernes</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row" class = "d-flex justify-content-center"> 
-                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
-                          <td class="lead mx-2"><p>Lunes</p></td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
+                          <th scope="row">Hora</th>
+                          <td><input type="text" name="" id="h1" class=""> </td>
+                          <td><input type="text" name="" id="h2" class=""> </td>
+                          <td><input type="text" name="" id="h3" class=""> </td>
+                          <td><input type="text" name="" id="h4" class=""> </td>
+                          <td><input type="text" name="" id="h5" class=""> </td>
+                          
                         </tr>
                         <tr>
-                          <th scope="row" class = "d-flex justify-content-center"> 
-                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
-                          <td class="lead mx-2"> <p> Martes </p> </td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class = "d-flex justify-content-center"> 
-                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
-                          <td class="lead mx-2"> <p> Miercoles </p></td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class = "d-flex justify-content-center"> 
-                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
-                          <td class="lead mx-2"><p>Jueves</p> </td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class = "d-flex justify-content-center"> 
-                          <input type="checkbox" name="" id="pt" class="seleccionardo" value="" style=""></th>
-                          <td class="lead mx-2"> <p> Vienes </p> </td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
-                          <td><input type="text" name="" id="" class="catexto"></td>
-                        </tr>
+                            <th scope="row">Salón</th>
+                              <td><input type="text" name="" id="s1" class=""> </td>
+                              <td><input type="text" name="" id="s2" class=""> </td>
+                              <td><input type="text" name="" id="s3" class=""> </td>
+                              <td><input type="text" name="" id="s4" class=""> </td>
+                              <td><input type="text" name="" id="s5" class=""> </td>
+                            </tr>
+                        
                       </tbody>
                     </table>
                 </div>
