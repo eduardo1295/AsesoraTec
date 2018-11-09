@@ -94,6 +94,10 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <i class="fas fa fa-search-plus fa-fw"></i>Inscribirme en Asesoría</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link lead" href="evidencia.php">
+                        <i class="fas fa fa-upload fa-fw"></i>Subir firma de asistencia</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-1">
                         <i class="fas fa fa-user fa-fw"></i>Mi cuenta</a>
                     <div id="item-1" class="collapse">
@@ -107,7 +111,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                     <i class="fas fa fa-trash fa-fw"></i>Eliminar mi cuenta</a>
                             </li>
                             <li class="nav-item lead">
-                                <a class="nav-link lead" href="#">
+                                <a class="nav-link lead" href="#" id="modificar">
                                     <i class="fas fa-cog fa-fw"></i>Modificar Perfil</a>
                             </li>
                         </ul>
@@ -131,7 +135,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-danger lead" href='eliminar.php?nc=<?php echo $nc;?>'>Aceptar</a>
+                            <a class="btn btn-danger lead" href='#' id="eliminar">Aceptar</a>
                             <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
@@ -265,5 +269,15 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </body>
     </div>
 </body>
+<script language="javascript">
+$(document).ready(function(){
+    $("#modificar").click(function(){
+    window.location.href='miperfil.php';
+    });
+    $("#eliminar").click(function(){
+    window.location.href='eliminar.php?nc=<?php echo $nc;?>';
+    });
+});
 
+</script>
 </html>

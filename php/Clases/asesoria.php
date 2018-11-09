@@ -6,7 +6,6 @@ class Asesoria{
     public $Nom_Maestro;
     public $Semestre;
     public $Departamento;
-
     public function _construct(){
         $Codigo ="";
         $Nombre="";
