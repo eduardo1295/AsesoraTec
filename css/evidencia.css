@@ -1,7 +1,9 @@
 .encabezado{
-    background: blue;
     color:white;
 }
 .elegir{
     margin-top:150px;
+}
+.textbox{
+    margin-top:200px; 
 }

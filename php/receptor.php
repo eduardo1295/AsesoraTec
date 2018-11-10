@@ -13,10 +13,10 @@ if (is_uploaded_file($_FILES["userfile"]["tmp_name"]))
         //echo "<BR>".$info[1]; //altura
         //echo "<BR>".$info[2]; //1-GIF, 2-JPG, 3-PNG
         //echo "<BR>".$info[3]; //cadena de texto para el tag <img
- 
+        
         # Escapa caracteres especiales
         $imagenEscapes=$mysqli->real_escape_string(file_get_contents($_FILES["userfile"]["tmp_name"]));
- 
+        
         # Agregamos la imagen a la base de datos
         $sql="INSERT INTO  EVIDENCIA (COD_ASESORIA,anchura,altura,tipo,imagen) VALUES (TI2,".$info[0].",".$info[1].",'".$_FILES["userfile"]["type"]."','".$imagenEscapes."')";
         $mysqli->query($sql);

@@ -72,12 +72,14 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             </form>
         </nav>
     </div>
+    <div class="row justify-content-center textbox">
+        <p>¿Para que asesoría es tu firma de asistencia? <input type="text" name="asesoria" id="asesoria"></p>
+    </div>
 <div class="row justify-content-center elegir">
 <form  action="php/receptor.php" class="dropzone needsclick dz-clickable" id="subirImagen">
 <div class="dz-mesaage needsclick">
 <h5 class="lead">Arrastre su archivo aquí o click para seleccionar</h5>
 </div>
-</form>
 </form>
 </div>
 </body>

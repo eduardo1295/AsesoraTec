@@ -37,7 +37,7 @@
 .dropzone .dz-preview:hover .dz-details { opacity: 1; }
 .dropzone .dz-preview.dz-file-preview .dz-image { border-radius: 20px; background: #999; background: linear-gradient(to bottom, #eee, #ddd); }
 .dropzone .dz-preview.dz-file-preview .dz-details { opacity: 1; }
-.dropzone .dz-preview.dz-image-preview { background: #afd9ee; }
+.dropzone .dz-preview.dz-image-preview { background: whitesmoke; }
 .dropzone .dz-preview.dz-image-preview .dz-details { -webkit-transition: opacity 0.2s linear; -moz-transition: opacity 0.2s linear; -ms-transition: opacity 0.2s linear; -o-transition: opacity 0.2s linear; transition: opacity 0.2s linear; }
 .dropzone .dz-preview .dz-remove { font-size: 14px; text-align: center; display: block; cursor: pointer; border: none; }
 .dropzone .dz-preview .dz-remove:hover { text-decoration: underline; }
