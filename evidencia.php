@@ -21,6 +21,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Subir evidencia</title>
     <link rel="stylesheet" href="css/evidencia.css">
+    <link rel="stylesheet" href="css/formatoe.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,10 +29,9 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
-    <link rel="stylesheet" href="dropzone/dropzone.css">
     <script src="dropzone/dropzone.js"></script>
-    <script src="dropzone/dropzone-config.js"></script>
-
+    <script src="dropzone/dropzone-configuration.js"></script>
+    <link rel="stylesheet" href="dropzone/dropzone2.css">
 </head>
 <body>
 <div class="row">
@@ -72,11 +72,12 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             </form>
         </nav>
     </div>
-    <div class="row justify-content-center textbox">
+    <div class="row justify-content-center textbox alert alert-primary">
         <p>¿Para que asesoría es tu firma de asistencia? <input type="text" name="asesoria" id="asesoria"></p>
-    </div>
+    </div>|
+    <form  action="php/receptor.php" class="dropzone needsclick dz-clickable" id="subirImagen">
 <div class="row justify-content-center elegir">
-<form  action="php/receptor.php" class="dropzone needsclick dz-clickable" id="subirImagen">
+
 <div class="dz-mesaage needsclick">
 <h5 class="lead">Arrastre su archivo aquí o click para seleccionar</h5>
 </div>

@@ -85,7 +85,7 @@ if($existe>0)
 	$mail_addAddress=$correo;//correo electronico que recibira el mensaje
 	$template="email_template.html";//Ruta de la plantilla HTML para enviar nuestro mensaje
 				/*Inicio captura de datos enviados por $_POST para enviar el correo */
-    $mail_setFromEmail="fer_inzunzavelarde@hotmail.com";
+    $mail_setFromEmail="fernandoinzv@gmail.com";
 	$mail_setFromName="Asesora-TEC";
 	$txt_message=utf8_encode("Tu contrasena olvidada es: $contraseña");
     $mail_subject=utf8_encode("Recuperacion de contrasena");
