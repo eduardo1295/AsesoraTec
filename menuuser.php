@@ -56,7 +56,7 @@
         <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"
         style="border:0; background-color:transparent;cursor:pointer;" value=""
         data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menualumnos.php'">
-        <img  src="alumno.jpeg" width="240px"height="240px"></button>
+        <img  src="alumno.png" width="240px"height="240px"></button>
         
         <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"
         style="border:0; background-color:transparent;cursor:pointer;" value=""
