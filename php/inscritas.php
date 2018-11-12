@@ -35,7 +35,7 @@ if ($buscarAsesorias->num_rows > 0)
 		$asesoria->ObtenerAsesoria($fila['Codigo_Asesoria'],$asesoria);
 		$tabla.=
 		'<tr>
-		<td><a href="horario.php?cod='.$fila['Codigo_Asesoria'].'">'.$fila['Codigo_Asesoria'].'</a></td>
+		<td><a href="horarioasesoria.php?cod='.$fila['Codigo_Asesoria'].'">'.$fila['Codigo_Asesoria'].'</a></td>
 		<td>'.utf8_encode($asesoria->Nom_Maestro).'</td>
 		<td>'.utf8_encode($asesoria->Nombre).'</td>
 		<td>'.utf8_encode($asesoria->Departamento).'</td>
