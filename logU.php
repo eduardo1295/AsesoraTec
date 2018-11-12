@@ -16,14 +16,16 @@ $resultado2 = $maestro->LogearMaestro($maestro);
 //$admin->SetContraseña($_POST['contra']);
 //$resultado3= $admin->LogearAdmin($admin);
 if($resultado>0){
-    $nocontrol = $alumno->No_Control;
+    $nocontrol = $alumno->No_Control; 
+    
     $_SESSION['nocontrol'] = $nocontrol;
     $_SESSION['logeado'] = "SI";
     header("Location:menu1.php");
 }
 else if($resultado2>0){
-$_SESSION['noeconomico'] = $maestro->No_Economico;
-header("Location: menu2.php");
+    $_SESSION['noeconomico'] = $maestro->No_Economico;
+    $_SESSION['maestrologeado'] = "SI";
+    header("Location: menu2.php");
 }
 //else if($resultado3>0){
 //    $_SESSION['usuario'] = $maestro->Usuario;

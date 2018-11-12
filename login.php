@@ -8,6 +8,11 @@
             header("Location: menu1.php");
         }
     }
+    elseif (isset($_SESSION['maestrologeado'])) {
+        if($_SESSION['maestrologeado']=='SI'){
+            header("Location: menu2.php");
+        }
+    }
     ?>
 <!--Aqui esta el comentario -->
 <head>

@@ -2,8 +2,8 @@
 require_once('Clases/maestro.php');
 $maestro = new Maestro();
 
-  $puto = $maestro->RegresarNombre(33);
+  $maestro->ObtenerDatos('33',$maestro);
   
-  echo($puto);
+  echo($maestro->Nombre);
   
 ?>

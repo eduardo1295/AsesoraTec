@@ -91,15 +91,21 @@ $conn->close();
                 <div class="col-md-3">
                 <p class="lead">Maestro: <?php echo $nom_maestro;?></p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                 <p class="lead">Materia: <?php echo $nombre_materia;?></p>
                 </div>
                 <div class="col-md-3">
                 <p class="lead">Departamento: <?php echo $departamento;?></p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                 <p class="lead">Semestre: <?php echo $semestre;?></p>
                 </div>
+                <div class="col-md-2">
+                <form method="post">
+                    <p class="lead">Inscribirme:<button type="submit"class="btn btn-primary navegacion"name="inscribir" style="border:0; background-color:transparent;cursor:pointer;"data-toggle="modal"data-target="#mensaje" value=""data-toggle="tooltip" title="Inscribirme"><img src="css/addb.png" width="30px"height="30px"></button></p>
+                </form>
+                </div>
+                
             </div>
         <div class="row">
             <table class="table table-striped">
@@ -129,15 +135,7 @@ $conn->close();
             </table>
         </div>
     </div>
-    <div class="row justify-content-center">
-<form method="post">
-    <button class="btn btn-primary mt-5"name="inscribir"data-toggle="modal" data-target="#mensaje"><i class="fa fa-plus lead"></i> Inscribirme</button>
-</form>
-    <button class="btn btn-primary ml-5 mt-5" onclick='window.location.href="asesoriasd.php"'><i class="fa fa-arrow-left lead"></i> Página anterior</button>
-    </div>
-</body>
-</html>
-<?php
+    <?php
 if(isset($_POST['inscribir']))
 {
 require_once('php/Clases/alumno.php');
@@ -160,3 +158,13 @@ $res = $alumno->YaInscrito($nc,$codAsesoria);
     }
 }
 ?>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+    <div class="row justify-content-end"style="left:0;bottom:0;width:100%;position:fixed;">
+    <button type="button"class=" mt-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='asesoriasd.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+    </div>
+</body>
+</html>
