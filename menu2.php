@@ -56,7 +56,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                     <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
-                    <a href="a" class="dropdown-item lead">Mi perfil</a>
+                    <a href="miperfilmaestro.php" class="dropdown-item lead">Mi perfil</a>
                 </div>
             </div>
             <div class="dropdown">

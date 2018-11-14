@@ -57,18 +57,20 @@
                             </select>
                         </div>
                     </div>
+                    
                     <div class="row  mt-4 justify-content-center">
                         <p class="lead mx-2">Horario:</p>
                     </div>
-                    <table class="table">
+                    <section class="w-100" id="tabla">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                           <th scope="col"></th>
                           <th scope="col">Lunes</th>
-                          <th scope="col">martes</th>
-                          <th scope="col">miercoles</th>
-                          <th scope="col">jueves</th>
-                          <th scope="col">viernes</th>
+                          <th scope="col">Martes</th>
+                          <th scope="col">Miercoles</th>
+                          <th scope="col">Jueves</th>
+                          <th scope="col">Viernes</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -79,7 +81,6 @@
                           <td><input type="text" name="" id="h3" class=""> </td>
                           <td><input type="text" name="" id="h4" class=""> </td>
                           <td><input type="text" name="" id="h5" class=""> </td>
-                          
                         </tr>
                         <tr>
                             <th scope="row">Salón</th>
@@ -89,9 +90,10 @@
                               <td><input type="text" name="" id="s4" class=""> </td>
                               <td><input type="text" name="" id="s5" class=""> </td>
                             </tr>
-                        
                       </tbody>
                     </table>
+                    </section>
+                    
                 </div>
             </div>
         </div>
@@ -123,13 +125,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <button type="submit" value="" id="registrarbtn" class="btn btn-primary lead mx-4 ">
-                        <i class="fas fa fa-mail-reply lead" onclick="window.location.href='menu2.html'"> Página anterior</i>
-                    </button>
-                </div>
+                <div class="row justify-content-center">    
+                    <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu2.php'"><img class="hola" src="css/return.png" ></button>
+        </div>    
             </div>
         </div>
+        
 
 </body>
 

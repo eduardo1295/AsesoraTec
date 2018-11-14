@@ -7,12 +7,12 @@ if($_SESSION['maestrologeado']!='SI'){
 }
 require_once('php/Clases/maestro.php');
 $maestro = new maestro();
-$nocontrol= $_SESSION['noeconomico'];
-$maestro->ObtenerDatos($nocontrol,$maestro);
-$nc = $nocontrol;
+$noeconomico= $_SESSION['noeconomico'];
+$maestro->ObtenerDatos($noeconomico,$maestro);
+$nc = $noeconomico;
 $nombre = utf8_encode($maestro->Nombre);
-$appat =  utf8_encode($maestro->Ap_Pat);
-$apmat =  utf8_encode($maestro->Ap_Mat);
+$appat = utf8_encode($maestro->Ap_Pat);
+$apmat = utf8_encode($maestro->Ap_Mat);
 
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 ?>
@@ -31,7 +31,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/bootstrap.min.js"></script>
     <script src="js/reloj.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/Filtrar.js"></script>
+    
 </head>
 <body>
  <div class="row">
@@ -41,7 +41,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <a href="#" class="navbar-brand">
-                        <h1 class="lead display-4">Mis asesorias</h1>
+                        <h1 class="lead display-4">Lista de Asistencia</h1>
                     </a>
                     <div class="collapse navbar-collapse justify-content-end" id="nav-content"></div>
                     <ul class="navbar-nav">
@@ -74,9 +74,9 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             <h4 class="lead">
                 Buscar: 
             <input type="text" name="busqueda" id="busqueda"placeholder="Buscar">  
-La búsqueda puede ser por cualquier columna de la tabla!
-<button class="btn btn-info ml-5" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje"><i class="fa fa-question"></i></button>
-<div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+                La búsqueda puede ser por cualquier columna de la tabla!
+                <button class="btn btn-info ml-5" class="btn  lead" data-toggle="modal" data-target="#mensaje"><i class="fa fa-question"></i></button>
+                <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -103,17 +103,30 @@ La búsqueda puede ser por cualquier columna de la tabla!
             </div>
         </div>
         <div class="row">
-        <div class="alert alert-primary w-100 text-center">
+        <div class="alert alert-primary w-100">
             <h4 class="lead">
-            Selecciona el código de la asesoria para ver el horario!
+            Asesoria: Matemáticas.
             </h4>
             </div>
         </div>
     <div class="container-fluid">
         <div class="row">
-            <section class="w-100" id="tabla">
-
-            </section>
+            <table class="table table-striped">
+            <thead class="encabezado" >
+                    <tr>
+                        <th class="lead ">#</th>
+                        <th class="lead ">Nocontrol</th>
+                        <th class="lead ">nombre</th>
+                        <th class="lead ">Asistencia</th>
+                    </tr>
+            </thead>
+            <tr>
+            <td>1</td>
+            <td>14310651</td>
+            <td>Eduardo Rentería Rodíguez</td>
+            <td>si</td>
+            </tr>
+            </table>
         </div>
     </div>
     <div class="row justify-content-end">    
