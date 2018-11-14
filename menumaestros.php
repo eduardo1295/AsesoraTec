@@ -25,7 +25,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a href="#" class="navbar-brand">
-            <h1 class="lead display-5">Ver Maestros</h1>
+            <h1 class="lead display-4">Ver Maestros</h1>
         </a>
         <div class="collapse navbar-collapse justify-content-end" id="nav-content"></div>
         <ul class="navbar-nav">
@@ -53,6 +53,7 @@
         </form>
         </div>
     </nav>
+    <br>
     <div class="row justify-content-center filtros">
             <div class="alert alert-primary w-100 text-center">
             <h4 class="lead">
@@ -86,16 +87,9 @@ La búsqueda puede ser por cualquier columna de la tabla!
             </h4>
             </div>
         </div>
-        <div class="row">
-        <div class="alert alert-primary w-100 text-center">
-            <h4 class="lead">
-            Selecciona el código de la asesoria para ver el horario!
-            </h4>
-            </div>
-        </div>
     <div class="container-fluid">
         <div class="row">
-            <table class="table table-striped w-50" ng-app="myApp" ng-controller="customersCtrl">
+            <table class="table table-striped w-100" ng-app="myApp" ng-controller="customersCtrl">
                 <thead class="justify-content-center">
                     <tr>
                         <th class="lead">NoEconomico</th>

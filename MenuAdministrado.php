@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+<?php 
+session_start();
+if($_SESSION['usuariologeado']!='SI'){
+    header("Location: login.php");
+}
+require_once('php/Clases/alumno.php');
+$admin = new Alumno();
+$usuario= $_SESSION['usuario'];
+$admin->ObtenerDatos($usuario,$admin);
+$nc = $admin;
+$nombre = $admin->Nombre;
+$appat = $admin->Ap_Pat;
+$apmat = $admin->Ap_Mat;
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
+?>
+
 
 <head>
     <meta charset="UTF-8">

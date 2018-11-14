@@ -6,6 +6,7 @@ class Admin{
     public $Nombre;
     public $Ap_Pat;
     public $Ap_Mat;
+    public $Depa;
     public $Correo;
     public function setUsuario($usuario) {
        $this->Usuario =$usuario;
@@ -21,6 +22,10 @@ class Admin{
     }
     public function setAp_Mat($apellidom) {
          $this->Ap_Mat=$apellidom;
+    }
+
+    public function SetDepartamento($departamento){
+        $this->$Depa=$departamento;
     }
 
     public function setCorreo($correo) {
@@ -62,5 +67,33 @@ class Admin{
     echo $error;
     }
    }
+   public function ObtenerDatos($nc,$alumno){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("SELECT * FROM administrador WHERE UsuarioL=?"))
+     {
+         $sentencia_preparada->bind_param('s',$usuario);
+         $usuario =$nc;
+         $sentencia_preparada->execute();
+         $sentencia_preparada->bind_result($usuario,$pass,$nombre,$appat,$apmat,$departamento,$correo);
+         while($sentencia_preparada->fetch()){
+         $admin->setUsuario($numc);
+         $admin->setContraseña($pass);
+         $admin->setNombre($nombre);
+         $admin->setAp_Pat($appat);
+         $admin->setAp_Mat($apmat);
+         $admin->SetDepartamento($carrera);
+         $admin->setCorreo($correo);
+         }
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
 }
 ?>
