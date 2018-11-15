@@ -25,7 +25,7 @@ class Admin{
     }
 
     public function SetDepartamento($departamento){
-        $this->$Depa=$departamento;
+        $this->Depa=$departamento;
     }
 
     public function setCorreo($correo) {
@@ -67,23 +67,23 @@ class Admin{
     echo $error;
     }
    }
-   public function ObtenerDatos($nc,$alumno){
+   public function ObtenerDatos($nc,$admin){
     try
     {
      $conn = abrirBD();
-     if($sentencia_preparada =$conn->prepare("SELECT * FROM administrador WHERE UsuarioL=?"))
+     if($sentencia_preparada =$conn->prepare("SELECT * FROM administrador WHERE Usuario=?"))
      {
          $sentencia_preparada->bind_param('s',$usuario);
          $usuario =$nc;
          $sentencia_preparada->execute();
          $sentencia_preparada->bind_result($usuario,$pass,$nombre,$appat,$apmat,$departamento,$correo);
          while($sentencia_preparada->fetch()){
-         $admin->setUsuario($numc);
+         $admin->setUsuario($usuario);
          $admin->setContraseña($pass);
          $admin->setNombre($nombre);
          $admin->setAp_Pat($appat);
          $admin->setAp_Mat($apmat);
-         $admin->SetDepartamento($carrera);
+         $admin->SetDepartamento($departamento);
          $admin->setCorreo($correo);
          }
          $conn->close();

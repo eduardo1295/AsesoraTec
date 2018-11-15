@@ -5,8 +5,8 @@ session_start();
 if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
-require_once('php/Clases/alumno.php');
-$admin = new Alumno();
+require_once('php/Clases/admin.php');
+$admin = new Admin();
 $usuario= $_SESSION['usuario'];
 $admin->ObtenerDatos($usuario,$admin);
 $nc = $admin;
