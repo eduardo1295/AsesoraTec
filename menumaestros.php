@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php 
+session_start();
+if($_SESSION['usuariologeado']!='SI'){
+    header("Location: login.php");
+}
+require_once('php/Clases/admin.php');
+$admin = new Admin();
+$usuario= $_SESSION['usuario'];
+$admin->ObtenerDatos($usuario,$admin);
+$nc = $admin;
+$nombre = $admin->Nombre;
+$appat = $admin->Ap_Pat;
+$apmat = $admin->Ap_Mat;
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +39,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a href="#" class="navbar-brand">
-            <h1 class="lead display-5">Ver Maestros</h1>
+            <h1 class="lead display-4">Ver Maestros</h1>
         </a>
         <div class="collapse navbar-collapse justify-content-end" id="nav-content"></div>
         <ul class="navbar-nav">
@@ -33,7 +47,7 @@
         <form action="" class="form-inline" role="search">
             <div class="dropdown">
                 <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="fas fa-user fa-fw"></span>
+                    <span class="fas fa-user fa-fw"></span><?php echo $nombrecompleto?>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                     <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
@@ -53,6 +67,7 @@
         </form>
         </div>
     </nav>
+    <br>
     <div class="row justify-content-center filtros">
             <div class="alert alert-primary w-100 text-center">
             <h4 class="lead">
@@ -86,16 +101,9 @@ La búsqueda puede ser por cualquier columna de la tabla!
             </h4>
             </div>
         </div>
-        <div class="row">
-        <div class="alert alert-primary w-100 text-center">
-            <h4 class="lead">
-            Selecciona el código de la asesoria para ver el horario!
-            </h4>
-            </div>
-        </div>
     <div class="container-fluid">
         <div class="row">
-            <table class="table table-striped w-50" ng-app="myApp" ng-controller="customersCtrl">
+            <table class="table table-striped w-100" ng-app="myApp" ng-controller="customersCtrl">
                 <thead class="justify-content-center">
                     <tr>
                         <th class="lead">NoEconomico</th>

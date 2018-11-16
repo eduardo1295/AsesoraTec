@@ -28,7 +28,9 @@ else if($resultado2>0){
     header("Location: menu2.php");
 }
 else if($resultado3>0){
-    $_SESSION['usuario'] = $maestro->Usuario;
+    $usuario= $admin->Usuario;
+    $_SESSION['usuario'] = $usuario;
+    $_SESSION['usuariologeado'] = "SI";
    header("Location:MenuAdministrado.php");
 }
 else{

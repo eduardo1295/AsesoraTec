@@ -13,6 +13,11 @@
             header("Location: menu2.php");
         }
     }
+    elseif (isset($_SESSION['usuariologeado'])) {
+            if($_SESSION['usuariologeado']=='SI'){
+                header("Location: menuadministrado.php");
+         }
+    }
     ?>
 <!--Aqui esta el comentario -->
 <head>
