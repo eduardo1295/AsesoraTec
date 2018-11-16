@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+<?php 
+session_start();
+if($_SESSION['usuariologeado']!='SI'){
+    header("Location: login.php");
+}
+require_once('php/Clases/admin.php');
+$admin = new Admin();
+$usuario= $_SESSION['usuario'];
+$admin->ObtenerDatos($usuario,$admin);
+$nc = $admin;
+$nombre = $admin->Nombre;
+$appat = $admin->Ap_Pat;
+$apmat = $admin->Ap_Mat;
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
+?>
+
 
 <head>
     <meta charset="UTF-8">
@@ -74,8 +90,20 @@
                         <i class="fas fa fa-eye fa-fw"></i>Ver Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lead" href="Reportes.php">
+                    <a class="nav-link lead" data-toggle="collapse" href="#item-2">
                         <i class="fas fa fa-folder fa-fw"></i> Generar Reporte</a>
+                        <div id="item-2" class="collapse">
+                        <ul class="nav flex-column ml-3">
+                            <li class="nav-item">
+                                <a class="nav-link active lead"data-toggle="modal" href="#">
+                                    <i class="fas fa fa-cog fa-fw"></i>Reporte Por Departamento</a>
+                            </li>
+                            <li class="nav-item lead">
+                                <a class="nav-link lead" href="#">
+                                    <i class="fas fa-cog fa-fw"></i>Reporte de Ciencias Basicas</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-1">
