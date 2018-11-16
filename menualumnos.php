@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php 
+session_start();
+if($_SESSION['usuariologeado']!='SI'){
+    header("Location: login.php");
+}
+require_once('php/Clases/admin.php');
+$admin = new Admin();
+$usuario= $_SESSION['usuario'];
+$admin->ObtenerDatos($usuario,$admin);
+$nc = $admin;
+$nombre = $admin->Nombre;
+$appat = $admin->Ap_Pat;
+$apmat = $admin->Ap_Mat;
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +47,7 @@
         <form action="" class="form-inline" role="search">
             <div class="dropdown">
                 <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="fas fa-user fa-fw"></span>
+                    <span class="fas fa-user fa-fw"></span><?php echo $nombrecompleto?>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                     <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>

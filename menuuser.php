@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php 
+session_start();
+if($_SESSION['usuariologeado']!='SI'){
+    header("Location: login.php");
+}
+require_once('php/Clases/admin.php');
+$admin = new Admin();
+$usuario= $_SESSION['usuario'];
+$admin->ObtenerDatos($usuario,$admin);
+$nc = $admin;
+$nombre = $admin->Nombre;
+$appat = $admin->Ap_Pat;
+$apmat = $admin->Ap_Mat;
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +50,7 @@
         <form action="" class="form-inline" role="search">
             <div class="dropdown">
                 <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="fas fa-user fa-fw"></span>
+                    <span class="fas fa-user fa-fw"></span><?php echo $nombrecompleto?>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                     <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
@@ -57,7 +71,7 @@
         </div>
     </nav>
     <br>
-    <div class="row justify-content-center mt-5 ml-2">    
+    <div class="row justify-content-center " id="contenedors">    
         <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"
         style="border:0; background-color:transparent;cursor:pointer;" value=""
         data-toggle="popover" data-content="Ver Alumnos" title="Ver Alumnos"onclick="window.location.href='menualumnos.php'">
@@ -65,9 +79,18 @@
         
         <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"
         style="border:0; background-color:transparent;cursor:pointer;" value=""
-        data-toggle="popover" data-content="Ver Maestros" title="Ver Alumnos"onclick="window.location.href='menumaestros.php'">
+        data-toggle="popover" data-content="Ver Maestros" title="Ver Maestros"onclick="window.location.href='menumaestros.php'">
         <img  src="icono.ico" width="240px"height="240px"></button>
     </div>
+    <div class="contenedor">
+        <div id="contenido1">
+            <span class="lead" id="texto1">Ver Alumnos</span>
+        </div>
+        <div id="contenido2">
+            <span class="lead" id="texto2">Ver Maestros</span>
+        </div>
+    </div>
+
 
     <script>
             app = angular.module('myApp',[]);

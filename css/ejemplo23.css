@@ -1,4 +1,20 @@
-.botones {
-    width: 250px;
-    margin: 0 auto;
+div#contenedors{
+    margin-top: 60px;
+}
+.contenedor{
+ width: 500px;
+ height: 35px;
+ margin-left: 430px;
+}
+div#contenido1{
+  
+float: left
+}
+span#texto1{
+    font-size: 21pt;
+
+}
+span#texto2{
+    font-size: 21pt;
+    margin-left:35%; 
 }
