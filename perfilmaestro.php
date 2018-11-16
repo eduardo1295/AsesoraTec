@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Alumnos Datos</title>
+    <title>Maestro Datos</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/pruebaregistrar.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
@@ -18,7 +18,7 @@
 </head>
 <body class="contenedor">
 <div class="page-header pb-2 pt-2">
-            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>
+            <h1 class="lead display-3 justify-content-center">Informacion Maestro<img src="asesor.png" alt="Login"></h1>
     </div>        
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
@@ -30,38 +30,34 @@
 
          <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $nocontrol?>" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required>
+                        <input type="text" value="" class="cajas lead" id="nocontrol" placeholder="Número de Economico"maxlength=8 required>
                         </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="password"  value="<?php echo $pass?>" class="cajas lead  ml-4" id=pass placeholder="Contraseña"maxlength=20 required>
+                        <input type="password"  value="" class="cajas lead  ml-4" id=pass placeholder="Contraseña"maxlength=20 required>
                         <a class="btn btn-success" onclick="mostrar()"><i class="ojo fas fa fa-eye fa-fw"></i></a>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $appat?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $apmat?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo $nombre?>" class="cajas lead" id="nombre" placeholder="Nombre"required>
+                        <input type="text" value="" class="cajas lead" id="nombre" placeholder="Departamento"required>
                     </div>
+                </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo $nombre?>" class="cajas lead" id="nombre" placeholder="Nombre"required>
-                    </div>
-                </div>
-                <div class="row my-3 justify-content-center">
-                    <div class="row ">
-                 <input type="e-mail" value="<?php echo $correo?>" id="correo" class="cajas lead"maxlength=128 placeholder="Correo"required>
+                 <input type="e-mail" value="" id="correo" class="cajas lead"maxlength=128 placeholder="Correo"required>
                     </div>
                 </div>
             </div>

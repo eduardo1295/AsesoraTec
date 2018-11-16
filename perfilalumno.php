@@ -18,7 +18,7 @@
 </head>
 <body class="contenedor">
 <div class="page-header pb-2 pt-2">
-            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>
+            <h1 class="lead display-3 justify-content-center">Informacion Alumno <img src="alumno.png" alt="Login"></h1>
     </div>        
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
@@ -30,33 +30,33 @@
 
          <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $nocontrol?>" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required>
+                        <input type="text" value="" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required>
                         </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="password"  value="<?php echo $pass?>" class="cajas lead  ml-4" id=pass placeholder="Contraseña"maxlength=20 required>
+                        <input type="password"  value="" class="cajas lead  ml-4" id=pass placeholder="Contraseña"maxlength=20 required>
                         <a class="btn btn-success" onclick="mostrar()"><i class="ojo fas fa fa-eye fa-fw"></i></a>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $appat?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $apmat?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo $nombre?>" class="cajas lead" id="nombre" placeholder="Nombre"required>
+                        <input type="text" value="" class="cajas lead" id="nombre" placeholder="Nombre"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                 <input type="e-mail" value="<?php echo $correo?>" id="correo" class="cajas lead"maxlength=128 placeholder="Correo"required>
+                 <input type="e-mail" value="" id="correo" class="cajas lead"maxlength=128 placeholder="Correo"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -69,8 +69,6 @@
                         <label for="No binario" class="radio lead">No binario</label>
                     </div>
                 </div>
-                
-
             </div>
         </div>
     </div>
@@ -83,7 +81,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="row my-2 ">
-                        <select id="carrera" value="<?php echo $carrera?>" class="lead">
+                        <select id="carrera" value="" class="lead">
                           <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
                             <option value="Ing. Electromecánica">Ing. Electromecánica</option>
                             <option value="Ing. Civil">Ing. Civil</option>
@@ -92,7 +90,7 @@
                     </div>
                     <div class="row my-3 justify-content-center">
                         <div class="row">
-                            <input type="text" value="<?php echo $semestre?>" class="cajas lead"maxlength=2 id="semestre"placeholder="Semestre" required>
+                            <input type="text" value="" class="cajas lead"maxlength=2 id="semestre"placeholder="Semestre" required>
                         </div>
                     </div>
                 </div>
