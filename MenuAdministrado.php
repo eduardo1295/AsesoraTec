@@ -2,9 +2,11 @@
 <html lang="es">
 <?php 
 session_start();
+
 if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
+require_once('php/Clases/conexion.php');
 require_once('php/Clases/admin.php');
 $admin = new Admin();
 $usuario= $_SESSION['usuario'];
@@ -111,7 +113,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     <div id="item-1" class="collapse">
                         <ul class="nav flex-column ml-3">
                             <li class="nav-item">
-                                <a class="nav-link active lead"data-toggle="modal" href="#cerrar">
+                                <a class="nav-link active lead" data-toggle="modal" href="#cerrar">
                                     <i class="fas fa fa-power-off fa-fw"></i>Cerrar Sesión</a>
                             </li>
                             <li class="nav-item">
@@ -119,7 +121,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                     <i class="fas fa fa-trash fa-fw"></i>Eliminar mi cuenta</a>
                             </li>
                             <li class="nav-item lead">
-                                <a class="nav-link lead" href="#">
+                                <a class="nav-link lead" href="#" id="modificar">
                                     <i class="fas fa-cog fa-fw"></i>Modificar Perfil</a>
                             </li>
                         </ul>
@@ -127,51 +129,51 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </li>
             </ul>
             <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modalLabel">
-                        Mensaje del Sistema
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mt-2 justify-content-center">
-            ¿Seguro que desea eliminar su cuenta?
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalLabel">
+                                Mensaje del Sistema
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mt-2 justify-content-center">
+                                ¿Seguro que desea eliminar su cuenta?
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-danger lead" href='#' id="eliminar">Aceptar</a>
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                <a class="btn btn-danger lead" href='eliminar.php?nc=<?php echo $nc;?>'>Aceptar</a>
-                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
-                </div>
             </div>
-        </div>
-    </div>
             <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modalLabel">
-                        Mensaje del Sistema
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mt-2 justify-content-center">
-            ¿Seguro que desea cerrar la sesión?
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalLabel">
+                                Mensaje del Sistema
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mt-2 justify-content-center">
+                                ¿Seguro que desea cerrar la sesión?
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-primary lead" href="php/cerrarsesion.php">Aceptar</a>
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                <a class="btn btn-primary lead" href="php/cerrarsesion.php">Aceptar</a>
-                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
-                </div>
             </div>
-        </div>
-</div>
         </div>
     </div>
     <div class="relleno w-100 mb-0">
@@ -275,7 +277,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </div>
             </div>
         </body>
-    </div>
+</div>
 </body>
 
 </html>
