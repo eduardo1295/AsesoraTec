@@ -252,7 +252,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 <div class="container">
                     <div class="col py-3">
                         <div class="col text-center">
-                            Copyright 2018. &copy;
+                            Instituto Tecnológico de La Paz. &copy;
                             <a class="btn btn-block btn-social btn-twitter d-inline">
                                 <span class="fa fa-twitter"></span>
                             </a>
