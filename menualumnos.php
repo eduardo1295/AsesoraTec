@@ -119,7 +119,7 @@ La búsqueda puede ser por cualquier columna de la tabla!
     <div class="row justify-content-end mt-5">    
         <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"
         style="border:0; background-color:transparent;cursor:pointer;" 
-        value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menuuser.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menuadministrado.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
 
     <script>

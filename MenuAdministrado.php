@@ -88,8 +88,20 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <i class="fas fa fa-eye fa-fw"></i>Ver las asesorías</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lead" href="menuuser.php">
+                    <a class="nav-link lead" data-toggle="collapse" href="#item-5">
                         <i class="fas fa fa-eye fa-fw"></i>Ver Usuarios</a>
+                        <div id="item-5" class="collapse">
+                        <ul class="nav flex-column ml-3">
+                            <li class="nav-item">
+                                <a class="nav-link active lead" href="menualumnos.php">
+                                    <i class="fas fa fa-cog fa-fw"></i>Alumnos</a>
+                            </li>
+                            <li class="nav-item lead">
+                                <a class="nav-link lead" href="menumaestros.php">
+                                    <i class="fas fa-cog fa-fw"></i>Maestros</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-2">
@@ -103,6 +115,22 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                             <li class="nav-item lead">
                                 <a class="nav-link lead" href="#">
                                     <i class="fas fa-cog fa-fw"></i>Reporte de Ciencias Basicas</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lead" data-toggle="collapse" href="#item-3">
+                        <i class="fas fa fa-folder fa-fw"></i>Agregar Usuarios</a>
+                        <div id="item-3" class="collapse">
+                        <ul class="nav flex-column ml-3">
+                            <li class="nav-item">
+                                <a class="nav-link active lead"data-toggle="modal" href="#">
+                                    <i class="fas fa fa-cog fa-fw"></i>Alumnos</a>
+                            </li>
+                            <li class="nav-item lead">
+                                <a class="nav-link lead" href="#">
+                                    <i class="fas fa-cog fa-fw"></i>Maestros</a>
                             </li>
                         </ul>
                     </div>
