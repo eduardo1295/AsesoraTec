@@ -1,0 +1,12 @@
+thead{
+    background:blue;
+    color: white;
+}
+
+table{
+    margin: 0 auto;
+}
+
+th{
+    border:1px solid white;
+}

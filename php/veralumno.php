@@ -26,7 +26,7 @@ if ($buscarAlumnos->num_rows > 0)
     <thead class="encabezado">
     <tr>
         <th class="lead">NoControl</th>
-        <th class="lead">Contreseña</th>
+        <th class="lead">Contraseña</th>
         <th class="lead">Nombre</th>
         <th class="lead">Apellido_Paterno</th>
         <th class="lead">Apellido_Materno</th>
