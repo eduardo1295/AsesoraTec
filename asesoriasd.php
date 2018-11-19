@@ -103,19 +103,19 @@ La búsqueda puede ser por cualquier columna de la tabla!
             </div>
         </div>
         <div class="row">
-        <div class="alert alert-primary w-100 text-center">
-            <h4 class="lead">
-            Selecciona el código de la asesoria para ver el horario!
-            </h4>
+            <div class="alert alert-primary w-100 text-center">
+                <h4 class="lead">
+                Selecciona el código de la asesoria para ver el horario!
+                </h4>
             </div>
         </div>
-    <div class="container-fluid">
-        <div class="row">
-            <section class="w-100" id="tabla">
+        <div class="container-fluid">
+            <div class="row">
+                <section class="w-100" id="tabla">
 
-            </section>
+                </section>
+            </div>
         </div>
-    </div>
     <div class="row justify-content-end">    
         <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
 </div>

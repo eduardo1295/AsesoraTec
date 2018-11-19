@@ -48,11 +48,10 @@
                     <p class="lead mx-2">Información de la cuenta:
                     </p>
                 </div>
-
-         <div class="row my-3 justify-content-center" required>
+                <div class="row my-3 justify-content-center" required>
                     <div class="row">
                         <input type="text" value="<?php echo $nocontrol?>" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required>
-                        </div>
+                    </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">

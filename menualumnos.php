@@ -27,7 +27,8 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="angular.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/alumnosdisponibles.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
@@ -101,36 +102,24 @@ La búsqueda puede ser por cualquier columna de la tabla!
             </h4>
             </div>
         </div>
+        <div class="row">
+            <div class="alert alert-primary w-100 text-center">
+                <h4 class="lead">
+                Selecciona el código de la asesoria para ver el horario!
+                </h4>
+            </div>
+        </div>
     <div class="container-fluid">
         <div class="row">
-            <table class="table table-striped w-100" ng-app="myApp" ng-controller="customersCtrl">
-                <thead class="justify-content-center">
-                    <tr>
-                        <th class="lead">NoControl</th>
-                        <th class="lead">Contreseña</th>
-                        <th class="lead">Nombre</th>
-                        <th class="lead">Apellido_P</th>
-                        <th class="lead">Apellido_M</th>
-                        <th class="lead">Carrera</th>
-                        <th class="lead">Semestre</th>
-                        <th class="lead">Correo</th>
-                        <th class="lead">Sexo</th>
-                    </tr>
-                </thead>
-                <tbody ng-repeat="x in valores">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    
-                </tbody>
-            </table>
+            <section class="w-100" id="tabla">
+
+            </section>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <button type="submit" value="" id="registrarbtn" class="btn btn-primary lead mx-4 mt-4">
-            <i class="fas fa fa-mail-reply" onclick="window.location.href='menu2.html'"></i> Página anterior</button>
+    <div class="row justify-content-end mt-5">    
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"
+        style="border:0; background-color:transparent;cursor:pointer;" 
+        value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menuuser.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
 
     <script>
