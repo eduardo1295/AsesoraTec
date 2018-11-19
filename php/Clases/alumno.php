@@ -263,5 +263,25 @@ public function EliminarAlumno($nc){
         echo error;
     }
 }
+public function EliminarAsesoria($nc,$codigoAsesoria)
+{
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM ASESORIASREG WHERE CONTROL_ALUMNO	=? AND CODIGO_ASESORIA=?"))
+     {
+         $sentencia_preparada->bind_param('ss',$nocontrol,$codigo);
+         $nocontrol = $nc;
+         $codigo = $codigoAsesoria;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }  
+}
 }
 ?>

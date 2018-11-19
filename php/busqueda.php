@@ -16,7 +16,6 @@ if(isset($_POST['busqueda']))
 $buscarAsesorias=$conn->query($query);
 if ($buscarAsesorias->num_rows > 0)
 {
-    
 	$tabla.= 
 	'<table class="table table-striped">
     <thead class="encabezado">
@@ -46,7 +45,5 @@ if ($buscarAsesorias->num_rows > 0)
 	{
 		$tabla="No se encontraron coincidencias con sus criterios de búsqueda.";
 	}
-
-
 echo $tabla;
 ?>

@@ -14,7 +14,7 @@ function obtener_registros(busqueda)
 	})
 }
 
-$(document).on('keyup', '#busqueda', function()
+$(document).on('keyup', '#buscar', function()
 {
 	var valorBusqueda=$(this).val();
 	if (valorBusqueda!="")

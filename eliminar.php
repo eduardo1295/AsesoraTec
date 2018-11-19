@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if($_SESSION['logeado']!="SI")
+{
+    header("location: menu1.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +27,10 @@ $('#myModal').modal('show')
 });
 </script>
 <?php 
+
     require('php/Clases/alumno.php');
     $alumno = new Alumno();
-    $nocontrol = $_GET['nc'];;
+    $nocontrol = $_SESSION['nocontrol'];;
         $alumno->EliminarAlumno($nocontrol);
         header("Refresh: 3; URL=login.php");
         echo '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">

@@ -73,7 +73,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             <div class="alert alert-primary w-100 text-center">
             <h4 class="lead">
                 Buscar: 
-            <input type="text" name="busqueda" id="busqueda"placeholder="Buscar">  
+            <input type="text" name="busqueda" id="buscar"placeholder="Buscar">  
 La búsqueda puede ser por cualquier columna de la tabla!
 <button class="btn btn-info ml-5" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje"><i class="fa fa-question"></i></button>
 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
@@ -89,7 +89,8 @@ La búsqueda puede ser por cualquier columna de la tabla!
                                 </div>
                                 <div class="modal-body" id="mens">
                                   Selecciona una de tus asesorías para ver el horario
-                                <div class="modal-footer">
+                                </div>
+                                  <div class="modal-footer">
                                     <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
                                 </div>
                             </div>
@@ -113,7 +114,7 @@ La búsqueda puede ser por cualquier columna de la tabla!
         </div>
     </div>
     <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer; position:relative; min-height:100%;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
 <?php
 

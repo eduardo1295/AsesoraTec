@@ -13,7 +13,6 @@ function obtener_registros(busqueda)
 		$("#tabla").html(resultado);
 	})
 }
-
 $(document).on('keyup', '#busqueda', function()
 {
 	var valorBusqueda=$(this).val();

@@ -36,6 +36,7 @@ $conn->close();
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/EliminarAsesoria.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
@@ -89,13 +90,13 @@ $conn->close();
                }   
                 ?>    
                 <div class="col-md-3">
-                <p class="lead">Maestro: <?php echo $nom_maestro;?></p>
+                <p class="lead">Maestro: <?php echo utf8_decode($nom_maestro);?></p>
                 </div>
                 <div class="col-md-2">
-                <p class="lead">Materia: <?php echo $nombre_materia;?></p>
+                <p class="lead">Materia: <?php echo utf8_encode($nombre_materia);?></p>
                 </div>
                 <div class="col-md-3">
-                <p class="lead">Departamento: <?php echo $departamento;?></p>
+                <p class="lead">Departamento: <?php echo utf8_encode($departamento);?></p>
                 </div>
                 <div class="col-md-2">
                 <p class="lead">Semestre: <?php echo $semestre;?></p>
