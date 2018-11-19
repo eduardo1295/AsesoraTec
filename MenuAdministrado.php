@@ -84,7 +84,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <i class="fas fa-home fa-fw"></i>Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lead" href="asesoriasd.php">
+                    <a class="nav-link lead" href="asesoriasa.php">
                         <i class="fas fa fa-eye fa-fw"></i>Ver las asesorías</a>
                 </li>
                 <li class="nav-item">
@@ -125,11 +125,11 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <div id="item-3" class="collapse">
                         <ul class="nav flex-column ml-3">
                             <li class="nav-item">
-                                <a class="nav-link active lead"data-toggle="modal" href="#">
+                                <a class="nav-link active lead" href="registrar.php">
                                     <i class="fas fa fa-cog fa-fw"></i>Alumnos</a>
                             </li>
                             <li class="nav-item lead">
-                                <a class="nav-link lead" href="#">
+                                <a class="nav-link lead" href="registrarmaestro.php">
                                     <i class="fas fa-cog fa-fw"></i>Maestros</a>
                             </li>
                         </ul>
