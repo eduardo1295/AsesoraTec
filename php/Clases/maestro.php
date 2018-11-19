@@ -176,5 +176,47 @@ public function ObtenerDatos($ne,$maestro){
         echo error;
     }
 }
+public function ActualizarDatos($maestro){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("UPDATE maestros SET PASS=?,NOMBRE=?,AP_PAT=?,AP_MAT=?,Departamento=?,CORREO=? WHERE noecon=?"))
+     {
+         $sentencia_preparada->bind_param('sssssss',$contraseña,$nombre,$apellidop,$apellidom,$departamento,$correo,$noeconomico);
+         $noeconomico =$maestro->No_Economico;
+         $contraseña =$maestro->Contraseña;
+         $nombre =$maestro->Nombre;
+         $apellidop =$maestro->Ap_Pat;
+         $apellidom =$maestro->Ap_Mat;
+         $departamento =$maestro->Departamento;
+         $correo =$maestro->Correo;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function EliminarMaestro($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM maestros WHERE noecon=?"))
+     {
+         $sentencia_preparada->bind_param('s',$noeconomico);
+         $noeconomico = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
 }
 ?>

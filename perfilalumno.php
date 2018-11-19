@@ -1,5 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+session_start();
+require_once('php/Clases/admin.php');
+require_once('php/Clases/conexion.php');
+if($_SESSION['usuariologeado']!='SI'){
+    header("Location: login.php");
+}
+
+$admin = new Admin();
+$usuario= $_SESSION['usuario'];
+$admin->ObtenerDatos($usuario,$admin);
+$nc = $admin;
+$nombre = $admin->Nombre;
+$appat = $admin->Ap_Pat;
+$apmat = $admin->Ap_Mat;
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
+
+$numcontrol = $_GET['cod'];
+$sql = "SELECT nocontrol,pass,Nombre,Ap_Pat,Ap_Mat,Carrera,SEMESTRE,Correo FROM alumno WHERE nocontrol='$numcontrol'";
+$conn = abrirBD();
+$resultado = $conn->query($sql);
+while($resul = mysqli_fetch_array($resultado)){ 
+    $numcontrol = $resul[0];
+    $contraseña = $resul[1];
+    $Nombrea = $resul[2];
+    $Ape_pat = $resul[3];
+    $Ape_mat = $resul[4];
+    $Carrera = $resul[5];
+    $semestre = $resul[6];
+    $correo = $resul[7];
+    }
+$conn->close();
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +50,8 @@
     <script src="js/mensaje.js"></script>
 </head>
 <body class="contenedor">
-<div class="page-header pb-2 pt-2">
-            <h1 class="lead display-3 justify-content-center">Informacion Alumno <img src="alumno.png" alt="Login"></h1>
+    <div class="page-header pb-2 pt-2">
+            <h1 class="lead display-3 justify-content-center">Información Alumno <img src="alumno.png" alt="Login"></h1>
     </div>        
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
@@ -27,36 +60,35 @@
                     <p class="lead mx-2">Información de la cuenta:
                     </p>
                 </div>
-
-         <div class="row my-3 justify-content-center" required>
+                <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required>
-                        </div>
+                        <input type="text" value="<?php echo $numcontrol;?>" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required>
+                    </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="password"  value="" class="cajas lead  ml-4" id=pass placeholder="Contraseña"maxlength=20 required>
+                        <input type="password"  value="<?php echo $contraseña;?>" class="cajas lead  ml-4" id=pass placeholder="Contraseña"maxlength=20 required>
                         <a class="btn btn-success" onclick="mostrar()"><i class="ojo fas fa fa-eye fa-fw"></i></a>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="<?php echo $Ape_pat;?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="<?php echo $Ape_mat;?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="" class="cajas lead" id="nombre" placeholder="Nombre"required>
+                        <input type="text" value="<?php echo $Nombrea;?>" class="cajas lead" id="nombre" placeholder="Nombre"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                 <input type="e-mail" value="" id="correo" class="cajas lead"maxlength=128 placeholder="Correo"required>
+                        <input type="e-mail" value="<?php echo $correo?>" id="correo" class="cajas lead"maxlength=128 placeholder="Correo"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -81,7 +113,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="row my-2 ">
-                        <select id="carrera" value="" class="lead">
+                        <select id="carrera" value="<?php echo $Carrera?>" class="lead">
                           <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
                             <option value="Ing. Electromecánica">Ing. Electromecánica</option>
                             <option value="Ing. Civil">Ing. Civil</option>
@@ -90,7 +122,7 @@
                     </div>
                     <div class="row my-3 justify-content-center">
                         <div class="row">
-                            <input type="text" value="" class="cajas lead"maxlength=2 id="semestre"placeholder="Semestre" required>
+                            <input type="text" value="<?php echo $semestre?>" class="cajas lead"maxlength=2 id="semestre"placeholder="Semestre" required>
                         </div>
                     </div>
                 </div>
@@ -115,12 +147,22 @@
                                 <div class="modal-body" id="mens">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='menu1.php'">Aceptar</button>
+                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='menualumnos.php'">Aceptar</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+            </div>
         </div>
      </div>
 </body>
+<script>
+  function mostrar(){
+      var tipo = document.getElementById("pass");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
 </html>

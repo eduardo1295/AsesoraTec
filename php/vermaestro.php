@@ -36,7 +36,7 @@ if ($buscarAlumnos->num_rows > 0)
 	{
 		$tabla.=
 		'<tr>
-        <td><a href="menumaestros.php?cod='.$fila['noecon'].'">'.$fila['noecon'].'</a></td>
+        <td><a href="perfilmaestro.php?cod='.$fila['noecon'].'">'.$fila['noecon'].'</a></td>
             <td>'.utf8_encode($fila['pass']).'</td>
 			<td>'.utf8_encode($fila['Nombre']).'</td>
 			<td>'.utf8_encode($fila['Ap_Pat']).'</td>
