@@ -22,11 +22,11 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Asesora-TEC</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/m1.css">
     <link rel="stylesheet" href="css/menu1.css">
     <link rel="stylesheet" href="css/reloj.css">
-    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/sidebars.css">
     <link rel="stylesheet" href="css/simple-sidebar.css">
+    <link rel="stylesheet" href="css/muno.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
@@ -41,10 +41,6 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 <body>
     <div class="row">
         <nav class="navbar navbar-expand navbar-dark fixed-top encabezado">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-content" aria-control="nav-content"
-                aria-expanded="false" aria-label="toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <a href="#" class="navbar-brand">
                 <h1 class="lead display-4">Asesora-TEC</h1>
             </a>
@@ -65,11 +61,14 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             </form>
         </nav>
     </div>
-    <div class="row mt-5">
+    <div class="row justify-content-center mt-5 banner">
+       <img src="banner.png" alt="Login"style="border:3px solid gray;">
+    </div>
+    <div class="row">
         <div class="barra w-25 col">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active lead" href="#">
+                    <a class="nav-link active lead" href="#" id="inicio">
                         <i class="fas fa-home fa-fw"></i>Inicio</a>
                 </li>
                 <li class="nav-item">
@@ -240,7 +239,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                             <a class="btn btn-block btn-social btn-twitter d-inline">
                                 <span class="fa fa-twitter"></span>
                             </a>
-                            <a class="btn btn-block btn-social btn-twitter d-inline">
+                            <a class="btn btn-block btn-social btn-twitter d-inline"style="color:white" href="https://www.facebook.com/itlapaz/">
                                 <span class="fa fa-facebook"></span>
                             </a>
                             <a class="btn btn-block btn-social btn-twitter d-inline">

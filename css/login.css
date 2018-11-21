@@ -1,0 +1,68 @@
+.contenedor{
+    background: white;
+    width:100%;
+    }
+    h1{
+        color:white;
+        text-align: center;
+    }
+    .page-header{
+        background:blue;
+        width:100%;
+    }
+    
+    hr{
+        background: white;
+    }
+    img{
+        height: 100px;
+    }
+    .login{
+        width: 450px;
+        height: 330px;
+        margin:auto;
+        padding: 0px 10px;
+        background:blue;
+        border:1px solid white;
+        border-radius: 10px;
+    }
+    .boton{
+        width: 100%;
+    }
+    input{
+        text-align: center;
+        font-family: "Verdana";
+        opacity:1; 
+        width: 75%;
+    }
+    h2{
+        color:white;
+    }
+    #olvide{
+    color:white;
+    }
+    a, .olvide,#btnregistrar{
+        color:white;
+    }
+    .bg-verde{
+        background: blue;
+        color: white;
+    }
+    .encabezado{
+        background: blue;
+    }
+    body{
+        padding-top: 70px;
+    }
+    .relleno{
+        height: 350px;
+        width: 1000px;
+    }
+    .copyright{
+        background: blue;
+        color:white;
+    }
+    body{
+        min-height: 100%;
+    }
+    

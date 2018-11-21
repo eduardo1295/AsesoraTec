@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/recuperar.css">
+    <link rel="stylesheet" href="css/rec.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="page-header pb-2 pt-2">
+    <div class="page-header pb-2 pt-2 encabezado">
         <h3 class="display-4 lead mx-5">Recuperar Contraseña</h3>
     </div>
     <div class="container mt-3" style="border:1px solid gray">

@@ -21,7 +21,7 @@
 
 <body class="contenedor">
     <div class="page-header pb-2 pt-2">
-        <h1 class="lead display-3 justify-content-center">Registrar una cuenta <img src="add.png" alt="Login"></h1>
+        <h1 class="lead display-3 justify-content-center">Registrar una cuenta <img src="alumno.png" alt="Login"></h1>
     </div>
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">

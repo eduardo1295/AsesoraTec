@@ -19,7 +19,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Asesora-TEC</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
    <link rel="stylesheet" href="css/tablaasesoria.css">
@@ -56,16 +56,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                 <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
                                 </div>
                         </div>
-                        <div class="dropdown">
-                            <button id="acercade" class="btn btn-primary dropdown-toggle  lead" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-cog fa-fw"></span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acercade">
-                                <a href="a" class="dropdown-item lead">Nuestra historia</a>
-                                <a href="a" class="dropdown-item lead">Nuestro Equipo</a>
-                                <a href="a" class="dropdown-item lead">Contacto</a>
-                            </div>
-                        </div>
+                        
                     </form>
                 </nav>
     </div>
