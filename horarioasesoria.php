@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-session_start();
-require_once('php/Clases/conexion.php');
-require_once('php/Clases/alumno.php');
 if($_SESSION['logeado']!='SI'){
     header("Location: login.php");
 }
@@ -15,7 +10,7 @@ $nombre = $alumno->Nombre;
 $appat = $alumno->Ap_Pat;
 $apmat = $alumno->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
-if(!isset($_GET['cod'])){
+if(!isset($_GET['codigo'])){
     header("Location: menu1.php");
 }
 $codAsesoria = $_GET['cod'];
@@ -36,7 +31,6 @@ $conn->close();
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/EliminarAsesoria.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
@@ -90,20 +84,20 @@ $conn->close();
                }   
                 ?>    
                 <div class="col-md-3">
-                <p class="lead">Maestro: <?php echo utf8_decode($nom_maestro);?></p>
+                <p class="lead">Maestro: <?php echo $nom_maestro;?></p>
                 </div>
                 <div class="col-md-2">
-                <p class="lead">Materia: <?php echo utf8_encode($nombre_materia);?></p>
+                <p class="lead">Materia: <?php echo $nombre_materia;?></p>
                 </div>
                 <div class="col-md-3">
-                <p class="lead">Departamento: <?php echo utf8_encode($departamento);?></p>
+                <p class="lead">Departamento: <?php echo $departamento;?></p>
                 </div>
                 <div class="col-md-2">
                 <p class="lead">Semestre: <?php echo $semestre;?></p>
                 </div>
                 <div class="col-md-2">
                 <form method="post">
-                    <p class="lead">Inscribirme:<button type="submit"class="btn btn-primary navegacion"name="inscribir" style="border:0; background-color:transparent;cursor:pointer;"data-toggle="modal"data-target="#mensaje" value=""data-toggle="tooltip" title="Inscribirme"><img src="css/addb.png" width="30px"height="30px"></button></p>
+                    <p class="lead">Darme de baja:<button type="submit"class="btn btn-primary navegacion"name="inscribir" style="border:0; background-color:transparent;cursor:pointer;"data-toggle="modal"data-target="#mensaje" value=""data-toggle="tooltip" title="Inscribirme"><img src="css/delete.png" width="30px"height="30px"></button></p>
                 </form>
                 </div>
                 

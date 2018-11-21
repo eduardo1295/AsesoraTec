@@ -2,9 +2,11 @@
 <html lang="es">
 <?php 
 session_start();
+
 if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
+require_once('php/Clases/conexion.php');
 require_once('php/Clases/admin.php');
 $admin = new Admin();
 $usuario= $_SESSION['usuario'];
@@ -82,12 +84,24 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <i class="fas fa-home fa-fw"></i>Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lead" href="asesoriasd.php">
+                    <a class="nav-link lead" href="asesoriasa.php">
                         <i class="fas fa fa-eye fa-fw"></i>Ver las asesorías</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link lead" href="menuuser.php">
+                    <a class="nav-link lead" data-toggle="collapse" href="#item-5">
                         <i class="fas fa fa-eye fa-fw"></i>Ver Usuarios</a>
+                        <div id="item-5" class="collapse">
+                        <ul class="nav flex-column ml-3">
+                            <li class="nav-item">
+                                <a class="nav-link active lead" href="menualumnos.php">
+                                    <i class="fas fa fa-cog fa-fw"></i>Alumnos</a>
+                            </li>
+                            <li class="nav-item lead">
+                                <a class="nav-link lead" href="menumaestros.php">
+                                    <i class="fas fa-cog fa-fw"></i>Maestros</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-2">
@@ -106,12 +120,28 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link lead" data-toggle="collapse" href="#item-3">
+                        <i class="fas fa fa-folder fa-fw"></i>Agregar Usuarios</a>
+                        <div id="item-3" class="collapse">
+                        <ul class="nav flex-column ml-3">
+                            <li class="nav-item">
+                                <a class="nav-link active lead" href="registrar.php">
+                                    <i class="fas fa fa-cog fa-fw"></i>Alumnos</a>
+                            </li>
+                            <li class="nav-item lead">
+                                <a class="nav-link lead" href="registrarmaestro.php">
+                                    <i class="fas fa-cog fa-fw"></i>Maestros</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-1">
                         <i class="fas fa fa-user fa-fw"></i>Mi cuenta</a>
                     <div id="item-1" class="collapse">
                         <ul class="nav flex-column ml-3">
                             <li class="nav-item">
-                                <a class="nav-link active lead"data-toggle="modal" href="#cerrar">
+                                <a class="nav-link active lead" data-toggle="modal" href="#cerrar">
                                     <i class="fas fa fa-power-off fa-fw"></i>Cerrar Sesión</a>
                             </li>
                             <li class="nav-item">
@@ -119,7 +149,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                     <i class="fas fa fa-trash fa-fw"></i>Eliminar mi cuenta</a>
                             </li>
                             <li class="nav-item lead">
-                                <a class="nav-link lead" href="#">
+                                <a class="nav-link lead" href="#" id="modificar">
                                     <i class="fas fa-cog fa-fw"></i>Modificar Perfil</a>
                             </li>
                         </ul>
@@ -127,51 +157,51 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </li>
             </ul>
             <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modalLabel">
-                        Mensaje del Sistema
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mt-2 justify-content-center">
-            ¿Seguro que desea eliminar su cuenta?
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalLabel">
+                                Mensaje del Sistema
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mt-2 justify-content-center">
+                                ¿Seguro que desea eliminar su cuenta?
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-danger lead" href='#' id="eliminar">Aceptar</a>
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                <a class="btn btn-danger lead" href='eliminar.php?nc=<?php echo $nc;?>'>Aceptar</a>
-                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
-                </div>
             </div>
-        </div>
-    </div>
             <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modalLabel">
-                        Mensaje del Sistema
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mt-2 justify-content-center">
-            ¿Seguro que desea cerrar la sesión?
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalLabel">
+                                Mensaje del Sistema
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mt-2 justify-content-center">
+                                ¿Seguro que desea cerrar la sesión?
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-primary lead" href="php/cerrarsesion.php">Aceptar</a>
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                <a class="btn btn-primary lead" href="php/cerrarsesion.php">Aceptar</a>
-                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
-                </div>
             </div>
-        </div>
-</div>
         </div>
     </div>
     <div class="relleno w-100 mb-0">
@@ -275,7 +305,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </div>
             </div>
         </body>
-    </div>
+</div>
 </body>
 
 </html>

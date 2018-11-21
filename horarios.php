@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <?php
 session_start();
-require_once('php/Clases/conexion.php');
-require_once('php/Clases/alumno.php');
+require_once('php/Clases/Alumno.php');
 if($_SESSION['logeado']!='SI'){
     header("Location: login.php");
 }
@@ -15,15 +13,17 @@ $nombre = $alumno->Nombre;
 $appat = $alumno->Ap_Pat;
 $apmat = $alumno->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
-if(!isset($_GET['cod'])){
-    header("Location: menu1.php");
+$codigo = $_GET['codigo'];
+if(!isset($_GET['codigo'])){
+    echo $codigo;
 }
-$codAsesoria = $_GET['cod'];
+$codAsesoria = $_GET['codigo'];
 $sql = "SELECT * FROM HORARIOS WHERE COD_MATERIA='$codAsesoria'";
 $conn = abrirBD();
 $resultado = $conn->query($sql);
 $conn->close();
 ?>
+   
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +36,10 @@ $conn->close();
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        var nocontrol = '<?php echo $_SESSION['nocontrol']?>';
+         var codigo = '<?php echo $_GET['codigo']?>';
+    </script>
     <script src="js/EliminarAsesoria.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
@@ -48,7 +52,7 @@ $conn->close();
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <a href="#" class="navbar-brand">
-                        <h1 class="lead display-4">Asesorías disponibles</h1>
+                        <h1 class="lead display-4">Mis asesorías</h1>
                     </a>
                     <div class="collapse navbar-collapse justify-content-end" id="nav-content"></div>
                     <ul class="navbar-nav">
@@ -59,7 +63,6 @@ $conn->close();
                                 <span class="fas fa-user fa-fw"></span><?php echo $nombrecompleto?>
                                 </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
-                                <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
                                 <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
                                 </div>
                         </div>
@@ -90,7 +93,7 @@ $conn->close();
                }   
                 ?>    
                 <div class="col-md-3">
-                <p class="lead">Maestro: <?php echo utf8_decode($nom_maestro);?></p>
+                <p class="lead">Maestro: <?php echo utf8_encode($nom_maestro);?></p>
                 </div>
                 <div class="col-md-2">
                 <p class="lead">Materia: <?php echo utf8_encode($nombre_materia);?></p>
@@ -102,17 +105,14 @@ $conn->close();
                 <p class="lead">Semestre: <?php echo $semestre;?></p>
                 </div>
                 <div class="col-md-2">
-                <form method="post">
-                    <p class="lead">Inscribirme:<button type="submit"class="btn btn-primary navegacion"name="inscribir" style="border:0; background-color:transparent;cursor:pointer;"data-toggle="modal"data-target="#mensaje" value=""data-toggle="tooltip" title="Inscribirme"><img src="css/addb.png" width="30px"height="30px"></button></p>
-                </form>
-                </div>
-                
+                <form  method="post"><p class="lead">Darme de baja:<button type="button"class=" btn btn-primary"style="border:0; background-color:transparent;cursor:pointer;" id="eliminar" data-target="#mensaje"data-toggle="modal"><img src="css/delete.png" width="30px"height="30px"></button></p></form>
+                </div>      
             </div>
         <div class="row">
             <table class="table table-striped">
                 <thead class="tabla">
                     <tr>
-                        <th class="lead">Codigo</th>
+                        <th class="lead">Código</th>
                         <th class="lead">Lunes</th>
                         <th class="lead">Martes</th>
                         <th class="lead">Miércoles</th>
@@ -136,36 +136,29 @@ $conn->close();
             </table>
         </div>
     </div>
-    <?php
-if(isset($_POST['inscribir']))
-{
-require_once('php/Clases/alumno.php');
-$alumno = new Alumno();
-$res = $alumno->YaInscrito($nc,$codAsesoria);
-    if($res ==0)
-    {
-    $alumno->InscribirAsesoria($nc,$codAsesoria);
-    echo '<div class="alert alert-success alert-dismissible mt-5">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Exito!</strong> Te has registrado en esta asesoría!
-  </div>';
-   }
-    else
-    {
-        echo '<div class="alert alert-danger alert-dismissible mt-5">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Error!</strong> Ya estabas registrado en esta asesoría!
-      </div>';
-    }
-}
-?>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
-});
-</script>
-    <div class="row justify-content-end"style="left:0;bottom:0;width:100%;position:fixed;">
-    <button type="button"class=" mt-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='asesoriasd.php'"><img  src="css/return.png" width="120px"height="120px"></button>
-    </div>
+
+
+<div class="row justify-content-end">    
+  <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalLabel">
+                                Mensaje del Sistema
+                            </h4>
+                        </div>
+                        <div class="modal-body" id="mens">
+                            Alumno registrado!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='asesoriasinscritas.php'">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+<div class="row justify-content-end">    
+  <button type="button"class="mt-5 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;position:absolute;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='asesoriasiscritas.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+</div>
 </body>
 </html>

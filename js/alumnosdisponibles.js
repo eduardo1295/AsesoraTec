@@ -3,7 +3,7 @@ $(obtener_registros());
 function obtener_registros(busqueda)
 {
 	$.ajax({
-		url : 'php/inscritas.php',
+		url : 'php/veralumno.php',
 		type : 'POST',
 		dataType : 'html',
 		data : { busqueda: busqueda },
@@ -14,7 +14,7 @@ function obtener_registros(busqueda)
 	})
 }
 
-$(document).on('keyup', '#buscar', function()
+$(document).on('keyup', '#busqueda', function()
 {
 	var valorBusqueda=$(this).val();
 	if (valorBusqueda!="")

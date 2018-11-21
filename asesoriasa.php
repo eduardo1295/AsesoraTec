@@ -2,18 +2,19 @@
 <html lang="en">
 <?php 
 session_start();
-if($_SESSION['logeado']!='SI'){
+
+if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
-require_once('php/Clases/alumno.php');
-$alumno = new Alumno();
-$nocontrol= $_SESSION['nocontrol'];
-$alumno->ObtenerDatos($nocontrol,$alumno);
-$nc = $nocontrol;
-$nombre = $alumno->Nombre;
-$appat = $alumno->Ap_Pat;
-$apmat = $alumno->Ap_Mat;
-$semestre = $alumno->Semestre;
+require_once('php/Clases/conexion.php');
+require_once('php/Clases/admin.php');
+$admin = new Admin();
+$usuario= $_SESSION['usuario'];
+$admin->ObtenerDatos($usuario,$admin);
+$nc = $admin;
+$nombre = $admin->Nombre;
+$appat = $admin->Ap_Pat;
+$apmat = $admin->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 ?>
 <head>

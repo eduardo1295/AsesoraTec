@@ -32,7 +32,7 @@
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/miperfil.css">
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/ModificarPerfil.js"></script>
+    <script src="js/ModificarDatos.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="js/mensaje.js"></script>
@@ -48,11 +48,10 @@
                     <p class="lead mx-2">Información de la cuenta:
                     </p>
                 </div>
-
-         <div class="row my-3 justify-content-center" required>
+                <div class="row my-3 justify-content-center" required>
                     <div class="row">
                         <input type="text" value="<?php echo $nocontrol?>" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required>
-                        </div>
+                    </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
@@ -80,17 +79,29 @@
                  <input type="e-mail" value="<?php echo $correo?>" id="correo" class="cajas lead"maxlength=128 placeholder="Correo"required>
                     </div>
                 </div>
+              
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="radio" name="sexo" id="sexo" class="radio my-2 mx-3 lead">
+                        <input type="radio" name="sexo" id="hombre" <?php ?> class="radio my-2 mx-3 lead">
                         <label for="hombre" class="radio lead">Hombre</label>
-                        <input type="radio" name="sexo" id="sexo" class="radio my-2 mx-3 lead">
+                        <input type="radio" name="sexo" id="mujer" class="radio my-2 mx-3 lead">
                         <label for="mujer" class="radio lead">Mujer</label>
-                        <input type="radio" name="sexo" id="sexo" class="radio my-2 mx-3 lead">
+                        <input type="radio" name="sexo" id="ninguno" class="radio my-2 mx-3 lead">
                         <label for="No binario" class="radio lead">No binario</label>
                     </div>
                 </div>
-                
+                <script language="javascript">
+                var hombre = document.getElementById('hombre');
+                var mujer = document.getElementById('mujer');
+                var ninguno = document.getElementById('ninguno');
+                var sexo = '<?php echo $sexo ?>';
+                if(sexo=="Hombre")
+                hombre.checked=true;
+                else if(sexo=="Mujer")
+                mujer.checked = true;
+                else if(sexo=="No binario")
+                ninguno.checked=true;
+                </script>
 
             </div>
         </div>
