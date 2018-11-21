@@ -1,9 +1,8 @@
 <?php
 require_once('Clases/maestro.php');
+require_once('busqueda.php');
 $maestro = new Maestro();
 
-  $maestro->ObtenerDatos('33',$maestro);
-  
-  echo($maestro->Nombre);
-  
+$maestro->EliminarAsesor('Movil');
+
 ?>

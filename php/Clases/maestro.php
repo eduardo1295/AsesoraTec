@@ -79,6 +79,145 @@ class Maestro{
      }
     }
 
+    public function ActualizarAsesoria($codigo,$nombreMaestro,$nombreMateria,$departamento,$semestre){
+        try{
+         $conexion = abrirBD();
+         $SQL= "UPDATE asesorias SET No_Maestro = ?, Nombre_Materia = ? ,Departamento = ?, Semestre = ? WHERE Codigo = ?";
+         $sentencia_preparada1 = $conexion->prepare($SQL);
+         $sentencia_preparada1->bind_param("sssss",$No_Maestro,$nom_Materia,$depto,$sem,$cod);
+         $No_Maestro = utf8_decode($nombreMaestro);
+         $nom_Materia = utf8_decode($nombreMateria);
+         $depto = utf8_decode($departamento);
+         $sem = utf8_decode($semestre);
+         $cod =  utf8_encode($codigo);
+         $sentencia_preparada1->execute();
+         $conexion->close();
+        }
+        catch (Exception $e){
+         $error = $e->getMessage();
+         echo $error;
+         }
+        }
+    public function AgregarHorario($codigo,$noecom,$salon,$Horario){
+        try{
+        $maestro = new maestro();
+        $maestro->ObtenerDatos($noecom,$maestro);
+        $nombreCompleto = $maestro->Nombre ." ".$maestro->Ap_Pat." ".$maestro->Ap_Mat;
+        $conexion = abrirBD();
+        $SQL= "INSERT INTO HORARIOS VALUES(?,?,?,?,?,?,?)";
+        $sentencia_preparada1 = $conexion->prepare($SQL);
+        $sentencia_preparada1->bind_param("sssssss",$cod_Mat,$mae,$lun,$mar,$mie,$jue,$vie);
+        $cod_Mat = utf8_encode($codigo);
+        $mae = $nombreCompleto;
+        $lun = $Horario[0].' '.$salon[0];
+        $mar = $Horario[1].' '.$salon[1];
+        $mie = $Horario[2].' '.$salon[2];
+        $jue = $Horario[3].' '.$salon[3];
+        $vie = $Horario[4].' '.$salon[4];
+        $sentencia_preparada1->execute();
+         $conexion->close();
+        }
+        catch (Exception $e){
+         $error = $e->getMessage();
+         echo $error;
+         }
+    }
+
+    public function ActualizarHorario($codigo,$noecom,$salon,$Horario){
+        try{
+            $maestro = new maestro();
+            $maestro->ObtenerDatos($noecom,$maestro);
+            $nombreCompleto = $maestro->Nombre ." ".$maestro->Ap_Pat." ".$maestro->Ap_Mat;
+            $conexion = abrirBD();
+            $SQL= "UPDATE HORARIOS SET Lunes = ?, Martes = ?, Miercoles = ?, Jueves = ?, Viernes = ? WHERE Cod_Materia =?";
+            $sentencia_preparada1 = $conexion->prepare($SQL);
+            $sentencia_preparada1->bind_param("ssssss",$lun,$mar,$mie,$jue,$vie,$cod_Mat);
+            $lun = $Horario[0].' '.$salon[0];
+            $mar = $Horario[1].' '.$salon[1];
+            $mie = $Horario[2].' '.$salon[2];
+            $jue = $Horario[3].' '.$salon[3];
+            $vie = $Horario[4].' '.$salon[4];
+            $cod_Mat = utf8_encode($codigo);
+            $sentencia_preparada1->execute();
+            $conexion->close();
+        }
+        catch (Exception $e){
+             $error = $e->getMessage();
+             echo $error;
+        }
+    }
+    public function AgregarAsesor($codigo,$noecon,$nocontrol,$nombreAsesorado){
+        try{
+            $conexion = abrirBD();
+            $SQL= "INSERT INTO asesorados VALUES(?,?,?,?)";
+            $sentencia_preparada1 = $conexion->prepare($SQL);
+            $sentencia_preparada1->bind_param("ssss",$cod,$noen,$nocont,$nomb);
+            $cod = $codigo;
+            $noen = $noecon;
+            $nocont = $nocontrol;
+            $nomb = $nombreAsesorado;
+            $sentencia_preparada1->execute();
+            $conexion->close();
+        }
+        catch (Exception $e){
+            $error = $e->getMessage();
+            echo $error;
+        }
+    }
+    public function ActualizarAsesor($codigo,$noecon,$nocontrol,$nombreAsesorado){
+        try{
+            $conexion = abrirBD();
+            $SQL= "SELECT COUNT(*) FROM ASESORADOS WHERE noAsesoria = '$codigo' AND noControl = '$nocontrol' ";
+            $STMT = $conexion->prepare($SQL);
+            $STMT->execute();
+            $STMT->bind_result($nombre);
+            while( $fila = $STMT->fetch()){
+                $resultado = $nombre;
+            }
+            $conexion->close();
+            $conexion = abrirBD();
+            if($resultado == 0){
+                $SQL= "INSERT INTO asesorados VALUES(?,?,?,?)";
+                $sentencia_preparada1 = $conexion->prepare($SQL);
+                $sentencia_preparada1->bind_param("ssss",$cod,$noen,$nocont,$nomb);
+                $cod = $codigo;
+                $noen = $noecon;
+                $nocont = $nocontrol;
+                $nomb = $nombreAsesorado;
+                $sentencia_preparada1->execute();
+                $conexion->close();
+            }
+            else {
+                $SQL= "UPDATE asesorados SET nocontrol = ?, Nombre =? WHERE NoAsesoria =? ";
+                $sentencia_preparada1 = $conexion->prepare($SQL);
+                $sentencia_preparada1->bind_param("sss",$nocont,$nomb,$cod);
+                $nocont = $nocontrol;
+                $nomb = $nombreAsesorado;
+                $cod = $codigo;
+                $sentencia_preparada1->execute();
+                $conexion->close();
+            }
+        }
+        catch (Exception $e){
+            $error = $e->getMessage();
+            echo $error;
+        }
+    }
+    public function EliminarAsesor($codigo){
+        try{
+            $conexion = abrirBD();
+            $SQL= "DELETE FROM ASESORADOS WHERE noAsesoria = ? ";
+            $sentencia_preparada1 = $conexion->prepare($SQL);
+            $sentencia_preparada1->bind_param("s",$cod);
+            $cod = $codigo;
+            $sentencia_preparada1->execute();
+            $conexion->close();
+        }
+        catch (Exception $e){
+            $error = $e->getMessage();
+            echo $error;
+        }
+    }
     public function RegresarNombre($nocontrol){
         try {
             $conexion = abrirBD();
@@ -124,6 +263,7 @@ class Maestro{
     echo $error;
     }
    }
+   
    public function MaestroExists($ne){
     try
     {

@@ -6,16 +6,21 @@
 .catexto{
     width: 75px;
 }
+.table{
+ background-color: #F2F2F2;   
+}
 table th{
     color: white;
 }
+.encabezado{
+    background: blue;
+}
 table input {
     width: 100%;
-    display: block;
-    background-color: transparent;
     border:  none;
-    border-bottom: 1px solid white;
-    color: white;
+    background: transparent;
+    border-bottom: 1px solid black;
+
     
 }
 
@@ -28,4 +33,7 @@ table input {
 #tablaAsesoria{
     background-color: gray;
     margin-left: 0px;
+}
+#titulo_tabla{
+    color: black;
 }

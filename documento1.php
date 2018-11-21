@@ -19,10 +19,12 @@ while($row = $resultado->fetch_assoc()){
 $pdf->SetX(20);
 $pdf->SetFont('Arial','I',10);
 $pdf->Cell(25,6,utf8_encode($row['nocontrol']),1,0,"C");
-$pdf->Cell(60,6,utf8_decode($row['nombre']).' '.utf8_decode($row['Ap_pat']).' '. utf8_decode($row['Ap_Mat']) ,1,0,"C");
+$nombre  = utf8_decode($row['nombre']);
+$paterno = utf8_decode($row['Ap_pat']);
+$materno = utf8_decode($row['Ap_Mat']);
+$pdf->Cell(60,6,$nombre.' '.$paterno.' '. $materno,1,0,"C");
 $pdf->Cell(40,6,utf8_encode($row['carrera']),1,0,"C");
 $pdf->Cell(40,6,utf8_encode($row['semestre']),1,1,"C");
-
 }
 $pdf->Output();
 ?>
