@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <?php 
 session_start();
 if($_SESSION['logeado']!='SI'){
@@ -60,19 +59,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <?php echo $nombrecompleto?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
-                        <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
                         <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button id="acercade" class="btn btn-primary dropdown-toggle  lead" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <span class="fas fa-cog fa-fw"></span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acercade">
-                        <a href="a" class="dropdown-item lead">Nuestra historia</a>
-                        <a href="a" class="dropdown-item lead">Nuestro Equipo</a>
-                        <a href="a" class="dropdown-item lead">Contacto</a>
                     </div>
                 </div>
             </form>
@@ -110,37 +97,34 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                 <a class="nav-link lead" data-toggle="modal" href="#eliminar">
                                     <i class="fas fa fa-trash fa-fw"></i>Eliminar mi cuenta</a>
                             </li>
-                            <li class="nav-item lead">
-                                <a class="nav-link lead" href="#" id="modificar">
-                                    <i class="fas fa-cog fa-fw"></i>Modificar Perfil</a>
-                            </li>
                         </ul>
                     </div>
                 </li>
             </ul>
             <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modalLabel">
-                                Mensaje del Sistema
-                            </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row mt-2 justify-content-center">
-                                ¿Seguro que desea eliminar su cuenta?
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a class="btn btn-danger lead" href='#' id="eliminar">Aceptar</a>
-                            <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
-                        </div>
+                 <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">
+                        Mensaje del Sistema
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2 justify-content-center">
+                   ¿Seguro que quieres eliminar tu cuenta?
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <a href="eliminar.php" class="btn btn-danger lead" id="eliminar" data-dismiss="modal"role="button">Aceptar</a>
+                    <a href="" class="btn btn-info" data-dismiss="modal">Cancelar</a>
+                </div>
             </div>
+        </div>
+    </div>
+</div>
             <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -158,7 +142,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-primary lead" href="php/cerrarsesion.php">Aceptar</a>
+                            <a class="btn btn-warning lead" href="php/cerrarsesion.php"style="color:white;">Aceptar</a>
                             <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
@@ -248,7 +232,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             <div class="row justify-content-center">
                 <canvas id="canvas" width="500px" height="500px"></canvas>
             </div>
-            <div class="copyright"tyle="left:0;bottom:0;width:100%;position:fixed;">
+            <div class="copyright"style="left:0;bottom:0;width:100%;position:fixed;">
                 <div class="container">
                     <div class="col py-3">
                         <div class="col text-center">
@@ -274,10 +258,6 @@ $(document).ready(function(){
     $("#modificar").click(function(){
     window.location.href='miperfil.php';
     });
-    $("#eliminar").click(function(){
-    window.location.href='eliminar.php?nc=<?php echo $nc;?>';
-    });
 });
-
 </script>
 </html>

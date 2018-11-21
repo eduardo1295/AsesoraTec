@@ -40,6 +40,9 @@ p{
 .ojo{
     color:white;
 }
+html, body {
+	height: 100%;
+}
 .bg-verde{
     background: blue;
     color: white;

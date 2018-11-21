@@ -7,6 +7,7 @@
     <title>Registrar cuenta</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/pruebaregistrar.css">
+    <link rel="stylesheet" href="css/maestro.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,7 +83,7 @@
 </div>
 <div class="mb-2 mt-2 container w-100">
     <div class="row  justify-content-center">
-        <button type="submit" id="registrarm" class="btn btn-primary lead w-25" data-toggle="modal" data-target="#mensaje"> Registrarme</button>
+        <button type="submit" id="registrarm" class="btn btn-primary lead w-50" data-toggle="modal" data-target="#mensaje"> Registrarme</button>
         <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
