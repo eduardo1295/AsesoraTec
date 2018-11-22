@@ -44,7 +44,6 @@ if(isset($_SESSION['maestrologeado'])){
 	{
 		$tabla="No se encontraron coincidencias con sus criterios de búsqueda.";
 	}
-<<<<<<< HEAD
 }
 else {
 	$query = "SELECT *FROM ASESORIAS";
@@ -91,7 +90,5 @@ $tabla.='</table>';
 		$tabla="No se encontraron coincidencias con sus criterios de búsqueda.";
 	}
 }
-=======
->>>>>>> origin/manny
 echo $tabla;
 ?>

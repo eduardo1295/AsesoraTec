@@ -22,11 +22,10 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Asesora-TEC</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/menu1.css">
     <link rel="stylesheet" href="css/reloj.css">
     <link rel="stylesheet" href="css/sidebars.css">
     <link rel="stylesheet" href="css/simple-sidebar.css">
-    <link rel="stylesheet" href="css/muno.css">
+    <link rel="stylesheet" href="css/mno.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
@@ -37,18 +36,18 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
 
 </head>
-
-<body>
-    <div class="row">
-        <nav class="navbar navbar-expand navbar-dark fixed-top encabezado">
-            <a href="#" class="navbar-brand">
-                <h1 class="lead display-4">Asesora-TEC</h1>
-            </a>
-            <div class="collapse navbar-collapse justify-content-end" id="nav-content"></div>
-            <ul class="navbar-nav">
-            </ul>
-            <form action="" class="form-inline" role="search">
-                <div class="dropdown">
+<body> 
+    
+    <div class="row justify-content-center">
+        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
+    </div>
+    <div class="row"style="background:blue;"> 
+        <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
+                <h1 class="lead display-4 ml-1 mr-2">Asesora-TEC</h1>
+        </div>
+        <div class="col mt-4" style="background:blue">
+            <div class="row justify-content-end mr-2 mt-1">
+                <div class="dropdown ">
                     <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="fas fa-user fa-fw"></span>
@@ -58,11 +57,10 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
                     </div>
                 </div>
-            </form>
-        </nav>
+            </div>
+        </div>
     </div>
-    <div class="row justify-content-center mt-5 banner">
-       <img src="banner.png" alt="Login"style="border:3px solid gray;">
+        
     </div>
     <div class="row">
         <div class="barra w-25 col">
@@ -78,10 +76,6 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 <li class="nav-item">
                     <a class="nav-link lead" href="asesoriasd.php">
                         <i class="fas fa fa-search-plus fa-fw"></i>Inscribirme en Asesoría</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link lead" href="evidencia.php">
-                        <i class="fas fa fa-upload fa-fw"></i>Subir firma de asistencia</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-1">
