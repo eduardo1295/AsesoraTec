@@ -26,7 +26,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/prueba2.css">
+    <link rel="stylesheet" href="css/log.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -37,11 +37,13 @@
 </head>
 
 <body class="contenedor">
-    <div class="page-header pb-2 pt-2">
-        <h1 class="display-3 lead">Asesora-TEC</h1>
+    <div class="row">
+        <img src="banner.png" alt="" class="w-100 ml-2" style="width:100%;border:3px solid gray;">
     </div>
-    <div class="row justify-content-center mt-2">
-        <img src="asesor.png" alt="Login">
+    <div class="row"style="background:blue;"> 
+        <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
+                <h1 class="lead display-4 ml-1 mr-2">Asesora-TEC</h1>
+        </div>
     </div>
         <div class="row d-block m-4 justify-content-center">
             <div class="login">

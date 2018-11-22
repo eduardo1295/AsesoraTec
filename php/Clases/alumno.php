@@ -210,7 +210,6 @@ public function YaInscrito($nc,$codigoAsesoria){
             }
             $conn->close();
         }
-
         return $resultado;
     }
     catch (Exception $e)

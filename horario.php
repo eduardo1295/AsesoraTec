@@ -4,6 +4,7 @@
 session_start();
 require_once('php/Clases/conexion.php');
 require_once('php/Clases/alumno.php');
+require_once('php/Clases/asesoria.php');
 if($_SESSION['logeado']!='SI'){
     header("Location: login.php");
 }
@@ -15,7 +16,14 @@ $nombre = $alumno->Nombre;
 $appat = $alumno->Ap_Pat;
 $apmat = $alumno->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
+$asesoria = new Asesoria();
+$codigo = $_GET['cod'];
+$existe = $asesoria->AsesoriaExiste($codigo);
 if(!isset($_GET['cod'])){
+    header("Location: menu1.php");
+}
+if($existe==0)
+{
     header("Location: menu1.php");
 }
 $codAsesoria = $_GET['cod'];
@@ -90,7 +98,7 @@ $conn->close();
                }   
                 ?>    
                 <div class="col-md-3">
-                <p class="lead">Maestro: <?php echo utf8_decode($nom_maestro);?></p>
+                <p class="lead">Maestro: <?php echo utf8_encode($nom_maestro);?></p>
                 </div>
                 <div class="col-md-2">
                 <p class="lead">Materia: <?php echo utf8_encode($nombre_materia);?></p>

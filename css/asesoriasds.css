@@ -1,0 +1,65 @@
+body{
+
+}
+label{
+    color: white;
+}
+input{
+    text-align: center;
+}
+h1{
+    color:white;
+    text-align: center;
+}
+hr{
+    color:white;
+    background: white;
+}
+select{
+    border-radius: 10px;
+    width: 350px;
+}
+.radio{
+    width: auto;
+    color:white;
+}
+#registrarbtn{
+width: 500px;
+height: 100px;
+}
+input{
+width: 350px;
+
+}
+h3{
+    color: white;
+}
+p{
+    color:white;
+}
+.ojo{
+    color:white;
+}
+html, body {
+	height: 100%;
+}
+.bg-verde{
+    background: blue;
+    color: white;
+}
+.encabezado{
+    background: blue;
+    
+}
+
+.relleno{
+    height: 350px;
+    width: 1000px;
+}
+.copyright{
+    background: blue;
+    color:white;
+}
+body{
+    min-height: 100%;
+}

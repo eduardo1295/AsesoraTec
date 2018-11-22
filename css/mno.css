@@ -2,11 +2,11 @@
     background: blue;
     color: white;
 }
-.encabezado{
-    background: blue;
+.encabezado
+{
+    background:blue;
 }
 body{
-    padding-top: 70px;
 }
 .relleno{
     height: 350px;
@@ -23,4 +23,14 @@ body{
 {
     background: lavender;
 }
-
+.inicio
+{
+    background:blue;
+}
+.banner{
+    
+}
+.header
+{
+    width:99%;
+}

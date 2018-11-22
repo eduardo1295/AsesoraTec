@@ -62,17 +62,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                 <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
                                 <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
                                 </div>
-                        </div>
-                        <div class="dropdown">
-                            <button id="acercade" class="btn btn-primary dropdown-toggle  lead" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-cog fa-fw"></span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acercade">
-                                <a href="a" class="dropdown-item lead">Nuestra historia</a>
-                                <a href="a" class="dropdown-item lead">Nuestro Equipo</a>
-                                <a href="a" class="dropdown-item lead">Contacto</a>
-                            </div>
-                        </div>
+                        </div>>
                     </form>
                 </nav>
     </div>
@@ -110,7 +100,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <ul class="nav flex-column ml-3">
                             <li class="nav-item">
                                 <a class="nav-link active lead"data-toggle="modal" href="#">
-                                    <i class="fas fa fa-cog fa-fw"></i>Reporte Por Departamento</a>
+                                    <i class="fas fa fa-cog fa-fw"></i>Reporte de Departamento de Sistemas</a>
                             </li>
                             <li class="nav-item lead">
                                 <a class="nav-link lead" href="#">
@@ -121,7 +111,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-3">
-                        <i class="fas fa fa-folder fa-fw"></i>Agregar Usuarios</a>
+                        <i class="fas fa fa-male fa-fw"></i>Agregar Usuarios</a>
                         <div id="item-3" class="collapse">
                         <ul class="nav flex-column ml-3">
                             <li class="nav-item">
@@ -148,11 +138,6 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                 <a class="nav-link lead" data-toggle="modal" href="#eliminar">
                                     <i class="fas fa fa-trash fa-fw"></i>Eliminar mi cuenta</a>
                             </li>
-                            <li class="nav-item lead">
-                                <a class="nav-link lead" href="#" id="modificar">
-                                    <i class="fas fa-cog fa-fw"></i>Modificar Perfil</a>
-                            </li>
-                        </ul>
                     </div>
                 </li>
             </ul>

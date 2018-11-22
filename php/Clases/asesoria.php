@@ -53,5 +53,58 @@ class Asesoria{
              echo $error;
             }
     }
+    public function AsesoriaExiste($cod)
+    {
+        try
+        {
+            $resultado=0;
+         $conn = abrirBD();
+         if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIAS WHERE CODIGO=?"))
+             {
+                 $sentencia_preparada->bind_param('s',$codigo);
+                 $codigo =$cod;
+                 $sentencia_preparada->execute();
+                 $sentencia_preparada->bind_result($numero);
+                 while($sentencia_preparada->fetch()){
+                 $resultado = $numero;
+                 }
+                 $conn->close();
+             }
+            return $resultado;
+        }
+        catch(Exception $e)
+        {
+         $error = $e->getMessage();
+         echo $error;
+        }
+
+    }
+    public function EstoyRegistrado($cod,$nocontrol)
+    {
+        try
+        {
+            $resultado=0;
+         $conn = abrirBD();
+         if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIASREG WHERE CODIGO_ASESORIA=? AND CONTROL_ALUMNO=?"))
+             {
+                 $sentencia_preparada->bind_param('ss',$codigo,$nocon);
+                 $codigo =$cod;
+                 $nocon = $nocontrol;
+                 $sentencia_preparada->execute();
+                 $sentencia_preparada->bind_result($numero);
+                 while($sentencia_preparada->fetch()){
+                 $resultado = $numero;
+                 }
+                 $conn->close();
+             }
+            return $resultado;
+        }
+        catch(Exception $e)
+        {
+         $error = $e->getMessage();
+         echo $error;
+        }
+
+    }
 }
 ?>

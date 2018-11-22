@@ -1,0 +1,15 @@
+table{
+}
+thead{
+    color:white;
+}
+th{
+    border:1px solid white;
+}
+td{
+    color:black;
+}
+.filtros{
+    margin-left:auto; 
+    margin-top:2%;
+}

@@ -2,6 +2,7 @@
 <?php
 session_start();
 require_once('php/Clases/Alumno.php');
+require_once('php/Clases/asesoria.php');
 if($_SESSION['logeado']!='SI'){
     header("Location: login.php");
 }
@@ -14,10 +15,14 @@ $appat = $alumno->Ap_Pat;
 $apmat = $alumno->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 $codigo = $_GET['codigo'];
-if(!isset($_GET['codigo'])){
-    echo $codigo;
-}
 $codAsesoria = $_GET['codigo'];
+$asesoria = new Asesoria();
+$existe = $asesoria->AsesoriaExiste($codigo);
+$registrado = $asesoria->EstoyRegistrado($codigo,$_SESSION['nocontrol']);
+if($existe==0 ||$registrado==0)
+{
+    header("Location: menu1.php");
+}
 $sql = "SELECT * FROM HORARIOS WHERE COD_MATERIA='$codAsesoria'";
 $conn = abrirBD();
 $resultado = $conn->query($sql);
@@ -27,7 +32,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Horario</title>
     <link rel="stylesheet" href="css/tablahorarios.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
@@ -60,7 +65,7 @@ $conn->close();
                     <form action="" class="form-inline" role="search">
                         <div class="dropdown">
                             <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-user fa-fw"></span><?php echo $nombrecompleto?>
+                                <span class="fas fa-user fa-fw"></span><?php echo htmlentities($nombrecompleto)?>
                                 </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                                 <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
@@ -124,11 +129,11 @@ $conn->close();
                     ?>
                     <tr class="alert alert-primary">
                     <td><?php echo $row[0]; ?></td>
-                    <td><?php echo $row[1]; ?></td>
                     <td><?php echo $row[2]; ?></td>
                     <td><?php echo $row[3]; ?></td>
                     <td><?php echo $row[4]; ?></td>
-                    <td><?php echo $row[5];}?></td>
+                    <td><?php echo $row[5]; ?></td>
+                    <td><?php echo $row[6];}?></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -158,7 +163,7 @@ $conn->close();
             </div>
 </div>
 <div class="row justify-content-end">    
-  <button type="button"class="mt-5 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;position:absolute;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='asesoriasiscritas.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+  <button type="button"class="mt-5 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;position:absolute;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='asesoriasinscritas.php'"><img  src="css/return.png" width="120px"height="120px"></button>
 </div>
 </body>
 </html>
