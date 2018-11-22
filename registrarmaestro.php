@@ -16,6 +16,9 @@
     <script src="js/InsertarMaestro.js"></script>
 </head>
 <body>
+<div class="row justify-content-center">
+        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
+    </div>
     <div class="page-header pb-2 pt-2">
         <h1 class="lead display-3 justify-content-center">Registrar una cuenta <img src="asesor.png" alt="Login"></h1>
 </div>        

@@ -20,6 +20,9 @@
 </head>
 
 <body class="contenedor">
+<div class="row justify-content-center">
+        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
+    </div>
     <div class="page-header pb-2 pt-2">
         <h1 class="lead display-3 justify-content-center">Registrar una cuenta <img src="alumno.png" alt="Login"></h1>
     </div>
@@ -92,9 +95,6 @@
                     <div class="row my-2 ">
                         <select id="carrera" class="lead">
                             <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
-                            <option value="Ing. Electromecánica">Ing. Electromecánica</option>
-                            <option value="Ing. Civil">Ing. Civil</option>
-                            <option value="Contabilidad">Contabilidad</option>
                         </select>
                     </div>
                     <div class="row my-3 justify-content-center">

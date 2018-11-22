@@ -65,7 +65,7 @@ $conn->close();
                     <form action="" class="form-inline" role="search">
                         <div class="dropdown">
                             <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-user fa-fw"></span><?php echo $nombrecompleto?>
+                                <span class="fas fa-user fa-fw"></span><?php echo htmlentities($nombrecompleto)?>
                                 </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                                 <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
@@ -129,11 +129,11 @@ $conn->close();
                     ?>
                     <tr class="alert alert-primary">
                     <td><?php echo $row[0]; ?></td>
-                    <td><?php echo $row[1]; ?></td>
                     <td><?php echo $row[2]; ?></td>
                     <td><?php echo $row[3]; ?></td>
                     <td><?php echo $row[4]; ?></td>
-                    <td><?php echo $row[5];}?></td>
+                    <td><?php echo $row[5]; ?></td>
+                    <td><?php echo $row[6];}?></td>
                     </tr>
                 </thead>
                 <tbody>
