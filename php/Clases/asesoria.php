@@ -6,12 +6,14 @@ class Asesoria{
     public $Nom_Maestro;
     public $Semestre;
     public $Departamento;
+    public $Activo;
     public function _construct(){
         $Codigo ="";
         $Nombre="";
         $Nom_Maestro = "";
         $Semestre =0;
         $Departamento = "";
+        $Activo="";
     }
     public function setCodigo($codigo){
         $this->Codigo = $codigo;
@@ -28,6 +30,9 @@ class Asesoria{
     public function setDepartamento($departamento){
         $this->Departamento = $departamento;
     }
+    public function setActivo($activo){
+        $this->Activo = $activo;
+    }
     public function ObtenerAsesoria($cod,$asesoria){
             try
             {
@@ -37,12 +42,13 @@ class Asesoria{
                      $sentencia_preparada->bind_param('s',$codigo);
                      $codigo =$cod;
                      $sentencia_preparada->execute();
-                     $sentencia_preparada->bind_result($codi,$nombrem,$materia,$depar,$semestre);
+                     $sentencia_preparada->bind_result($codi,$nombrem,$materia,$depar,$semestre,$activo);
                      while($sentencia_preparada->fetch()){
                          $asesoria->setNombre($materia);
                          $asesoria->setNom_Maestro($nombrem);
                          $asesoria->setDepartamento($depar);
                          $asesoria->setSemestre($semestre);
+                         $asesoria->setActivo($activo);
                     }
                     $conn->close();
                 }

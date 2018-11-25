@@ -74,10 +74,7 @@
                 <div class="row my-2 ">
                     <label for="depto"class=lead>Departamento:</label>
                     <select  id="depto" class="lead">
-                        <option value="Ciencias Básicas">Ciencias Básicas</option>
-                        <option value="Especialidad en Desarrollo Web">Especialidad en Desarrollo Web</option>
-                        <option value="Especialidad en seguridad en TIC's">Especialidad en seguridad en TIC'S</option>
-                        <option value="Especialidad en Investigación">Especialidad en Investigación</option>
+                        <option value="Ing. Sistemas Computacionales">Ing. Sistemas Computacionales</option>
                     </select>
                 </div>
             </div>
