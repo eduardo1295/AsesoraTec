@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>Agregar asesoría</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/pruebaregistrar.css">
@@ -27,37 +29,50 @@
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
             <div class="col">
+            
                 <div class="row  mt-4 justify-content-center">
                     <p class="lead mx-2">Información de la asesoría:
                     </p>
                 </div>
-                <div class="row my-3 justify-content-center">
-                    <div class="row">
-                        <input type="text" class="cajas lead" id="codigo" placeholder="Código">
-                    </div>
+                <div class="control row ml-5 pl-2  text-white">
+                    Tipo Asignatura:
                 </div>
-                <div class="row my-3 justify-content-center">
-                    <div class="row">
-                        <input type="text" class="cajas lead" id="nombrea" placeholder="Nombre de la asesoría">
-                    </div>
-                </div>
-                <div class="row my-3 justify-content-center">
-                    <div class="row">
-                        <input type="text" class="cajas lead" id="semestre" placeholder="Semestre">
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="row my-2 ">
-                        <label for="depto"></label>
-                        <select name="depto" id="depto" class="lead">
-                            <option value="Ciencias Básicas">Ciencias Básicas</option>
-                            <option value="Especialidad en Desarrollo Web">Especialidad en Desarrollo Web</option>
-                            <option value="Especialidad en seguridad en TIC'S">Especialidad en seguridad en TIC'S</option>
-                            <option value="Especialidad en Investigación">Especialidad en Investigación</option>
+                <div class="row  justify-content-center">
+                    <div class="row" id="tip">
+                        <select name="" id="tipo" class="lead">
+                        <option value="Ciencias Básicas">Ciencias Básicas</option>
+                        <option value="Asignatura de la Carrera">Asignatura de la Carrera</option>
+                        <option value="Asignatura Equivalentes">Asignatura Equivalentes</option>
+                        <option value="Económico Administrativo">Económico Administrativo</option>
                         </select>
                     </div>
                 </div>
-                <div class="row  mt-4 justify-content-center">
+                <div class="control row ml-5 pl-2  text-white">
+                    Código:
+                </div>
+                <div class="row  justify-content-center">
+                    <div class="row" id="co">
+
+                    </div>
+                </div>
+                <div class="row ml-5 pl-2 mt-3 text-white">
+                    Nombre Asesoría:
+                </div>
+                <div class="row  justify-content-center">
+                    <div class="row" id="nom">
+                        <input type="text" class="cajas lead" id="nombrea" placeholder="Nombre de la asesoría">
+                    </div>
+                </div>
+                <div class="row ml-5 pl-2 mt-3 text-white">
+                    Semestre:
+                </div>
+                <div class="row  justify-content-center">
+                    <div class="row">
+                        <input type="text" class="cajas lead" id="semestre" placeholder="Semestre" value="1" readonly>
+                    </div>
+                </div>
+                
+                <div class="row  mt-4  justify-content-center">
                         <p class="lead mx-2">Agregar asesor *Opcional*:
                         </p>
                     </div>
