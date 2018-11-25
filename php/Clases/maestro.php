@@ -62,16 +62,35 @@ class Maestro{
    public function AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$departamento,$semestre){
     try{
      $conexion = abrirBD();
-     $SQL= "INSERT INTO ASESORIAS VALUES(?,?,?,?,?)";
-     $sentencia_preparada1 = $conexion->prepare($SQL);
-     $sentencia_preparada1->bind_param("sssss",$cod,$No_Maestro,$nom_Materia,$depto,$sem);
-     $cod =  utf8_encode($codigo);
-     $No_Maestro = utf8_decode($nombreMaestro);
-     $nom_Materia = utf8_decode($nombreMateria);
-     $depto = utf8_decode($departamento);
-     $sem = utf8_decode($semestre);
-     $sentencia_preparada1->execute();
+     $SQL= "SELECT COUNT(*) FROM ASESORIAS WHERE codigo = ? AND No_Maestro = ? ";
+     $STMT = $conexion->prepare($SQL);
+     $STMT->bind_param("ss",$cod,$nom);
+     $cod = $codigo;
+     $nom = $nombreMaestro;
+     $STMT->execute();
+     $STMT->bind_result($nombre);
+     while( $fila = $STMT->fetch()){
+         $resultado = $nombre;
+     }
      $conexion->close();
+
+     if($resultado == 0){
+        $conexion = abrirBD();
+        $SQL= "INSERT INTO ASESORIAS (Codigo,No_Maestro,Nombre_Materia,Tipo,Semestre) VALUES (?,?,?,?,?)";
+        $sentencia_preparada1 = $conexion->prepare($SQL);
+        $sentencia_preparada1->bind_param("sssss",$cod,$No_Maestro,$nom_Materia,$depto,$sem);
+        $cod =  utf8_encode($codigo);
+        $No_Maestro = utf8_decode($nombreMaestro);
+        $nom_Materia = utf8_decode($nombreMateria);
+        $depto = utf8_decode($departamento);
+        $sem = utf8_decode($semestre);
+        $sentencia_preparada1->execute();
+        $conexion->close();
+        return 1;
+     }
+     else {
+         return 0;
+     }
     }
     catch (Exception $e){
      $error = $e->getMessage();
@@ -79,25 +98,6 @@ class Maestro{
      }
     }
 
-    public function ActualizarAsesoria($codigo,$nombreMaestro,$nombreMateria,$departamento,$semestre){
-        try{
-         $conexion = abrirBD();
-         $SQL= "UPDATE asesorias SET No_Maestro = ?, Nombre_Materia = ? ,Departamento = ?, Semestre = ? WHERE Codigo = ?";
-         $sentencia_preparada1 = $conexion->prepare($SQL);
-         $sentencia_preparada1->bind_param("sssss",$No_Maestro,$nom_Materia,$depto,$sem,$cod);
-         $No_Maestro = utf8_decode($nombreMaestro);
-         $nom_Materia = utf8_decode($nombreMateria);
-         $depto = utf8_decode($departamento);
-         $sem = utf8_decode($semestre);
-         $cod =  utf8_encode($codigo);
-         $sentencia_preparada1->execute();
-         $conexion->close();
-        }
-        catch (Exception $e){
-         $error = $e->getMessage();
-         echo $error;
-         }
-        }
     public function AgregarHorario($codigo,$noecom,$salon,$Horario){
         try{
         $maestro = new maestro();
@@ -148,6 +148,7 @@ class Maestro{
     }
     public function AgregarAsesor($codigo,$noecon,$nocontrol,$nombreAsesorado){
         try{
+            
             $conexion = abrirBD();
             $SQL= "INSERT INTO asesorados VALUES(?,?,?,?)";
             $sentencia_preparada1 = $conexion->prepare($SQL);
@@ -167,7 +168,7 @@ class Maestro{
     public function ActualizarAsesor($codigo,$noecon,$nocontrol,$nombreAsesorado){
         try{
             $conexion = abrirBD();
-            $SQL= "SELECT COUNT(*) FROM ASESORADOS WHERE noAsesoria = '$codigo' AND noControl = '$nocontrol' ";
+            $SQL= "SELECT COUNT(*) FROM ASESORADOS WHERE codigo = '$codigo' AND noControl = '$nocontrol' ";
             $STMT = $conexion->prepare($SQL);
             $STMT->execute();
             $STMT->bind_result($nombre);
@@ -206,7 +207,7 @@ class Maestro{
     public function EliminarAsesor($codigo){
         try{
             $conexion = abrirBD();
-            $SQL= "DELETE FROM ASESORADOS WHERE noAsesoria = ? ";
+            $SQL= "DELETE FROM ASESORADOS WHERE codigo = ? ";
             $sentencia_preparada1 = $conexion->prepare($SQL);
             $sentencia_preparada1->bind_param("s",$cod);
             $cod = $codigo;
@@ -292,7 +293,7 @@ public function ObtenerDatos($ne,$maestro){
     try
     {
      $conn = abrirBD();
-     if($sentencia_preparada =$conn->prepare("SELECT * FROM MAESTROS WHERE NOECON=?"))
+     if($sentencia_preparada = $conn->prepare("SELECT * FROM MAESTROS WHERE NOECON=?"))
      {
          $sentencia_preparada->bind_param('s',$noecon);
          $noecon =$ne;
@@ -313,7 +314,7 @@ public function ObtenerDatos($ne,$maestro){
     catch(Exception $e)
     {
         $error = $e->getMessage();
-        echo error;
+        echo $error;
     }
 }
 public function ActualizarDatos($maestro){

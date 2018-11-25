@@ -1,8 +1,49 @@
+var bandera = true;
 $(document).ready(function(){
+    if($("#EditarCodigo").length > 0){
+        /*var codigo = $("#EditarCodigo").val();*/
+        $("#tipo").val($("#EditarTipo").val());
+        $(Agregar_Codigos());
+        /*$(buscar_Por_codigo(codigo));*/
+    }
+    else{
+        $(Agregar_Codigos());
+    }
+    
+    
+    $("#tipo").change(function(){
+        $(Agregar_Codigos());
+    });
+
+    $("#co").change(function(){
+        var codigo = $("#codigo").val();
+        $(buscar_Por_codigo(codigo));
+        
+    });
+
+    $("#nom").change(function(){
+        
+        var Nombre = $("#nombrea").val();
+        $.ajax({
+            url : 'php/materia.php',
+            type : 'POST',
+            dataType : 'html',
+            data : { opcion: "buscarPorNombre",
+                    Nombrebuscar: Nombre
+                },
+            })
+        .done(function(resultado){
+            var res = resultado.split('*');
+            $("#codigo").val(res[0]);
+            $("#semestre").val(res[1]);
+        })
+        
+        
+    });
     $("#registrarbtn").click(function(){
         var cod = $("#codigo").val();
         var nom = $("#nombrea").val();
-        var dep = $("#depto").val();
+        var tip = $("#tipo").val();
         var mens = $("#mens");
         var sem = $("#semestre").val();
         var aseso = $("#asesor").val();
@@ -19,10 +60,10 @@ $(document).ready(function(){
             url: 'php/asesoria.php', 
             method: 'POST',
             data:{
-                opcion : "Agregar", 
+                opcion : "Agregar",
                 codigo : cod,
                 nombre: nom,
-                departamento : dep,
+                tipo : tip,
                 semestre : sem,
                 horario: horario,
                 salon: salon,
@@ -37,7 +78,7 @@ $(document).ready(function(){
     $("#editarbtn").click(function(){
         var cod = $("#codigo").val();
         var nom = $("#nombrea").val();
-        var dep = $("#depto").val();
+        var tip = $("#tipo").val();
         var mens = $("#mens");
         var sem = $("#semestre").val();
         var aseso = $("#asesor").val();
@@ -57,7 +98,7 @@ $(document).ready(function(){
                 opcion : "Editar", 
                 codigo : cod,
                 nombre: nom,
-                departamento : dep,
+                tipo : tip,
                 semestre : sem,
                 horario: horario,
                 salon: salon,
@@ -70,3 +111,55 @@ $(document).ready(function(){
         });
     });
 });
+
+
+function Agregar_Codigos()
+{   
+    var dato = $("#tipo").val();
+	$.ajax({
+		url : 'php/materia.php',
+		type : 'POST',
+		dataType : 'html',
+        data : { opcion: "codigos",
+                busca: dato},
+		})
+	.done(function(resultado){
+        $("#co").html(resultado);
+        
+        $(Agregar_Nombre_Materia(dato));
+	})
+}
+function Agregar_Nombre_Materia(dato)
+{   
+	$.ajax({
+		url : 'php/materia.php',
+		type : 'POST',
+		dataType : 'html',
+        data : { opcion: "nombre",
+                busca: dato},
+		})
+	.done(function(resultado){
+        $("#nom").html(resultado);
+        if($("#EditarCodigo").length > 0 && bandera == true){
+            bandera = false;
+            var codigo = $("#EditarCodigo").val();
+            buscar_Por_codigo(codigo);
+        }
+	})
+}
+
+function buscar_Por_codigo(codigo){
+    $.ajax({
+        url : 'php/materia.php',
+        type : 'POST',
+        dataType : 'html',
+        data : { opcion: "buscarPorCodigo",
+                codigobuscar: codigo
+            },
+        })
+    .done(function(resultado){
+        var res = resultado.split('-');
+        $("#nombrea").val(res[0]);
+        $("#semestre").val(res[1]);
+    })
+}
