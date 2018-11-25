@@ -125,7 +125,7 @@ class Alumno{
     try
     {
            $correoObtenido="";
-           $contra;
+           $contra ="";
            $conexion = abrirBD();
         if($sentencia_preparada =$conexion->prepare("SELECT CORREO,PASS FROM ALUMNO WHERE NOCONTROL=?"))
         {
@@ -138,7 +138,6 @@ class Alumno{
             $contra=$pass;
     
             }
-            echo $correoObtenido;
             mail(utf8_decode($correoObtenido),utf8_decode("Contraseña olvidada"),utf8_decode("Tu contraseña olvidada es: ".$contra),utf8_decode("From: fer_inzunzavelarde@hotmail.com"));
        }
     }
@@ -282,5 +281,27 @@ public function EliminarAsesoria($nc,$codigoAsesoria)
         echo error;
     }  
 }
+    public function RegistrarAsistencia($nc,$fecha,$codigoAsesoria,$cd)
+    {
+        try
+        {
+        $conn = abrirBD();
+        $conexion = abrirBD();
+        $SQL= "INSERT INTO ASISTENCIAS VALUES(?,?,?,?)";
+        $sentencia_preparada1 = $conexion->prepare($SQL);
+        $sentencia_preparada1->bind_param("sss",$nocontrol,$fechaD,$codigoA,$contraseñaDiaria);
+        $nocontrol = $nc;
+        $fechaD = $fecha;
+        $codigoA = $codigoAsesoria;
+        $contraseñaDiaria = $cd;
+        $sentencia_preparada->execute(); 
+        $conn->close();
+    }
+        catch(Exception $e)
+        {
+            $error = $e->getMessage();
+            echo error;
+        }  
+    }
 }
 ?>

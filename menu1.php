@@ -111,7 +111,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="eliminar.php" class="btn btn-danger lead" id="eliminar" data-dismiss="modal"role="button">Aceptar</a>
+                    <a href="" class="btn btn-danger lead" id="eliminar" data-dismiss="modal"role="button">Aceptar</a>
                     <a href="" class="btn btn-info" data-dismiss="modal">Cancelar</a>
                 </div>
             </div>
@@ -223,7 +223,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
         <body onLoad="crearReloj2()">
             <div class="row justify-content-center">
-                <canvas id="canvas" width="500px" height="500px"></canvas>
+                <canvas id="canvas" class="lead" width="500px" height="500px"></canvas>
             </div>
             <div class="copyright"style="left:0;bottom:0;width:100%;position:fixed;">
                 <div class="container">
@@ -250,6 +250,9 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 $(document).ready(function(){
     $("#modificar").click(function(){
     window.location.href='miperfil.php';
+    });
+    $("#eliminar").click(function(){
+        window.location.href='eliminar.php';
     });
 });
 </script>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
+require_once('php/Clases/conexion.php');
 session_start();
 if($_SESSION['maestrologeado']!='SI'){
     header("Location: login.php");
@@ -13,8 +14,20 @@ $nc = $nocontrol;
 $nombre = utf8_encode($maestro->Nombre);
 $appat =  utf8_encode($maestro->Ap_Pat);
 $apmat =  utf8_encode($maestro->Ap_Mat);
-
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
+
+if(isset($_POST['eliminar'])) {
+    $conexion = abrirBD();
+    $codi = $_POST['codigo'];
+    $SQL= "UPDATE asesorias SET Activo = 'No' WHERE codigo=? AND No_Maestro = ?";
+    $sentencia_preparada1 = $conexion->prepare($SQL);
+    $sentencia_preparada1->bind_param("ss",$cod,$nom);
+    $cod =$codi;
+    $nom = $nombrecompleto;
+    $sentencia_preparada1->execute();
+    $conexion->close();
+}
+    
 ?>
 
 <head>
@@ -118,10 +131,34 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     </div>
     <div class="container-fluid">
         <div class="row">
+            <input type="hidden" name="">
+
             <section class="w-100" id="tabla">
 
             </section>
+
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Seguro que desea eliminar
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger" name="eliminar" form="eliminar">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
     </div>
     <div class="row justify-content-end">
         <button type="button" class="mt-2 mr-5 btn btn-primary navegacion" style="border:0; background-color:transparent;cursor:pointer;"

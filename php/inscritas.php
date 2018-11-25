@@ -31,18 +31,22 @@ if ($buscarAsesorias->num_rows > 0)
 	{
 		$asesoria = new Asesoria();
 		$asesoria->ObtenerAsesoria($fila['Codigo_Asesoria'],$asesoria);
-		$tabla.=
-		'<tr>
-		<td><a href="horarios.php?codigo='.$fila['Codigo_Asesoria'].'">'.$fila['Codigo_Asesoria'].'</a></td>
-		<td>'.utf8_encode($asesoria->Nom_Maestro).'</td>
-		<td>'.utf8_encode($asesoria->Nombre).'</td>
-		<td>'.utf8_encode($asesoria->Departamento).'</td>
-		<td>'.$asesoria->Semestre.'</td>
-		 </tr>
-		';
+		$activa = $asesoria->Activo;
+		if($activa=="Si")
+		{
+			$tabla.=
+			'<tr>
+			<td><a href="horarios.php?codigo='.$fila['Codigo_Asesoria'].'">'.$fila['Codigo_Asesoria'].'</a></td>
+			<td>'.utf8_encode($asesoria->Nom_Maestro).'</td>
+			<td>'.utf8_encode($asesoria->Nombre).'</td>
+			<td>'.utf8_encode($asesoria->Departamento).'</td>
+			<td>'.$asesoria->Semestre.'</td>
+			 </tr>
+			';	
+		}
 	}
-
 	$tabla.='</table>';
+	
 } else
 	{
 		$tabla="No se encontraron coincidencias con sus criterios de búsqueda.";
