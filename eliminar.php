@@ -9,7 +9,7 @@ if($_SESSION['logeado']!="SI")
 <html lang="en">
 <head>
     <!--asd-->
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
@@ -27,12 +27,11 @@ $('#myModal').modal('show')
 });
 </script>
 <?php 
-
+header("Refresh: 3; URL=login.php");
     require('php/Clases/alumno.php');
     $alumno = new Alumno();
     $nocontrol = $_SESSION['nocontrol'];;
         $alumno->EliminarAlumno($nocontrol);
-        header("Refresh: 3; URL=login.php");
         echo '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -45,7 +44,7 @@ $('#myModal').modal('show')
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row mt-2 justify-content-center">
+                    <div class="row mt-2 justify-content-center lead">
                    Usuario eliminado exitosamente!<br>
                    Redireccionando..
                     </div>
@@ -57,7 +56,7 @@ $('#myModal').modal('show')
         </div>
     </div>
 </div>';
-
+session_destroy();
 ?>
 </body>
 </html>

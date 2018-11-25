@@ -1,4 +1,6 @@
-
+.encabezado{
+    background: blue;
+}
 h3,p{
        text-align: center;   
    }

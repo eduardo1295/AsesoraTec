@@ -12,12 +12,20 @@ if($noeconomico!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$correo!=""
 {
     $maestro = new Maestro();
     $existe = $maestro->MaestroExists($noeconomico);
-    if($existe>0)
+    $client = new SoapClient("https://siia.lapaz.tecnm.mx/webserviceitlp.asmx?WSDL");
+    $result = $client->maestroVigente(array('numeroEconomico' => $noeconomico, 'contrasena' => '*3%f&Y2b'))->maestroVigenteResult;	 
+    if($result == false)
     {
-        echo("El maestro ya existe!");
+        echo("El número económico no esta registrado en el Instituto Tecnológico de La Paz");
     }
     else
     {
+        if($existe>0)
+        {
+            echo("El maestro ya existe!");
+        }
+        else
+        {
        
         $maestro->setNo_Economico($noeconomico);
         $maestro->setContraseña($pass);
@@ -28,6 +36,7 @@ if($noeconomico!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$correo!=""
         $maestro->setCorreo($correo);
         $maestro->InsertarMaestro($maestro);
         echo("Maestro registrado!");
+        }
     }
 }
 else

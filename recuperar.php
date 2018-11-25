@@ -1,3 +1,7 @@
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/recuperar.css">
+    <link rel="stylesheet" href="css/rec.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -16,7 +20,7 @@
 </head>
 
 <body>
-    <div class="page-header pb-2 pt-2">
+    <div class="page-header pb-2 pt-2 encabezado">
         <h3 class="display-4 lead mx-5">Recuperar Contraseña</h3>
     </div>
     <div class="container mt-3" style="border:1px solid gray">
@@ -68,38 +72,45 @@
 <?php
 if(isset($_POST['recuperarbtn']))
 {
-require_once('php/Clases/alumno.php');
-require_once('php/Clases/maestro.php');
-$numero = $_POST['numero'];
-$alumno = new Alumno();
-$existe = $alumno->AlumnoExists($numero);
-$maestro = new Maestro();
-$existe2 = $maestro->MaestroExists($numero);
-if($existe>0)
-{
-    $alumno->ObtenerDatos($numero,$alumno);
+    $nocontrol =$_POST['numero'];
+    require_once("php/Clases/alumno.php");
+    $alumno = new Alumno();
+    $alumno->ObtenerDatos($nocontrol,$alumno);
     $correo = $alumno->Correo;
+    $nombre = $alumno->Nombre;
     $contraseña = $alumno->Contraseña;
-    $mail_username="fernandoinzv@gmail.com";//Correo electronico saliente ejemplo: tucorreo@gmail.com
-	$mail_userpassword="inzunza123";//Tu contraseña de gmail
-	$mail_addAddress=$correo;//correo electronico que recibira el mensaje
-	$template="email_template.html";//Ruta de la plantilla HTML para enviar nuestro mensaje
-				/*Inicio captura de datos enviados por $_POST para enviar el correo */
-    $mail_setFromEmail="fernandoinzv@gmail.com";
-	$mail_setFromName="Asesora-TEC";
-	$txt_message=utf8_encode("Tu contrasena olvidada es: $contraseña");
-    $mail_subject=utf8_encode("Recuperacion de contrasena");
-    include("sendmail.php");
-    sendemail($mail_username,$mail_userpassword,$mail_setFromEmail,$mail_setFromName,$mail_addAddress,$txt_message,$mail_subject,$template);
-}
-else if($existe2>0)
-{
-    $maestro->ObtenerDatos($numero,$maestro);
-    $correo = $maestro->Correo;
-    $contraseña = $maestro->Contraseña;
-}
-else{
-    echo "El número seleccionado no existe!";
-}
+    date_default_timezone_set('Etc/UTC');
+    require_once 'mail/src/PHPMailer.php';
+    require_once 'mail/src/Exception.php';
+    require_once 'mail/src/SMTP.php';
+    $mail = new PHPMailer;
+    $mail->isSMTP();
+    //Enable SMTP debugging
+    // 0 = off (for production use)
+    // 1 = client messages
+    // 2 = client and server messages
+    $mail->SMTPDebug = false;
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = "fernandoinzv@gmail.com";
+    $mail->Password = "inzunza123";
+    
+    $mail->setFrom('fernandoinzv@gmail.com', 'Administrador de Asesora-TEC');
+    //$mail->addReplyTo('pruebas22@itlp.edu.mx', 'Jose Rodriguez');
+    $mail->addAddress($correo, $nombre);
+    $mail->Subject = utf8_decode('Recuperación de contraseña');
+    $mail->msgHTML("La contraseña de tu cuenta en Asesora-TEC es: ".$contraseña);
+    $mail->AltBody = 'This is a plain-text message body';
+    //$mail->addAttachment('images/phpmailer_mini.png');
+    //send the message, check for errors
+    
+    if (!$mail->send()) {
+      //  echo "Mailer Error: " . $mail->ErrorInfo;
+      echo "<p class='lead'style='color:red'>Error al enviar el mensaje </p>";
+    } else {
+      echo "<p class='lead'style='color:green'>Mensaje enviado!</p>";
+    }
 }
 ?>
