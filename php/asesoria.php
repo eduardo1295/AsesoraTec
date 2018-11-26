@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "Faltan datos del asesorado";
                 else {
                     $maestro->EliminarAsesor($codigo);
-                    $maestro->Actualiz}rHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
+                    $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
                     echo ("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
                 }
             

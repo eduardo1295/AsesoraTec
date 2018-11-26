@@ -66,9 +66,14 @@ if(isset($_SESSION['maestrologeado'])){
 				</form>
 				<form id="eliminar" action="" method="post"> 
 				<input type="hidden" name="codigo" value="'.$fila['Codigo'].'">
-				<button type="button" name="eliminar" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal" >Eliminar</button>
-				</div>
+				<button type="button" name="eliminar" class="btn btn-danger btn-sm mr-1" data-toggle="modal" data-target="#exampleModal" >Eliminar</button>
 				</form>
+				<form id="asistencia" action="documento1.php" method="post"> 
+				<button type="submit" name="eliminar" class="btn btn-success btn-sm">Lista asistencia</button>
+				</form>
+				</div>
+				
+				
 				
 			</td>
 		 </tr>

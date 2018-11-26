@@ -40,7 +40,7 @@ else if(strlen($carrera)>50)
 {
 echo "El nombre de la carrera es demasiado largo (Máx. 50 carac.)";
 }
-else if(!isnumeric($semestre))
+else if(!is_numeric($semestre))
 {
     echo "El semestre debe ser conformado solo por números!";
 }
