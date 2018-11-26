@@ -199,7 +199,7 @@ else {
                                 </button>
                             </div>
                             <div class="modal-body" id="mens">  
-                                Asesoría agregada a la lista
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
