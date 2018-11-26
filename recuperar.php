@@ -20,6 +20,9 @@ use PHPMailer\PHPMailer\Exception;
 </head>
 
 <body>
+    <div class="row justify-content-center">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
+    </div>
     <div class="page-header pb-2 pt-2 encabezado">
         <h3 class="display-4 lead mx-5">Recuperar Contraseña</h3>
     </div>

@@ -36,7 +36,7 @@
 
     <script src="js/mensaje.js"></script>
 </head>
-<body class="contenedor">
+<body>
     <div class="page-header pb-2 pt-2">
             <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>
     </div>        

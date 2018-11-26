@@ -14,7 +14,7 @@ if(isset($_SESSION['maestrologeado'])){
 	$appat =  utf8_encode($maestro->Ap_Pat);
 	$apmat =  utf8_encode($maestro->Ap_Mat);
 	$nombrecompleto = $nombre." ".$appat." ".$apmat;
-	$query = "SELECT Codigo,Nombre_Materia,Tipo,Semestre FROM ASESORIAS WHERE No_Maestro = '$nombrecompleto' AND Activo = 'Si'";
+	$query = "SELECT Codigo,Nombre_Materia,Tipo,Semestre FROM ASESORIAS WHERE No_Maestro = '$nombrecompleto' AND ACTIVO='Si'";
 	$buscarAsesorias=$conn->query($query);
 	if ($buscarAsesorias->num_rows > 0)
 	{
@@ -86,7 +86,7 @@ if(isset($_SESSION['maestrologeado'])){
 	}
 }
 else {
-	$query = "SELECT *FROM ASESORIAS";
+	$query = "SELECT *FROM ASESORIAS WHERE ACTIVO ='Si'";
 	if(isset($_POST['busqueda']))
 	{
 		$q=$conn->real_escape_string($_POST['busqueda']);
@@ -95,7 +95,7 @@ else {
 			NO_MAESTRO LIKE '%".$q."%' OR
 			NOMBRE_MATERIA LIKE '%".$q."%' OR
 			SEMESTRE LIKE '%".$q."%' OR
-			Tipo LIKE '%".$q."%'";
+			Tipo LIKE '%".$q."%' AND ACTIVO='Si'";
 	}	
 	$buscarAsesorias=$conn->query($query);
 	if ($buscarAsesorias->num_rows > 0)

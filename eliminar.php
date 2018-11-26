@@ -31,8 +31,8 @@ $('#myModal').modal('show')
 header("Refresh: 3; URL=login.php");
     require('php/Clases/alumno.php');
     require('php/Clases/maestro.php');
-    if (isset($_SEESION['nocontrol'])) {
-        $alumno = new Alumno();
+    if (isset($_SESSION['nocontrol'])) {
+        $alumno =new Alumno();
         $nocontrol = $_SESSION['nocontrol'];
         $alumno->EliminarAlumno($nocontrol);
         echo '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
@@ -60,7 +60,7 @@ header("Refresh: 3; URL=login.php");
              </div>
         </div>';    
     }
-    elseif (isset($_SESSION['noeconomico'])) {
+    else if (isset($_SESSION['noeconomico'])) {
         $maestro = new maestro();
         $noecon = $_SESSION['noeconomico'];
         $maestro->EliminarMaestro($noecon);

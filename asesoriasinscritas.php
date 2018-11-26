@@ -35,12 +35,12 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 </head>
 <body>
 <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
     </div>
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 py-3 col"style="color:white">
         <div class="row">
-        <h1 class="lead display-4 ml-4">Asesora-TEC</h1>
+        <h1 class="lead display-4 ml-4">Mis asesorías</h1>
         </div>          
         </div>
         <div class="col mt-4" style="background:blue">
@@ -61,9 +61,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         <div class="row justify-content-center filtros">
             <div class="alert alert-primary w-100 text-center">
             <h4 class="lead">
-                Buscar: 
-            <input type="text" name="busqueda" id="buscar"placeholder="Buscar">  
-La búsqueda puede ser por cualquier columna de la tabla!
+Selecciona el código de una asesoría para ver el horario!
 <button class="btn btn-info ml-5" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje"><i class="fa fa-question"></i></button>
 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -85,13 +83,6 @@ La búsqueda puede ser por cualquier columna de la tabla!
                             </div>
                         </div>
                     </div>
-            </h4>
-            </div>
-        </div>
-        <div class="row">
-        <div class="alert alert-primary w-100 text-center">
-            <h4 class="lead">
-            Selecciona el código de la asesoria para ver el horario!
             </h4>
             </div>
         </div>

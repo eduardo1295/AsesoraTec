@@ -1,13 +1,13 @@
 
 <?php 
 require_once('Clases/maestro.php');
-$noeconomico = $_POST['noec'];
-$pass = $_POST['pwd'];
-$nombre = $_POST['nom'];
-$appat = $_POST['ap'];
-$apmat = $_POST['am'];
-$correo = $_POST['email'];
-$depto = $_POST['dep'];
+$noeconomico = strip_tags($_POST['noec']);
+$pass = strip_tags($_POST['pwd']);
+$nombre = strip_tags($_POST['nom']);
+$appat = strip_tags($_POST['ap']);
+$apmat = strip_tags($_POST['am']);
+$correo = strip_tags($_POST['email']);
+$depto = strip_tags($_POST['dep']);
 if($noeconomico!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$correo!="")
 {
     $maestro = new Maestro();

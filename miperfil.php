@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
     </div>
     <div class="page-header pb-2 pt-2 row justify-content-center">
             <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>
@@ -167,5 +167,25 @@
           tipo.type = "password";
       }
   }
+</script>
+<script>
+    function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
 </script>
 </html>

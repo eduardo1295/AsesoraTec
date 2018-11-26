@@ -87,5 +87,8 @@ $conn->close();
                     </tr>
             </table>
         </div>
+        <div class="row justify-content-end">    
+        <button type="button"class="mt-2 mr-5 btn btn-primary fixed-bottom navegacion"style="border:0; background-color:transparent;cursor:pointer; position:relative; min-height:100%;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='asesoriasinscritas.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+    </div>
 </body>
 </html>
