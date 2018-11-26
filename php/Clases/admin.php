@@ -8,6 +8,10 @@ class Admin{
     public $Ap_Mat;
     public $Depa;
     public $Correo;
+    public $Codigo;
+    public $Nombrem;
+    public $Tipo;
+    public $Semestre;
     public function setUsuario($usuario) {
        $this->Usuario =$usuario;
     }
@@ -31,6 +35,20 @@ class Admin{
     public function setCorreo($correo) {
         $this->Correo =$correo;
     }
+    public function setCodigo($codigoo) {
+        $this->Codigo=$codigoo;
+    }
+    public function setNombrem($nombremat) {
+         $this->Nombrem=$nombremat;
+    }
+
+    public function SetTipo($tipoo){
+        $this->Tipo=$tipoo;
+    }
+
+    public function setSemestre($semestree) {
+        $this->Semestre =$semestree;
+    }
     public function _construct(){
          $this->Usuario ="";
          $this->Contraseña ="";
@@ -38,6 +56,10 @@ class Admin{
          $this->Ap_Pat ="";
          $this->Ap_Mat ="";
          $this->Correo ="";
+         $this->Codigo ="";
+         $this->Nombrem ="";
+         $this->Tipo ="";
+         $this->Semestre ="";
     }
 
    
@@ -86,6 +108,28 @@ class Admin{
          $admin->SetDepartamento($departamento);
          $admin->setCorreo($correo);
          }
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+
+public function ActualizarDatos($materia){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("UPDATE materias SET Nombre=?,Tipo=?,Semestre=? WHERE Codigo=?"))
+     {
+         $sentencia_preparada->bind_param('ssss',$nombremat,$tipoo,$semestree,$codigoo);
+         $codigoo =$materia->Codigo;
+         $nombremat =$materia->Nombrem;
+         $tipoo =$materia->Tipo;
+         $semestree =$materia->Semestre;
+         $sentencia_preparada->execute();
          $conn->close();
      }
     }

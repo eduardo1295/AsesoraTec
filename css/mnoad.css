@@ -1,0 +1,36 @@
+.bg-verde{
+    background: blue;
+    color: white;
+}
+.encabezado
+{
+    background:blue;
+}
+body{
+}
+.relleno{
+    height: 350px;
+    width: 1000px;
+}
+.copyright{
+    background: blue;
+    color:white;
+}
+body{
+    min-height: 100%;
+}
+.banner
+{
+    background: lavender;
+}
+.inicio
+{
+    background:blue;
+}
+.banner{
+    
+}
+.header
+{
+    width:99%;
+}
