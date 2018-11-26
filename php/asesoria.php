@@ -25,8 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($asesor != "" && $nocontrol != ""){
                     $client = new SoapClient("https://siia.lapaz.tecnm.mx/webserviceitlp.asmx?WSDL");
                     $result = $client->estaInscrito(array('control' =>$nocontrol, 'contrasena' => '*3%f&Y2b'))->estaInscritoResult;
-                        if($result == false)
+                        if($result == false){
                             echo "El alumno no esta vigente en el Instituto Tecnológico de La Paz";
+                        }
                         else {
                             $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre);
                             if($correcto ==1){
@@ -37,9 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             else
                                 echo "La asesoria ya ha sido registrada";        
                         }
-                    
                 }
-                elseif ($asesor != "" || $nocontrol != "")
+                else if($asesor != "" || $nocontrol != "")
                     echo "Faltan datos del asesorado";
                 else {
                     $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre);
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "Faltan datos del asesorado";
                 else {
                     $maestro->EliminarAsesor($codigo);
-                    $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
+                    $maestro->Actualiz}rHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
                     echo ("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
                 }
             

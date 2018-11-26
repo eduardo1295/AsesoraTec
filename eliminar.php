@@ -1,8 +1,9 @@
 <?php 
 session_start();
-if($_SESSION['logeado']!="SI")
+
+if((isset($_SESSION['logeado']) && isset($_SESSION['maestrologeado'])) == false)
 {
-    header("location: menu1.php");
+    header("location: login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -29,8 +30,10 @@ $('#myModal').modal('show')
 <?php 
 header("Refresh: 3; URL=login.php");
     require('php/Clases/alumno.php');
-    $alumno = new Alumno();
-    $nocontrol = $_SESSION['nocontrol'];;
+    require('php/Clases/maestro.php');
+    if (isset($_SEESION['nocontrol'])) {
+        $alumno = new Alumno();
+        $nocontrol = $_SESSION['nocontrol'];
         $alumno->EliminarAlumno($nocontrol);
         echo '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -53,9 +56,40 @@ header("Refresh: 3; URL=login.php");
                     <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
-        </div>
-    </div>
-</div>';
+                </div>
+             </div>
+        </div>';    
+    }
+    elseif (isset($_SESSION['noeconomico'])) {
+        $maestro = new maestro();
+        $noecon = $_SESSION['noeconomico'];
+        $maestro->EliminarMaestro($noecon);
+        echo '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">
+                        Mensaje del Sistema
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2 justify-content-center lead">
+                   Usuario eliminado exitosamente!<br>
+                   Redireccionando..
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+                </div>
+             </div>
+        </div>';    
+    }
+    
 session_destroy();
 ?>
 </body>
