@@ -9,8 +9,7 @@ class PDF extends FPDF{
         $this->Cell(130,10,utf8_decode('Instituto Tecnológico de la paz'),0,1,'C');
         $this->Cell(190,10,'Lista de asistencia',0,1,'C');
         $this->SetFont('Arial','B',12);
-        $this->Cell(67,10,'Maestro:Jose Canseco',0,0,'C');
-        $this->Cell(165	,10,'Asesoria:Matematicas',0,1,'C');
+        
         $this->Ln(20);
     }
     function Footer(){
