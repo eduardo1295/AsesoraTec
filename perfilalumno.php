@@ -50,6 +50,9 @@ $conn->close();
     <script src="js/mensaje.js"></script>
 </head>
 <body class="contenedor">
+    <div class="row justify-content-center">
+        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
+    </div>
     <div class="page-header pb-2 pt-2">
             <h1 class="lead display-3 justify-content-center">Información Alumno <img src="alumno.png" alt="Login"></h1>
     </div>        
