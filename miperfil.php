@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
     </div>
     <div class="page-header pb-2 pt-2 row justify-content-center">
             <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>

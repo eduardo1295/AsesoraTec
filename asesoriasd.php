@@ -35,12 +35,12 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 </head>
 <body>
 <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
     </div>
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 py-3 col"style="color:white">
         <div class="row">
-        <h1 class="lead display-4 ml-4">Asesora-TEC</h1>
+        <h1 class="lead display-4 ml-4">Aseorías disponibles</h1>
         </div>  
         </div>
         <div class="col mt-4" style="background:blue">
