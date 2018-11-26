@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php 
 session_start();
 if($_SESSION['usuariologeado']!='SI'){
@@ -18,7 +16,8 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    
     <title>Ver mis asesorías</title>
     <link rel="stylesheet" href="css/mno.css">
     <link rel="stylesheet" href="css/tablaalumnos.css">
@@ -28,7 +27,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/alumnosdisponibles.js"></script>
+    <script src="js/materiasdisponibles.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
@@ -108,15 +107,6 @@ La búsqueda puede ser por cualquier columna de la tabla!
         style="border:0; background-color:transparent;cursor:pointer;" 
         value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menuadministrado.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
-
-    <script>
-            app = angular.module('myApp',[]);
-            app.controller('customersCtrl',function($scope,$http){
-                $http.get("noti.php?id=0").then(function(response){
-                    $scope.valores = response.data;
-                })
-            });
-    </script>
 </body>
 
 </html>

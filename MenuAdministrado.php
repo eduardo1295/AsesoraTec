@@ -25,11 +25,10 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Asesora-TEC</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/ejemplo13bs.css">
+    <link rel="stylesheet" href="css/reloj.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/simple-sidebar.css">
-    <link rel="stylesheet" href="css/ejemplo06.css">
-
+    <link rel="stylesheet" href="css/mno.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
@@ -41,32 +40,29 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 </head>
 
 <body>
-<div class="row">
-            <nav class="navbar navbar-expand navbar-dark fixed-top encabezado">
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-content" aria-control="nav-content"
-                        aria-expanded="false" aria-label="toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <a href="#" class="navbar-brand">
-                        <h1 class="lead display-4">Asesora-TEC</h1>
-                    </a>
-                    <div class="collapse navbar-collapse justify-content-end" id="nav-content"></div>
-                    <ul class="navbar-nav">
-                    </ul>
-                    <form action="" class="form-inline" role="search">
-                        <div class="dropdown">
-                            <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-user fa-fw"></span><?php echo $nombrecompleto?>
-                                </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
-                                <a href="a" class="dropdown-item lead">Cambiar de cuenta</a>
-                                <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
-                                </div>
-                        </div>>
-                    </form>
-                </nav>
+    <div class="row justify-content-center">
+        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
     </div>
-    <div class="row mt-5">
+        <div class="row"style="background:blue;"> 
+            <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
+                <h1 class="lead display-4 ml-1 mr-2">Asesora-TEC</h1>
+            </div>
+            <div class="col mt-4" style="background:blue">
+                <div class="row justify-content-end mr-2 mt-1">
+        <div class="dropdown ">
+            <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="fas fa-user fa-fw"></span>
+                <?php echo $nombrecompleto?>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
+                <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <div class="row">
         <div class="barra w-25 col">
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -95,16 +91,16 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-2">
-                        <i class="fas fa fa-folder fa-fw"></i> Generar Reporte</a>
+                        <i class="fas fa fa-file fa-fw"></i> Generar Reporte</a>
                         <div id="item-2" class="collapse">
                         <ul class="nav flex-column ml-3">
                             <li class="nav-item">
-                                <a class="nav-link active lead"data-toggle="modal" href="#">
-                                    <i class="fas fa fa-cog fa-fw"></i>Reporte de Departamento de Sistemas</a>
+                                <a class="nav-link active lead"  href="documentosi.php">
+                                    <i class="fas fa fa-file fa-fw"></i>Reporte de Departamento de Sistemas</a>
                             </li>
                             <li class="nav-item lead">
-                                <a class="nav-link lead" href="#">
-                                    <i class="fas fa-cog fa-fw"></i>Reporte de Ciencias Basicas</a>
+                                <a class="nav-link lead" href="documentocb.php">
+                                    <i class="fas fa-file fa-fw"></i>Reporte de Ciencias Basicas</a>
                             </li>
                         </ul>
                     </div>
@@ -121,6 +117,22 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                             <li class="nav-item lead">
                                 <a class="nav-link lead" href="registrarmaestro.php">
                                     <i class="fas fa-cog fa-fw"></i>Maestros</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lead" data-toggle="collapse" href="#item-8">
+                        <i class="fas fa fa-book fa-fw"></i>Materias</a>
+                        <div id="item-8" class="collapse">
+                        <ul class="nav flex-column ml-3">
+                            <li class="nav-item">
+                                <a class="nav-link active lead" href="agregarmateria.php">
+                                    <i class="fas fa fa-book fa-fw"></i>Agregar Materia</a>
+                            </li>
+                            <li class="nav-item lead">
+                                <a class="nav-link lead" href="menumaterias.php">
+                                    <i class="fas fa fa-book fa-fw"></i>Ver Materias</a>
                             </li>
                         </ul>
                     </div>
@@ -267,19 +279,20 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </script>
         </head>
 
+
         <body onLoad="crearReloj2()">
             <div class="row justify-content-center">
-                <canvas id="canvas" width="500px" height="500px"></canvas>
+                <canvas id="canvas" class="lead" width="500px" height="500px"></canvas>
             </div>
-            <div class="copyright">
+            <div class="copyright"style="left:0;bottom:0;width:100%;position:fixed;">
                 <div class="container">
                     <div class="col py-3">
                         <div class="col text-center">
-                            Copyright 2018. &copy;
+                            Instituto Tecnológico de La Paz. &copy;
                             <a class="btn btn-block btn-social btn-twitter d-inline">
                                 <span class="fa fa-twitter"></span>
                             </a>
-                            <a class="btn btn-block btn-social btn-twitter d-inline">
+                            <a class="btn btn-block btn-social btn-twitter d-inline"style="color:white" href="https://www.facebook.com/itlapaz/">
                                 <span class="fa fa-facebook"></span>
                             </a>
                             <a class="btn btn-block btn-social btn-twitter d-inline">
