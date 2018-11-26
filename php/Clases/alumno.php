@@ -332,17 +332,18 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$nomM)
             echo $error;
         }  
     }
-    public function ValidaContra($contraseña,$codA,$fecha){
+    public function ValidaContra($contraseña,$codA,$fecha,$nm){
         try
         {
             $resultado=0;
             $conn = abrirBD();
-        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM PASS WHERE PASSW=? AND CODIGO_ASESORIA=? AND FECHA=?"))
+        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM PASS WHERE PASSW=? AND CODIGO_ASESORIA=? AND FECHA=? AND NOMBRE_MAESTRO=?"))
             {
-                $sentencia_preparada->bind_param('sss',$pass,$codigo,$fechaHoy);
+                $sentencia_preparada->bind_param('ssss',$pass,$codigo,$fechaHoy,$nombre);
                 $pass = $contraseña;
                 $codigo = $codA;
                 $fechaHoy = $fecha;
+                $nombre= $nm;
                 $sentencia_preparada->execute();
                 $sentencia_preparada->bind_result($numero);
                 while($sentencia_preparada->fetch()){
