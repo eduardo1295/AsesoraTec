@@ -32,7 +32,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/bootstrap.min.js"></script>
     <script src="js/reloj.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/Filtrar.js"></script>
+    <script src="js/editarasesorias.js"></script>
 </head>
 <body>
 <div class="row justify-content-center">
