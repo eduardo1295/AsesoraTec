@@ -88,7 +88,7 @@ $conn->close();
             <div class="row info alert alert-primary ">
                 <?php 
                 $conn = abrirBD();
-                $select = "SELECT NO_MAESTRO,NOMBRE_MATERIA,DEPARTAMENTO,SEMESTRE FROM ASESORIAS WHERE CODIGO='$codAsesoria'";
+                $select = "SELECT NO_MAESTRO,NOMBRE_MATERIA,TIPO,SEMESTRE FROM ASESORIAS WHERE CODIGO='$codAsesoria'";
                 $rs = $conn->query($select);
                while($resul = mysqli_fetch_array($rs)){ 
                 $nom_maestro = $resul[0];
@@ -103,9 +103,6 @@ $conn->close();
                 <div class="col-md-2">
                 <p class="lead">Materia: <?php echo utf8_encode($nombre_materia);?></p>
                 </div>
-                <div class="col-md-3">
-                <p class="lead">Departamento: <?php echo utf8_encode($departamento);?></p>
-                </div>
                 <div class="col-md-2">
                 <p class="lead">Semestre: <?php echo $semestre;?></p>
                 </div>
@@ -114,7 +111,6 @@ $conn->close();
                     <p class="lead">Inscribirme:<button type="submit"class="btn btn-primary navegacion"name="inscribir" style="border:0; background-color:transparent;cursor:pointer;"data-toggle="modal"data-target="#mensaje" value=""data-toggle="tooltip" title="Inscribirme"><img src="css/addb.png" width="30px"height="30px"></button></p>
                 </form>
                 </div>
-                
             </div>
         <div class="row">
             <table class="table table-striped">

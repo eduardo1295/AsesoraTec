@@ -15,7 +15,6 @@ $appat = $alumno->Ap_Pat;
 $apmat = $alumno->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 ?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,7 +93,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </li>
             </ul>
-            <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                  <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -111,13 +110,13 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="" class="btn btn-danger lead" id="eliminar" data-dismiss="modal"role="button">Aceptar</a>
-                    <a href="" class="btn btn-info" data-dismiss="modal">Cancelar</a>
+                <button type="button" id="elim" class="btn btn-danger lead">Aceptar</button>
+                  <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+     </div>
+ </div> 
             <div class="modal fade" id="cerrar" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -247,13 +246,16 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     </div>
 </body>
 <script language="javascript">
+     $("#elim").click(function(){
+        window.location.href='eliminar.php';
+    });
+</script>
+<script language="javascript">
 $(document).ready(function(){
     $("#modificar").click(function(){
     window.location.href='miperfil.php';
     });
-    $("#eliminar").click(function(){
-        window.location.href='eliminar.php';
-    });
+   
 });
 </script>
 </html>
