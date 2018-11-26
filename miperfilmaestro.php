@@ -36,7 +36,7 @@
 
     <script src="js/mensaje.js"></script>
 </head>
-<body class="contenedor">
+<body>
     <div class="page-header pb-2 pt-2">
             <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>
     </div>        
@@ -120,6 +120,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body" id="mens">
+                                Se ha Actualizado correctamente
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='menu1.php'">Aceptar</button>
