@@ -3,15 +3,15 @@
     require_once('Clases/alumno.php');
     session_start();
     $alumno = new Alumno();
-    $nocontrol =$_POST['noc'];
-    $contraseña =$_POST['pwd'];
-    $nombre =$_POST['nom'];
-    $appat =$_POST['ap'];
-    $apmat =$_POST['am'];
-    $carrera =$_POST['car'];
-    $semestre =$_POST['sem'];
-    $sexo=$_POST['sex'];
-    $correo = $_POST['email'];
+    $nocontrol = strip_tags($_POST['noc']);
+    $contraseña =strip_tags($_POST['pwd']);
+    $nombre =strip_tags($_POST['nom']);
+    $appat =strip_tags($_POST['ap']);
+    $apmat =strip_tags($_POST['am']);
+    $carrera =strip_tags($_POST['car']);
+    $semestre =strip_tags($_POST['sem']);
+    $sexo=strip_tags($_POST['sex']);
+    $correo = strip_tags($_POST['email']);
 if(strlen($nocontrol)!=8)
 {
     echo "El número de control debe ser de 8 caracteres";

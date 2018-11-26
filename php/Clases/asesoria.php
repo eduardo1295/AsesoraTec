@@ -71,7 +71,7 @@ class Asesoria{
         {
             $resultado=0;
          $conn = abrirBD();
-         if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIAS WHERE CODIGO=?"))
+         if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIAS WHERE CODIGO=? AND ACTIVO ='Si'"))
              {
                  $sentencia_preparada->bind_param('s',$codigo);
                  $codigo =$cod;

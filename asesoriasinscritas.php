@@ -61,9 +61,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         <div class="row justify-content-center filtros">
             <div class="alert alert-primary w-100 text-center">
             <h4 class="lead">
-                Buscar: 
-            <input type="text" name="busqueda" id="buscar"placeholder="Buscar">  
-La búsqueda puede ser por cualquier columna de la tabla!
+Selecciona el código de una asesoría para ver el horario!
 <button class="btn btn-info ml-5" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje"><i class="fa fa-question"></i></button>
 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -85,13 +83,6 @@ La búsqueda puede ser por cualquier columna de la tabla!
                             </div>
                         </div>
                     </div>
-            </h4>
-            </div>
-        </div>
-        <div class="row">
-        <div class="alert alert-primary w-100 text-center">
-            <h4 class="lead">
-            Selecciona el código de la asesoria para ver el horario!
             </h4>
             </div>
         </div>

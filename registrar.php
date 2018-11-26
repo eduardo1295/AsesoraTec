@@ -21,7 +21,7 @@
 
 <body class="contenedor">
 <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
+        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
     </div>
     <div class="page-header pb-2 pt-2">
         <h1 class="lead display-3 justify-content-center">Registrar una cuenta <img src="alumno.png" alt="Login"></h1>
@@ -39,7 +39,7 @@
                             required>
                     </div>
                 </div>
-                <div class="row my-3 justify-content-center" required>
+                <div class="row my-3 justify-content-center">
                     <div class="row">
                         <input type="password" class="cajas lead ml-4" id="pass" placeholder="Contraseña" maxlength=20
                             required>
@@ -50,18 +50,18 @@
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
                         <input type="text" class="cajas lead" id="appat" placeholder="Apellido Paterno" maxlength=50
-                            required>
+                            required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
                         <input type="text" class="cajas lead" id="apmat" placeholder="Apellido Materno" maxlength=50
-                            required>
+                            required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" class="cajas lead" id="nombre" placeholder="Nombre" required>
+                        <input type="text" class="cajas lead" id="nombre" placeholder="Nombre" required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -99,7 +99,7 @@
                     </div>
                     <div class="row my-3 justify-content-center">
                         <div class="row">
-                            <input type="text" class="cajas lead" maxlength=2 id="semestre" placeholder="Semestre"
+                            <input type="text" class="cajas lead .validanumericos" maxlength=2 id="semestre" placeholder="Semestre"
                                 required>
                         </div>
                     </div>
@@ -126,6 +126,7 @@
                             Alumno registrado!
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='login.php'">Login</button>
                             <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href=">Aceptar</button>
                         </div>
                     </div>
@@ -145,4 +146,37 @@
             tipo.type = "password";
         }
     }
+</script>
+<script>
+    function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+</script>
+<script language="javascript">
+$(function(){
+
+$('.validanumericos').keypress(function(e) {
+  if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+   return false;
+})
+.on("cut copy paste",function(e){
+  e.preventDefault();
+});
+
+});
 </script>
