@@ -358,5 +358,43 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$nomM)
         echo $error;
         }
        }
+       public function EliminarAsesoriasReg($nc)
+       {
+        try
+        {
+         $conn = abrirBD();
+         if($sentencia_preparada =$conn->prepare("DELETE FROM ASESORIASREG WHERE CONTROL_ALUMNO	=?"))
+         {
+             $sentencia_preparada->bind_param('s',$nocontrol);
+             $nocontrol = $nc;
+             $sentencia_preparada->execute();
+             $conn->close();
+         }
+        }
+        catch(Exception $e)
+        {
+            $error = $e->getMessage();
+            echo error;
+        }  
+       }
+       public function EliminarAsistenciasReg($nc)
+       {
+        try
+        {
+         $conn = abrirBD();
+         if($sentencia_preparada =$conn->prepare("DELETE FROM ASISTENCIASREG WHERE CONTROL_ALUMNO=?"))
+         {
+             $sentencia_preparada->bind_param('s',$nocontrol);
+             $nocontrol = $nc;
+             $sentencia_preparada->execute();
+             $conn->close();
+         }
+        }
+        catch(Exception $e)
+        {
+            $error = $e->getMessage();
+            echo error;
+        }  
+       }
 }
 ?>

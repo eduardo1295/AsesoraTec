@@ -1,11 +1,11 @@
 <?php
 session_start();
 if($_SESSION['logeado']!="SI"){
-    header("Location:/proyecto/login.php");
+    header("Location:../login.php");
     session_destroy();
 }
 else{
-    header("Location:/proyecto/login.php");
+    header("Location:../login.php");
     session_destroy();
 }
 ?>
