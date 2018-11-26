@@ -139,5 +139,61 @@ public function ActualizarDatos($materia){
         echo error;
     }
 }
+public function InsertarMateria($materias){
+    try{
+     $conexion = abrirBD();
+
+     if($SQL= "INSERT INTO materias VALUES(?,?,?,?)"){
+     $sentencia_preparada1 = $conexion->prepare($SQL);
+     $sentencia_preparada1->bind_param("sssi",$codigoo,$nombremat,$tipoo,$semestree);
+     $codigoo =$materias->Codigo;
+     $nombremat =$materias->Nombrem;
+     $tipoo =$materias->Tipo;
+     $semestree =$materias->Semestre;
+     $sentencia_preparada1->execute();
+     $conexion->close();
+     }
+    }
+    catch (Exception $e){
+     $error = $e->getMessage();
+     echo $error;
+ }
+}
+public function EliminarMateria($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM materias WHERE Codigo=?"))
+     {
+         $sentencia_preparada->bind_param('s',$codigoo);
+         $codigoo = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function EliminarMaestro($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM maestros WHERE NOECON=?"))
+     {
+         $sentencia_preparada->bind_param('s',$noecon);
+         $noecon = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
 }
 ?>

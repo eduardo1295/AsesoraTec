@@ -40,7 +40,7 @@ else if(strlen($carrera)>50)
 {
 echo "El nombre de la carrera es demasiado largo (Máx. 50 carac.)";
 }
-else if(!isnumeric($semestre))
+else if(!is_numeric($semestre))
 {
     echo "El semestre debe ser conformado solo por números!";
 }
@@ -48,6 +48,7 @@ else
 {
 if($nocontrol!=""&&$contraseña!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!="")
 {
+    echo $nocontrol;
     $client = new SoapClient("https://siia.lapaz.tecnm.mx/webserviceitlp.asmx?WSDL");
     $result = $client->estaInscrito(array('control' =>$nocontrol, 'contrasena' => '*3%f&Y2b'))->estaInscritoResult;
     if($result == false)

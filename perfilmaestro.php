@@ -138,4 +138,12 @@ $conn->close();
       }
   }
 </script>
+<script language="javascript">
+$(document).ready(function(){
+    $("#borrarbtn").click(function(){
+    window.location.href='eliminarmaestro.php?nc=<?php echo $numeco;?>';
+    });
+});
+
+</script>
 </html>

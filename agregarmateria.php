@@ -13,7 +13,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/InsertarAlumno.js"></script>
+    <script src="js/agregarmateria.js"></script>
     <script src="js/ToolTip.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -24,7 +24,7 @@
         <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
     </div>
     <div class="page-header pb-2 pt-2">
-        <h1 class="lead display-3 justify-content-center">Registrar una cuenta <img src="alumno.png" alt="Login"></h1>
+        <h1 class="lead display-3 justify-content-center">Registrar una Materia <img src="alumno.png" alt="Login"></h1>
     </div>
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
@@ -35,34 +35,35 @@
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Codigo de la Materia" maxlength=8
+                        <input type="text" class="cajas lead" id="codigo" placeholder="Codigo de la Materia" maxlength=8
                             required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="password" class="cajas lead ml-4" id="pass" placeholder="Nombre Materia" maxlength=20
-                            required>
-                        <a class="btn btn-success" onclick="mostrar()" data-toggle="tooltip" title="Mostrar/Ocultar contraseña"
-                            data-placement="right"><i class="ojo fas fa fa-eye fa-fw"></i></a>
-                    </div>
-                </div>
-                <div class="row my-3 justify-content-center" required>
-                    <div class="row">
-                        <input type="text" class="cajas lead" id="appat" placeholder="Tipo" maxlength=50
+                        <input type="text" class="cajas lead" id="nombrem" placeholder="Nombre Materia" maxlength=20
                             required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" class="cajas lead" id="apmat" placeholder="Semestre" maxlength=50
+                        <input type="text" class="cajas lead" id="tipo" placeholder="Tipo" maxlength=50
                             required>
                     </div>
                 </div>
+                <div class="row my-3 justify-content-center" required>
+                    <div class="row">
+                        <input type="text" class="cajas lead" id="semestre" placeholder="Semestre" maxlength=50
+                            required>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
         <div class="mb-2 mt-2 container w-100">
         <div class="row  justify-content-center">
-            <button type="submit" value="Registrarme" id="registrara" class="btn btn-primary lead w-50" data-toggle="modal"
-                data-target="#mensaje">Registrarme</button>
+            <button type="submit" value="Registrar" id="registrarm" class="btn btn-primary lead w-50" data-toggle="modal"
+                data-target="#mensaje">Agregar</button>
             <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -75,10 +76,10 @@
                             </button>
                         </div>
                         <div class="modal-body" id="mens">
-                            Alumno registrado!
+                            Materia Registrada!
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href=">Aceptar</button>
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href=MenuAdministrado">Aceptar</button>
                         </div>
                     </div>
                 </div>
@@ -88,13 +89,3 @@
 </body>
 
 </html>
-<script>
-    function mostrar() {
-        var tipo = document.getElementById("pass");
-        if (tipo.type == "password") {
-            tipo.type = "text";
-        } else {
-            tipo.type = "password";
-        }
-    }
-</script>

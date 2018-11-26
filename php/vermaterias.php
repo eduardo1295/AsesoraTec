@@ -6,7 +6,7 @@ $query = "SELECT *FROM materias";
 if(isset($_POST['busqueda']))
 {
 	$q=$conn->real_escape_string($_POST['busqueda']);
-	$query="SELECT * FROM maestros WHERE 
+	$query="SELECT * FROM materias WHERE 
 		Codigo LIKE '%".$q."%' OR
 		Nombre LIKE '%".$q."%' OR
 		Tipo LIKE '%".$q."%' OR
@@ -31,9 +31,9 @@ if ($buscarmaterias->num_rows > 0)
 		$tabla.=
 		'<tr>
         <td><a href="perfilmateria.php?cod='.$fila['Codigo'].'">'.$fila['Codigo'].'</a></td>
-            <td>'.utf8_decode($fila['Nombre']).'</td>
-			<td>'.utf8_decode($fila['Tipo']).'</td>
-			<td>'.utf8_encode($fila['Semestre']).'</td>
+            <td>'.utf8_encode($fila['Nombre']).'</td>
+			<td>'.utf8_encode($fila['Tipo']).'</td>
+			<td>'.$fila['Semestre'].'</td>
 		 </tr>
 		';
 	}

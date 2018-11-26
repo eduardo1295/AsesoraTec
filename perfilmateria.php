@@ -23,8 +23,8 @@ $conn = abrirBD();
 $resultado = $conn->query($sql);
 while($resul = mysqli_fetch_array($resultado)){ 
     $codigo = $resul[0];
-    $nombrem = $resul[1];
-    $tipo = $resul[2];
+    $nombrem = utf8_encode($resul[1]);
+    $tipo = utf8_encode($resul[2]);
     $semestre = $resul[3];
     }
 $conn->close();
@@ -61,7 +61,7 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $codigo;?>" class="cajas lead" id="codigo" placeholder="Número de control"maxlength=8 required>
+                        <input type="text" value="<?php echo utf8_decode($codigo);?>" class="cajas lead" id="codigo" placeholder="Número de control"maxlength=8 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
@@ -108,4 +108,12 @@ $conn->close();
         </div>
      </div>
 </body>
+<script language="javascript">
+$(document).ready(function(){
+    $("#eliminarbtn").click(function(){
+    window.location.href='eliminarmateria.php?nc=<?php echo $codigo;?>';
+    });
+});
+
+</script>
 </html>
