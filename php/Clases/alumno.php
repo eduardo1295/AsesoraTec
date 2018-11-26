@@ -281,27 +281,120 @@ public function EliminarAsesoria($nc,$codigoAsesoria)
         echo error;
     }  
 }
-    public function RegistrarAsistencia($nc,$fecha,$codigoAsesoria,$cd)
+public function AsistenciaYaRegistrada($nc,$fecha,$codA,$nomM)
+{
+    try
+        {
+            $resultado=0;
+            $conn = abrirBD();
+        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASISTENCIASREG WHERE CONTROL_ALUMNO =? AND CODIGO_ASESORIA=? AND FECHA=? AND NOMBRE_MAESTRO=?"))
+            {
+                $sentencia_preparada->bind_param('ssss',$nocontrol,$codigo,$fechaHoy,$maestro);
+                $nocontrol = $nc;
+                $codigo = $codA;
+                $fechaHoy = $fecha;
+                $maestro = $nomM;
+                $sentencia_preparada->execute();
+                $sentencia_preparada->bind_result($numero);
+                while($sentencia_preparada->fetch()){
+                $resultado = $numero;
+                }
+                $conn->close();
+            }
+            return $resultado;
+        }
+        catch (Exception $e)
+        {
+        $error = $e->getMessage();
+        echo $error;
+        }
+}
+    public function RegistrarAsistencia($nc,$fecha,$codigoAsesoria,$maes,$cd)
     {
         try
         {
         $conn = abrirBD();
         $conexion = abrirBD();
-        $SQL= "INSERT INTO ASISTENCIAS VALUES(?,?,?,?)";
+        $SQL= "INSERT INTO ASISTENCIASREG VALUES(?,?,?,?,?)";
         $sentencia_preparada1 = $conexion->prepare($SQL);
-        $sentencia_preparada1->bind_param("sss",$nocontrol,$fechaD,$codigoA,$contraseñaDiaria);
+        $sentencia_preparada1->bind_param("sssss",$nocontrol,$codigoA,$fecha,$contraseñaDiaria,$maestro);
         $nocontrol = $nc;
         $fechaD = $fecha;
+        $maestro = $maes;
         $codigoA = $codigoAsesoria;
         $contraseñaDiaria = $cd;
-        $sentencia_preparada->execute(); 
+        $sentencia_preparada1->execute(); 
         $conn->close();
+      }
+        catch(Exception $e)
+        {
+            $error = $e->getMessage();
+            echo $error;
+        }  
     }
+    public function ValidaContra($contraseña,$codA,$fecha){
+        try
+        {
+            $resultado=0;
+            $conn = abrirBD();
+        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM PASS WHERE PASSW=? AND CODIGO_ASESORIA=? AND FECHA=?"))
+            {
+                $sentencia_preparada->bind_param('sss',$pass,$codigo,$fechaHoy);
+                $pass = $contraseña;
+                $codigo = $codA;
+                $fechaHoy = $fecha;
+                $sentencia_preparada->execute();
+                $sentencia_preparada->bind_result($numero);
+                while($sentencia_preparada->fetch()){
+                $resultado = $numero;
+                }
+                $conn->close();
+            }
+            return $resultado;
+        }
+        catch (Exception $e)
+        {
+        $error = $e->getMessage();
+        echo $error;
+        }
+       }
+       public function EliminarAsesoriasReg($nc)
+       {
+        try
+        {
+         $conn = abrirBD();
+         if($sentencia_preparada =$conn->prepare("DELETE FROM ASESORIASREG WHERE CONTROL_ALUMNO	=?"))
+         {
+             $sentencia_preparada->bind_param('s',$nocontrol);
+             $nocontrol = $nc;
+             $sentencia_preparada->execute();
+             $conn->close();
+         }
+        }
         catch(Exception $e)
         {
             $error = $e->getMessage();
             echo error;
         }  
-    }
+       }
+       public function EliminarAsistenciasReg($nc)
+       {
+        try
+        {
+         $conn = abrirBD();
+         if($sentencia_preparada =$conn->prepare("DELETE FROM ASISTENCIASREG WHERE CONTROL_ALUMNO=?"))
+         {
+             $sentencia_preparada->bind_param('s',$nocontrol);
+             $nocontrol = $nc;
+             $sentencia_preparada->execute();
+             $conn->close();
+         }
+        }
+        catch(Exception $e)
+        {
+            $error = $e->getMessage();
+            echo error;
+        }  
+       }
 }
 ?>

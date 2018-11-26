@@ -46,24 +46,23 @@ else if(!is_numeric($semestre))
 }
 else
 {
-if($nocontrol!=""&&$contraseña!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!="")
-{
-    echo $nocontrol;
-    $client = new SoapClient("https://siia.lapaz.tecnm.mx/webserviceitlp.asmx?WSDL");
-    $result = $client->estaInscrito(array('control' =>$nocontrol, 'contrasena' => '*3%f&Y2b'))->estaInscritoResult;
-    if($result == false)
+    if($nocontrol!=""&&$contraseña!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!="")
     {
-     echo "El alumno no esta vigente en el Instituto Tecnológico de La Paz";
-    }
-    else
-    {
+        $client = new SoapClient("https://siia.lapaz.tecnm.mx/webserviceitlp.asmx?WSDL");
+        $result = $client->estaInscrito(array('control' =>$nocontrol, 'contrasena' => '*3%f&Y2b'))->estaInscritoResult;
+        if($result == false)
+         {
+            echo "El alumno no esta vigente en el Instituto Tecnológico de La Paz";
+         }
+        else
+        {
         $existe = $alumno->AlumnoExists($_POST['noc']);
         if($existe>0)
         {
-        echo("Ya existe un alumno registrado con ese numero de control!");
+        echo("Ya existe un alumno registrado con ese número de control!");
         }
-            else
-            {
+        else
+        {
             $alumno->setNo_Control($_POST['noc']);
             $alumno->setContraseña($_POST['pwd']);
             $alumno->setNombre($_POST['nom']);
@@ -74,14 +73,15 @@ if($nocontrol!=""&&$contraseña!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semes
             $alumno->setSexo($sexo);
             $alumno->setCorreo($_POST['email']);
             $alumno->InsertarAlumno($alumno);
+            header("Refresh: 3; URL=login.php");
             echo("Alumno registrado!");
-            }
-        }    
+         }
+      }
     }
     else
     {
     echo("Faltan campos por llenar!");
-    }
+    }  
 }
 ?>
     

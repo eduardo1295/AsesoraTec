@@ -30,7 +30,9 @@ $('#myModal').modal('show')
 header("Refresh: 3; URL=login.php");
     require('php/Clases/alumno.php');
     $alumno = new Alumno();
-    $nocontrol = $_SESSION['nocontrol'];;
+    $nocontrol = $_SESSION['nocontrol'];
+        $alumno->EliminarAsesoriasReg($nocontrol);
+        $alumno->EliminarAsistenciasReg($nocontrol);
         $alumno->EliminarAlumno($nocontrol);
         echo '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

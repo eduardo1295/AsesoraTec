@@ -34,7 +34,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Horario</title>
-    <link rel="stylesheet" href="css/tablahorarios.css">
+    <link rel="stylesheet" href="css/tablah.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
@@ -50,45 +50,32 @@ $conn->close();
 </head>
 
 <body>
-<div class="row">
-            <nav class="navbar navbar-expand navbar-dark fixed-top encabezado">
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-content" aria-control="nav-content"
-                        aria-expanded="false" aria-label="toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+<div class="row justify-content-center">
+        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray;">
+    </div>
+    <div class="row"style="background:blue;"> 
+        <div class="page-header encabezado w-100 ml-1 py-3 col"style="color:white">
+                <h1 class="lead display-4 ml-1">Asesora-TEC</h1>
+        </div>
+        <div class="col mt-4" style="background:blue">
+            <div class="row justify-content-end mr-2 mt-1">
+                <div class="dropdown ">
+                    <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="fas fa-user fa-fw"></span>
+                        <?php echo $nombrecompleto?>
                     </button>
-                    <a href="#" class="navbar-brand">
-                        <h1 class="lead display-4">Mis asesorías</h1>
-                    </a>
-                    <div class="collapse navbar-collapse justify-content-end" id="nav-content"></div>
-                    <ul class="navbar-nav">
-                    </ul>
-                    <form action="" class="form-inline" role="search">
-                        <div class="dropdown">
-                            <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-user fa-fw"></span><?php echo htmlentities($nombrecompleto);?>
-                                </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
-                                <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
-                                </div>
-                        </div>
-                        <div class="dropdown">
-                            <button id="acercade" class="btn btn-primary dropdown-toggle  lead" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-cog fa-fw"></span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acercade">
-                                <a href="a" class="dropdown-item lead">Nuestra historia</a>
-                                <a href="a" class="dropdown-item lead">Nuestro Equipo</a>
-                                <a href="a" class="dropdown-item lead">Contacto</a>
-                            </div>
-                        </div>
-                    </form>
-                </nav>
-</div>
-    <div class="container-fluid">
-            <div class="row info alert alert-primary ">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
+                        <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <div class="row info alert alert-primary">
                 <?php 
                 $conn = abrirBD();
-                $select = "SELECT NO_MAESTRO,NOMBRE_MATERIA,DEPARTAMENTO,SEMESTRE FROM ASESORIAS WHERE CODIGO='$codAsesoria'";
+                $select = "SELECT NO_MAESTRO,NOMBRE_MATERIA,TIPO,SEMESTRE FROM ASESORIAS WHERE CODIGO='$codAsesoria' AND ACTIVO='Si'";
                 $rs = $conn->query($select);
                while($resul = mysqli_fetch_array($rs)){ 
                 $nom_maestro = $resul[0];
@@ -103,15 +90,15 @@ $conn->close();
                 <div class="col-md-2">
                 <p class="lead">Materia: <?php echo utf8_encode($nombre_materia);?></p>
                 </div>
-                <div class="col-md-3">
-                <p class="lead">Departamento: <?php echo utf8_encode($departamento);?></p>
-                </div>
                 <div class="col-md-2">
                 <p class="lead">Semestre: <?php echo $semestre;?></p>
                 </div>
                 <div class="col-md-2">
                 <form  method="post"><p class="lead">Darme de baja:<button type="button"class=" btn btn-primary"style="border:0; background-color:transparent;cursor:pointer;" id="eliminar" data-target="#mensaje"data-toggle="modal"><img src="css/delete.png" width="30px"height="30px"></button></p></form>
-                </div>      
+                </div>
+                <div class="col-md-2">
+                <p class="lead">Ver mis asistencias:<button type="button"class=" btn btn-primary"style="border:0; background-color:transparent;cursor:pointer;" id="verasistencias"><img src="css/eye.png" width="30px"height="30px"></button></p>
+                </div> 
             </div>
         <div class="row">
             <table class="table table-striped">
@@ -140,9 +127,6 @@ $conn->close();
                 </tbody>
             </table>
         </div>
-    </div>
-
-
 <div class="row justify-content-end">    
   <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -176,17 +160,26 @@ $conn->close();
                                     </button>
                                 </div>
                                 <div class="modal-body" id="mens">
-                                <div class="row">
+                                <div class="row justify-content-center">
                                 <p class="lead">
                                 Contraseña de hoy:
                                 </p>
                                 </div>
-                                <div class="row">
+                                <div class="row justify-content-center">
                                 <input type="text" name="" id="contraseñaR">
                                 </div>
+                                <div class="row justify-content-center mt-3">
+                                <button class="btn btn-success" id="registrarAs">
+                                Registrar asistencia
+                                </button>
+                                </div>
+                                <div class="row justify-content-center">
+                                <p id="res" style="color:green"></p>
+                                </div>
+                                
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" id="registrarAs" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                                    <button type="button" id="cerrar" class="btn btn-primary lead" onclick="limpiar()" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -201,27 +194,40 @@ $(document).ready(function(){
     $("#registrarAs").click(function(){
         var codigoA = '<?php echo $codAsesoria?>';
         var nocontrol = '<?php echo $nocontrol?>';
-        var contraseñaR = $("#contraseñaR");
+        var contraseñaR = $("#contraseñaR").val();
+        var nombre  = '<?php echo $nom_maestro?>';
         var fecha = new Date();
+        var res = $("#res");
         var fechaActual = fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear();
         $.ajax({
             url: 'php/asistencia.php', 
             method: 'POST',
             data:{
-                opcion : "Agregar", 
-                codigo : cod,
-                nombre: nom,
-                departamento : dep,
-                semestre : sem,
-                horario: horario,
-                salon: salon,
-                asesor: aseso,
-                nocontrol: nocontrol
+              cod:codigoA,
+              control:nocontrol,
+              contra:contraseñaR,
+              fecha:fechaActual,
+              nm:nombre
             },
             success: function (data){
-                mens.text(data);
+                res.text(data);
             }
         });
+      
     });
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#verasistencias").click(function(){
+      window.location.href="misasistencias.php?codA=<?php echo $codAsesoria?>";
+    });
+});
+  function limpiar(){
+            var mensaje = document.getElementById('res');
+            var texto = document.getElementById('contraseñaR');
+            texto.value="";
+            res.innerHTML="";
+        }
 </script>
 </html>

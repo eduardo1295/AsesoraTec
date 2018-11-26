@@ -7,6 +7,7 @@ class Asesoria{
     public $Semestre;
     public $Departamento;
     public $Activo;
+    public $NoEconomico;
     public function _construct(){
         $Codigo ="";
         $Nombre="";
@@ -14,6 +15,7 @@ class Asesoria{
         $Semestre =0;
         $Departamento = "";
         $Activo="";
+        $NoEconomico;
     }
     public function setCodigo($codigo){
         $this->Codigo = $codigo;
@@ -33,6 +35,10 @@ class Asesoria{
     public function setActivo($activo){
         $this->Activo = $activo;
     }
+    public function setNoEcon($noec)
+    {
+        $this->NoEconomico = $noec;
+    }
     public function ObtenerAsesoria($cod,$asesoria){
             try
             {
@@ -49,7 +55,7 @@ class Asesoria{
                          $asesoria->setDepartamento($depar);
                          $asesoria->setSemestre($semestre);
                          $asesoria->setActivo($activo);
-                    }
+                        }
                     $conn->close();
                 }
             }

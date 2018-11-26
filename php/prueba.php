@@ -12,8 +12,5 @@ $nombreCompleto = $maestro->Nombre;
 echo $nombreCompleto;
 */
 $maestro = new maestro();
-
-$maestro->Tomarid('')
-
-
+$maestro->Tomarid('');
 ?>

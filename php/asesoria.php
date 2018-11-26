@@ -29,21 +29,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         if($result == false)
                             echo "El alumno no esta vigente en el Instituto Tecnológico de La Paz";
                         else {
-                            $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre);
-                            if($correcto ==1){
+                            $hora = ValidarHorario($Horario);
+                            if($hora == 1)
+                                echo "El formato para el horario no es correcto!";
+                             else
+                            {
+                                $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre);
+                                if($correcto ==1){
                                 $maestro->AgregarAsesor($codigo,$_SESSION['noeconomico'],$nocontrol,$asesor);
                                 $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
                                 echo ("Se a Registrado Correctamente");
-                            }
-                            else
-                                echo "La asesoria ya ha sido registrada";        
+                                }
+                                else
+                                     echo "La asesoria ya ha sido registrada";  
+                            }   
                         }
                     
                 }
-                elseif ($asesor != "" || $nocontrol != "")
+                else if ($asesor != "" || $nocontrol != "")
                     echo "Faltan datos del asesorado";
                 else {
                     $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre);
+                    $hora = ValidarHorario($Horario);
+                    if($hora == 1)
+                        echo "El formato para el horario no es correcto!";
+                        else
+                        {
                     if($correcto == 1){
                         $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
                         echo "La asesoria se registro correctamente";
@@ -51,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     else
                         echo "La asesoria ya ha sido registrada";
                 } 
+            }
                 }
                 else{
                     echo ("Falta ingresar los datos");
@@ -104,6 +116,18 @@ function horarioVacio($horario,$salon)
         else {
             $resultado=1;
             break;
+        }
+    }
+    return $resultado;
+}
+function ValidarHorario($horario)
+{
+    $resultado = 0;
+    for($i = 0;$i<5;$i++)
+    {
+        if(!preg_match("/[0-9]{1,2}[-]{1}[0-9]{1,2}/",$horario[$i]) &&$horario[$i]!="")
+        {
+        return 1;
         }
     }
     return $resultado;
