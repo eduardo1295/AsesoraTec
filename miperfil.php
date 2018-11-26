@@ -37,11 +37,11 @@
 
     <script src="js/mensaje.js"></script>
 </head>
-<body class="contenedor">
+<body>
     <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
+        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
     </div>
-    <div class="page-header pb-2 pt-2">
+    <div class="page-header pb-2 pt-2 row justify-content-center">
             <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>
     </div>        
     <div class="container mt-3 forma">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $nocontrol?>" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required>
+                        <input type="text" value="<?php echo $nocontrol?>" class="cajas lead" id="nocontrol" readonly placeholder="Número de control"maxlength=8 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
@@ -120,9 +120,6 @@
                     <div class="row my-2 ">
                         <select id="carrera" value="<?php echo $carrera?>" class="lead">
                           <option value="Ing. en Sistemas Computacionales">Ing. en Sistemas Computacionales</option>
-                            <option value="Ing. Electromecánica">Ing. Electromecánica</option>
-                            <option value="Ing. Civil">Ing. Civil</option>
-                            <option value="Contabilidad">Contabilidad</option>
                         </select>
                     </div>
                     <div class="row my-3 justify-content-center">
