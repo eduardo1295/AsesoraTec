@@ -27,9 +27,7 @@ if(isset($_POST['eliminar'])) {
     $sentencia_preparada1->execute();
     $conexion->close();
 }
-    
 ?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,8 +47,11 @@ if(isset($_POST['eliminar'])) {
 </head>
 
 <body>
+<div class="row justify-content-center">
+        <img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
+    </div>
     <div class="row">
-        <nav class="navbar navbar-expand navbar-dark fixed-top encabezado">
+        <nav class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-content" aria-control="nav-content"
                 aria-expanded="false" aria-label="toggle navigation">
                 <span class="navbar-toggler-icon"></span>

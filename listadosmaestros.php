@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <?php 
 session_start();
 if($_SESSION['usuariologeado']!='SI'){
@@ -16,8 +18,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Ver mis asesorías</title>
     <link rel="stylesheet" href="css/mno.css">
     <link rel="stylesheet" href="css/tablaalumnos.css">
@@ -27,13 +28,13 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/materiasdisponibles.js"></script>
+    <script src="js/maestrohorarios.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
 <body>
 <div class="row justify-content-center">
-<img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
+<img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
 </div>
 <div class="row"style="background:blue;"> 
 <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
@@ -91,7 +92,7 @@ La búsqueda puede ser por cualquier columna de la tabla!
         <div class="row">
             <div class="alert alert-primary w-100 text-center">
                 <h4 class="lead">
-                Selecciona el código de la asesoria para ver el horario!
+                Selecciona el numero de control del alumno para ver el horario!
                 </h4>
             </div>
         </div>

@@ -40,45 +40,8 @@ $(document).ready(function(){
         
         
     });
-    $("#registrarbtn").click(function(){
-        var cod = $("#codigo").val();
-        var nom = $("#nombrea").val();
-        var tip = $("#tipo").val();
-        var mens = $("#mens");
-        var sem = $("#semestre").val();
-        var aseso = $("#asesor").val();
-        var nocontrol = $("#nocontrol").val();
-        var horario = new Array();
-        var salon = new Array();
-        for (let index = 1; index <= 5; index++) {
-            var hora = $("#h"+index);
-            var salo = $("#s"+index);
-            horario.push(hora.val());
-            salon.push(salo.val());
-        }
-        $.ajax({
-            url: 'php/asesoria.php', 
-            method: 'POST',
-            data:{
-                opcion : "Agregar",
-                codigo : cod,
-                nombre: nom,
-                tipo : tip,
-                semestre : sem,
-                horario: horario,
-                salon: salon,
-                asesor: aseso,
-                nocontrol: nocontrol
-            },
-            success: function (data){
-                if(data == ""){
-                    console.log("putos");
-                }
-                mens.text(data);
-            }
-        });
-    });
     $("#editarbtn").click(function(){
+        var econ = $("#Mandarecon").val();
         var cod = $("#codigo").val();
         var nom = $("#nombrea").val();
         var tip = $("#tipo").val();
@@ -95,10 +58,10 @@ $(document).ready(function(){
             salon.push(salo.val());
         }
         $.ajax({
-            url: 'php/asesoria.php', 
+            url: 'php/asesoriasa.php', 
             method: 'POST',
             data:{
-                opcion : "Editar", 
+                eco : econ,
                 codigo : cod,
                 nombre: nom,
                 tipo : tip,
@@ -113,9 +76,8 @@ $(document).ready(function(){
             }
         });
     });
+    
 });
-
-
 function Agregar_Codigos()
 {   
     var dato = $("#tipo").val();
