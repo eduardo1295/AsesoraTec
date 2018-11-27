@@ -6,9 +6,9 @@ class PDF extends FPDF{
         $this->Image('SEP-MX.png',0,0,50);
         $this->SetFont('Arial','B',15);
         $this->Cell(65);
-        $this->Image('tec.png',240,5,50);
-        $this->SetFont('Arial','B',15);
         $this->Image('mexico.jpg',55,20,200);
+        $this->SetFont('Arial','B',15);
+        $this->Image('tec.png',240,5,50);
         $this->SetFont('Arial','B',15);
         $this->Cell(130,10,utf8_decode('Instituto Tecnológico de la paz'),0,1,'C');
         $this->Cell(265,10,'Departamento de Ciencias Basicas',0,1,'C');

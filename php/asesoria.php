@@ -123,7 +123,7 @@ function horarioVacio($horario,$salon)
 function ValidarHorario($horario)
 {
     $resultado = 0;
-    for($i = 0;$i<5;$i++)
+    for($i = 0;$i < 5;$i++)
     {
         if(!preg_match("/[0-9]{1,2}[-]{1}[0-9]{1,2}/",$horario[$i]) &&$horario[$i]!="")
         {
