@@ -10,7 +10,7 @@ $pdf->AddPage();
 $pdf->SetFillColor(255,255,255);
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(20,40);
-$pdf->Cell(35,6,"Nombre",1,0,"C",1);
+$pdf->Cell(35,6,"Asesor",1,0,"C",1);
 $pdf->Cell(60,6,"Materia",1,0,"C",1);
 $pdf->Cell(30,6,"Lunes",1,0,"C",1);
 $pdf->Cell(30,6,"Martes",1,0,"C",1);
