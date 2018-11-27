@@ -13,7 +13,7 @@ if(isset($_POST['buscar']))
 		CODIGO_ASESORIA LIKE '%".$q."%'";
 }
 $buscarAsesorias=$conn->query($query);
-if ($buscarAsesorias->num_rows > 0)
+if($buscarAsesorias->num_rows > 0)
 {
 
 	$tabla.= 
@@ -22,28 +22,42 @@ if ($buscarAsesorias->num_rows > 0)
     <tr>
 		<th class="lead">Codigo</th>
 		<th class="lead">Maestro</th>
-		<th class="lead">Materia</th>
-		<th class="lead">Departamento</th>
-		<th class="lead">Semestre</th>
+		<th class="lead">Nombre</th>
+		<th class="lead">Lunes</th>
+		<th class="lead">Martes</th>
+		<th class="lead">Miercoles</th>
+		<th class="lead">Jueves</th>
+		<th class="lead">Viernes</th>
     </tr>
-</thead>';
+	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
+		$cod = $fila['Codigo_Asesoria'];
+		$SQL = "SELECT * FROM HORARIOS WHERE COD_MATERIA ='$cod'";
+		$res = $conn->query($SQL);
 		$asesoria = new Asesoria();
 		$asesoria->ObtenerAsesoria($fila['Codigo_Asesoria'],$asesoria);
 		$activa = $asesoria->Activo;
-		if($activa=="Si")
+		while($row = $res->fetch_assoc())
 		{
+			if($activa=="Si")
+			{
 			$tabla.=
 			'<tr>
 			<td><a href="horarios.php?codigo='.$fila['Codigo_Asesoria'].'">'.$fila['Codigo_Asesoria'].'</a></td>
 			<td>'.utf8_encode($asesoria->Nom_Maestro).'</td>
 			<td>'.utf8_encode($asesoria->Nombre).'</td>
-			<td>'.utf8_encode($asesoria->Departamento).'</td>
-			<td>'.$asesoria->Semestre.'</td>
+			<td>'.utf8_encode($row['Lunes']).'</td>
+			<td>'.utf8_encode($row['Martes']).'</td>
+			<td>'.utf8_encode($row['Miercoles']).'</td>
+			<td>'.utf8_encode($row['Jueves']).'</td>
+			<td>'.utf8_encode($row['Viernes']).'</td>
 			 </tr>
 			';	
+			}
 		}
+		
+		
 	}
 	$tabla.='</table>';
 	
