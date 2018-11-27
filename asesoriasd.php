@@ -40,7 +40,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 py-3 col"style="color:white">
         <div class="row">
-        <h1 class="lead display-4 ml-4">Aseorías disponibles</h1>
+        <h1 class="lead display-4 ml-4">Asesorías disponibles</h1>
         </div>  
         </div>
         <div class="col mt-4" style="background:blue">
@@ -59,13 +59,24 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </div>
     </div>
         <div class="row justify-content-center filtros">
-            <div class="alert alert-primary w-100 text-center">
-            <h4 class="lead">
+            <div class="w-100 text-center">
+                <h4 class="lead">
                 Buscar: 
-            <input type="text" name="busqueda" id="busqueda"placeholder="Buscar">  
-La búsqueda puede ser por cualquier columna de la tabla!
-<button class="btn btn-info ml-5" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje"><i class="fa fa-question"></i></button>
-<div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+                <input type="text" name="busqueda" id="busqueda"placeholder="Buscar">  
+                La búsqueda puede ser por cualquier columna de la tabla!
+            </div>
+        <div class="container-fluid">
+            <div class="row">
+                <section class="w-100" id="tabla">
+
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-end">    
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+    </div>
+    <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -77,12 +88,9 @@ La búsqueda puede ser por cualquier columna de la tabla!
                                     </button>
                                 </div>
                                 <div class="modal-body" id="mens">
-                                  Para inscribirte en una asesoria sigue estos pasos: <br>
-                                    1. Busca la asesoría de tu interés y selecciona el código <br>
-                                    2. El código te llevará al horario de la asesoria <br>
-                                    3. En la pantalla de horarios selecciona el botón "Inscribirme" despúes de revisar los horarios
+                                  Selecciona una de tus asesorías para ver el horario
                                 </div>
-                                <div class="modal-footer">
+                                  <div class="modal-footer">
                                     <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
                                 </div>
                             </div>
@@ -90,27 +98,24 @@ La búsqueda puede ser por cualquier columna de la tabla!
                     </div>
             </h4>
             </div>
-        </div>
-        <div class="row">
-            <div class="alert alert-primary w-100 text-center">
-                <h4 class="lead">
-                Selecciona el código de la asesoria para ver el horario!
-                </h4>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <section class="w-100" id="tabla">
-
-                </section>
-            </div>
-        </div>
-    <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
-</div>
-<?php
-
-?>    
-
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        var cod = document.getElementsByName(this.name);
+        var dato = cod[0].name.toString();
+        var mens = $("#mens");
+        $.ajax({
+            url: 'php/inscribir.php', 
+            method: 'POST',
+            data:{
+                codigo : dato
+            },
+            success: function (data){
+                mens.text(data);
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>

@@ -39,7 +39,7 @@
                 </div>
                 <div class="row  justify-content-center">
                     <div class="row" id="tip">
-                        <select name="" id="tipo" class="lead">
+                        <select name="" id="tipo" class="lead" tabindex="1">
                         <option value="Ciencias Básicas">Ciencias Básicas</option>
                         <option value="Asignatura de la Carrera">Asignatura de la Carrera</option>
                         <option value="Asignatura Equivalentes">Asignatura Equivalentes</option>
@@ -51,7 +51,7 @@
                     Código:
                 </div>
                 <div class="row  justify-content-center">
-                    <div class="row" id="co">
+                    <div class="row" id="co" tabindex="2">
 
                     </div>
                 </div>
@@ -59,8 +59,8 @@
                     Nombre Asesoría:
                 </div>
                 <div class="row  justify-content-center">
-                    <div class="row" id="nom">
-                        <input type="text" class="cajas lead" id="nombrea" placeholder="Nombre de la asesoría">
+                    <div class="row" id="nom" tabindex="3">
+                        
                     </div>
                 </div>
                 <div class="row ml-5 pl-2 mt-3 text-white">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="row  justify-content-center">
                     <div class="row">
-                        <input type="text" class="cajas lead" id="semestre" placeholder="Semestre" value="1" readonly>
+                        <input type="text" class="cajas lead" id="semestre" placeholder="Semestre" value="1" readonly tabindex="4">
                     </div>
                 </div>
                 
@@ -78,12 +78,12 @@
                     </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="text" class="cajas lead" id="asesor" placeholder="Alumno a Impartir">
+                        <input type="text" class="cajas lead" id="asesor" placeholder="Alumno a Impartir" tabindex="5">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Numero de control">
+                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Numero de control" tabindex="6">
                     </div>
                 </div>
                 <br>
@@ -108,19 +108,19 @@
         </thead>
         <tr>
             <td>Horario</td>
-            <td><input type="text" name="" id="h1"></td>
-            <td><input type="text" name="" id="h2"></td>
-            <td><input type="text" name="" id="h3"></td>
-            <td><input type="text" name="" id="h4"></td>
-            <td><input type="text" name="" id="h5"></td>
+            <td><input type="text" name="" id="h1" tabindex="7"></td>
+            <td><input type="text" name="" id="h2" tabindex="9"></td>
+            <td><input type="text" name="" id="h3" tabindex="11"></td>
+            <td><input type="text" name="" id="h4" tabindex="13"></td>
+            <td><input type="text" name="" id="h5" tabindex="15"></td>
         </tr>
         <tr>
             <td>Salon</td>
-            <td><input type="text" name="" id="s1"></td>
-            <td><input type="text" name="" id="s2"></td>
-            <td><input type="text" name="" id="s3"></td>
-            <td><input type="text" name="" id="s4"></td>
-            <td><input type="text" name="" id="s5"></td>
+            <td><input type="text" name="" id="s1" tabindex="8"></td>
+            <td><input type="text" name="" id="s2" tabindex="10"></td>
+            <td><input type="text" name="" id="s3" tabindex="12"></td>
+            <td><input type="text" name="" id="s4" tabindex="14"></td>
+            <td><input type="text" name="" id="s5" tabindex="16"></td>
         </tr>
     </table>
     <br>
@@ -128,7 +128,7 @@
     <div class="mb-2 container w-100">
         <div class="row  justify-content-center">
             <div class="col">
-                <input type="submit" value="Agregar asesoría" id="registrarbtn" class="form-control btn btn-primary"
+                <input type="submit" value="Agregar asesoría" tabindex="17" id="registrarbtn" class="form-control btn btn-primary"
                     data-toggle="modal" data-target="#mensaje">
                 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -152,7 +152,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <button type="button" class="mt-2 mr-5 btn btn-primary navegacion" style="border:0; background-color:transparent;cursor:pointer;"
+                <button type="button" tabindex="17" class="mt-2 mr-5 btn btn-primary navegacion" style="border:0; background-color:transparent;cursor:pointer;"
                     value="" data-toggle="tooltip" title="Página anterior" onclick="window.location.href='menu2.php'"><img
                         class="hola" src="css/return.png"></button>
             </div>

@@ -14,7 +14,8 @@ if(isset($_SESSION['maestrologeado'])){
 	$appat =  utf8_encode($maestro->Ap_Pat);
 	$apmat =  utf8_encode($maestro->Ap_Mat);
 	$nombrecompleto = $nombre." ".$appat." ".$apmat;
-	$query = "SELECT Codigo,Nombre_Materia,Tipo,Semestre FROM ASESORIAS WHERE No_Maestro = '$nombrecompleto' AND ACTIVO='Si'";
+	$query= "SELECT `Nombre_Materia`,`Lunes`,`Martes`,`Miercoles`,`Jueves`,`Viernes`,Codigo,Tipo FROM asesorias,horarios WHERE horarios.NOECON= '$nocontrol' AND codigo = Cod_materia";
+	
 	$buscarAsesorias=$conn->query($query);
 	if ($buscarAsesorias->num_rows > 0)
 	{
@@ -22,41 +23,27 @@ if(isset($_SESSION['maestrologeado'])){
 	'<table class="table table-striped">
     <thead class="encabezado">
     <tr>
-		<th class="lead">
-		<div class="d-flex justify-content-center">Codigo</div></th>
-        <th class="lead"><div class="d-flex justify-content-center">Materia</div></th>
-        <th class="lead"><div class="d-flex justify-content-center">Tipo</div></th>
-		<th class="lead"><div class="d-flex justify-content-center">Semestre</div></th>
-		<th class="lead"><div class="d-flex justify-content-center">Accion</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Materia</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Lunes</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Martes</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Miercoles</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Jueves</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Viernes</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Acción</div></th>
+		
     </tr>
 	</thead>';
+
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
-		/*<td><a href="EditarAsesoria.php?cod='.$fila['Codigo'].'">'.$fila['Codigo'].'</a></td>*/
 		$tabla.=
-		
-		'<tr>
-		<td>
-		<div class="d-flex justify-content-center">
-		'.$fila['Codigo'].'
-		</div>
-		</td>
-			<td name="codigo">
-			<div class="d-flex justify-content-center">
-			'.utf8_encode($fila['Nombre_Materia']).'
-			</div>
-			</td>
-			<td>
-				<div class="d-flex justify-content-center">
-					'.utf8_encode($fila['Tipo']).'
-					
-				</div>
-				</td>
-			<td>
-			<div class="d-flex justify-content-center">
-			'.$fila['Semestre'].'
-			</div>
-			</td>
+		'<td name="codigo">
+			<div class="d-flex justify-content-center">'.utf8_encode($fila['Nombre_Materia']).'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Lunes'].'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Martes'].'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Miercoles'].'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Jueves'].'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Viernes'].'</div></td>
 			<td>
 				<div class="d-flex justify-content-center">
 				<form action="EditarAsesoria.php" method="post"> 
@@ -72,9 +59,6 @@ if(isset($_SESSION['maestrologeado'])){
 				<button type="submit" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-success btn-sm">Lista asistencia</button>
 				</form>
 				</div>
-				
-				
-				
 			</td>
 		 </tr>
 		';
@@ -86,17 +70,21 @@ if(isset($_SESSION['maestrologeado'])){
 	}
 }
 else {
-	$query = "SELECT *FROM ASESORIAS WHERE ACTIVO ='Si'";
+	$query = "SELECT *FROM HORARIOS";
 	if(isset($_POST['busqueda']))
 	{
 		$q=$conn->real_escape_string($_POST['busqueda']);
-		$query="SELECT * FROM ASESORIAS WHERE 
-			CODIGO LIKE '%".$q."%' OR
-			NO_MAESTRO LIKE '%".$q."%' OR
-			NOMBRE_MATERIA LIKE '%".$q."%' OR
-			SEMESTRE LIKE '%".$q."%' OR
-			Tipo LIKE '%".$q."%' AND ACTIVO='Si'";
+		$query="SELECT * FROM HORARIOS WHERE 
+			COD_MATERIA LIKE '%".$q."%' OR
+			MAESTRO LIKE '%".$q."%' OR
+			LUNES LIKE '%".$q."%' OR
+			MARTES LIKE '%".$q."%' OR
+			MIERCOLES LIKE '%".$q."%' OR
+			JUEVES LIKE '%".$q."%' OR
+			VIERNES LIKE '%".$q."%'";
 	}	
+	require_once('Clases/asesoria.php');
+	$asesoria = new Asesoria();
 	$buscarAsesorias=$conn->query($query);
 	if ($buscarAsesorias->num_rows > 0)
 	{
@@ -104,31 +92,38 @@ else {
 	'<table class="table table-striped">
     <thead class="encabezado">
     <tr>
-		<th class="lead">Codigo</th>
+		<th class="lead">Código</th>
+		<th class="lead">Nombre</th>
 		<th class="lead">Maestro</th>
-        <th class="lead">Materia</th>
-        <th class="lead">Tipo</th>
-        <th class="lead">Semestre</th>
+        <th class="lead">Lunes</th>
+        <th class="lead">Martes</th>
+		<th class="lead">Miércoles</th>
+		<th class="lead">Jueves</th>
+		<th class="lead">Viernes</th>
+		<th class="lead">Acción</th>
     </tr>
 	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
+		$asesoria->ObtenerAsesoria($fila['Cod_Materia'],$asesoria);
+		$codigo = $fila['Cod_Materia'];
 		$tabla.=
 		'<tr>
-        <td><a href="horario.php?cod='.$fila['Codigo'].'">'.$fila['Codigo'].'</a></td>
-			<td>'.utf8_encode($fila['No_Maestro']).'</td>
-			<td>'.utf8_encode($fila['Nombre_Materia']).'</td>
-			<td>'.utf8_encode($fila['Tipo']).'</td>
-			<td>'.$fila['Semestre'].'</td>
-		 </tr>
-		';
+		<td>'.$fila['Cod_Materia'].'</td>
+		<td>'.utf8_encode($asesoria->Nombre).'</td>
+		<td>'.utf8_encode($fila['Maestro']).'</td>
+			<td>'.utf8_encode($fila['Lunes']).'</td>
+			<td>'.utf8_encode($fila['Martes']).'</td>
+			<td>'.$fila['Miercoles'].'</td>
+			<td>'.$fila['Jueves'].'</td>
+			<td>'.$fila['Viernes'].'</td>
+			<td><button class="btn btn-success" name='.$codigo.' id="inscribir"data-toggle="modal"data-target="#mensaje">Inscribirme</button></td></tr>';
 	}
-
 $tabla.='</table>';
 } else
 	{
 		$tabla="No se encontraron coincidencias con sus criterios de búsqueda.";
 	}
 }
-echo $tabla;
+echo $tabla; 
 ?>
