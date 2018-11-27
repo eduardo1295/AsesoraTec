@@ -41,7 +41,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
 <body>
     <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
     </div>
         <div class="row"style="background:blue;"> 
             <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
