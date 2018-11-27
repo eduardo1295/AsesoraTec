@@ -91,7 +91,8 @@ else {
 			NO_MAESTRO LIKE '%".$q."%' OR
 			NOMBRE_MATERIA LIKE '%".$q."%' OR
 			SEMESTRE LIKE '%".$q."%' OR
-			Tipo LIKE '%".$q."%'";
+			Tipo LIKE '%".$q."%' OR
+			NOECON LIKE '%".$q."%'";
 	}	
 	$buscarAsesorias=$conn->query($query);
 	if ($buscarAsesorias->num_rows > 0)
@@ -104,19 +105,21 @@ else {
 		<th class="lead">Maestro</th>
         <th class="lead">Materia</th>
         <th class="lead">Tipo</th>
-        <th class="lead">Semestre</th>
+		<th class="lead">Semestre</th>
+		<th class="lead">NoEconomico</th>
     </tr>
 	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
 		$tabla.=
 		'<tr>
-        <td><a href="editarasesoriasa.php?cod='.$fila['Codigo'].'& tipo='.$fila['Tipo']. '">'
+        <td><a href="editarasesoriasa.php?cod='.$fila['Codigo'].'& tipo='.$fila['Tipo']. '& noecon='.$fila['noecon'].'">'
         .$fila['Codigo'].'</a></td>
 			<td>'.utf8_encode($fila['No_Maestro']).'</td>
 			<td>'.utf8_encode($fila['Nombre_Materia']).'</td>
 			<td>'.utf8_encode($fila['Tipo']).'</td>
-			<td>'.$fila['Semestre'].'</td>
+			<td>'.($fila['Semestre']).'</td>
+			<td>'.$fila['noecon'].'</td>
 		 </tr>
 		';
 	}

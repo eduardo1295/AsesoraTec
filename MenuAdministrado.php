@@ -41,7 +41,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
 <body>
     <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
     </div>
         <div class="row"style="background:blue;"> 
             <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
@@ -101,6 +101,22 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                             <li class="nav-item lead">
                                 <a class="nav-link lead" href="documentocb.php">
                                     <i class="fas fa-file fa-fw"></i>Reporte de Ciencias Basicas</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lead" data-toggle="collapse" href="#item-9">
+                        <i class="fas fa fa-file fa-fw"></i> Generar Horarios</a>
+                        <div id="item-9" class="collapse">
+                        <ul class="nav flex-column ml-3">
+                            <li class="nav-item">
+                                <a class="nav-link active lead"  href="listadoalumnos.php">
+                                    <i class="fas fa fa-file fa-fw"></i>Horarios Alumnos</a>
+                            </li>
+                            <li class="nav-item lead">
+                                <a class="nav-link lead" href="listadosmaestros.php">
+                                    <i class="fas fa-file fa-fw"></i>Horarios Maestros</a>
                             </li>
                         </ul>
                     </div>
