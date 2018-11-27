@@ -13,7 +13,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/AgregarAsesoria.js"></script>
+    <script src="js/modificarasesoriasa.js"></script>
     <link rel="stylesheet" href="css/estilo.css">
     <script src=""></script>
 </head>
@@ -24,8 +24,8 @@ require_once('php/Clases/conexion.php');
 require_once('php/Clases/admin.php');
 if(isset($_SESSION['usuariologeado'])){
     $codigo = $_GET['cod'];
-    echo $codigo;
     $tipo = utf8_decode($_GET['tipo']);
+    $noecon = $_GET['noecon'];
     $conexion = abrirBD();
     $SQL = "SELECT * FROM asesorias WHERE Codigo= '$codigo'";
     $resultado = $conexion->query($SQL);
@@ -77,6 +77,8 @@ else {
 <body>
     <input id="EditarCodigo" type="hidden" name="" value="<?php echo $codigo?>">
     <input id="EditarTipo" type="hidden" name="" value="<?php echo utf8_encode($tipo)?>">
+    <input id="Mandarecon" type="hidden" name="" value="<?php echo utf8_encode($noecon)?>">
+
     
     <div class="page-header pb-2 pt-2">
         <h1 class="lead display-3 justify-content-center">Agregar una asesoría
@@ -186,7 +188,7 @@ else {
     <div class="mb-2 container w-100">
         <div class="row  justify-content-center">
             <div class="col">
-                <input type="submit" value="Agregar asesoría" id="editarbtn" class="form-control btn btn-primary"
+                <input type="submit" value="Modificar" id="editarbtn" class="form-control btn btn-primary"
                     data-toggle="modal" data-target="#mensaje">
                 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

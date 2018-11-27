@@ -195,5 +195,67 @@ public function EliminarMaestro($nc){
         echo error;
     }
 }
+public function AgregarHorario($codigo,$noecom,$salon,$Horario){
+    try{
+    $conexion = abrirBD();
+    $SQL= "INSERT INTO HORARIOS VALUES(?,?,?,?,?,?,?)";
+    $sentencia_preparada1 = $conexion->prepare($SQL);
+    $sentencia_preparada1->bind_param("sssssss",$cod_Mat,$mae,$lun,$mar,$mie,$jue,$vie);
+    $cod_Mat = utf8_encode($codigo);
+    $mae = $nombreCompleto;
+    $lun = $Horario[0].' '.$salon[0];
+    $mar = $Horario[1].' '.$salon[1];
+    $mie = $Horario[2].' '.$salon[2];
+    $jue = $Horario[3].' '.$salon[3];
+    $vie = $Horario[4].' '.$salon[4];
+    $sentencia_preparada1->execute();
+     $conexion->close();
+    }
+    catch (Exception $e){
+     $error = $e->getMessage();
+     echo $error;
+     }
+}
+
+public function ActualizarHorario($codigo,$noecom,$salon,$Horario){
+    try{
+        $conexion = abrirBD();
+        $SQL= "UPDATE HORARIOS SET Lunes = ?, Martes = ?, Miercoles = ?, Jueves = ?, Viernes = ? WHERE Cod_Materia =?";
+        $sentencia_preparada1 = $conexion->prepare($SQL);
+        $sentencia_preparada1->bind_param("ssssss",$lun,$mar,$mie,$jue,$vie,$cod_Mat);
+        $lun = $Horario[0].' '.$salon[0];
+        $mar = $Horario[1].' '.$salon[1];
+        $mie = $Horario[2].' '.$salon[2];
+        $jue = $Horario[3].' '.$salon[3];
+        $vie = $Horario[4].' '.$salon[4];
+        $cod_Mat = utf8_encode($codigo);
+        $sentencia_preparada1->execute();
+        $conexion->close();
+    }
+    catch (Exception $e){
+         $error = $e->getMessage();
+         echo $error;
+    }
+}
+public function AgregarAsesor($codigo,$nocontrol,$nombreAsesorado){
+    try{
+        
+        $conexion = abrirBD();
+        $SQL= "INSERT INTO asesorados VALUES(?,?,?,?)";
+        $sentencia_preparada1 = $conexion->prepare($SQL);
+        $sentencia_preparada1->bind_param("ssss",$cod,$noen,$nocont,$nomb);
+        $cod = $codigo;
+        $noen = $noecon;
+        $nocont = $nocontrol;
+        $nomb = $nombreAsesorado;
+        $sentencia_preparada1->execute();
+        $conexion->close();
+    }
+    catch (Exception $e){
+        $error = $e->getMessage();
+        echo $error;
+    }
+}
+
 }
 ?>
