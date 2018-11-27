@@ -4,16 +4,16 @@
     $maestro->setNo_Economico($_POST['noc']);
     $noecono = $_POST['noc'];
     $nc=$noecono;
-    $pass = ($_POST['pwd']);
+    $pass = strip_tags($_POST['pwd']);
     $nombre = strip_tags($_POST['nom']);
     $appat = strip_tags($_POST['ap']);
     $apmat = strip_tags($_POST['am']);
     $dep = strip_tags($_POST['dep']);
     $correo = strip_tags($_POST['email']);
 
-if(strlen($nc)!=4)
+if(strlen($nc)>=4)
 {
-    echo "El número economico debe ser de 3 caracteres";
+    echo "El número economico debe ser de 4 caracteres";
 }
 else if(strlen($nombre)>50)
 {
@@ -39,15 +39,14 @@ else if(strlen($correo)>128)
 {
 echo "Correo demasiado largo (Máx. 128 carac.)";
 }
-
 else
 {
-    if($noeconomico!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!="" && $dep!=""&&$correo!="")
+    if($nc!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!="" && $dep!=""&&$correo!="")
     {
         $maestro = new Maestro();
-        $existe = $maestro->MaestroExists($noeconomico);
+        $existe = $maestro->MaestroExists($nc);
         $client = new SoapClient("https://siia.lapaz.tecnm.mx/webserviceitlp.asmx?WSDL");
-        $result = $client->maestroVigente(array('numeroEconomico' => $noeconomico, 'contrasena' => '*3%f&Y2b'))->maestroVigenteResult;	 
+        $result = $client->maestroVigente(array('numeroEconomico' => $nc, 'contrasena' => '*3%f&Y2b'))->maestroVigenteResult;	 
         if($result == false)
         {
             echo("El número económico no esta registrado en el Instituto Tecnológico de La Paz");
@@ -55,10 +54,10 @@ else
         else
         {
             $maestro->setContraseña($_POST['pwd']);
-            $maestro->setNombre($_POST['nom']);
-            $maestro->setAp_Pat($_POST['ap']);
-            $maestro->setAp_Mat($_POST['am']);
-            $maestro->setDepartamento($_POST['dep']);
+            $maestro->setNombre(utf8_decode($_POST['nom']));
+            $maestro->setAp_Pat(utf8_decode($_POST['ap']));
+            $maestro->setAp_Mat(utf8_decode($_POST['am']));
+            $maestro->setDepartamento(utf8_decode($_POST['dep']));
             $maestro->setCorreo($_POST['email']);
             $maestro->ActualizarDatos($maestro);
             echo "Perfil guardado!";

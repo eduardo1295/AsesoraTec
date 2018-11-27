@@ -27,7 +27,6 @@ else
     if($noecono!=""&&$nombre!=""&&$tipo!=""&&$semestre!="")
     {
 
-    
     $materias->setCodigo($noecono);
     $materias->setNombrem($_POST['nom']);
     $materias->setTipo($_POST['tp']);
