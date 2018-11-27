@@ -59,32 +59,10 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </div>
     </div>
         <div class="row justify-content-center filtros">
-            <div class="alert alert-primary w-100 text-center">
+            <div class="w-100 text-center">
             <h4 class="lead">
-Selecciona el código de una asesoría para ver el horario!
-<button class="btn btn-info ml-5" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje"><i class="fa fa-question"></i></button>
-<div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="modalLabel">
-                                        Ayuda del Sistema
-                                    </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body" id="mens">
-                                  Selecciona una de tus asesorías para ver el horario
-                                </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </h4>
-            </div>
+Selecciona el código de una asesoría para mas acciones!
+        </div>
         </div>
     <div class="container-fluid">
         <div class="row">
@@ -93,6 +71,7 @@ Selecciona el código de una asesoría para ver el horario!
             </section>
         </div>
     </div>
+
     <div class="row justify-content-end">    
         <button type="button"class="mt-2 mr-5 btn btn-primary fixed-bottom navegacion"style="border:0; background-color:transparent;cursor:pointer; position:relative; min-height:100%;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>

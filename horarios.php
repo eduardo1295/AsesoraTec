@@ -51,7 +51,7 @@ $conn->close();
 
 <body>
 <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
     </div>
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 ml-1 py-3 col"style="color:white">
