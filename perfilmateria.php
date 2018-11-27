@@ -61,7 +61,7 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo utf8_decode($codigo);?>" class="cajas lead" id="codigo" placeholder="Número de control"maxlength=8 required>
+                        <input type="text" value="<?php echo utf8_decode($codigo);?>" class="cajas lead" id="codigo" placeholder="Número de control"maxlength=8 required readonly>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>

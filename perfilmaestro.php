@@ -65,7 +65,7 @@ $conn->close();
 
          <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $numeco;?>" class="cajas lead" id="noeconomico" placeholder="Número de Economico"maxlength=8 required>
+                        <input type="text" value="<?php echo $numeco;?>" class="cajas lead" id="noeconomico" placeholder="Número de Economico"maxlength=8 required readonly>
                         </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
