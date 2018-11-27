@@ -35,7 +35,7 @@ $conn->close();
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Alumnos Datos</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/pruebaregistrar.css">
+    <link rel="stylesheet" href="css/botones.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -84,8 +84,8 @@ $conn->close();
     </div>
     <div class="mb-2 mt-2 container w-100">
         <div class="row  justify-content-center">
-            <input type="submit" value="Guardar"  id="guardarbtn"class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
-            <input type="submit" value="Borrar"  id="eliminarbtn"class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
+            <input type="submit" value="Guardar"  id="guardarbtn"class="btn btn-success lead" data-toggle="modal" data-target="#mensaje">
+            <input type="submit" value="Borrar"  id="eliminarbtn"class="btn btn-danger lead" data-toggle="modal" data-target="#mensaje">
             <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">

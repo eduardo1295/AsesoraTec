@@ -4,7 +4,7 @@
     $alumno->setNo_Control($_POST['noc']);
     $nocontrol = strip_tags($_POST['noc']);
     $nc=$nocontrol;
-    $contraseña =strip_tags($_POST['pwd']);
+    $pass =strip_tags($_POST['pwd']);
     $nombre =strip_tags($_POST['nom']);
     $appat =strip_tags($_POST['ap']);
     $apmat =strip_tags($_POST['am']);
@@ -20,9 +20,9 @@ else if(strlen($nombre)>50)
 {
 echo "Nombre demasiado largo (Máx. 50 carac.)";
 }
-else if(strlen($contraseña)>20)
+else if(strlen($pass)>20)
 {
-echo "Contraseña demasiado larga (Máx. 20 carac.)";
+echo "Contraseña es demasiado larga (Máx. 20 carac.)";
 }
 else if(strlen($appat)>50)
 {
@@ -45,13 +45,13 @@ else if(!is_numeric($semestre))
     echo "El semestre debe ser conformado solo por números!";
 }
 else{
-    if($nocontrol!=""&&$contraseña!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!=""){
+    if($nc!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!=""){
         $alumno->setContraseña(strip_tags($_POST['pwd']));
-        $alumno->setNombre(strip_tags($_POST['nom']));
-        $alumno->setAp_Pat(strip_tags($_POST['ap']));
-        $alumno->setAp_Mat(strip_tags($_POST['am']));
-        $alumno->setCarrera(strip_tags($_POST['car']));
-        $alumno->setSemestre(strip_tags($_POST['sem']));
+        $alumno->setNombre(strip_tags(utf8_decode($_POST['nom'])));
+        $alumno->setAp_Pat(strip_tags(utf8_decode($_POST['ap'])));
+        $alumno->setAp_Mat(strip_tags(utf8_decode($_POST['am'])));
+        $alumno->setCarrera(strip_tags(utf8_decode($_POST['car'])));
+        $alumno->setSemestre(strip_tags(utf8_decode($_POST['sem'])));
         $alumno->setSexo(strip_tags($_POST['sex']));
         $alumno->setCorreo(strip_tags($_POST['email']));
         $alumno->ActualizarDatos($alumno);
