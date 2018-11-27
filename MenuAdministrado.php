@@ -106,6 +106,22 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link lead" data-toggle="collapse" href="#item-9">
+                        <i class="fas fa fa-file fa-fw"></i> Generar Horarios</a>
+                        <div id="item-9" class="collapse">
+                        <ul class="nav flex-column ml-3">
+                            <li class="nav-item">
+                                <a class="nav-link active lead"  href="listadoalumnos.php">
+                                    <i class="fas fa fa-file fa-fw"></i>Horarios Alumnos</a>
+                            </li>
+                            <li class="nav-item lead">
+                                <a class="nav-link lead" href="listadosmaestros.php">
+                                    <i class="fas fa-file fa-fw"></i>Horarios Maestros</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-3">
                         <i class="fas fa fa-male fa-fw"></i>Agregar Usuarios</a>
                         <div id="item-3" class="collapse">
