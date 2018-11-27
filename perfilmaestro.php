@@ -38,7 +38,7 @@ $conn->close();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Maestro Datos</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/pruebaregistrar.css">
+    <link rel="stylesheet" href="css/botones.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -76,22 +76,22 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $Ape_pat;?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="<?php echo utf8_encode($Ape_pat);?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $Ape_mat;?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="<?php echo utf8_encode($Ape_mat);?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo $Nombrem;?>" class="cajas lead" id="nombre" placeholder="Departamento"required>
+                        <input type="text" value="<?php echo utf8_encode($Nombrem);?>" class="cajas lead" id="nombre" placeholder="Departamento"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                 <input type="e-mail" value="<?php echo $Departamento;?>" id="departamento" class="cajas lead"maxlength=128 placeholder="Correo"required>
+                 <input type="e-mail" value="<?php echo utf8_encode($Departamento);?>" id="departamento" class="cajas lead"maxlength=128 placeholder="Correo"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -104,8 +104,8 @@ $conn->close();
     </div>
     <div class="mb-2 mt-2 container w-100">
         <div class="row  justify-content-center">
-            <input type="submit" value="Guardar"  id="guardarbtn"class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
-            <input type="submit" value="Borrar"  id="borrarbtn"class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
+            <input type="submit" value="Guardar"  id="guardarbtn"class="btn btn-success lead" data-toggle="modal" data-target="#mensaje">
+            <input type="submit" value="Borrar"  id="borrarbtn"class="btn btn-danger lead" data-toggle="modal" data-target="#mensaje">
             <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">

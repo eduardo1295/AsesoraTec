@@ -39,13 +39,13 @@ $conn->close();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Alumnos Datos</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/pruebaregistrar.css">
+    <link rel="stylesheet" href="css/botones.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/miperfil.css">
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/ModificarPerfil.js"></script>
+    <script src="js/ModificarDatos.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/mensaje.js"></script>
 </head>
@@ -76,17 +76,17 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $Ape_pat;?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="<?php echo utf8_encode($Ape_pat);?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $Ape_mat;?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="<?php echo utf8_encode($Ape_mat);?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo $Nombrea;?>" class="cajas lead" id="nombre" placeholder="Nombre"required>
+                        <input type="text" value="<?php echo utf8_encode($Nombrea);?>" class="cajas lead" id="nombre" placeholder="Nombre"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -134,8 +134,8 @@ $conn->close();
     </div>
     <div class="mb-2 mt-2 container w-100">
         <div class="row  justify-content-center">
-            <input type="submit" value="Guardar"  id="guardarbtn"class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
-            <input type="submit" value="Borrar"  id="eliminarbtn"class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
+            <input type="submit" value="Guardar"  id="guardarbtn"class="btn btn-success lead" data-toggle="modal" data-target="#mensaje">
+            <input type="submit" value="Borrar"  id="eliminarbtn"class="btn btn-danger lead" data-toggle="modal" data-target="#mensaje">
             <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">

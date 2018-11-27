@@ -10,11 +10,11 @@ if(strlen($codigo)!=7)
 {
     echo "El codigo de la materia debe ser de 7 caracteres";
 }
-else if(strlen($nombre)>50)
+else if(strlen($nombrem)>50)
 {
 echo "Nombre demasiado largo (Máx. 50 carac.)";
 }
-else if(strlen($tp)>50)
+else if(strlen($tipo)>50)
 {
 echo "Tipo de Materia demasiado larga (Máx. 20 carac.)";
 }
@@ -24,7 +24,7 @@ else if(!is_numeric($semestre))
 }
 else
 {
-    if($noecono!=""&&$nombre!=""&&$tipo!=""&&$semestre!="")
+    if($codigo!=""&&$nombrem!=""&&$tipo!=""&&$semestre!="")
     {
         
     $materia->setCodigo($_POST['cod']);
