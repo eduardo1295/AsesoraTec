@@ -71,6 +71,9 @@ $(document).ready(function(){
                 nocontrol: nocontrol
             },
             success: function (data){
+                if(data == ""){
+                    console.log("putos");
+                }
                 mens.text(data);
             }
         });

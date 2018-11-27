@@ -14,7 +14,8 @@ if(isset($_SESSION['maestrologeado'])){
 	$appat =  utf8_encode($maestro->Ap_Pat);
 	$apmat =  utf8_encode($maestro->Ap_Mat);
 	$nombrecompleto = $nombre." ".$appat." ".$apmat;
-	$query = "SELECT Codigo,Nombre_Materia,Tipo,Semestre FROM ASESORIAS WHERE No_Maestro = '$nombrecompleto' AND ACTIVO='Si'";
+	$query= "SELECT `Nombre_Materia`,`Lunes`,`Martes`,`Miercoles`,`Jueves`,`Viernes`,Codigo,Tipo FROM asesorias,horarios WHERE horarios.NOECON= '$nocontrol' AND codigo = Cod_materia";
+	
 	$buscarAsesorias=$conn->query($query);
 	if ($buscarAsesorias->num_rows > 0)
 	{
@@ -22,41 +23,26 @@ if(isset($_SESSION['maestrologeado'])){
 	'<table class="table table-striped">
     <thead class="encabezado">
     <tr>
-		<th class="lead">
-		<div class="d-flex justify-content-center">Codigo</div></th>
-        <th class="lead"><div class="d-flex justify-content-center">Materia</div></th>
-        <th class="lead"><div class="d-flex justify-content-center">Tipo</div></th>
-		<th class="lead"><div class="d-flex justify-content-center">Semestre</div></th>
-		<th class="lead"><div class="d-flex justify-content-center">Accion</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Materia</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Lunes</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Martes</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Miercoles</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Jueves</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Viernes</div></th>
+		<th class="lead"><div class="d-flex justify-content-center">Acción</div></th>
+		
     </tr>
 	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
-		/*<td><a href="EditarAsesoria.php?cod='.$fila['Codigo'].'">'.$fila['Codigo'].'</a></td>*/
 		$tabla.=
-		
-		'<tr>
-		<td>
-		<div class="d-flex justify-content-center">
-		'.$fila['Codigo'].'
-		</div>
-		</td>
-			<td name="codigo">
-			<div class="d-flex justify-content-center">
-			'.utf8_encode($fila['Nombre_Materia']).'
-			</div>
-			</td>
-			<td>
-				<div class="d-flex justify-content-center">
-					'.utf8_encode($fila['Tipo']).'
-					
-				</div>
-				</td>
-			<td>
-			<div class="d-flex justify-content-center">
-			'.$fila['Semestre'].'
-			</div>
-			</td>
+		'<td name="codigo">
+			<div class="d-flex justify-content-center">'.utf8_encode($fila['Nombre_Materia']).'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Lunes'].'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Martes'].'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Miercoles'].'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Jueves'].'</div></td>
+			<td><div class="d-flex justify-content-center">'.$fila['Viernes'].'</div></td>
 			<td>
 				<div class="d-flex justify-content-center">
 				<form action="EditarAsesoria.php" method="post"> 
@@ -72,9 +58,6 @@ if(isset($_SESSION['maestrologeado'])){
 				<button type="submit" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-success btn-sm">Lista asistencia</button>
 				</form>
 				</div>
-				
-				
-				
 			</td>
 		 </tr>
 		';

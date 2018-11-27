@@ -59,14 +59,14 @@ class Maestro{
         echo $error;
     }
    }
-   public function AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$departamento,$semestre){
+   public function AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$departamento,$semestre,$noecon){
     try{
      $conexion = abrirBD();
-     $SQL= "SELECT COUNT(*) FROM ASESORIAS WHERE codigo = ? AND No_Maestro = ? ";
+     $SQL= "SELECT COUNT(*) FROM ASESORIAS WHERE codigo = ? AND NOECON = ? ";
      $STMT = $conexion->prepare($SQL);
-     $STMT->bind_param("ss",$cod,$nom);
+     $STMT->bind_param("ss",$cod,$noe);
      $cod = $codigo;
-     $nom = $nombreMaestro;
+     $noe = $noecon;
      $STMT->execute();
      $STMT->bind_result($nombre);
      while( $fila = $STMT->fetch()){
@@ -76,14 +76,15 @@ class Maestro{
 
      if($resultado == 0){
         $conexion = abrirBD();
-        $SQL= "INSERT INTO ASESORIAS (Codigo,No_Maestro,Nombre_Materia,Tipo,Semestre) VALUES (?,?,?,?,?)";
+        $SQL= "INSERT INTO ASESORIAS (Codigo,No_Maestro,Nombre_Materia,Tipo,Semestre,NOECON) VALUES (?,?,?,?,?,?)";
         $sentencia_preparada1 = $conexion->prepare($SQL);
-        $sentencia_preparada1->bind_param("sssss",$cod,$No_Maestro,$nom_Materia,$depto,$sem);
+        $sentencia_preparada1->bind_param("ssssss",$cod,$No_Maestro,$nom_Materia,$depto,$sem,$neo);
         $cod =  utf8_encode($codigo);
         $No_Maestro = utf8_decode($nombreMaestro);
         $nom_Materia = utf8_decode($nombreMateria);
         $depto = utf8_decode($departamento);
         $sem = utf8_decode($semestre);
+        $neo = utf8_decode($noecon);
         $sentencia_preparada1->execute();
         $conexion->close();
         return 1;
@@ -98,15 +99,15 @@ class Maestro{
      }
     }
 
-    public function AgregarHorario($codigo,$noecom,$salon,$Horario){
+    public function AgregarHorario($codigo,$noecom,$salon,$Horario,$neocon){
         try{
         $maestro = new maestro();
         $maestro->ObtenerDatos($noecom,$maestro);
         $nombreCompleto = $maestro->Nombre ." ".$maestro->Ap_Pat." ".$maestro->Ap_Mat;
         $conexion = abrirBD();
-        $SQL= "INSERT INTO HORARIOS VALUES(?,?,?,?,?,?,?)";
+        $SQL= "INSERT INTO HORARIOS VALUES(?,?,?,?,?,?,?,?)";
         $sentencia_preparada1 = $conexion->prepare($SQL);
-        $sentencia_preparada1->bind_param("sssssss",$cod_Mat,$mae,$lun,$mar,$mie,$jue,$vie);
+        $sentencia_preparada1->bind_param("ssssssss",$cod_Mat,$mae,$lun,$mar,$mie,$jue,$vie,$neo);
         $cod_Mat = utf8_encode($codigo);
         $mae = $nombreCompleto;
         $lun = $Horario[0].' '.$salon[0];
@@ -114,6 +115,7 @@ class Maestro{
         $mie = $Horario[2].' '.$salon[2];
         $jue = $Horario[3].' '.$salon[3];
         $vie = $Horario[4].' '.$salon[4];
+        $neo = $neocon;
         $sentencia_preparada1->execute();
          $conexion->close();
         }
@@ -359,5 +361,32 @@ public function EliminarMaestro($nc){
         echo error;
     }
 }
+
+public function cargarHorarios($noecon){
+    try{
+        $conexion = abrirBD();
+        $SQL= "SELECT Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios WHERE NOECON = ?";
+        $STMT = $conexion->prepare($SQL);
+        $STMT->bind_param('s',$neo);
+        $neo = $noecon;
+        $STMT->execute();
+        $STMT->bind_result($lunes,$martes,$miercoles,$Jueves,$Vienes);
+        $datos = array();
+        while( $fila = $STMT->fetch()){
+            array_push($datos,$lunes);
+            array_push($datos,$martes);
+            array_push($datos,$miercoles);
+            array_push($datos,$Jueves);
+            array_push($datos,$Vienes);
+        }
+        $conexion->close();
+        return $datos;
+    }
+    catch (Exception $e){
+        $error = $e->getMessage();
+        echo $error;
+    }
+}
+
 }
 ?>
