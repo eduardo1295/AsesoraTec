@@ -3,6 +3,7 @@ require_once('Clases/maestro.php');
 session_start();
 $vacio = 1;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
         $opcion = $_POST['opcion'];
         $maestro = new Maestro();
         $codigo = $_POST['codigo'];

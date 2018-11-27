@@ -33,5 +33,12 @@ $pdf->Cell(30,6,utf8_decode($rows['Viernes']),1,1,"C");
 $pdf->ln(20);
 $pdf->SetFont('Arial','B',15);
 $pdf->Cell(270,6,'Atentamente',0,1,"C");
+$pdf->Ln(20);
+$pdf->SetFont('Arial','B',12);
+$pdf->Cell(110,6,'ING.ADRIANE ITALIA ACEVEDO AGUILAR,',0,0,'C');
+$pdf->Cell(200,6,'MSC. MARTIN AGUNDEZ AMADOR',0,1,'C');
+$pdf->SetFont('Arial','B',12);
+$pdf->Cell(110,6,'JEFA DEL DEPTO. DE SISTEMAS Y COMPUTACION',0,0,'C');
+$pdf->Cell(200,6,'PRESIDENTE DE ACADEMIA DE SISTEMAS Y COMPUTACION',0,1,'C');
 $pdf->Output();
 ?>
