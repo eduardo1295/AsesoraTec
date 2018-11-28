@@ -113,13 +113,13 @@ else {
 	{
 		$tabla.=
 		'<tr>
-        <td><a href="editarasesoriasa.php?cod='.$fila['Codigo'].'& tipo='.$fila['Tipo']. '& noecon='.$fila['noecon'].'">'
+        <td><a href="editarasesoriasa.php?cod='.$fila['Codigo'].'& tipo='.$fila['Tipo']. '& noecon='.$fila['NOECON'].'">'
         .$fila['Codigo'].'</a></td>
 			<td>'.utf8_encode($fila['No_Maestro']).'</td>
 			<td>'.utf8_encode($fila['Nombre_Materia']).'</td>
 			<td>'.utf8_encode($fila['Tipo']).'</td>
 			<td>'.($fila['Semestre']).'</td>
-			<td>'.$fila['noecon'].'</td>
+			<td>'.$fila['NOECON'].'</td>
 		 </tr>
 		';
 	}

@@ -176,14 +176,15 @@ class Alumno{
            echo error;
        }
    }
-   public function InscribirAsesoria($nc,$codigoAsesoria){
+   public function InscribirAsesoria($nc,$codigoAsesoria,$noecon){
     try{
         $conexion = abrirBD();
-        $SQL= "INSERT INTO ASESORIASREG VALUES(?,?)";
+        $SQL= "INSERT INTO ASESORIASREG VALUES(?,?,?)";
         $sentencia_preparada1 = $conexion->prepare($SQL);
-        $sentencia_preparada1->bind_param("ss",$nocontrol,$codigoA);
+        $sentencia_preparada1->bind_param("sss",$nocontrol,$codigoA,$noe);
         $nocontrol =$nc;
         $codigoA = $codigoAsesoria;
+        $noe = $noecon;
         $sentencia_preparada1->execute();
         $conexion->close();
        }

@@ -56,8 +56,9 @@ if(isset($_SESSION['maestrologeado'])){
 				<button type="button" name="eliminar" class="btn btn-danger btn-sm mr-1" data-toggle="modal" data-target="#exampleModal" >Eliminar</button>
 				</form>
 				<form id="asistencia" action="documento1.php" method="get"> 
-				<button type="submit" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-success btn-sm">Lista asistencia</button>
+				<button type="submit" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-success btn-sm mr-1">Lista asistencia</button>
 				</form>
+				<button type="submit" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-warning btn-sm">Clave Asitencia</button>
 				</div>
 			</td>
 		 </tr>
@@ -70,7 +71,7 @@ if(isset($_SESSION['maestrologeado'])){
 	}
 }
 else {
-	$query = "SELECT *FROM HORARIOS";
+	$query = "SELECT * FROM HORARIOS";
 	if(isset($_POST['busqueda']))
 	{
 		$q=$conn->real_escape_string($_POST['busqueda']);
@@ -117,7 +118,7 @@ else {
 			<td>'.$fila['Miercoles'].'</td>
 			<td>'.$fila['Jueves'].'</td>
 			<td>'.$fila['Viernes'].'</td>
-			<td><button class="btn btn-success" name='.$codigo.' id="inscribir"data-toggle="modal"data-target="#mensaje">Inscribirme</button></td></tr>';
+			<td><button class="btn btn-success" name='.$codigo.'*'.$fila['NOECON'].' id="inscribir"data-toggle="modal"data-target="#mensaje">Inscribirme</button></td></tr>';
 	}
 $tabla.='</table>';
 } else
