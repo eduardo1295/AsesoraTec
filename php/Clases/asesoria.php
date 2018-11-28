@@ -48,12 +48,13 @@ class Asesoria{
                      $sentencia_preparada->bind_param('s',$codigo);
                      $codigo =$cod;
                      $sentencia_preparada->execute();
-                     $sentencia_preparada->bind_result($codi,$nombrem,$materia,$depar,$semestre,$activo);
+                     $sentencia_preparada->bind_result($codi,$nombrem,$materia,$depar,$semestre,$activo,$noecon);
                      while($sentencia_preparada->fetch()){
                          $asesoria->setNombre($materia);
                          $asesoria->setNom_Maestro($nombrem);
                          $asesoria->setDepartamento($depar);
                          $asesoria->setSemestre($semestre);
+                         $asesoria->setNoEcon($noecon);
                          $asesoria->setActivo($activo);
                         }
                     $conn->close();

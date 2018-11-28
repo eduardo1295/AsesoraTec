@@ -3,7 +3,7 @@ require 'fpdf/fpdf.php';
 class PDF extends FPDF{
 
     function Header(){
-        $this->Image('septecnologico.jpg',0,0,350);
+        $this->Image('header.png',40,0,200);
         $this->SetFont('Arial','B',15);
         $this->Ln(20);
     }

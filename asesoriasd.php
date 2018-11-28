@@ -10,9 +10,9 @@ $alumno = new Alumno();
 $nocontrol= $_SESSION['nocontrol'];
 $alumno->ObtenerDatos($nocontrol,$alumno);
 $nc = $nocontrol;
-$nombre = $alumno->Nombre;
-$appat = $alumno->Ap_Pat;
-$apmat = $alumno->Ap_Mat;
+$nombre = utf8_encode($alumno->Nombre);
+$appat = utf8_encode($alumno->Ap_Pat);
+$apmat = utf8_encode($alumno->Ap_Mat);
 $semestre = $alumno->Semestre;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 ?>
@@ -103,12 +103,16 @@ $(document).ready(function(){
     $("button").click(function(){
         var cod = document.getElementsByName(this.name);
         var dato = cod[0].name.toString();
+        var aux = dato.split('*');
+        var auxcod = aux[0];
+        var auxnoecon = aux[1];
         var mens = $("#mens");
         $.ajax({
             url: 'php/inscribir.php', 
             method: 'POST',
             data:{
-                codigo : dato
+                codigo : auxcod,
+                noecon : auxnoecon
             },
             success: function (data){
                 mens.text(data);

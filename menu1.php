@@ -10,9 +10,9 @@ $alumno = new Alumno();
 $nocontrol= $_SESSION['nocontrol'];
 $alumno->ObtenerDatos($nocontrol,$alumno);
 $nc = $nocontrol;
-$nombre = $alumno->Nombre;
-$appat = $alumno->Ap_Pat;
-$apmat = $alumno->Ap_Mat;
+$nombre = utf8_encode($alumno->Nombre);
+$appat = utf8_encode($alumno->Ap_Pat);
+$apmat = utf8_encode($alumno->Ap_Mat);
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 ?>
 <head>

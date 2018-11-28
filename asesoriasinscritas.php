@@ -10,9 +10,9 @@ $alumno = new Alumno();
 $nocontrol= $_SESSION['nocontrol'];
 $alumno->ObtenerDatos($nocontrol,$alumno);
 $nc = $nocontrol;
-$nombre = $alumno->Nombre;
-$appat = $alumno->Ap_Pat;
-$apmat = $alumno->Ap_Mat;
+$nombre = utf8_encode($alumno->Nombre);
+$appat = utf8_encode($alumno->Ap_Pat);
+$apmat = utf8_encode($alumno->Ap_Mat);
 $semestre = $alumno->Semestre;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 ?>
@@ -61,7 +61,9 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         <div class="row justify-content-center filtros">
             <div class="w-100 text-center">
             <h4 class="lead">
-Selecciona el código de una asesoría para mas acciones!
+                Selecciona el código de una asesoría para mas acciones!
+            </h4>
+            <a href="cargaasesoria.php" class="lead">Generar reporte de horario</a>
         </div>
         </div>
     <div class="container-fluid">

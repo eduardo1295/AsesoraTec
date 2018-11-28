@@ -71,11 +71,11 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" href="verasesorias.php">
-                        <i class="fas fa fa-eye fa-fw"></i>mis asesorías</a>
+                        <i class="fas fa fa-eye fa-fw"></i>Mis asesorías</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" href="agregarasesoria.php">
-                        <i class="fas fa fa-search-plus fa-fw"></i>Inscribirme en Asesoría</a>
+                        <i class="fas fa fa-search-plus fa-fw"></i>Agregar Asesoría</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-1">

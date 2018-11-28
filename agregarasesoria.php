@@ -123,11 +123,7 @@
             <td><input type="text" name="" id="s5" tabindex="16"></td>
         </tr>
     </table>
-    <br>
-    <br>
-    <div class="mb-2 container w-100">
-        <div class="row  justify-content-center">
-            <div class="col">
+        <div class="row justify-content-center">
                 <input type="submit" value="Agregar asesoría" tabindex="17" id="registrarbtn" class="form-control btn btn-primary"
                     data-toggle="modal" data-target="#mensaje">
                 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
@@ -148,18 +144,15 @@
                                 <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
+           
+    </div>
+    <div class="row justify-content-end">
                 <button type="button" tabindex="17" class="mt-2 mr-5 btn btn-primary navegacion" style="border:0; background-color:transparent;cursor:pointer;"
                     value="" data-toggle="tooltip" title="Página anterior" onclick="window.location.href='menu2.php'"><img
                         class="hola" src="css/return.png"></button>
-            </div>
-        </div>
-    </div>
-
-
+            </div> 
 </body>
 
 </html>
