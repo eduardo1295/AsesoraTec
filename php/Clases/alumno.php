@@ -396,6 +396,40 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$nomM)
             $error = $e->getMessage();
             echo error;
         }  
-       }
+    }
+    public function cargarHorarios($nocon){
+        try{
+            $conexion = abrirBD();
+            $consulta = "SELECT CODIGO_ASESORIA FROM ASESORIASREG WHERE CONTROL_ALUMNO=?";
+            $sentencia  = $conexion->prepare($consulta);
+            $sentencia->bind_param('s',$nocontrol);
+            $nocontrol = $nocon;
+            $codigos = array();
+            $res = $sentencia->execute();
+            $SQL= "SELECT Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios WHERE  COD_MATERIA= ?";
+            $STMT = $conexion->prepare($SQL);
+            $datos = array();
+            while($row = mysqli_fetch_array($res))
+            {
+                array_push($codigos,$row[0]);
+                $STMT->bind_param('s',$row[0]);
+                $STMT->execute();
+                $STMT->bind_result($lunes,$martes,$miercoles,$Jueves,$Vienes);
+                while( $fila = $STMT->fetch()){
+                    array_push($datos,$lunes);
+                    array_push($datos,$martes);
+                    array_push($datos,$miercoles);
+                    array_push($datos,$Jueves);
+                    array_push($datos,$Vienes);
+                }
+            }
+            $conexion->close();
+            return $datos;
+        }
+        catch (Exception $e){
+            $error = $e->getMessage();
+            echo $error;
+        }
+    }
 }
 ?>
