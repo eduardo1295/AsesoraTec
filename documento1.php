@@ -1,6 +1,19 @@
 <?php 
 include 'plantilla.php';
 require 'php/Clases/conexion.php';
+require 'php/Clases/maestro.php';
+if($_SESSION['maestrologeado']!='SI'){
+    header("Location: login.php");
+}
+require_once('php/Clases/maestro.php');
+$maestro = new maestro();
+$nocontrol= $_SESSION['noeconomico'];
+$maestro->ObtenerDatos($nocontrol,$maestro);
+$nc = $nocontrol;
+$nombre = utf8_encode($maestro->Nombre);
+$appat =  utf8_encode($maestro->Ap_Pat);
+$apmat =  utf8_encode($maestro->Ap_Mat);
+$nombrecompleto = $nombre." ".$appat." ".$apmat;
 $codigo = $_GET['eliminar'];
 $conexion = abrirBD();
 $SQL = "SELECT`nocontrol`,`nombre`,`Ap_pat`,`Ap_Mat`,`carrera`,`semestre` FROM `alumno`,`asesoriasreg` WHERE `control_alumno` = `nocontrol` AND `codigo_asesoria` = ?";
@@ -14,6 +27,8 @@ $STMT->bind_result($nocont,$nombre,$Ap_pat,$Ap_Mat,$carrera,$semestre);
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
+$pdf->SetXY(20,40);
+$pdf->Cell(50,8,"$nombrecompleto",1,0,"C");
 $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(20,40);
