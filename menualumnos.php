@@ -27,6 +27,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/ejemplo23.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/alumnosdisponibles.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">

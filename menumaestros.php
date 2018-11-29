@@ -102,14 +102,7 @@ La búsqueda puede ser por cualquier columna de la tabla!
         value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menuadministrado.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
 
-    <script>
-            app = angular.module('myApp',[]);
-            app.controller('customersCtrl',function($scope,$http){
-                $http.get("noti.php?id=0").then(function(response){
-                    $scope.valores = response.data;
-                })
-            });
-    </script>
+
 </body>
 
 </html>

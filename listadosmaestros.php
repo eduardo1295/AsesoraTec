@@ -96,7 +96,7 @@ La búsqueda puede ser por cualquier columna de la tabla!
                 </h4>
             </div>
         </div>
-    <div class="container-fluid">
+    <div class="container-fluid" title="Selecciona el numero de economico para ver el horario">
         <div class="row">
             <section class="w-100" id="tabla">
 

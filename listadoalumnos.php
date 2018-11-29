@@ -19,7 +19,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Ver mis asesorías</title>
+    <title>Horarios Alumnos</title>
     <link rel="stylesheet" href="css/mno.css">
     <link rel="stylesheet" href="css/tablaalumnos.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
@@ -96,7 +96,7 @@ La búsqueda puede ser por cualquier columna de la tabla!
                 </h4>
             </div>
         </div>
-    <div class="container-fluid">
+    <div class="container-fluid" title="Selecciona el numero de control para ver el horario">
         <div class="row">
             <section class="w-100" id="tabla">
 
