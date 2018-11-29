@@ -14,7 +14,16 @@ class PDF extends FPDF{
         $this->Cell(265,10,'Departamento de Ciencias Basicas',0,1,'C');
         $this->SetFont('Arial','B',12);
         $this->Cell(70,10,'Programas de Asesorias',0,0,'C');
-        $this->Cell(310	,10,'Agosto-Diciembre de 2018',0,1,'C');
+        $mes = date("m");
+        $año = date("Y");
+        if($mes>=8)
+        {
+            $periodo = "Agosto-Diciembre del "."$año";
+        }
+        else{
+            $periodo = "Enero-Julio del "."$año";
+        }
+        $this->Cell(310	,10,$periodo,0,1,'C');
         $this->Ln(20);
     }
     function Footer(){
