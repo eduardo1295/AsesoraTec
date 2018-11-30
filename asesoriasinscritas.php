@@ -15,6 +15,7 @@ $appat = utf8_encode($alumno->Ap_Pat);
 $apmat = utf8_encode($alumno->Ap_Mat);
 $semestre = $alumno->Semestre;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -32,9 +33,10 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/reloj.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/FiltrarInscritas.js"></script>
+    <script src="js/EliminarAsesoria.js"></script>
 </head>
 <body>
-<div class="row justify-content-center">
+<div class="row">
         <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
     </div>
     <div class="row"style="background:blue;"> 
@@ -48,7 +50,8 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 <div class="dropdown ">
                     <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <span class="fas fa-user fa-fw"></span>
+                        <span
+                         class="fas fa-user fa-fw"></span>
                         <?php echo $nombrecompleto?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
@@ -75,11 +78,81 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     </div>
 
     <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary fixed-bottom navegacion"style="border:0; background-color:transparent;cursor:pointer; position:relative; min-height:100%;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        <button type="button"class="mt-2 mr-5 btn btn-primary fixed-bottom navegacion"id="regresar"style="border:0; background-color:transparent;cursor:pointer; position:relative; min-height:100%;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
-<?php
+    
+    <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalLabel">
+                                Mensaje del Sistema
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="" name="">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="mens">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary lead" id="cerrarmodal"data-dismiss="modal" onclick="window.location.href='asesoriasinscritas.php'"id=""name="">Aceptar</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="contra" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalLabel">
+                                Mensaje del Sistema
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="" name="">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="mens">
+                        <div class="row justify-content-center">
+                        <input type="text" name="" id="contraseñaA">
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary lead" id="regContra"data-dismiss="modal" onclick="window.location.href='asesoriasinscritas.php'"id=""name="">Aceptar</button></div>
+                    </div>
+                </div>
+            </div>
+<script language="javascript">
 
-?>    
-
+$(document).ready(function(){
+    $("button").click(function(){
+        var id = this.id;
+        if(id=="asistencias"){
+            var btnCodigo = document.getElementsByName(this.name);
+            var codi = btnCodigo[0].name.toString();
+            window.location.href="misasistencias.php?codA="+codi;
+        }
+    });
+});
+</script>
+<script language="javascript">
+var codigobtn =""
+$(document).ready(function(){
+    $("button").click(function(){
+        var id = this.id;
+        if(id=="registrarAs"){
+            var btnCodigo = document.getElementsByName(this.name);
+            var codigobtn = btnCodigo[0].name.toString();
+        }
+    });
+});
+</script>
+<script language="javascript">
+var codigob = codigobtn;
+$(document).ready(function(){
+    $("#regContra").click(function(){
+        var contra = $("#contraseñaA").val();
+        
+    });
+});
+</script>
 </body>
 </html>

@@ -49,11 +49,11 @@ $conn->close();
 </head>
 <body>
 <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
     </div>
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
-                <h1 class="lead display-4 ml-1 mr-2">Asesora-TEC</h1>
+                <h1 class="lead display-4 ml-1 mr-2">Mis asistencias</h1>
         </div>
         <div class="col mt-4" style="background:blue">
             <div class="row justify-content-end mr-2 mt-1">
@@ -61,7 +61,7 @@ $conn->close();
                     <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="fas fa-user fa-fw"></span>
-                        <?php echo $nombrecompleto?>
+                        <?php echo utf8_encode($nombrecompleto)?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                         <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
@@ -70,7 +70,7 @@ $conn->close();
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
             <table class="table table-striped ml-1">
                 <thead class="tabla">
                     <tr style="background:blue;color:white;">

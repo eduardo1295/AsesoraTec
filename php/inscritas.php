@@ -17,7 +17,7 @@ if($buscarAsesorias->num_rows > 0)
 {
 
 	$tabla.= 
-	'<table class="table table-striped">.
+	'<div class="row pl-1"><table class="table table-striped">.
     <thead class="encabezado">
     <tr>
 		<th class="lead">Codigo</th>
@@ -28,6 +28,7 @@ if($buscarAsesorias->num_rows > 0)
 		<th class="lead">Miercoles</th>
 		<th class="lead">Jueves</th>
 		<th class="lead">Viernes</th>
+		<th class="lead">Acción</th>
     </tr>
 	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
@@ -44,7 +45,7 @@ if($buscarAsesorias->num_rows > 0)
 			{
 			$tabla.=
 			'<tr>
-			<td><a href="horarios.php?codigo='.$fila['Codigo_Asesoria'].'">'.$fila['Codigo_Asesoria'].'</a></td>
+			<td>'.$fila['Codigo_Asesoria'].'</td>
 			<td>'.utf8_encode($asesoria->Nom_Maestro).'</td>
 			<td>'.utf8_encode($asesoria->Nombre).'</td>
 			<td>'.utf8_encode($row['Lunes']).'</td>
@@ -52,14 +53,15 @@ if($buscarAsesorias->num_rows > 0)
 			<td>'.utf8_encode($row['Miercoles']).'</td>
 			<td>'.utf8_encode($row['Jueves']).'</td>
 			<td>'.utf8_encode($row['Viernes']).'</td>
-			 </tr>
+			<td><button class="btn btn-danger" name="'.$fila['Codigo_Asesoria'].'" id="darbaja" data-toggle="modal" data-target="#mensaje">Dar de baja</button><button class="btn btn-success ml-1" name='.$fila['Codigo_Asesoria'].' id="asistencias">Asistencias</button><button class="btn btn-info ml-1" name='.$fila['Codigo_Asesoria'].' id="registrarAs">Reg. asistencia</button></td>
+			</tr>
 			';	
 			}
 		}
 		
 		
 	}
-	$tabla.='</table>';
+	$tabla.='</table></div>';
 	
 } else
 	{

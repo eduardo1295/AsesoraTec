@@ -74,7 +74,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </div>
     </div>
     <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"id="" name=""style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
     <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -83,15 +83,14 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                     <h4 class="modal-title" id="modalLabel">
                                         Ayuda del Sistema
                                     </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" id="" name="" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body" id="mens">
-                                  Selecciona una de tus asesorías para ver el horario
                                 </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                                    <button type="button" class="btn btn-primary lead" id="" name="" data-dismiss="modal">Aceptar</button>
                                 </div>
                             </div>
                         </div>
@@ -101,6 +100,9 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 <script>
 $(document).ready(function(){
     $("button").click(function(){
+        var id = this.id;
+        if(id=="inscribir")
+        {
         var cod = document.getElementsByName(this.name);
         var dato = cod[0].name.toString();
         var aux = dato.split('*');
@@ -118,6 +120,7 @@ $(document).ready(function(){
                 mens.text(data);
             }
         });
+    }
     });
 });
 </script>
