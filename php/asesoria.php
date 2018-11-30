@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $maestro = new Maestro();
         $codigo = $_POST['codigo'];
         $maestro->ObtenerDatos($_SESSION['noeconomico'],$maestro);
-        $nombreMaestro = $maestro->Nombre." ".$maestro->Ap_Pat." ".$maestro->Ap_Mat;
+        $nombreMaestro = utf8_encode($maestro->Nombre)." ".utf8_encode($maestro->Ap_Pat)." ". utf8_encode($maestro->Ap_Mat);
         $nombreMateria = $_POST['nombre'];
         $tipo = $_POST['tipo'];
         $semestre = $_POST['semestre'];
@@ -20,18 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $res = horarioVacio($Horario,$salon);
         $horamin = array();
         $horamax = array();
-        for ($i=0; $i < count($Horario) ; $i++) { 
-            if ($Horario[$i] != "") {
-                $aux = explode("-",$Horario[$i]);
-                array_push($horamin,$aux[0]);
-                array_push($horamax,$aux[1]);
-            }
-            else {
-                array_push($horamin,"");
-                array_push($horamax,"");
-            }
-            
-        }
+        
         if($opcion == "Agregar"){
             if($res == 1)
             {  
@@ -50,14 +39,107 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 echo "El formato para el horario no es correcto!";
                              else
                             {
-                                $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre,$_SESSION['noeconomico']);
-                                if($correcto ==1){
-                                $maestro->AgregarAsesor($codigo,$_SESSION['noeconomico'],$nocontrol,$asesor);
-                                $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico']);
-                                echo ("Se a Registrado Correctamente");
+                                for ($i=0; $i < count($Horario) ; $i++) { 
+                                    if ($Horario[$i] != "") {
+                                        $aux = explode("-",$Horario[$i]);
+                                        array_push($horamin,$aux[0]);
+                                        array_push($horamax,$aux[1]);
+                                    }
+                                    else {
+                                        array_push($horamin,"");
+                                        array_push($horamax,"");
+                                    }
+                                    
                                 }
-                                else
-                                     echo "La asesoria ya ha sido registrada";  
+                                //Aqui Empieza
+                                $horarioLibre = true;
+                                $w = 0;
+                                $horarioOcupado = $maestro->cargarHorarios($_SESSION['noeconomico']);
+                                if (isset($horarioOcupado)) {
+                                    for($x=0; $x < count($horarioOcupado) ; $x++){
+                                        if ($w == 5){
+                                            $w = 0;
+                                        } 
+                                        if ($horarioOcupado[$x] != "") {
+                                            $valor = explode(" ",$horarioOcupado[$x]);
+                                            $auxhora = $valor[0];
+                                            $auxsalon = $valor[1];
+                                            $divhora = explode('-',$auxhora);
+                                            if(isset($divhora[0]) && isset($divhora[1])){
+                                                if($divhora[0] == $horamin[$w]){
+                                                    $horarioLibre = false;
+                                                    break;
+                                                }
+                                                if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                                                    $horarioLibre = false;
+                                                    break;
+                                                }        
+                                            }
+                                        }
+                                        $w = $w + 1;
+                                    }
+                                }
+                                else {
+                                    $w = $w + 1;
+                                }
+                                //Aqui Empieza
+                                $SalonLibre = true;
+                                $w = 0;
+                                $SalonOcupado = $maestro->cargarTodosHorarios($_SESSION['noeconomico']);
+                                if (isset($SalonOcupado)) {
+                                    for($x=0; $x < count($SalonOcupado) ; $x++){
+                                        if ($w == 5){
+                                            $w = 0;
+                                        } 
+                                        if ($SalonOcupado[$x] != "") {
+                                            $valor = explode(" ",$SalonOcupado[$x]);
+                                            $auxhora = $valor[0];
+                                            $auxsalon = $valor[1];
+                                            
+                                            
+                                            $divhora = explode('-',$auxhora);
+                                            if(isset($divhora[0]) && isset($divhora[1])){
+                                                if($divhora[0] == $horamin[$w]){
+                                                    if($auxsalon == $salon[$w]){
+                                                        $SalonLibre = false;
+                                                        break;
+                                                    }
+                                                }
+                                                if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                                                    if($auxsalon == $salon[$w]){
+                                                        $SalonLibre = false;
+                                                        break;
+                                                    }
+                                                }        
+                                            }
+                                        }
+                                        $w = $w + 1;
+                                    }
+                                }
+                                else {
+                                    $w = $w + 1;
+                                }
+                                //Aqui Termina
+                                if($horarioLibre == true){
+                                    if($SalonLibre == true){
+                                        $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre,$_SESSION['noeconomico']);
+                                        if($correcto ==1){
+                                        $maestro->AgregarAsesor($codigo,$_SESSION['noeconomico'],$nocontrol,$asesor);
+                                        $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro);
+                                        echo ("Se a Registrado Correctamente");
+                                        }
+                                        else
+                                            echo "La asesoria ya ha sido registrada";  
+                                    }
+                                    else{
+                                        echo "El salón ya se encuentre ocupado";
+
+                                    }
+                                }
+                                else{
+                                    echo "El horario se cruza con sus asesorias";
+                                }
+                                
                             }   
                         }
                 }
@@ -69,6 +151,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "El formato para el horario no es correcto!";
                     }
                     else {
+                        for ($i=0; $i < count($Horario) ; $i++) { 
+                            if ($Horario[$i] != "") {
+                                $aux = explode("-",$Horario[$i]);
+                                array_push($horamin,$aux[0]);
+                                array_push($horamax,$aux[1]);
+                            }
+                            else {
+                                array_push($horamin,"");
+                                array_push($horamax,"");
+                            }
+                            
+                        }
                         //Aqui Empieza
                         $horarioLibre = true;
                         $w = 0;
@@ -92,9 +186,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             $horarioLibre = false;
                                             break;
                                         }        
-                                        
-                                        
-                                        
+                                    }
+                                }
+                                $w = $w + 1;
+                            }
+                        }
+                        else {
+                            $w = $w + 1;
+                        }
+                        //Aqui Empieza
+                        $SalonLibre = true;
+                        $w = 0;
+                        $SalonOcupado = $maestro->cargarTodosHorarios($_SESSION['noeconomico']);
+                        if (isset($SalonOcupado)) {
+                            for($x=0; $x < count($SalonOcupado) ; $x++){
+                                if ($w == 5){
+                                    $w = 0;
+                                } 
+                                if ($SalonOcupado[$x] != "") {
+                                    $valor = explode(" ",$SalonOcupado[$x]);
+                                    $auxhora = $valor[0];
+                                    $auxsalon = $valor[1];
+                                    
+                                    
+                                    $divhora = explode('-',$auxhora);
+                                    if(isset($divhora[0]) && isset($divhora[1])){
+                                        if($divhora[0] == $horamin[$w]){
+                                            if($auxsalon == $salon[$w]){
+                                                $SalonLibre = false;
+                                                break;
+                                            }
+                                        }
+                                        if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                                            if($auxsalon == $salon[$w]){
+                                                $SalonLibre = false;
+                                                break;
+                                            }
+                                        }        
                                     }
                                 }
                                 $w = $w + 1;
@@ -105,19 +233,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         }
                         //Aqui Termina
                         if ($horarioLibre == true) {
-                        
-                            $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre,$_SESSION['noeconomico']);    
-                            if($correcto == 1){
-                            $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico']);
-                            echo "La asesoria se registro correctamente";
+                            if($SalonLibre == true){
+                                $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre,$_SESSION['noeconomico']);    
+                                if($correcto == 1){
+                                    $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro);
+                                    echo "La asesoria se registro correctamente";
+                                }
+                                else
+                                echo "La asesoria ya ha sido registrada";
                             }
-                            else
-                            echo "La asesoria ya ha sido registrada";
+                            else{
+                                echo "El salón ya se encuentre ocupado";
+                            }
                         }
                         else {
-                            echo "El horario cruza";
+                            echo "El horario se cruza con sus asesorias";
                         }
-                   
                 } 
             }
                 }

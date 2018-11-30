@@ -99,17 +99,14 @@ class Maestro{
      }
     }
 
-    public function AgregarHorario($codigo,$noecom,$salon,$Horario,$neocon){
+    public function AgregarHorario($codigo,$noecom,$salon,$Horario,$neocon,$nombreMaestro){
         try{
-        $maestro = new maestro();
-        $maestro->ObtenerDatos($noecom,$maestro);
-        $nombreCompleto = $maestro->Nombre ." ".$maestro->Ap_Pat." ".$maestro->Ap_Mat;
         $conexion = abrirBD();
         $SQL= "INSERT INTO HORARIOS VALUES(?,?,?,?,?,?,?,?)";
         $sentencia_preparada1 = $conexion->prepare($SQL);
         $sentencia_preparada1->bind_param("ssssssss",$cod_Mat,$mae,$lun,$mar,$mie,$jue,$vie,$neo);
         $cod_Mat = utf8_encode($codigo);
-        $mae = $nombreCompleto;
+        $mae = utf8_decode($nombreMaestro);
         $lun = $Horario[0].' '.$salon[0];
         $mar = $Horario[1].' '.$salon[1];
         $mie = $Horario[2].' '.$salon[2];
@@ -369,6 +366,29 @@ public function cargarHorarios($noecon){
         $STMT = $conexion->prepare($SQL);
         $STMT->bind_param('s',$neo);
         $neo = $noecon;
+        $STMT->execute();
+        $STMT->bind_result($lunes,$martes,$miercoles,$Jueves,$Vienes);
+        $datos = array();
+        while( $fila = $STMT->fetch()){
+            array_push($datos,$lunes);
+            array_push($datos,$martes);
+            array_push($datos,$miercoles);
+            array_push($datos,$Jueves);
+            array_push($datos,$Vienes);
+        }
+        $conexion->close();
+        return $datos;
+    }
+    catch (Exception $e){
+        $error = $e->getMessage();
+        echo $error;
+    }
+}
+public function cargarTodosHorarios($noecon){
+    try{
+        $conexion = abrirBD();
+        $SQL= "SELECT Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios";
+        $STMT = $conexion->prepare($SQL);
         $STMT->execute();
         $STMT->bind_result($lunes,$martes,$miercoles,$Jueves,$Vienes);
         $datos = array();

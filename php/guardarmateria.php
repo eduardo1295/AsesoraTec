@@ -36,7 +36,7 @@ else
     }
     else
     {
-        echo ("Faltan campos por llenar");0
+        echo ("Faltan campos por llenar");
     }
 }
 ?>

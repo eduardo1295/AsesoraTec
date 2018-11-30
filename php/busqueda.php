@@ -58,7 +58,7 @@ if(isset($_SESSION['maestrologeado'])){
 				<form id="asistencia" action="documento1.php" method="get"> 
 				<button type="submit" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-success btn-sm mr-1">Lista asistencia</button>
 				</form>
-				<button type="submit" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-warning btn-sm">Clave Asitencia</button>
+				<button type="button" id="putos" data-toggle="modal" data-target="#modal" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-warning btn-sm">Clave Asitencia</button>
 				</div>
 			</td>
 		 </tr>

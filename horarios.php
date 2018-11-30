@@ -16,6 +16,7 @@ $apmat = $alumno->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 $codigo = $_GET['codigo'];
 $codAsesoria = $_GET['codigo'];
+$noecon = $_GET['ne'];
 $asesoria = new Asesoria();
 $existe = $asesoria->AsesoriaExiste($codigo);
 $registrado = $asesoria->EstoyRegistrado($codigo,$_SESSION['nocontrol']);
@@ -189,7 +190,34 @@ $conn->close();
   <button type="button"class="mt-5 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;position:absolute;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='asesoriasinscritas.php'"><img  src="css/return.png" width="120px"height="120px"></button>
 </div>
 </body>
-
+<script language="javascript">
+$(document).ready(function(){
+    $("#registrarAs").click(function(){
+        var codigoA = '<?php echo $codAsesoria?>';
+        var nocontrol = '<?php echo $nocontrol?>';
+        var contraseñaR = $("#contraseñaR").val();
+        var noecon  = '<?php echo utf8_encode($noecon)?>';
+        var fecha = new Date();
+        var res = $("#res");
+        var fechaActual = fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear();
+        $.ajax({
+            url: 'php/asistencia.php', 
+            method: 'POST',
+            data:{
+              cod:codigoA,
+              control:nocontrol,
+              contra:contraseñaR,
+              fecha:fechaActual,
+              ne:noecon
+            },
+            success: function (data){
+                res.text(data);
+            }
+        });
+      
+    });
+});
+</script>
 <script>
 $(document).ready(function(){
     $("#verasistencias").click(function(){
