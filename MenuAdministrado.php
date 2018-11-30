@@ -75,6 +75,10 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         <i class="fas fa fa-eye fa-fw"></i>Ver las asesorías</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link lead" href="cambiarnombre.php">
+                        <i class="fas fa fa-eye fa-fw"></i>Cambiar Nombre de Jefes</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-5">
                         <i class="fas fa fa-eye fa-fw"></i>Ver Usuarios</a>
                         <div id="item-5" class="collapse">
