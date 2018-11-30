@@ -44,7 +44,7 @@ if($buscarAsesorias->num_rows > 0)
 			{
 			$tabla.=
 			'<tr>
-			<td><a href="horarios.php?codigo='.$fila['Codigo_Asesoria'].'">'.$fila['Codigo_Asesoria'].'</a></td>
+			<td><a href="horarios.php?codigo='.$fila['Codigo_Asesoria'].'&ne='.$fila['NOECON'].'">'.$fila['Codigo_Asesoria'].'</a></td>
 			<td>'.utf8_encode($asesoria->Nom_Maestro).'</td>
 			<td>'.utf8_encode($asesoria->Nombre).'</td>
 			<td>'.utf8_encode($row['Lunes']).'</td>

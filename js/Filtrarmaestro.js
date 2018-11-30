@@ -26,3 +26,34 @@ $(document).on('keyup', '#busqueda', function()
 			obtener_registros();
 		}
 });
+$(document).ready(function(){
+	$("button").click(function(){
+		var id = $(this).attr('id');
+		if(id == 'putos'){
+		var codigo = $(this).val();
+		var fe = new Date();
+		var fecha = fe.getDate().toString()+"/"+(fe.getMonth()+1).toString()+"/"+fe.getFullYear().toString();
+		var clave = "";
+		var mens = $("#mens");
+		var p = $("#aaaa");
+		for(let x=0; x< 6; x++){
+			var aleatorio = Math.round(Math.random()*10);
+			clave += aleatorio.toString();
+		}
+		$.ajax({
+			url: 'php/claveasistencia.php', 
+			method: 'POST',
+			data:{
+				contra : clave,
+				ap: codigo,
+				fec: fecha
+			},
+			success: function (hola){
+				mens.text(hola);
+				
+			}
+		});
+
+		}
+	});
+});

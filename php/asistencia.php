@@ -10,14 +10,14 @@ $contraseña = $_POST['contra'];
 $nocontrol = $_POST['control'];
 $fecha = $_POST['fecha'];
 $codigo = $_POST['cod'];
-$nombre = $_POST['nm'];
-$valida = $alumno->ValidaContra($contraseña,$codigo,$fecha,$nombre);
-$yaregistrada = $alumno->AsistenciaYaRegistrada($nocontrol,$fecha,$codigo,$nombre);
+$noecon = $_POST['ne'];
+$valida = $alumno->ValidaContra($contraseña,$codigo,$fecha,$noecon);
+$yaregistrada = $alumno->AsistenciaYaRegistrada($nocontrol,$fecha,$codigo,$noecon);
 if($yaregistrada == 0)
 {
 if($valida > 0)
 {
-    $alumno->RegistrarAsistencia($nocontrol,$fecha,$codigo,$nombre,$contraseña);
+    $alumno->RegistrarAsistencia($nocontrol,$fecha,$codigo,$noecon,$contraseña);
     echo "Asistencia registrada!";
 }
 else 

@@ -282,19 +282,19 @@ public function EliminarAsesoria($nc,$codigoAsesoria)
         echo error;
     }  
 }
-public function AsistenciaYaRegistrada($nc,$fecha,$codA,$nomM)
+public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
 {
     try
         {
             $resultado=0;
             $conn = abrirBD();
-        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASISTENCIASREG WHERE CONTROL_ALUMNO =? AND CODIGO_ASESORIA=? AND FECHA=? AND NOMBRE_MAESTRO=?"))
+        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASISTENCIASREG WHERE CONTROL_ALUMNO =? AND CODIGO_ASESORIA=? AND FECHA=? AND NOECON=?"))
             {
                 $sentencia_preparada->bind_param('ssss',$nocontrol,$codigo,$fechaHoy,$maestro);
                 $nocontrol = $nc;
                 $codigo = $codA;
                 $fechaHoy = $fecha;
-                $maestro = $nomM;
+                $maestro = $ne;
                 $sentencia_preparada->execute();
                 $sentencia_preparada->bind_result($numero);
                 while($sentencia_preparada->fetch()){
@@ -333,18 +333,18 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$nomM)
             echo $error;
         }  
     }
-    public function ValidaContra($contraseña,$codA,$fecha,$nm){
+    public function ValidaContra($contraseña,$codA,$fecha,$ne){
         try
         {
             $resultado=0;
             $conn = abrirBD();
-        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM PASS WHERE PASSW=? AND CODIGO_ASESORIA=? AND FECHA=? AND NOMBRE_MAESTRO=?"))
+        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM PASS WHERE PASSW=? AND CODIGO_ASESORIA=? AND FECHA=? AND NOECON=?"))
             {
-                $sentencia_preparada->bind_param('ssss',$pass,$codigo,$fechaHoy,$nombre);
+                $sentencia_preparada->bind_param('ssss',$pass,$codigo,$fechaHoy,$noecon);
                 $pass = $contraseña;
                 $codigo = $codA;
                 $fechaHoy = $fecha;
-                $nombre= $nm;
+                $noecon= $ne;
                 $sentencia_preparada->execute();
                 $sentencia_preparada->bind_result($numero);
                 while($sentencia_preparada->fetch()){

@@ -6,7 +6,7 @@ class Asesoria{
     Public $Nombre_Materia;
     public $area;
     public $nombreMaestro;
-    public $semestre
+    public $semestre;
 
     function __construct($codigo,$noMaestro,$Nombre_Materia,$area,$nombreMaestro,$senestre){
         $this->codigo = $codigo;

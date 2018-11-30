@@ -1,5 +1,6 @@
 <?php
-require_once('Clases/maestro.php');
+
+require_once('claveasistencia.php');
 /*
 require_once('Clases/conexion.php');
 
