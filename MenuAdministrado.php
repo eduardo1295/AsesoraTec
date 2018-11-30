@@ -76,7 +76,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" href="cambiarnombre.php">
-                        <i class="fas fa fa-eye fa-fw"></i>Cambiar Nombre de Jefes</a>
+                        <i class="fas fa fa-pencil fa-fw"></i>Cambiar Nombre de Jefes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-5">
