@@ -96,7 +96,7 @@ else {
                 </div>
                 <div class="row  justify-content-center">
                     <div class="row" id="tip">
-                        <select name="" id="tipo" class="lead">
+                        <select name="" id="tipo" class="lead" disabled="false">
                         <option value="Ciencias Básicas">Ciencias Básicas</option>
                         <option value="Asignatura de la Carrera">Asignatura de la Carrera</option>
                         <option value="Asignatura Equivalentes">Asignatura Equivalentes</option>

@@ -14,7 +14,7 @@ if(isset($_SESSION['maestrologeado'])){
 	$appat =  utf8_encode($maestro->Ap_Pat);
 	$apmat =  utf8_encode($maestro->Ap_Mat);
 	$nombrecompleto = $nombre." ".$appat." ".$apmat;
-	$query= "SELECT `Nombre_Materia`,`Lunes`,`Martes`,`Miercoles`,`Jueves`,`Viernes`,Codigo,Tipo FROM asesorias,horarios WHERE horarios.NOECON= '$nocontrol' AND codigo = Cod_materia";
+	$query= "SELECT `Nombre_Materia`,`Lunes`,`Martes`,`Miercoles`,`Jueves`,`Viernes`,Codigo,Tipo FROM asesorias,horarios WHERE horarios.NOECON= '$nocontrol' AND codigo = Cod_materia AND Activo = 'Si'";
 	
 	$buscarAsesorias=$conn->query($query);
 	if ($buscarAsesorias->num_rows > 0)
