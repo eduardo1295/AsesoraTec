@@ -10,7 +10,12 @@ if(isset($_POST['opcion'])){
         $cod = $buscar;
         $sentencia_preparada1->execute();
         $sentencia_preparada1->bind_result($nombre);
-        $codigo = '<select name="codigo" id="codigo" class="lead">';
+        if(isset($_POST['edit'])){
+            if($_POST['edit'] != "si")
+                $codigo = '<select name="codigo" id="codigo" class="lead">';
+            else 
+                $codigo = '<select name="codigo" id="codigo" class="lead" disabled="true">';
+        }
         while( $fila = $sentencia_preparada1->fetch()){
             $codigo .= '<option value="'.$nombre.'">'.$nombre.'</option>';
         }
@@ -26,7 +31,10 @@ if(isset($_POST['opcion'])){
         $cod = $buscar;
         $sentencia_preparada1->execute();
         $sentencia_preparada1->bind_result($nombre);
-        $codigo = '<select name="codigo" id="nombrea" class="lead">';
+        if($_POST['edit'] != "si")
+            $codigo = '<select name="codigo" id="nombrea" class="lead">';
+        else 
+        $codigo = '<select name="codigo" id="nombrea" class="lead" disabled="true">';
         while ($fila= $sentencia_preparada1->fetch()) {
             $codigo .= '<option value="'.utf8_encode($nombre).'">'. utf8_encode($nombre).'</option>';
         }

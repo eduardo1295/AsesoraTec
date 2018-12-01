@@ -19,11 +19,11 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 if(isset($_POST['eliminar'])) {
     $conexion = abrirBD();
     $codi = $_POST['codigo'];
-    $SQL= "UPDATE asesorias SET Activo = 'No' WHERE codigo=? AND No_Maestro = ?";
+    $SQL= "UPDATE asesorias SET Activo = 'No' WHERE codigo=? AND NOECON = ?";
     $sentencia_preparada1 = $conexion->prepare($SQL);
     $sentencia_preparada1->bind_param("ss",$cod,$nom);
     $cod =$codi;
-    $nom = $nombrecompleto;
+    $nom = $nc;
     $sentencia_preparada1->execute();
     $conexion->close();
 }
