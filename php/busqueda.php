@@ -110,15 +110,16 @@ else {
 		$codigo = $fila['Cod_Materia'];
 		$tabla.=
 		'<tr>
-		<td>'.$fila['Cod_Materia'].'</td>
-		<td>'.utf8_encode($asesoria->Nombre).'</td>
-		<td>'.utf8_encode($fila['Maestro']).'</td>
+			<td>'.$fila['Cod_Materia'].'</td>
+			<td>'.utf8_encode($asesoria->Nombre).'</td>
+			<td>'.utf8_encode($fila['Maestro']).'</td>
 			<td>'.utf8_encode($fila['Lunes']).'</td>
 			<td>'.utf8_encode($fila['Martes']).'</td>
 			<td>'.$fila['Miercoles'].'</td>
 			<td>'.$fila['Jueves'].'</td>
 			<td>'.$fila['Viernes'].'</td>
-			<td><button class="btn btn-success" name='.$codigo.'*'.$fila['NOECON'].' id="inscribir"data-toggle="modal"data-target="#mensaje">Inscribirme</button></td></tr>';
+			<td><button class="btn btn-success" name="'.$codigo.'*'.$fila['NOECON'].'" id="inscribir" data-toggle="modal">Inscribirme</button></td>
+		</tr>';
 	}
 $tabla.='</table>';
 } else

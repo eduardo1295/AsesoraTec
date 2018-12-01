@@ -35,7 +35,7 @@
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Número de control" maxlength=8
+                        <input type="text" class="cajas lead validanumericos" id="nocontrol" placeholder="Número de control" maxlength=8
                             required>
                     </div>
                 </div>

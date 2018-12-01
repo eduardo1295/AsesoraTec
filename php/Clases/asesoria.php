@@ -66,16 +66,17 @@ class Asesoria{
              echo $error;
             }
     }
-    public function AsesoriaExiste($cod)
+    public function AsesoriaExiste($cod,$noecon)
     {
         try
         {
             $resultado=0;
          $conn = abrirBD();
-         if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIAS WHERE CODIGO=? AND ACTIVO ='Si'"))
+         if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIAS WHERE CODIGO=? AND NOECON=? AND ACTIVO ='Si'"))
              {
-                 $sentencia_preparada->bind_param('s',$codigo);
+                 $sentencia_preparada->bind_param('ss',$codigo,$numecon);
                  $codigo =$cod;
+                 $numecon = $noecon;
                  $sentencia_preparada->execute();
                  $sentencia_preparada->bind_result($numero);
                  while($sentencia_preparada->fetch()){

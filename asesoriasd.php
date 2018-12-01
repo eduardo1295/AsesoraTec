@@ -26,12 +26,12 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
    <link rel="stylesheet" href="css/asesoriasds.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/reloj.js"></script>
-    <script src="js/jquery-3.3.1.js"></script>
     <script src="js/Filtrar.js"></script>
+    <script src="js/InscribirAsesoria.js"></script>
 </head>
 <body>
 <div class="row justify-content-center">
@@ -81,7 +81,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title" id="modalLabel">
-                                        Ayuda del Sistema
+                                        Mensaje del Sistema
                                     </h4>
                                     <button type="button" class="close" data-dismiss="modal" id="" name="" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -98,31 +98,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             </h4>
             </div>
 <script>
-$(document).ready(function(){
-    $("button").click(function(){
-        var id = this.id;
-        if(id=="inscribir")
-        {
-        var cod = document.getElementsByName(this.name);
-        var dato = cod[0].name.toString();
-        var aux = dato.split('*');
-        var auxcod = aux[0];
-        var auxnoecon = aux[1];
-        var mens = $("#mens");
-        $.ajax({
-            url: 'php/inscribir.php', 
-            method: 'POST',
-            data:{
-                codigo : auxcod,
-                noecon : auxnoecon
-            },
-            success: function (data){
-                mens.text(data);
-            }
-        });
-    }
-    });
-});
+
 </script>
 </body>
 </html>
