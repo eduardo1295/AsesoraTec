@@ -33,7 +33,7 @@ if(isset($_SESSION['maestrologeado'])){
 		
     </tr>
 	</thead>';
-
+	
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
 		$tabla.=
@@ -51,10 +51,9 @@ if(isset($_SESSION['maestrologeado'])){
 				<input type="hidden" name="tipo" value="'.utf8_encode($fila['Tipo']).'">
 				<button type="submit" name="editar"class="btn btn-info btn-sm mr-1">Editar</button>
 				</form>
-				<form id="eliminar" action="" method="post"> 
-				<input type="hidden" name="codigo" value="'.$fila['Codigo'].'">
-				<button type="button" name="eliminar" class="btn btn-danger btn-sm mr-1" data-toggle="modal" data-target="#exampleModal" >Eliminar</button>
-				</form>
+				
+				<button type="button" id="elit" value="'.$fila['Codigo'].'" class="btn btn-danger btn-sm mr-1" data-toggle="modal" data-target="#exampleModal" >Eliminar</button>
+				
 				<form id="asistencia" action="documento1.php" method="get"> 
 				<button type="submit" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-success btn-sm mr-1">Lista asistencia</button>
 				</form>

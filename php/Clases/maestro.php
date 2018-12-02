@@ -384,6 +384,34 @@ public function cargarHorarios($noecon){
         echo $error;
     }
 }
+
+public function cargarHorariosEditar($noecon,$codigoMat){
+    try{
+        $conexion = abrirBD();
+        $SQL= "SELECT Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios WHERE NOECON = ? AND Cod_Materia != ?";
+        $STMT = $conexion->prepare($SQL);
+        $STMT->bind_param('ss',$neo,$cod);
+        $neo = $noecon;
+        $cod = $codigoMat;
+        $STMT->execute();
+        $STMT->bind_result($lunes,$martes,$miercoles,$Jueves,$Vienes);
+        $datos = array();
+        while( $fila = $STMT->fetch()){
+            array_push($datos,$lunes);
+            array_push($datos,$martes);
+            array_push($datos,$miercoles);
+            array_push($datos,$Jueves);
+            array_push($datos,$Vienes);
+        }
+        $conexion->close();
+        return $datos;
+    }
+    catch (Exception $e){
+        $error = $e->getMessage();
+        echo $error;
+    }
+}
+
 public function cargarTodosHorarios($noecon){
     try{
         $conexion = abrirBD();

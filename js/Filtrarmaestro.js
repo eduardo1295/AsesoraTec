@@ -1,3 +1,5 @@
+var codigoEliminar = 0;
+
 $(obtener_registros());
 
 function obtener_registros(busqueda)
@@ -54,6 +56,24 @@ $(document).ready(function(){
 			}
 		});
 
+		}
+		else if(id == "elit"){
+			codigoEliminar = $(this).val();
+		}
+		else if(id == "eliminar"){
+			var codigo = codigoEliminar;
+			console.log(codigo);
+			$.post("php/eliminarMat.php",
+    		{
+    		    name: "elimina",
+    		    cod: codigo
+    		},
+    		function(data, status){
+				location.reload();
+			});
+
+			
+			
 		}
 	});
 });

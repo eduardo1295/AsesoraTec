@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-require_once('php/Clases/conexion.php');
 session_start();
+require_once('php/Clases/maestro.php');
+require_once('php/Clases/conexion.php');
 if($_SESSION['maestrologeado']!='SI'){
     header("Location: login.php");
 }
-require_once('php/Clases/maestro.php');
+$maestro = new maestro();
+$nocontrol= $_SESSION['noeconomico'];
+$maestro->ObtenerDatos($nocontrol,$maestro);
+$nc = $nocontrol;
+/*
+if(isset($_POST['eliminar'])) {
+    echo "POR FIN ALV ALV";    
+    $conexion = abrirBD();
+    $codi = $_GET['code'];
+    var_dump ($codi);
+    $SQL= "UPDATE asesorias SET Activo = 'No' WHERE codigo=? AND NOECON = ?";
+    $sentencia_preparada1 = $conexion->prepare($SQL);
+    $sentencia_preparada1->bind_param("ss",$cod,$nom);
+    $cod =$codi;
+    $nom = $nc;
+    $sentencia_preparada1->execute();
+    $conexion->close();
+}
+
+else{
+    echo "NEL";
+}*/
 $maestro = new maestro();
 $nocontrol= $_SESSION['noeconomico'];
 $maestro->ObtenerDatos($nocontrol,$maestro);
@@ -16,17 +38,7 @@ $appat =  utf8_encode($maestro->Ap_Pat);
 $apmat =  utf8_encode($maestro->Ap_Mat);
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
-if(isset($_POST['eliminar'])) {
-    $conexion = abrirBD();
-    $codi = $_POST['codigo'];
-    $SQL= "UPDATE asesorias SET Activo = 'No' WHERE codigo=? AND NOECON = ?";
-    $sentencia_preparada1 = $conexion->prepare($SQL);
-    $sentencia_preparada1->bind_param("ss",$cod,$nom);
-    $cod =$codi;
-    $nom = $nc;
-    $sentencia_preparada1->execute();
-    $conexion->close();
-}
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -96,7 +108,8 @@ if(isset($_POST['eliminar'])) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-danger" name="eliminar" form="eliminar">Confirmar</button>
+                        <button type="button" class="btn btn-danger" name="eliminar" id="eliminar">Confirmar</button>
+                        
                     </div>
                 </div>
             </div>
