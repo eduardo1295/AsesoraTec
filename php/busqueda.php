@@ -20,7 +20,7 @@ if(isset($_SESSION['maestrologeado'])){
 	if ($buscarAsesorias->num_rows > 0)
 	{
 	$tabla.= 
-	'<table class="table table-striped">
+	'<div class="row"><table class="table table-striped">
     <thead class="encabezado">
     <tr>
 		<th class="lead"><div class="d-flex justify-content-center">Materia</div></th>
@@ -52,7 +52,7 @@ if(isset($_SESSION['maestrologeado'])){
 				<button type="submit" name="editar"class="btn btn-info btn-sm mr-1">Editar</button>
 				</form>
 				
-				<button type="button" id="elit" value="'.$fila['Codigo'].'" class="btn btn-danger btn-sm mr-1" data-toggle="modal" data-target="#exampleModal" >Eliminar</button>
+				<button type="button" id="elim" value="'.$fila['Codigo'].'" class="btn btn-danger btn-sm mr-1" data-toggle="modal" data-target="#exampleModal" >Eliminar</button>
 				
 				<form id="asistencia" action="documento1.php" method="get"> 
 				<button type="submit" name="eliminar" value="'.$fila['Codigo'].'" class="btn btn-success btn-sm mr-1">Lista asistencia</button>
@@ -63,7 +63,7 @@ if(isset($_SESSION['maestrologeado'])){
 		 </tr>
 		';
 	}
-	$tabla.='</table>';
+	$tabla.='</table></div>';
 } else
 	{
 		$tabla="No se encontraron coincidencias con sus criterios de búsqueda.";

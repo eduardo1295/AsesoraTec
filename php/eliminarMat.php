@@ -3,7 +3,7 @@ session_start();
 require_once('Clases/maestro.php');
 require_once('Clases/conexion.php');
 
-if (isset($_POST['name'])) {
+if (isset($_POST['cod'])) {
     $conexion = abrirBD();
     $codi = $_POST['cod'];
     $nc = $_SESSION['noeconomico'];
@@ -15,7 +15,7 @@ if (isset($_POST['name'])) {
     $nom = $nc;
     $sentencia_preparada1->execute();
     $conexion->close();
-    header("Location: ../verasesorias.php");
+ 
 }
 else {
     echo "Nel";
