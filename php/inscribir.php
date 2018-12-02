@@ -2,7 +2,7 @@
 require_once('Clases/alumno.php');
 session_start();
 $nocontrol = $_SESSION['nocontrol'];
-$codAsesoria = $_POST['codigo'];
+$codAsesoria = $_POST['cod'];
 $noecon = $_POST['noecon'];
 $alumno = new Alumno();
 $yainscrito = $alumno->YaInscrito($nocontrol,$codAsesoria);

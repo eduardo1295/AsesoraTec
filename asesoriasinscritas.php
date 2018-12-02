@@ -78,7 +78,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     </div>
 
     <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary fixed-bottom navegacion"id="regresar"style="border:0; background-color:transparent;cursor:pointer; position:relative; min-height:100%;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        <button type="button"class="mt-2 mr-5 btn btn-primary fixed-bottom navegacion"id="regresar"style="border:0; background-color:transparent;cursor:pointer; " value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
     
     <div class="modal fade" id="mensa" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
@@ -92,14 +92,11 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body" id="mens">
-                        ¿Seguro que quieres darte de baja?
+                        <div class="modal-body" id="resul">
                         </div>
                         <div class="modal-footer">
-                        <form method="post">
-                            <button type="submit" class="btn btn-primary lead" id=""name="darbaja">Aceptar</button></div>
-                            <input type="hidden" name="codigoAs" id="codigo">
-                        </form>
+                            <button type="button" class="btn btn-secondary lead" data-dismiss="modal">Aceptar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,70 +121,30 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary lead"   data-dismiss="modal" onclick="window.location.href='asesoriasinscritas.php'"id=""name="">Cerrar</button>
+                            <button type="button" class="btn btn-primary lead"   data-dismiss="modal"id=""name="">Cerrar</button>
                         </div>
                     </div>
                 </div>
             </div>
-<script language="javascript">
-$(document).ready(function(){
-    $("button").click(function(){
-        var id = this.id;
-        if(id=="registrarAs"){
-            var btnCodigo = document.getElementsByName(this.name);
-           var codigobtn = btnCodigo[0].name.toString();
-           var arr = codigobtn.split('*');
-            var texto = document.getElementById('codigo');
-            var noecon = document.getElementById('noecon');
-            noecon.value = arr[1];
-            texto.value = arr[0];
-        }
-        
-    });
-    $("#regContra").click(function(){
-        var contra = $("#contraseñaA").val();
-        var codigo = $("#codigo").val();
-        var noecon = $("#noecon").val();
-        var res = $("#mensContra");
-        var fecha = new Date();
-        var fechaHoy = fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+fecha.getFullYear();
-        $.ajax({
-            url: 'php/asistencia.php', 
-            cache: false,
+<script>
+$(document).on("click","#darbaja",function(){
+    var codigo = $(this).data("id");
+    var res = $("#resul");
+    var mens = $("#mensa");
+    $.ajax({
+            url: 'php/eliminarA.php', 
             method: 'POST',
             data:{
-                pass : contra,
                 cod : codigo,
-                ne: noecon,
-                fe:fechaHoy
             },
             success: function (data){
                 res.text(data);
+                mens.modal('show');
+                $("#tabla").load('php/inscritas.php');
             }
         });
-
-    });
-    $("#eliminar").click(function(){
-        var nameButton = document.getElementsByName(this.name);
-        var codigo = nameButton[0].name.toString();
-        var oculto = document.getElementById('codigo');
-        oculto.value = codigo;
-    });
-});
+    
+})
 </script>
-<?php 
-if(isset($_POST['darbaja']))
-{
-    require_once('php/Clases/alumno.php');
-    $nocontrol = $_SESSION['nocontrol'];
-    $codAsesoria = $_POST['codigoAs'];
-    if($codAsesoria=="")
-        echo "No tiene nada";
-    echo $codAsesoria;
-    $alumno = new Alumno();
-    $alumno->EliminarAsesoria($nocontrol,$codAsesoria);
-    echo "Te diste de baja de esta asesoría!";
-}
-?>
 </body>
 </html>
