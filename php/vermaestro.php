@@ -36,7 +36,7 @@ if ($buscarAlumnos->num_rows > 0)
 	{
 		$tabla.=
 		'<tr>
-        <td><a href="perfilmaestro.php?cod='.$fila['NOECON'].'">'.$fila['NOECON'].'</a></td>
+        <td><a data-toggle="tooltip" title="Selecciona el codigo" href="perfilmaestro.php?cod='.$fila['NOECON'].'">'.$fila['NOECON'].'</a></td>
             <td>'.utf8_encode($fila['pass']).'</td>
 			<td>'.utf8_encode($fila['nombre']).'</td>
 			<td>'.utf8_encode($fila['Ap_Pat']).'</td>

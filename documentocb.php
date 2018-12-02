@@ -1,9 +1,18 @@
 <?php 
 include 'plantilla2.php';
 require 'php/Clases/conexion.php';
+$consulta = "SELECT jefedptocb,presiacb from jefes";
+$conexion = abrirBD();
+$resultados =$conexion->query($consulta);
+while($resul = mysqli_fetch_array($resultados)){ 
+    $jefecb = $resul[0];
+    $presicb = $resul[1];
+    }
+$conexion-> close();
 $consulta = "SELECT horarios.Maestro, asesorias.Nombre_Materia,Lunes,Martes,Miercoles,Jueves,Viernes from asesorias,horarios where Cod_Materia = Codigo and TIPO= 'Ciencias Basicas'";
 $conexion = abrirBD();
 $resultados =$conexion->query($consulta);
+
 $pdf = new PDF('L','mm','A4');
 $pdf->AliasNbPages();
 $pdf->AddPage();
@@ -36,8 +45,8 @@ $pdf->SetFont('Arial','B',15);
 $pdf->Cell(270,6,'Atentamente',0,1,"C");
 $pdf->Ln(20);
 $pdf->SetFont('Arial','B',12);
-$pdf->Cell(110,6,'ING.HECTOR I. GUERRERO LAFARGA,',0,0,'C');
-$pdf->Cell(200,6,'ING.LAMBERTO VILLEGAS MONTOYA',0,1,'C');
+$pdf->Cell(110,6,$jefecb,0,0,'C');
+$pdf->Cell(200,6,$presicb,0,1,'C');
 $pdf->SetFont('Arial','B',12);
 $pdf->Cell(110,6,'JEFE DEL DEPTO. DE CS. BASICAS',0,0,'C');
 $pdf->Cell(200,6,'PRESIDENTE ACADEMIA DE CS. BASICAS',0,1,'C');
