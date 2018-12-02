@@ -24,6 +24,7 @@ $(document).ready(function(){
                 success: function(response)
                 {
                     $('#fecha').html(response).fadeIn();
+                    $('#tabla').html("");
                 }
             });
         }

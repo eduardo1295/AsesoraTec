@@ -13,9 +13,7 @@ if (isset($_SESSION['noeconomico'])) {
                 $neo = $noecon;
                 $STMT->execute();
                 $STMT->bind_result($codigo,$nom);
-                
                 $resultdo = '<option value= "">Seleccione asesoría</option>';
-                
                 while( $fila = $STMT->fetch()){
                     $resultdo .= '<option value= "'.$codigo.'">'.utf8_encode($nom).'</option>';   
                 }
@@ -42,10 +40,14 @@ if (isset($_SESSION['noeconomico'])) {
                 $STMT->bind_result($fecha);
                 
                 $resultdo = '<option value= "">Seleccione asesoría</option>';
-                
+                $vacio = true;
                 while( $fila = $STMT->fetch()){
+                    $vacio = false;
                     $resultdo .= '<option value= "'.$fecha.'*'.$codigo.'">'.$fecha.'</option>';   
                 }
+                if($vacio == true)
+                    $resultdo = '<option value= "">Sin resultados.</option>';
+
                 $conexion->close();
                 echo $resultdo;
             }
