@@ -14,5 +14,4 @@ else{
     $alumno->InscribirAsesoria($nocontrol,$codAsesoria,$noecon);
     echo "Te inscribiste a la asesoría!";
 }
-
 ?>

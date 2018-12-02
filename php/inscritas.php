@@ -17,7 +17,7 @@ if($buscarAsesorias->num_rows > 0)
 {
 
 	$tabla.= 
-	'<table class="table table-striped">.
+	'<div class="row pl-1"><table class="table table-striped">.
     <thead class="encabezado">
     <tr>
 		<th class="lead">Codigo</th>
@@ -28,12 +28,14 @@ if($buscarAsesorias->num_rows > 0)
 		<th class="lead">Miercoles</th>
 		<th class="lead">Jueves</th>
 		<th class="lead">Viernes</th>
+		<th class="lead">Acción</th>
+		<th class="lead">Acción</th>
     </tr>
 	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
 		$cod = $fila['Codigo_Asesoria'];
-		$SQL = "SELECT * FROM HORARIOS WHERE COD_MATERIA ='$cod'";
+		$SQL = "SELECT * FROM HORARIOS WHERE COD_MATERIA  ='$cod'";
 		$res = $conn->query($SQL);
 		$asesoria = new Asesoria();
 		$asesoria->ObtenerAsesoria($fila['Codigo_Asesoria'],$asesoria);
@@ -52,14 +54,16 @@ if($buscarAsesorias->num_rows > 0)
 			<td>'.utf8_encode($row['Miercoles']).'</td>
 			<td>'.utf8_encode($row['Jueves']).'</td>
 			<td>'.utf8_encode($row['Viernes']).'</td>
-			 </tr>
+			<td><a class="btn btn-success ml-1" name="'.$fila['Codigo_Asesoria'].'" id="asistencias" href="misasistencias.php?codA='.$fila['Codigo_Asesoria'].'&ne='.$fila['NOECON'].'">Asistencias</a><button class="btn btn-info ml-1" name="'.$fila['Codigo_Asesoria'].'*'.$fila['NOECON'].'" id="registrarAs" data-toggle="modal" data-target="#contra" name="">Reg. asistencia</button></td>
+			<td><a class="btn btn-info" id="eliminar" name="'.$fila['Codigo_Asesoria'].'" data-toggle="modal" data-target="#mensa">Dar de baja</a></td>
+			</tr>
 			';	
 			}
 		}
 		
 		
 	}
-	$tabla.='</table>';
+	$tabla.='</table></div>';
 	
 } else
 	{

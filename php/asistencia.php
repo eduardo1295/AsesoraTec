@@ -6,9 +6,9 @@ if($_SESSION['logeado']!="SI")
 }
 require_once('Clases/alumno.php');
 $alumno = new Alumno();
-$contraseña = $_POST['contra'];
-$nocontrol = $_POST['control'];
-$fecha = $_POST['fecha'];
+$contraseña = $_POST['pass'];
+$nocontrol = $_SESSION['nocontrol'];
+$fecha = $_POST['fe'];
 $codigo = $_POST['cod'];
 $noecon = $_POST['ne'];
 $valida = $alumno->ValidaContra($contraseña,$codigo,$fecha,$noecon);

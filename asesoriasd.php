@@ -26,12 +26,12 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
    <link rel="stylesheet" href="css/asesoriasds.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/reloj.js"></script>
-    <script src="js/jquery-3.3.1.js"></script>
     <script src="js/Filtrar.js"></script>
+    <script src="js/InscribirAsesoria.js"></script>
 </head>
 <body>
 <div class="row justify-content-center">
@@ -74,24 +74,23 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </div>
     </div>
     <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"id="" name=""style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
     <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title" id="modalLabel">
-                                        Ayuda del Sistema
+                                        Mensaje del Sistema
                                     </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" id="" name="" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body" id="mens">
-                                  Selecciona una de tus asesorías para ver el horario
                                 </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                                    <button type="button" class="btn btn-primary lead" id="" name="" data-dismiss="modal">Aceptar</button>
                                 </div>
                             </div>
                         </div>
@@ -99,27 +98,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             </h4>
             </div>
 <script>
-$(document).ready(function(){
-    $("button").click(function(){
-        var cod = document.getElementsByName(this.name);
-        var dato = cod[0].name.toString();
-        var aux = dato.split('*');
-        var auxcod = aux[0];
-        var auxnoecon = aux[1];
-        var mens = $("#mens");
-        $.ajax({
-            url: 'php/inscribir.php', 
-            method: 'POST',
-            data:{
-                codigo : auxcod,
-                noecon : auxnoecon
-            },
-            success: function (data){
-                mens.text(data);
-            }
-        });
-    });
-});
+
 </script>
 </body>
 </html>
