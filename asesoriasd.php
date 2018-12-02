@@ -31,7 +31,6 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/bootstrap.min.js"></script>
     <script src="js/reloj.js"></script>
     <script src="js/Filtrar.js"></script>
-    <script src="js/InscribirAsesoria.js"></script>
 </head>
 <body>
 <div class="row justify-content-center">
@@ -74,7 +73,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </div>
     </div>
     <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"id="" name=""style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion fixed-bottom"id="" name=""style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
     <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -98,7 +97,28 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             </h4>
             </div>
 <script>
-
+$(document).on("click","#inscribir",function(){
+    var conca = $(this).data("id");
+    var arr = conca.split('*');
+    var codigo = arr[0];
+    var ne = arr[1];
+    var res = $("#mens");
+    var mens = $("#mensaje");
+    $.ajax({
+            url: 'php/inscribir.php', 
+            method: 'POST',
+            data:{
+                cod : codigo,
+                noecon: ne,
+            },
+            success: function (data){
+                res.text(data);
+                mens.modal('show');
+                $("#tabla").load('php/busqueda.php');
+            }
+        });
+    
+});
 </script>
 </body>
 </html>

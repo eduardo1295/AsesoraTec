@@ -5,7 +5,7 @@ require_once('Clases/asesoria.php');
 $conn = abrirBD();
 $tabla ="";
 $nocontrol = $_SESSION['nocontrol'];
-$query = "SELECT *FROM ASESORIASREG WHERE CONTROL_ALUMNO='$nocontrol'";
+$query = "SELECT * FROM ASESORIASREG WHERE CONTROL_ALUMNO='$nocontrol'";
 if(isset($_POST['buscar']))
 {
 	$q=$conn->real_escape_string($_POST['buscar']);
@@ -29,7 +29,6 @@ if($buscarAsesorias->num_rows > 0)
 		<th class="lead">Jueves</th>
 		<th class="lead">Viernes</th>
 		<th class="lead">Acción</th>
-		<th class="lead">Acción</th>
     </tr>
 	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
@@ -44,6 +43,7 @@ if($buscarAsesorias->num_rows > 0)
 		{
 			if($activa=="Si")
 			{
+				
 			$tabla.=
 			'<tr>
 			<td><a href="horarios.php?codigo='.$fila['Codigo_Asesoria'].'&ne='.$fila['NOECON'].'">'.$fila['Codigo_Asesoria'].'</a></td>
@@ -54,8 +54,10 @@ if($buscarAsesorias->num_rows > 0)
 			<td>'.utf8_encode($row['Miercoles']).'</td>
 			<td>'.utf8_encode($row['Jueves']).'</td>
 			<td>'.utf8_encode($row['Viernes']).'</td>
-			<td><a class="btn btn-success ml-1" name="'.$fila['Codigo_Asesoria'].'" id="asistencias" href="misasistencias.php?codA='.$fila['Codigo_Asesoria'].'&ne='.$fila['NOECON'].'">Asistencias</a><button class="btn btn-info ml-1" name="'.$fila['Codigo_Asesoria'].'*'.$fila['NOECON'].'" id="registrarAs" data-toggle="modal" data-target="#contra" name="">Reg. asistencia</button></td>
-			<td><a class="btn btn-info" id="eliminar" name="'.$fila['Codigo_Asesoria'].'" data-toggle="modal" data-target="#mensa">Dar de baja</a></td>
+			<td><a class="btn btn-success btn-sm mr-1" name="'.$fila['Codigo_Asesoria'].'" id="asistencias" href="misasistencias.php?codA='.$fila['Codigo_Asesoria'].'&ne='.$fila['NOECON'].'">Asistencias</a>
+			<button class="btn btn-info btn-sm mr-1" name="'.$fila['Codigo_Asesoria'].'*'.$fila['NOECON'].'" id="registrarAs" data-toggle="modal" data-target="#contra" name="">Reg. asistencia</button>
+			<button type="button"id="darbaja" class="btn btn-danger btn-sm mr-1" data-id="'.$fila['Codigo_Asesoria'].'">Eliminar</button></td>
+			</td>
 			</tr>
 			';	
 			}

@@ -36,10 +36,10 @@
 
 </head>
 
-<body class="contenedor">
-    <div class="row">
-        <img src="bannerac.png" alt="" class="w-100 ml-2" style="width:100%;border:3px solid gray;">
-    </div>
+<body >
+<div class="row">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
+</div>
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
                 <h1 class="lead display-4 ml-1 mr-2">Asesora-TEC</h1>

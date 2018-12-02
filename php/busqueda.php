@@ -106,8 +106,10 @@ else {
 	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
+
 		$asesoria->ObtenerAsesoria($fila['Cod_Materia'],$asesoria);
 		$codigo = $fila['Cod_Materia'];
+		$concatenacion = $fila['Cod_Materia']."*".$fila['NOECON'];
 		$tabla.=
 		'<tr>
 			<td>'.$fila['Cod_Materia'].'</td>
@@ -118,7 +120,9 @@ else {
 			<td>'.$fila['Miercoles'].'</td>
 			<td>'.$fila['Jueves'].'</td>
 			<td>'.$fila['Viernes'].'</td>
-			<td><button class="btn btn-success" name="'.$codigo.'*'.$fila['NOECON'].'" id="inscribir" data-toggle="modal">Inscribirme</button></td>
+			<td>
+			<button type="button"id="inscribir" class="btn btn-success btn-sm mr-1" data-id="'.$concatenacion.'">Inscribirme</button></td>
+			</td>
 		</tr>';
 	}
 $tabla.='</table>';
