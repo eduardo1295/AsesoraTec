@@ -47,7 +47,7 @@
         <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
     </div>
     <div class="page-header pb-2 pt-2 row justify-content-center">
-            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" id="logo" alt="Login"></h1>
+            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="alumno.png" id="logo" alt=""></h1>
     </div>        
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
@@ -69,12 +69,12 @@
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"   value="<?php echo $appat?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required onkeypress="return soloLetras(event)">
+                        <input type="text"   value="<?php echo utf8_encode($appat)?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $apmat?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required onkeypress="return soloLetras(event)">
+                        <input type="text" value="<?php echo utf8_encode($apmat)?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">

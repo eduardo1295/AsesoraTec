@@ -113,7 +113,7 @@ else {
 	{
 		$tabla.=
 		'<tr>
-        <td><a data-toggle="tooltip" title="Selecciona el codigo" href="editarasesoriasa.php?cod='.$fila['Codigo'].'& tipo='.$fila['Tipo']. '& NOECON='.$fila['NOECON'].'">'
+        <td><a data-toggle="tooltip" title="Selecciona el codigo" href="editarasesoriasa.php?cod='.$fila['Codigo'].'& tipo='.utf8_encode($fila['Tipo']). '& NOECON='.$fila['NOECON'].'">'
         .$fila['Codigo'].'</a></td>
 			<td>'.utf8_encode($fila['No_Maestro']).'</td>
 			<td>'.utf8_encode($fila['Nombre_Materia']).'</td>

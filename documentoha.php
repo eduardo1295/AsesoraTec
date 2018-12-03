@@ -13,7 +13,7 @@ while($resul = mysqli_fetch_array($resultados)){
     $semestre = $resul[4];
     }
 $conexion-> close();
-$consulta = "SELECT horarios.Maestro, asesorias.Nombre_Materia,Lunes,Martes,Miercoles,Jueves,Viernes from asesoriasreg,horarios,asesorias where asesoriasreg.Control_Alumno = '$numcontrol' and asesoriasreg.Codigo_Asesoria = Cod_Materia and Cod_Materia = Codigo";
+$consulta = "SELECT horarios.Maestro, asesorias.Nombre_Materia,Lunes,Martes,Miercoles,Jueves,Viernes from asesoriasreg, horarios,asesorias where asesoriasreg.Control_Alumno = '$numcontrol' and asesoriasreg.Codigo_Asesoria = Cod_Materia and Cod_Materia = Codigo";
 $conexion = abrirBD();
 $resultados2 =$conexion->query($consulta);
 
@@ -21,14 +21,17 @@ $nombrecompleto = $Nombrea." ".$Ape_pat." ".$Ape_mat;
 $pdf = new PDF('L','mm','A4');
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetXY(20,45); 
-$pdf->SetFont('Arial','B',16);
+$pdf->SetXY(120,45);
+$pdf->SetFont('Arial','B',18);
+$pdf->Cell(45,6,utf8_decode("Carga de asesorías inscritas"),0,0,'C');
+$pdf->SetXY(20,60); 
+$pdf->SetFont('Arial','B',14);
 $pdf->Cell(45,6,"Nombre: "."$numcontrol",0,0,'C');
-$pdf->Cell(130,6,"$nombrecompleto",0,0,'C');
-$pdf->Cell(150,6,"Semestre: "."$semestre",0,1,'C');
+$pdf->Cell(160,6,"$nombrecompleto",0,0,'C');
+$pdf->Cell(50,6,"Semestre: "."$semestre",0,1,'C');
 $pdf->SetFillColor(255,255,255);
 $pdf->SetFont('Arial','B',12);
-$pdf->SetXY(20,60);
+$pdf->SetXY(20,70);
 $pdf->Cell(60,6,"Asesor",1,0,"C",1);
 $pdf->Cell(60,6,"Materia",1,0,"C",1);
 $pdf->Cell(25,6,"Lunes",1,0,"C",1);
@@ -49,7 +52,7 @@ $pdf->Cell(25,6,$rows['Miercoles'],1,0,"C");
 $pdf->Cell(25,6,$rows['Jueves'],1,0,"C");
 $pdf->Cell(25,6,$rows['Viernes'],1,1,"C");
 }
-$pdf->ln(20);
+$pdf->ln(30);
 $pdf->SetFont('Arial','B',15);
 $pdf->Cell(270,6,'Atentamente',0,1,"C");
 $pdf->Ln(20);

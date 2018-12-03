@@ -19,7 +19,7 @@ $nc = $nocontrol;
 $nombre = $alumno->Nombre;
 $appat = $alumno->Ap_Pat;
 $apmat = $alumno->Ap_Mat;
-$nombrecompleto = $nombre." ".$appat." ".$apmat;
+$nombrecompleto = utf8_encode($nombre." ".$appat." ".$apmat);
 $codAsesoria = $_GET['codA'];
 $noecon = $_GET['ne'];
 $_SESSION['codigo'] = $codAsesoria."*".$noecon;
@@ -69,7 +69,7 @@ $conn->close();
                     <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="fas fa-user fa-fw"></span>
-                        <?php echo utf8_encode($nombrecompleto)?>
+                        <?php echo utf8_encode(utf8_decode($nombrecompleto))?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                         <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>

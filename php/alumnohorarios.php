@@ -42,7 +42,7 @@ if ($buscarAlumnos->num_rows > 0)
 		'<tr>
         <td><a href="documentoha.php?cod='.$fila['nocontrol'].'">'.$fila['nocontrol'].'</a></td>
             <td>'.utf8_encode($fila['pass']).'</td>
-			<td>'.utf8_encode($fila['nombre']).'</td>
+			<td>'.utf8_encode($fila['Nombre']).'</td>
 			<td>'.utf8_encode($fila['Ap_Pat']).'</td>
             <td>'.utf8_encode($fila['Ap_Mat']).'</td>
             <td>'.utf8_encode($fila['Carrera']).'</td>

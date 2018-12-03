@@ -296,7 +296,7 @@ function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
                         return false;
                         break;
                     }
-                    if($horamin[$w] < $divhora[0] ){
+                    if($divhora[0] < $horamin[$w] && $divhora[1] > $horamin[$w]){
                         return false;
                         break;
                     }        

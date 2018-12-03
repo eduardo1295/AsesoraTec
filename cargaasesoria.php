@@ -1,9 +1,12 @@
 <?php 
 include 'plantillahorarioalumno.php';
 require 'php/Clases/conexion.php';
+require_once('php/Clases/alumno.php');
+
 session_start();
 $nc = $_SESSION['nocontrol'];
-$existe = $alumno->AlumnoExists($nocontrol);
+$alumno = new Alumno();
+$existe = $alumno->AlumnoExists($nc);
 if($existe == 0)
 {
     header("Location: login.php");

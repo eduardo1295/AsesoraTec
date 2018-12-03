@@ -538,7 +538,9 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                     { 
                         if((int)$horasInicioYFinalMiercoles[0]<(int)$horasMiercolesForaneo[1]&&(int)$horasMiercolesForaneo[0]!=(int)$horasInicioYFinalMiercoles[1])
                         {
-                            
+                            echo $horasInicioYFinalMiercoles[1];
+                            echo $horasMiercolesForaneo[0];
+        
                             return true;
                         }
 
