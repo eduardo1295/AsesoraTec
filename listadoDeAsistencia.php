@@ -63,12 +63,12 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     </div>
     <div class="container mt-5">
         <div class="row justify-content-around">
-            <div class="col-sm-3">
-                <label for="asesoria">Asesoria:</label>
+            <div class="col-sm-3 text-center">
+                <label for="asesoria" class="lead">Asesoria:</label>
                 <select class="form-control" name="" id="asesoria"></select>
             </div>
-            <div class="col-sm-3">
-                <label for="fecha">Fecha:</label>
+            <div class="col-sm-3 text-center">
+                <label for="fecha" class="lead">Fecha:</label>
                 <select class="form-control" name="" id="fecha"></select>
             </div>
         </div>

@@ -62,14 +62,14 @@ if (isset($_SESSION['noeconomico'])) {
             try{
                 $noecon = $_SESSION['noeconomico'];
                 $conexion = abrirBD();
-                $SQL= "SELECT nocontrol,nombre,semestre FROM alumno,asistenciasreg WHERE asistenciasreg.Control_Alumno = alumno.nocontrol And fecha = ? and asistenciasreg.NOECON = ? AND asistenciasreg.Codigo_Asesoria = ?";
+                $SQL= "SELECT nocontrol,nombre,Ap_Pat,Ap_Mat,semestre FROM alumno,asistenciasreg WHERE asistenciasreg.Control_Alumno = alumno.nocontrol And fecha = ? and asistenciasreg.NOECON = ? AND asistenciasreg.Codigo_Asesoria = ?";
                 $STMT = $conexion->prepare($SQL);
                 $STMT->bind_param('sss',$fec,$noe,$cod);
                 $fec = $fecha;
                 $noe = $noecon;
                 $cod = $codigo;
                 $STMT->execute();
-                $STMT->bind_result($control,$nombre,$semestre);
+                $STMT->bind_result($control,$nombre,$apePat,$apeMat,$semestre);
                 $resultdo = "
                 <div class='table-responsive'>
                 <Table class='table'>
@@ -84,7 +84,7 @@ if (isset($_SESSION['noeconomico'])) {
                     $resultdo .= "
                     <tr> 
                         <th>".$control."</th>   
-                        <td>".$nombre."</td>
+                        <td>".$nombre.' '.$apePat.' '. $apeMat ."</td>
                         <td>".$semestre."</td>
                     <tr>";
                 }

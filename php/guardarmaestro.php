@@ -53,6 +53,7 @@ else
         }
         else
         {
+            $maestro->setNo_Economico($nc);
             $maestro->setContraseña($_POST['pwd']);
             $maestro->setNombre(utf8_decode($_POST['nom']));
             $maestro->setAp_Pat(utf8_decode($_POST['ap']));
@@ -60,7 +61,8 @@ else
             $maestro->setDepartamento(utf8_decode($_POST['dep']));
             $maestro->setCorreo($_POST['email']);
             $maestro->ActualizarDatos($maestro);
-            echo "Perfil guardado!";
+            
+            echo "Se ha actualizado correctamente.";
          }
       
     }
