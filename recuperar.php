@@ -23,8 +23,8 @@ use PHPMailer\PHPMailer\Exception;
     <div class="row justify-content-center">
         <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
     </div>
-    <div class="page-header pb-2 pt-2 encabezado">
-        <h3 class="display-4 lead mx-5">Recuperar Contraseña</h3>
+    <div class="page-header pb-2 pt-2 w-100 encabezado">
+        <h3 class="display-4 lead">Recuperar Contraseña</h3>
     </div>
     <div class="container mt-3" style="border:1px solid gray">
         <h3 class="display-4 lead">
@@ -70,6 +70,10 @@ use PHPMailer\PHPMailer\Exception;
                 <p>Si aún asi no puedes ingresar, <a href="registrar.php">crea una nueva cuenta</a></p>
             </div>
     </div>
+    <div class="row justify-content-end">    
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='login.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+    </div>
+   
 </body>
 </html>
 <?php

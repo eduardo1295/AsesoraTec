@@ -12,6 +12,7 @@ $existe = $alumno->AlumnoExists($nocontrol);
 if($existe == 0)
 {
     header("Location: login.php");
+    session_destroy();
 }
 $alumno->ObtenerDatos($nocontrol,$alumno);
 $nc = $nocontrol;
