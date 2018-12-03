@@ -237,6 +237,7 @@ function horarioCruza($noecon,$horamin,$horamax,$maestro){
     $w = 0;
     $horarioOcupado = $maestro->cargarHorarios($noecon);
     if (isset($horarioOcupado)) {
+        
         for($x=0; $x < count($horarioOcupado) ; $x++){
             if ($w == 5){
                 $w = 0;
@@ -254,6 +255,10 @@ function horarioCruza($noecon,$horamin,$horamax,$maestro){
                     }
                     if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
                         /*$horarioLibre = false;*/
+                        return false;
+                        break;
+                    }
+                    if($divhora[0] < $horamin[$w] && $divhora[1] > $horamin[$w]){
                         return false;
                         break;
                     }        
@@ -288,6 +293,10 @@ function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
                     }
                     if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
                         /*$horarioLibre = false;*/
+                        return false;
+                        break;
+                    }
+                    if($horamin[$w] < $divhora[0] ){
                         return false;
                         break;
                     }        
