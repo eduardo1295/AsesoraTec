@@ -6,7 +6,7 @@
     $nombrem =$_POST['nm'];
     $tipo =$_POST['tp'];
     $semestre =$_POST['sem'];
-if(strlen($codigo)!=7)
+if(strlen($codigo)!=8)
 {
     echo "El codigo de la materia debe ser de 7 caracteres";
 }
@@ -24,6 +24,11 @@ else if(!is_numeric($semestre))
 }
 else
 {
+    if($materia->MateriaExists($_POST['cod'])){
+        echo "La Materia Ya existe";
+    }
+    else
+     {
     if($codigo!=""&&$nombrem!=""&&$tipo!=""&&$semestre!="")
     {
         
@@ -37,6 +42,7 @@ else
     else{
         echo "Faltan Campos por llenar";
     }
+}
 }
             
 ?>

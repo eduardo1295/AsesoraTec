@@ -435,6 +435,29 @@ public function ActualizarPresiCb($presicb){
         $error = $e->getMessage();
         echo error;
     }
+}public function MateriaExists($codigoo){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM materias WHERE Codigo=?"))
+         {
+             $sentencia_preparada->bind_param('s',$cd);
+             $cd =$codigoo;
+             $sentencia_preparada->execute();
+             $sentencia_preparada->bind_result($numero);
+             while($sentencia_preparada->fetch()){
+             $resultado = $numero;
+             }
+             $conn->close();
+         }
+ 
+         return $resultado;
+    }
+    catch(Exception $e)
+    {
+     $error = $e->getMessage();
+     echo $error;
+    }
 }
 
 }
