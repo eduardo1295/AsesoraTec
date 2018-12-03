@@ -268,7 +268,6 @@ function horarioCruza($noecon,$horamin,$horamax,$maestro){
     return true;
 }
 function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
-    echo $codigomat;
     $w = 0;
     $horarioOcupado = $maestro->cargarHorariosEditar($noecon,$codigomat);
     if (isset($horarioOcupado)) {
