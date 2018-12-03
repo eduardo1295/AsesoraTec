@@ -47,6 +47,7 @@ $conn->close();
     <title>Maestro Datos</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/botones.css">
+    <link rel="stylesheet" href="css/mno.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -135,6 +136,16 @@ $conn->close();
                     </div>
         </div>
      </div>
+     <div class="copyright"style="left:0;bottom:0;width:100%;">
+                <div class="container">
+                    <div class="col py-3">
+                        <div class="col text-center">
+                            Instituto Tecnológico de La Paz. &copy;
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 <script>
   function mostrar(){

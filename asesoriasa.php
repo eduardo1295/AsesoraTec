@@ -105,6 +105,15 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 <?php
 
 ?>    
-
+    <div class="copyright"style="left:0;bottom:0;width:100%;">
+                <div class="container">
+                    <div class="col py-3">
+                        <div class="col text-center">
+                            Instituto Tecnológico de La Paz. &copy;
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 </html>

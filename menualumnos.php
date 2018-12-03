@@ -78,5 +78,15 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         style="border:0; background-color:transparent;cursor:pointer;" 
         value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menuadministrado.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
+    <div class="copyright"style="left:0;bottom:0;width:100%;">
+                <div class="container">
+                    <div class="col py-3">
+                        <div class="col text-center">
+                            Instituto Tecnológico de La Paz. &copy;
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 </html>

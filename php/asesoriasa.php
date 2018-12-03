@@ -70,150 +70,158 @@ if ($res == 1) {
 else {
     echo "El horario se encuentra vacio";
 }
-
 function horarioCompleto($horario,$salon)
 {
-for ($i=0; $i < 5 ; $i++) { 
-if ($horario[$i] != "") {
-if($salon[$i] == ""){
-    return 1;
-}
-}
-elseif($salon[$i] != "") {
-return 1;
-}
-}
-return 0;
+    for ($i=0; $i < 5 ; $i++) { 
+        if ($horario[$i] != "") {
+            if($salon[$i] == ""){
+                return 1;
+            }
+        }
+        elseif($salon[$i] != "") {
+            return 1;
+        }
+    }
+    return 0;
 }
 function horarioVacio($horario,$salon)
 {
-$resultado = 0;
-for ($i=0; $i < 5 ; $i++) { 
-if ($horario[$i] == $salon[$i] && $horario[$i]=="") {
-}
-else {
-$resultado=1;
-break;
-}
-}
-return $resultado;
+    $resultado = 0;
+    for ($i=0; $i < 5 ; $i++) { 
+        if ($horario[$i] == $salon[$i] && $horario[$i]=="") {
+        }
+        else {
+            $resultado=1;
+            break;
+        }
+    }
+    return $resultado;
 }
 function ValidarHorario($horario)
 {
-$resultado = 0;
-for($i = 0;$i < 5;$i++)
-{
-if(!preg_match("/[0-9]{1,2}[-]{1}[0-9]{1,2}/",$horario[$i]) &&$horario[$i]!="")
-{
-return 1;
-}
-}
-return $resultado;
+    $resultado = 0;
+    for($i = 0;$i < 5;$i++)
+    {
+        if(!preg_match("/[0-9]{1,2}[-]{1}[0-9]{1,2}/",$horario[$i]) &&$horario[$i]!="")
+        {
+        return 1;
+        }
+    }
+    return $resultado;
 }
 function horarioCruza($noecon,$horamin,$horamax,$maestro){
-$w = 0;
-$horarioOcupado = $maestro->cargarHorarios($noecon);
-if (isset($horarioOcupado)) {
-for($x=0; $x < count($horarioOcupado) ; $x++){
-if ($w == 5){
     $w = 0;
-} 
-if ($horarioOcupado[$x] != "") {
-    $valor = explode(" ",$horarioOcupado[$x]);
-    $auxhora = $valor[0];
-    $auxsalon = $valor[1];
-    $divhora = explode('-',$auxhora);
-    if(isset($divhora[0]) && isset($divhora[1])){
-        if($divhora[0] == $horamin[$w]){
-            /*$horarioLibre = false;*/
-            return false;
-            break;
+    $horarioOcupado = $maestro->cargarHorarios($noecon);
+    if (isset($horarioOcupado)) {
+        
+        for($x=0; $x < count($horarioOcupado) ; $x++){
+            if ($w == 5){
+                $w = 0;
+            } 
+            if ($horarioOcupado[$x] != "") {
+                $valor = explode(" ",$horarioOcupado[$x]);
+                $auxhora = $valor[0];
+                $auxsalon = $valor[1];
+                $divhora = explode('-',$auxhora);
+                if(isset($divhora[0]) && isset($divhora[1])){
+                    if($divhora[0] == $horamin[$w]){
+                        /*$horarioLibre = false;*/
+                        return false;
+                        break;
+                    }
+                    if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                        /*$horarioLibre = false;*/
+                        return false;
+                        break;
+                    }
+                    if($divhora[0] < $horamin[$w] && $divhora[1] > $horamin[$w]){
+                        return false;
+                        break;
+                    }        
+                }
+            }
+            $w = $w + 1;
         }
-        if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
-            /*$horarioLibre = false;*/
-            return false;
-            break;
-        }        
     }
-}
-$w = $w + 1;
-}
-}
-else {
-$w = $w + 1;
-}
-return true;
+    else {
+        $w = $w + 1;
+    }
+    return true;
 }
 function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
-$w = 0;
-$horarioOcupado = $maestro->cargarHorariosEditar($noecon,$codigomat);
-if (isset($horarioOcupado)) {
-for($x=0; $x < count($horarioOcupado) ; $x++){
-if ($w == 5){
     $w = 0;
-} 
-if ($horarioOcupado[$x] != "") {
-    $valor = explode(" ",$horarioOcupado[$x]);
-    $auxhora = $valor[0];
-    $auxsalon = $valor[1];
-    $divhora = explode('-',$auxhora);
-    if(isset($divhora[0]) && isset($divhora[1])){
-        if($divhora[0] == $horamin[$w]){
-            /*$horarioLibre = false;*/
-            return false;
-            break;
+    $horarioOcupado = $maestro->cargarHorariosEditar($noecon,$codigomat);
+    if (isset($horarioOcupado)) {
+        for($x=0; $x < count($horarioOcupado) ; $x++){
+            if ($w == 5){
+                $w = 0;
+            } 
+            if ($horarioOcupado[$x] != "") {
+                $valor = explode(" ",$horarioOcupado[$x]);
+                $auxhora = $valor[0];
+                $auxsalon = $valor[1];
+                $divhora = explode('-',$auxhora);
+                if(isset($divhora[0]) && isset($divhora[1])){
+                    if($divhora[0] == $horamin[$w]){
+                        /*$horarioLibre = false;*/
+                        return false;
+                        break;
+                    }
+                    if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                        /*$horarioLibre = false;*/
+                        return false;
+                        break;
+                    }
+                    if($horamin[$w] < $divhora[0] ){
+                        return false;
+                        break;
+                    }        
+                }
+            }
+            $w = $w + 1;
         }
-        if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
-            /*$horarioLibre = false;*/
-            return false;
-            break;
-        }        
     }
-}
-$w = $w + 1;
-}
-}
-else {
-$w = $w + 1;
-}
-return true;
+    else {
+        $w = $w + 1;
+    }
+    return true;
 }
 
 
 function salonEstaOcupado($noecon,$maestro,$horamin,$horamax,$salon){
-$w = 0;
-$SalonOcupado = $maestro->cargarTodosHorarios($noecon);
-if (isset($SalonOcupado)) {
-for($x=0; $x < count($SalonOcupado) ; $x++){
-if ($w == 5){
     $w = 0;
-} 
-if ($SalonOcupado[$x] != "") {
-    $valor = explode(" ",$SalonOcupado[$x]);
-    $auxhora = $valor[0];
-    $auxsalon = $valor[1];
-    $divhora = explode('-',$auxhora);
-    if(isset($divhora[0]) && isset($divhora[1])){
-        if($divhora[0] == $horamin[$w]){
-            if($auxsalon == $salon[$w]){
-                return false;
-                break;
+    $SalonOcupado = $maestro->cargarTodosHorarios($noecon);
+    if (isset($SalonOcupado)) {
+        for($x=0; $x < count($SalonOcupado) ; $x++){
+            if ($w == 5){
+                $w = 0;
+            } 
+            if ($SalonOcupado[$x] != "") {
+                $valor = explode(" ",$SalonOcupado[$x]);
+                $auxhora = $valor[0];
+                $auxsalon = $valor[1];
+                $divhora = explode('-',$auxhora);
+                if(isset($divhora[0]) && isset($divhora[1])){
+                    if($divhora[0] == $horamin[$w]){
+                        if($auxsalon == $salon[$w]){
+                            return false;
+                            break;
+                        }
+                    }
+                    if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                        if($auxsalon == $salon[$w]){
+                            return false;
+                            break;
+                        }
+                    }        
+                }
             }
+            $w = $w + 1;
         }
-        if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
-            if($auxsalon == $salon[$w]){
-                return false;
-                break;
-            }
-        }        
     }
-}
-$w = $w + 1;
-}
-}
-else {
-$w = $w + 1;
-}
-return true;
+    else {
+        $w = $w + 1;
+    }
+    return true;
 }
 ?>
