@@ -74,18 +74,18 @@ if (isset($_SESSION['noeconomico'])) {
                 <div class='table-responsive'>
                 <Table class='table'>
                     <theard>
-                    <th scope='col'>No Control</th>
-                    <th scope='col'>Nombre</th>
-                    <th scope='col'>Semestre</th>
+                    <th scope='col' class='text-center'>No Control</th>
+                    <th scope='col' class='text-center'>Nombre</th>
+                    <th scope='col' class='text-center'>Semestre</th>
                     </theard>
                     <tbody>
                 ";
                 while( $fila = $STMT->fetch()){
                     $resultdo .= "
                     <tr> 
-                        <th>".$control."</th>   
-                        <td>".$nombre.' '.$apePat.' '. $apeMat ."</td>
-                        <td>".$semestre."</td>
+                        <th class='lead text-center'>".$control."</th>   
+                        <td class='lead text-center'>".$nombre.' '.$apePat.' '. $apeMat ."</td>
+                        <td class='lead text-center'>".$semestre."</td>
                     <tr>";
                 }
                 $resultdo .="</tbody><table></div>";
