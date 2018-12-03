@@ -195,6 +195,114 @@ public function EliminarMaestro($nc){
         echo error;
     }
 }
+public function EliminarAsesorados($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM asesorados WHERE noEcon=?"))
+     {
+         $sentencia_preparada->bind_param('s',$noecon);
+         $noecon = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function EliminarAsesorias($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM asesorias WHERE NOECON=?"))
+     {
+         $sentencia_preparada->bind_param('s',$noecon);
+         $noecon = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function EliminarAsesoriasreg($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM asesoriasreg WHERE NOECON=?"))
+     {
+         $sentencia_preparada->bind_param('s',$noecon);
+         $noecon = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function EliminarAsistenciaReg($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM asistenciasreg WHERE NOECON=?"))
+     {
+         $sentencia_preparada->bind_param('s',$noecon);
+         $noecon = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function EliminarHorarios($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM horarios WHERE NOECON=?"))
+     {
+         $sentencia_preparada->bind_param('s',$noecon);
+         $noecon = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function EliminarPass($nc){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM pass WHERE NOECON=?"))
+     {
+         $sentencia_preparada->bind_param('s',$noecon);
+         $noecon = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
 public function AgregarHorario($codigo,$noecom,$salon,$Horario){
     try{
     $conexion = abrirBD();
