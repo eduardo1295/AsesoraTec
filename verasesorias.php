@@ -8,6 +8,12 @@ if($_SESSION['maestrologeado']!='SI'){
     header("Location: login.php");
 }
 $maestro = new maestro();
+
+$existe = $maestro->MaestroExists($_SESSION['noeconomico']);
+if($existe != 1){
+    session_destroy();
+    header("Location: login.php");
+}
 $nocontrol= $_SESSION['noeconomico'];
 $maestro->ObtenerDatos($nocontrol,$maestro);
 $nc = $nocontrol;
