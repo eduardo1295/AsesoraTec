@@ -9,7 +9,11 @@ require_once('php/Clases/alumno.php');
 require_once('php/Clases/asesoria.php');
 $alumno = new Alumno();
 $nocontrol= $_SESSION['nocontrol'];
-
+$existe = $alumno->AlumnoExists($nocontrol);
+if($existe == 0)
+{
+    header("Location: login.php");
+}
 $alumno->ObtenerDatos($nocontrol,$alumno);
 $nc = $nocontrol;
 $nombre = $alumno->Nombre;
@@ -26,6 +30,7 @@ if($existe == 0)
 {
     header("Location: menu1.php");
 }
+
 if($registrado == 0)
 {
     header("Location: menu1.php");
