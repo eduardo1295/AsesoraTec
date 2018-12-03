@@ -256,6 +256,78 @@ public function AgregarAsesor($codigo,$nocontrol,$nombreAsesorado){
         echo $error;
     }
 }
+public function ActualizarJefeSistemas($nombrejs){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("UPDATE jefes set jefedptosi = ?"))
+     {
+         $sentencia_preparada->bind_param('s',$nombree);
+         $nombree = $nombrejs;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function ActualizarPreSistemas($presisi){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare(" UPDATE jefes set presiasi = ?"))
+     {
+         $sentencia_preparada->bind_param('s',$nombree);
+         $nombree = $presisi;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function ActualizarJefeCb($jefecb){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare(" UPDATE jefes set jefedptocb = ?"))
+     {
+         $sentencia_preparada->bind_param('s',$nombree);
+         $nombree = $jefecb;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
+public function ActualizarPresiCb($presicb){
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare(" UPDATE jefes set presiacb = ?"))
+     {
+         $sentencia_preparada->bind_param('s',$nombree);
+         $nombree = $presicb;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
+    }
+}
 
 }
 ?>

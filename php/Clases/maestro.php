@@ -168,7 +168,7 @@ class Maestro{
     public function ActualizarAsesor($codigo,$noecon,$nocontrol,$nombreAsesorado){
         try{
             $conexion = abrirBD();
-            $SQL= "SELECT COUNT(*) FROM ASESORADOS WHERE codigo = '$codigo' AND noEcon = '$noecon' ";
+            $SQL= "SELECT COUNT(*) FROM ASESORADOS WHERE codigo = '$codigo' AND noControl = '$nocontrol' ";
             $STMT = $conexion->prepare($SQL);
             $STMT->execute();
             $STMT->bind_result($nombre);
@@ -184,16 +184,16 @@ class Maestro{
                 $cod = $codigo;
                 $noen = $noecon;
                 $nocont = $nocontrol;
-                $nomb = utf8_decode($nombreAsesorado);
+                $nomb = $nombreAsesorado;
                 $sentencia_preparada1->execute();
                 $conexion->close();
             }
             else {
-                $SQL= "UPDATE asesorados SET noControl = ?, Nombre =? WHERE codigo =? ";
+                $SQL= "UPDATE asesorados SET nocontrol = ?, Nombre =? WHERE NoAsesoria =? ";
                 $sentencia_preparada1 = $conexion->prepare($SQL);
                 $sentencia_preparada1->bind_param("sss",$nocont,$nomb,$cod);
                 $nocont = $nocontrol;
-                $nomb = utf8_decode($nombreAsesorado);
+                $nomb = $nombreAsesorado;
                 $cod = $codigo;
                 $sentencia_preparada1->execute();
                 $conexion->close();

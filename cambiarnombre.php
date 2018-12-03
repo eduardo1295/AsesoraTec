@@ -75,15 +75,35 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             
         </select>
         <input type="text" id="txtnombre" value="">
-        <input type="submit" value="Cambiar Nombre" class="btn btn-success lead" id="cambiar">
+        <input type="submit" value="Cambiar Nombre" class="btn btn-success lead" id="cambiar" data-toggle="modal" data-target="#mensaje">
     </div>
     </div>
+    <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modalLabel">
+                                        Mensaje del Sistema
+                                    </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="mens">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='cambiarnombre.php'">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+            </div>
     <br>
     <div class="row justify-content-end mt-5">    
         <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"
         style="border:0; background-color:transparent;cursor:pointer;" 
         value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menuadministrado.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
+
     <div class="relleno w-100 mb-0">
         <body onLoad="crearReloj2()">
             <div class="row justify-content-center">
