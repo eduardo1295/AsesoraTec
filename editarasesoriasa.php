@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/pruebaregistrar.css">
     <link rel="stylesheet" href="css/mno.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/ejemplo23.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
@@ -159,7 +161,7 @@ else {
     <div class="d-flex justify-content-center">
     <h1 id="titulo_tabla">Horario: </h1> 
     </div>
-    <table class="table	">
+    <table class="table	" data-toggle="tooltip" data-placement="top" title="El Formato del horario debe ser 9 - 11 y solamente en este formato" >
         <thead class="encabezado">
             <tr>
             <th class="lead"></th>
