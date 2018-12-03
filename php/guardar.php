@@ -44,6 +44,10 @@ else if(!is_numeric($semestre))
 {
     echo "El semestre debe ser conformado solo por números!";
 }
+else if((int)$semestre>14)
+{
+    echo "El semestre no puede ser mayor a 14!";
+}
 else{
     if($nc!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!=""){
         $alumno->setContraseña(strip_tags($_POST['pwd']));
