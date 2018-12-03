@@ -4,10 +4,15 @@
 session_start();
 require_once('php/Clases/admin.php');
 require_once('php/Clases/conexion.php');
+require_once('php/Clases/alumno.php');
 if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
-
+if(empty($_GET['cod']))
+{
+    header("Location: menualumnos.php");
+}
+$alumno = new alumno();
 $admin = new Admin();
 $usuario= $_SESSION['usuario'];
 $admin->ObtenerDatos($usuario,$admin);
@@ -18,6 +23,11 @@ $apmat = $admin->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
 $numcontrol = $_GET['cod'];
+if($alumno->AlumnoExists($numcontrol)==0){
+    header("Location: menualumnos.php");
+}
+else
+{
 $sql = "SELECT nocontrol,pass,Nombre,Ap_Pat,Ap_Mat,Carrera,SEMESTRE,Correo FROM alumno WHERE nocontrol='$numcontrol'";
 $conn = abrirBD();
 $resultado = $conn->query($sql);
@@ -32,6 +42,7 @@ while($resul = mysqli_fetch_array($resultado)){
     $correo = $resul[7];
     }
 $conn->close();
+}
 ?>
 <head>
     <meta charset="UTF-8">

@@ -7,6 +7,10 @@ require_once('php/Clases/conexion.php');
 if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
+if(empty($_GET['cod']))
+{
+    header("Location: menumaterias.php");
+}
 
 $admin = new Admin();
 $usuario= $_SESSION['usuario'];

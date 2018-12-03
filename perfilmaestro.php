@@ -4,11 +4,16 @@
 session_start();
 require_once('php/Clases/admin.php');
 require_once('php/Clases/conexion.php');
+require_once('php/Clases/maestro.php');
 if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
-
+if(empty($_GET['cod']))
+{
+    header("Location: menumaestros.php");
+}
 $admin = new Admin();
+$alumno= new maestro();
 $usuario= $_SESSION['usuario'];
 $admin->ObtenerDatos($usuario,$admin);
 $nc = $admin;
@@ -18,6 +23,9 @@ $apmat = $admin->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
 $numeco = $_GET['cod'];
+if($alumno->MaestroExists($numeco)==0){
+    header("Location: menumaestros.php");
+}
 $sql = "SELECT noecon,pass,Nombre,Ap_Pat,Ap_Mat,Departamento,Correo FROM maestros WHERE noecon='$numeco'";
 $conn = abrirBD();
 $resultado = $conn->query($sql);
