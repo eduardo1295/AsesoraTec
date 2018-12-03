@@ -21,10 +21,10 @@
 
 <body class="contenedor">
 <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
+        <img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
     </div>
     <div class="page-header pb-2 pt-2">
-        <h1 class="lead display-3 justify-content-center">Registrar una Materia <img src="alumno.png" alt="Login"></h1>
+        <h1 class="lead display-3 justify-content-center">Registrar una Materia <img id="logo" src="alumno.png" alt="Login"></h1>
     </div>
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
@@ -60,9 +60,10 @@
                 
             </div>
         </div>
+        </div>
         <div class="mb-2 mt-2 container w-100">
         <div class="row  justify-content-center">
-            <button type="submit" value="Registrar" id="registrarm" class="btn btn-primary lead w-50" data-toggle="modal"
+            <button type="submit" value="Registrar" id="registrarm" class="btn btn-success lead w-50" data-toggle="modal"
                 data-target="#mensaje">Agregar</button>
             <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
