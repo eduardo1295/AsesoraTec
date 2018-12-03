@@ -1,3 +1,5 @@
+var codigoEliminar = 0;
+
 $(obtener_registros());
 
 function obtener_registros(busqueda)
@@ -27,9 +29,7 @@ $(document).on('keyup', '#busqueda', function()
 		}
 });
 $(document).ready(function(){
-	$("button").click(function(){
-		var id = $(this).attr('id');
-		if(id == 'putos'){
+	$(document).on("click","#putos",function(){
 		var codigo = $(this).val();
 		var fe = new Date();
 		var fecha = fe.getDate().toString()+"/"+(fe.getMonth()+1).toString()+"/"+fe.getFullYear().toString();
@@ -50,10 +50,26 @@ $(document).ready(function(){
 			},
 			success: function (hola){
 				mens.text(hola);
-				
 			}
-		});
+		});	
+	});
+	$(document).on("click","#elim",function(){
+		var cod = $(this).val();
+		codigoEliminar = cod;
+	});	
 
-		}
+	$(document).on("click","#eliminar",function(){
+		var datoeliminar = codigoEliminar;
+		$.ajax({
+				url: 'php/eliminarMat.php', 
+				method: 'POST',
+				data:{
+					cod : datoeliminar,
+				},
+				success: function (){
+					$("#tabla").load('php/busqueda.php');
+				}
+			});
+		
 	});
 });

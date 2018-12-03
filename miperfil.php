@@ -42,7 +42,7 @@
         <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
     </div>
     <div class="page-header pb-2 pt-2 row justify-content-center">
-            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>
+            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" id="logo" alt="Login"></h1>
     </div>        
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="password"  value="<?php echo $pass?>" class="cajas lead  ml-4" id=pass placeholder="Contraseña"maxlength=20 required>
+                        <input type="password"  value="<?php echo $pass?>" class="cajas lead  ml-5" id=pass placeholder="Contraseña"maxlength=20 required>
                         <a class="btn btn-success" onclick="mostrar()"><i class="ojo fas fa fa-eye fa-fw"></i></a>
                     </div>
                 </div>

@@ -26,6 +26,13 @@ if(isset($_SESSION['maestrologeado'])){
     $tipo = utf8_decode($_POST['tipo']);
     $conexion = abrirBD();
     $maestro = new maestro();
+    $nocontrol= $_SESSION['noeconomico'];
+    $maestro->ObtenerDatos($nocontrol,$maestro);
+    $nc = $nocontrol;
+    $nombre = utf8_encode($maestro->Nombre);
+    $appat =  utf8_encode($maestro->Ap_Pat);
+    $apmat =  utf8_encode($maestro->Ap_Mat);
+    $nombrecompleto = $nombre." ".$appat." ".$apmat;
     $SQL = "SELECT * FROM ASESORIAS WHERE Codigo= '$codigo'";
     $resultado = $conexion->query($SQL);
     $conexion->close();
@@ -77,10 +84,29 @@ else {
     <input id="EditarCodigo" type="hidden" name="" value="<?php echo $codigo?>">
     <input id="EditarTipo" type="hidden" name="" value="<?php echo utf8_encode($tipo)?>">
     
-    <div class="page-header pb-2 pt-2">
-        <h1 class="lead display-3 justify-content-center">Agregar una asesoría
-            <img src="agregar.png" alt="Login">
-        </h1>
+    <div class="row justify-content-center">
+    <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
+</div>
+    <div class="row"style="background:blue;"> 
+        <div class="page-header encabezado w-100 py-3 col"style="color:white">
+        <div class="row">
+        <h1 class="lead display-4 ml-4">Editar asesoría</h1>
+        </div>          
+        </div>
+        <div class="col mt-4" style="background:blue">
+            <div class="row justify-content-end mr-2 mt-1">
+                <div class="dropdown ">
+                    <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="fas fa-user fa-fw"></span>
+                            <?php echo $nombrecompleto?>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
+                        <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <div class="container mt-3 forma">

@@ -1,6 +1,14 @@
 <?php 
 include 'plantilla3.php';
 require 'php/Clases/conexion.php';
+$consulta = "SELECT jefedptosi,presiasi from jefes";
+$conexion = abrirBD();
+$resultados =$conexion->query($consulta);
+while($resul = mysqli_fetch_array($resultados)){ 
+    $jefesi = $resul[0];
+    $presi = $resul[1];
+    }
+$conexion-> close();
 $consulta = "SELECT horarios.Maestro, asesorias.Nombre_Materia,Lunes,Martes,Miercoles,Jueves,Viernes from asesorias,horarios where Cod_Materia = Codigo and Tipo = 'Asignatura de la Carrera'";
 $conexion = abrirBD();
 $resultados =$conexion->query($consulta);
@@ -35,8 +43,8 @@ $pdf->SetFont('Arial','B',15);
 $pdf->Cell(270,6,'Atentamente',0,1,"C");
 $pdf->Ln(20);
 $pdf->SetFont('Arial','B',12);
-$pdf->Cell(110,6,'ING.ADRIANE ITALIA ACEVEDO AGUILAR,',0,0,'C');
-$pdf->Cell(200,6,'MSC. MARTIN AGUNDEZ AMADOR',0,1,'C');
+$pdf->Cell(110,6,$jefesi,0,0,'C');
+$pdf->Cell(200,6,$presi,0,1,'C');
 $pdf->SetFont('Arial','B',12);
 $pdf->Cell(110,6,'JEFA DEL DEPTO. DE SISTEMAS Y COMPUTACION',0,0,'C');
 $pdf->Cell(200,6,'PRESIDENTE DE ACADEMIA DE SISTEMAS Y COMPUTACION',0,1,'C');

@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-require_once('php/Clases/conexion.php');
 session_start();
+require_once('php/Clases/maestro.php');
+require_once('php/Clases/conexion.php');
 if($_SESSION['maestrologeado']!='SI'){
     header("Location: login.php");
 }
-require_once('php/Clases/maestro.php');
+$maestro = new maestro();
+$nocontrol= $_SESSION['noeconomico'];
+$maestro->ObtenerDatos($nocontrol,$maestro);
+$nc = $nocontrol;
+
 $maestro = new maestro();
 $nocontrol= $_SESSION['noeconomico'];
 $maestro->ObtenerDatos($nocontrol,$maestro);
@@ -16,17 +21,7 @@ $appat =  utf8_encode($maestro->Ap_Pat);
 $apmat =  utf8_encode($maestro->Ap_Mat);
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
-if(isset($_POST['eliminar'])) {
-    $conexion = abrirBD();
-    $codi = $_POST['codigo'];
-    $SQL= "UPDATE asesorias SET Activo = 'No' WHERE codigo=? AND NOECON = ?";
-    $sentencia_preparada1 = $conexion->prepare($SQL);
-    $sentencia_preparada1->bind_param("ss",$cod,$nom);
-    $cod =$codi;
-    $nom = $nc;
-    $sentencia_preparada1->execute();
-    $conexion->close();
-}
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -48,8 +43,8 @@ if(isset($_POST['eliminar'])) {
 
 <body>
 <div class="row justify-content-center">
-        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
-    </div>
+    <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
+</div>
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 py-3 col"style="color:white">
         <div class="row">
@@ -96,7 +91,8 @@ if(isset($_POST['eliminar'])) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-danger" name="eliminar" form="eliminar">Confirmar</button>
+                        <button type="button" class="btn btn-danger" name="eliminar" id="eliminar" data-dismiss="modal">Confirmar</button>
+                        
                     </div>
                 </div>
             </div>

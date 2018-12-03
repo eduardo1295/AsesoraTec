@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             if($SalonLibre == true){
                                 $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre,$_SESSION['noeconomico']);    
                                 if($correcto == 1){
-                                    $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro);
+                                    $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro,$nombreMateria);
                                     echo "La asesoria se registro correctamente";
                                 }
                                 else
@@ -137,25 +137,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         elseif ($opcion == "Editar") {
-            echo $codigo.' '.$nombreMaestro.' '.$nombreMateria.' '.$tipo.' '.$semestre;
-            if($codigo != "" && $nombreMaestro != "" && $nombreMateria != "" && $tipo != "" && $semestre !="" && $bandera == 0){
-                if($asesor != "" && $nocontrol != ""){
-                    $maestro->ActualizarAsesor($codigo,$_SESSION['noeconomico'],$nocontrol,$asesor);
-                    $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
-                    echo ("Se a editado correctamente la asesoría");
-                }
-                elseif ($asesor != "" || $nocontrol != "")
-                    echo "Faltan datos del asesorado";
-                else {
-                    $maestro->EliminarAsesor($codigo);
-                    $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
-                    echo ("Se a editado correctamente la asesoría");
-                }
             
+            $res = horarioVacio($Horario,$salon);
+            if ($res == 1) {
+                if($codigo != "" && $nombreMaestro != "" && $nombreMateria != "" && $tipo != "" && $semestre !="" && $bandera == 0){
+                    $hora = ValidarHorario($Horario);
+                    if ($hora != 1) {
+                        for ($i=0; $i < count($Horario) ; $i++) { 
+                            if ($Horario[$i] != "") {
+                                $aux = explode("-",$Horario[$i]);
+                                array_push($horamin,$aux[0]);
+                                array_push($horamax,$aux[1]);
+                            }
+                            else {
+                                array_push($horamin,"");
+                                array_push($horamax,"");
+                            }
+                            
+                        }
+                        //Aqui Empieza
+                        $horarioLibre = true;
+                        $horarioLibre =  horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigo);
+                        //Aqui Empieza
+                        //$SalonLibre = true;
+                        //$SalonLibre = salonEstaOcupado($noecon,$maestro,$horamin,$horamax,$salon);
+                        //Aqui Termina
+                        if ($horarioLibre == true) {
+                            if($asesor != "" && $nocontrol != ""){
+                                $maestro->ActualizarAsesor($codigo,$_SESSION['noeconomico'],$nocontrol,$asesor);
+                                $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
+                                echo ("Se a editado correctamente la asesoría");
+                            }
+                            elseif ($asesor != "" || $nocontrol != "")
+                                echo "Faltan datos del asesorado";
+                            else {
+                                $maestro->EliminarAsesor($codigo);
+                                $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
+                                echo ("Se a editado correctamente la asesoría");
+                            }
+                        }
+                        else {
+                            echo "El horario se cruza con sus asesorias";
+                        }
+                    }
+                    else {
+                        echo "El formato del horario no es correcto.";
+                    }
+                }
+                else{
+                    echo ("Falta ingresar los datos");
+                }
             }
-            else{
-                echo ("Falta ingresar los datos");
+            else {
+                echo "El horario se encuentra vacio";
             }
+            
         }   
 }
 function horarioCompleto($horario,$salon)
@@ -231,6 +267,42 @@ function horarioCruza($noecon,$horamin,$horamax,$maestro){
     }
     return true;
 }
+function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
+    $w = 0;
+    $horarioOcupado = $maestro->cargarHorariosEditar($noecon,$codigomat);
+    if (isset($horarioOcupado)) {
+        for($x=0; $x < count($horarioOcupado) ; $x++){
+            if ($w == 5){
+                $w = 0;
+            } 
+            if ($horarioOcupado[$x] != "") {
+                $valor = explode(" ",$horarioOcupado[$x]);
+                $auxhora = $valor[0];
+                $auxsalon = $valor[1];
+                $divhora = explode('-',$auxhora);
+                if(isset($divhora[0]) && isset($divhora[1])){
+                    if($divhora[0] == $horamin[$w]){
+                        /*$horarioLibre = false;*/
+                        return false;
+                        break;
+                    }
+                    if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                        /*$horarioLibre = false;*/
+                        return false;
+                        break;
+                    }        
+                }
+            }
+            $w = $w + 1;
+        }
+    }
+    else {
+        $w = $w + 1;
+    }
+    return true;
+}
+
+
 function salonEstaOcupado($noecon,$maestro,$horamin,$horamax,$salon){
     $w = 0;
     $SalonOcupado = $maestro->cargarTodosHorarios($noecon);

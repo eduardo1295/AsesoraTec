@@ -99,12 +99,12 @@ class Maestro{
      }
     }
 
-    public function AgregarHorario($codigo,$noecom,$salon,$Horario,$neocon,$nombreMaestro){
+    public function AgregarHorario($codigo,$noecom,$salon,$Horario,$neocon,$nombreMaestro,$nombreMateria){
         try{
         $conexion = abrirBD();
-        $SQL= "INSERT INTO HORARIOS VALUES(?,?,?,?,?,?,?,?)";
+        $SQL= "INSERT INTO HORARIOS VALUES(?,?,?,?,?,?,?,?,?)";
         $sentencia_preparada1 = $conexion->prepare($SQL);
-        $sentencia_preparada1->bind_param("ssssssss",$cod_Mat,$mae,$lun,$mar,$mie,$jue,$vie,$neo);
+        $sentencia_preparada1->bind_param("sssssssss",$cod_Mat,$mae,$lun,$mar,$mie,$jue,$vie,$neo,$nomMat);
         $cod_Mat = utf8_encode($codigo);
         $mae = utf8_decode($nombreMaestro);
         $lun = $Horario[0].' '.$salon[0];
@@ -113,6 +113,7 @@ class Maestro{
         $jue = $Horario[3].' '.$salon[3];
         $vie = $Horario[4].' '.$salon[4];
         $neo = $neocon;
+        $nomMat = $nombreMateria;
         $sentencia_preparada1->execute();
          $conexion->close();
         }
@@ -384,6 +385,34 @@ public function cargarHorarios($noecon){
         echo $error;
     }
 }
+
+public function cargarHorariosEditar($noecon,$codigoMat){
+    try{
+        $conexion = abrirBD();
+        $SQL= "SELECT Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios WHERE NOECON = ? AND Cod_Materia != ?";
+        $STMT = $conexion->prepare($SQL);
+        $STMT->bind_param('ss',$neo,$cod);
+        $neo = $noecon;
+        $cod = $codigoMat;
+        $STMT->execute();
+        $STMT->bind_result($lunes,$martes,$miercoles,$Jueves,$Vienes);
+        $datos = array();
+        while( $fila = $STMT->fetch()){
+            array_push($datos,$lunes);
+            array_push($datos,$martes);
+            array_push($datos,$miercoles);
+            array_push($datos,$Jueves);
+            array_push($datos,$Vienes);
+        }
+        $conexion->close();
+        return $datos;
+    }
+    catch (Exception $e){
+        $error = $e->getMessage();
+        echo $error;
+    }
+}
+
 public function cargarTodosHorarios($noecon){
     try{
         $conexion = abrirBD();

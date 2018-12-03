@@ -30,7 +30,7 @@ if ($buscarmaterias->num_rows > 0)
 	{
 		$tabla.=
 		'<tr>
-        <td><a href="perfilmateria.php?cod='.$fila['Codigo'].'">'.$fila['Codigo'].'</a></td>
+        <td><a data-toggle="tooltip" title="Selecciona el codigo" href="perfilmateria.php?cod='.$fila['Codigo'].'">'.$fila['Codigo'].'</a></td>
             <td>'.utf8_encode($fila['Nombre']).'</td>
 			<td>'.utf8_encode($fila['Tipo']).'</td>
 			<td>'.$fila['Semestre'].'</td>
