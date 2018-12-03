@@ -28,7 +28,7 @@ if($alumno->AlumnoExists($numcontrol)==0){
 }
 else
 {
-$sql = "SELECT nocontrol,pass,Nombre,Ap_Pat,Ap_Mat,Carrera,SEMESTRE,Correo FROM alumno WHERE nocontrol='$numcontrol'";
+$sql = "SELECT nocontrol,pass,Nombre,Ap_Pat,Ap_Mat,Carrera,SEMESTRE,Correo,Sexo FROM alumno WHERE nocontrol='$numcontrol'";
 $conn = abrirBD();
 $resultado = $conn->query($sql);
 while($resul = mysqli_fetch_array($resultado)){ 
@@ -40,6 +40,7 @@ while($resul = mysqli_fetch_array($resultado)){
     $Carrera = $resul[5];
     $semestre = $resul[6];
     $correo = $resul[7];
+    $sexo = $resul[8];
     }
 $conn->close();
 }

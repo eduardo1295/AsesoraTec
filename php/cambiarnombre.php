@@ -1,29 +1,31 @@
 <?php
     require_once("Clases/conexion.php");
+    require_once("Clases/admin.php");
+    $admin = new Admin();
     $opcion = strip_tags($_POST['op1']);
     $nombre= strip_tags($_POST['nm']);
-    if($opcion == "JEFA DEL DEPTO. DE SISTEMAS Y COMPUTACION"){
-        $consulta = " UPDATE jefes set jefedptosi = '$nombre'";
-        $conexion = abrirBD();
-        $resultados =$conexion->query($consulta);
+
+    if($opcion == "JEFA DEL DEPTO. DE SISTEMAS Y COMPUTACION")
+    {
+
+        $admin->ActualizarJefeSistemas($_POST['nm']);
+        echo "El nombre ha sido cambiado exitosamente";
+        
     }
     else if($opcion == "PRESIDENTE DE ACADEMIA DE SISTEMAS Y COMPUTACION"){
-
-        $consulta = " UPDATE jefes set presiasi = '$nombre'";
-        $conexion = abrirBD();
-        $resultados =$conexion->query($consulta);
+       
+        $admin->ActualizarPreSistemas($_POST['nm']);
+        echo "El nombre ha sido cambiado exitosamente";
     }
     else if($opcion == "JEFE DEL DEPTO. DE CS. BASICAS"){
-        $consulta = " UPDATE jefes set jefedptocb = '$nombre'";
-        $conexion = abrirBD();
-        $resultados =$conexion->query($consulta);
+        $admin->ActualizarJefeCb($_POST['nm']);
+        echo "El nombre ha sido cambiado exitosamente";
 
     }
     else{
 
-        $consulta = " UPDATE jefes set presiacb = '$nombre'";
-        $conexion = abrirBD();
-        $resultados =$conexion->query($consulta);
+         $admin->ActualizarPresiCb($_POST['nm']);
+         echo "El nombre ha sido cambiado exitosamente";
     }
-    echo "El nombre ha sido cambiado exitosamente";
+    
 ?>

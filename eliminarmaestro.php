@@ -21,9 +21,17 @@ $('#myModal').modal('show')
 </script>
 <?php 
     require('php/Clases/maestro.php');
+    require_once('php/Clases/admin.php');
+    $admin = new Admin();
     $maestro = new Maestro();
     $noecon = $_GET['nc'];;
         $maestro->EliminarMaestro($noecon);
+        $admin->EliminarAsesorados($noecon);
+        $admin->EliminarAsesorias($noecon);
+        $admin->EliminarHorarios($noecon);
+        $admin->EliminarAsesoriasreg($noecon);
+        $admin->EliminarPass($noecon);
+        $admin->EliminarAsistenciaReg($noecon);
         header("Refresh: 3; URL=menumaestros.php");
         echo '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
