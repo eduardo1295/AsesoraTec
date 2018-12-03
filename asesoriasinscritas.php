@@ -114,22 +114,20 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         </div>
                         <div class="modal-body" id="mensContra">
                             <div class="row justify-content-center">
-                              Ingresa la clave de hoy
-                
-                              <input type="text" name="" id="contraseñaA">
-                              <p class="lead" id="res"></p>
-                              <button type="button" class="btn btn-success lead" id="regContra" name="">Aceptar</button>
+                                ¿Seguro que quieres darte de baja?
                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary lead"   data-dismiss="modal"id=""name="">Cerrar</button>
+                            <button type="button" class="btn btn-danger lead" data-dismiss="modal"  id="darbaja"name="">Confirmar</button>
+                            <button type="button" class="btn btn-secondary lead"   data-dismiss="modal"id=""name="">Cerrar</button>
                         </div>
                     </div>
                 </div>
             </div>
 <script>
+    var codigoEliminar = 0;
 $(document).on("click","#darbaja",function(){
-    var codigo = $(this).data("id");
+    var codigo =codigoEliminar;
     var res = $("#resul");
     var mens = $("#mensa");
     $.ajax({
@@ -139,12 +137,14 @@ $(document).on("click","#darbaja",function(){
                 cod : codigo,
             },
             success: function (data){
-                res.text(data);
-                mens.modal('show');
                 $("#tabla").load('php/inscritas.php');
             }
         });
 });
+$(document).on("click","#elim",function(){
+		var cod = $(this).data("id");
+		codigoEliminar = cod;
+	});	
 </script>
 </body>
 </html>

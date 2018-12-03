@@ -75,9 +75,12 @@ use PHPMailer\PHPMailer\Exception;
 <?php
 if(isset($_POST['recuperarbtn']))
 {
-    $nocontrol =$_POST['numero'];
+    $nocontrol =strip_tags($_POST['numero']);
     require_once("php/Clases/alumno.php");
     $alumno = new Alumno();
+    $existe = $alumno->AlumnoExists($nocontrol);
+    if($existe>0)
+    {
     $alumno->ObtenerDatos($nocontrol,$alumno);
     $correo = $alumno->Correo;
     $nombre = $alumno->Nombre;
@@ -115,5 +118,10 @@ if(isset($_POST['recuperarbtn']))
     } else {
       echo "<p class='lead'style='color:green'>Mensaje enviado!</p>";
     }
+  }
+  else
+  {
+    echo "<p class='lead'style='color:red'>Tu número de control/económico no esta registrado en el sistema </p>"; 
+  }
 }
 ?>
