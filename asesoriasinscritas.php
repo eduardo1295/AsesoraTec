@@ -58,7 +58,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                         aria-haspopup="true" aria-expanded="false">
                         <span
                          class="fas fa-user fa-fw"></span>
-                        <?php echo $nombrecompleto?>
+                        <?php echo utf8_encode(utf8_decode($nombrecompleto))?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                         <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>

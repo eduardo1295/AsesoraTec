@@ -50,7 +50,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="fas fa-user fa-fw"></span>
-                        <?php echo $nombrecompleto?>
+                        <?php echo utf8_encode(utf8_decode($nombrecompleto))?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                         <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
@@ -65,30 +65,6 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 Buscar: 
                 <input type="text" name="busqueda" id="busqueda"placeholder="Buscar">  
                     La búsqueda puede ser por cualquier columna de la tabla!
-                <button class="btn btn-info ml-5" class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje"><i class="fa fa-question"></i></button>
-                <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="modalLabel">
-                                        Ayuda del Sistema
-                                    </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body" id="mens">
-                                  Para inscribirte en una asesoria sigue estos pasos: <br>
-                                    1. Busca la asesoría de tu interés y selecciona el código <br>
-                                    2. El código te llevará al horario de la asesoria <br>
-                                    3. En la pantalla de horarios selecciona el botón "Inscribirme" despúes de revisar los horarios
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
             </h4>
         </div>
     </div>
@@ -100,12 +76,15 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </div>
     </div>
     <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menuadministrado.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
 <?php
 
 ?>    
-    <div class="copyright"style="left:0;bottom:0;width:100%;">
+
+</body>
+<footer>
+<div class="copyright"style="left:0;bottom:0;width:100%;">
                 <div class="container">
                     <div class="col py-3">
                         <div class="col text-center">
@@ -115,5 +94,5 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </div>
             </div>
-</body>
+</footer>
 </html>

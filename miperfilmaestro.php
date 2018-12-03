@@ -119,7 +119,7 @@
                                 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='menu1.php'">Aceptar</button>
+                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='menu2.php'">Aceptar</button>
                                 </div>
                             </div>
                         </div>

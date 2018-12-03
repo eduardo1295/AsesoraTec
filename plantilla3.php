@@ -29,11 +29,11 @@ class PDF extends FPDF{
     function Footer(){       
         $this->SetY(-30);
         $this->SetFont('Arial','B',10);
-        $this->Cell(280,10,utf8_decode('©2011-Instituto Tecnológico de La Paz'.$this->PageNo().'/{nb}'),0,1,'C');
+        $this->Cell(280,10,utf8_decode('©2011-Instituto Tecnológico de La Paz'),0,1,'C');
         $this->SetFont('Arial','B',10);
-        $this->Cell(290,10,utf8_decode('Boulevard Forjadores de Baja California Sur No.4720 Apdo. Postal 43-B, C.P. 23080 La Paz, B.C.S., México.'.$this->PageNo().'/{nb}'),0,1,'C');
+        $this->Cell(290,10,utf8_decode('Boulevard Forjadores de Baja California Sur No.4720 Apdo. Postal 43-B, C.P. 23080 La Paz, B.C.S., México.'),0,1,'C');
         $this->SetFont('Arial','B',10);
-        $this->Cell(290,10,'Tels. (612) 12-104-24, 12-104-26, 12-107-05 Fax (612) 12-112-95'.$this->PageNo().'/{nb}',0,1,'C');
+        $this->Cell(290,10,'Tels. (612) 12-104-24, 12-104-26, 12-107-05 Fax (612) 12-112-95',0,1,'C');
     }
 }
 ?>
