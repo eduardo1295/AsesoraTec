@@ -4,11 +4,16 @@
 session_start();
 require_once('php/Clases/admin.php');
 require_once('php/Clases/conexion.php');
+require_once('php/Clases/maestro.php');
 if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
-
+if(empty($_GET['cod']))
+{
+    header("Location: menumaestros.php");
+}
 $admin = new Admin();
+$alumno= new maestro();
 $usuario= $_SESSION['usuario'];
 $admin->ObtenerDatos($usuario,$admin);
 $nc = $admin;
@@ -18,6 +23,9 @@ $apmat = $admin->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
 $numeco = $_GET['cod'];
+if($alumno->MaestroExists($numeco)==0){
+    header("Location: menumaestros.php");
+}
 $sql = "SELECT noecon,pass,Nombre,Ap_Pat,Ap_Mat,Departamento,Correo FROM maestros WHERE noecon='$numeco'";
 $conn = abrirBD();
 $resultado = $conn->query($sql);
@@ -76,22 +84,22 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo utf8_encode($Ape_pat);?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="<?php echo utf8_encode($Ape_pat);?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo utf8_encode($Ape_mat);?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="<?php echo utf8_encode($Ape_mat);?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo utf8_encode($Nombrem);?>" class="cajas lead" id="nombre" placeholder="Departamento"required>
+                        <input type="text" value="<?php echo utf8_encode($Nombrem);?>" class="cajas lead" id="nombre" placeholder="Departamento"required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                 <input type="e-mail" value="<?php echo utf8_encode($Departamento);?>" id="departamento" class="cajas lead"maxlength=128 placeholder="Correo"required>
+                 <input type="e-mail" value="<?php echo utf8_encode($Departamento);?>" id="departamento" class="cajas lead"maxlength=128 placeholder="Correo"required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -145,5 +153,38 @@ $(document).ready(function(){
     });
 });
 
+</script>
+<script>
+    function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+</script>
+<script language="javascript">
+$(function(){
+
+$('.validanumericos').keypress(function(e) {
+  if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+   return false;
+})
+.on("cut copy paste",function(e){
+  e.preventDefault();
+});
+
+});
 </script>
 </html>

@@ -126,7 +126,7 @@
                             Alumno registrado!
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='login.php'">Login</button>
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='login.php'">Inicio</button>
                             <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href=">Aceptar</button>
                         </div>
                     </div>

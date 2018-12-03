@@ -4,10 +4,15 @@
 session_start();
 require_once('php/Clases/admin.php');
 require_once('php/Clases/conexion.php');
+require_once('php/Clases/alumno.php');
 if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
-
+if(empty($_GET['cod']))
+{
+    header("Location: menualumnos.php");
+}
+$alumno = new alumno();
 $admin = new Admin();
 $usuario= $_SESSION['usuario'];
 $admin->ObtenerDatos($usuario,$admin);
@@ -18,6 +23,11 @@ $apmat = $admin->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
 $numcontrol = $_GET['cod'];
+if($alumno->AlumnoExists($numcontrol)==0){
+    header("Location: menualumnos.php");
+}
+else
+{
 $sql = "SELECT nocontrol,pass,Nombre,Ap_Pat,Ap_Mat,Carrera,SEMESTRE,Correo FROM alumno WHERE nocontrol='$numcontrol'";
 $conn = abrirBD();
 $resultado = $conn->query($sql);
@@ -32,6 +42,7 @@ while($resul = mysqli_fetch_array($resultado)){
     $correo = $resul[7];
     }
 $conn->close();
+}
 ?>
 <head>
     <meta charset="UTF-8">
@@ -76,17 +87,17 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo utf8_encode($Ape_pat);?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="<?php echo utf8_encode($Ape_pat);?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo utf8_encode($Ape_mat);?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="<?php echo utf8_encode($Ape_mat);?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo utf8_encode($Nombrea);?>" class="cajas lead" id="nombre" placeholder="Nombre"required>
+                        <input type="text" value="<?php echo utf8_encode($Nombrea);?>" class="cajas lead" id="nombre" placeholder="Nombre"required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -96,14 +107,26 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="radio" name="sexo" id="sexo" class="radio my-2 mx-3 lead">
-                        <label for="hombre" class="radio lead">Hombre</label>
-                        <input type="radio" name="sexo" id="sexo" class="radio my-2 mx-3 lead">
-                        <label for="mujer" class="radio lead">Mujer</label>
-                        <input type="radio" name="sexo" id="sexo" class="radio my-2 mx-3 lead">
-                        <label for="No binario" class="radio lead">No binario</label>
+                    <input type="radio" name="sexo" id="hombre" <?php ?> class="radio my-2 mx-3 lead">
+                    <label for="hombre" class="radio lead">Hombre</label>
+                    <input type="radio" name="sexo" id="mujer" class="radio my-2 mx-3 lead">
+                    <label for="mujer" class="radio lead">Mujer</label>
+                    <input type="radio" name="sexo" id="ninguno" class="radio my-2 mx-3 lead">
+                    <label for="No binario" class="radio lead">No binario</label>
                     </div>
                 </div>
+                <script language="javascript">
+                var hombre = document.getElementById('hombre');
+                var mujer = document.getElementById('mujer');
+                var ninguno = document.getElementById('ninguno');
+                var sexo = '<?php echo $sexo ?>';
+                if(sexo=="Hombre")
+                hombre.checked=true;
+                else if(sexo=="Mujer")
+                mujer.checked = true;
+                else if(sexo=="No binario")
+                ninguno.checked=true;
+                </script>
             </div>
         </div>
     </div>
@@ -125,7 +148,7 @@ $conn->close();
                     </div>
                     <div class="row my-3 justify-content-center">
                         <div class="row">
-                            <input type="text" value="<?php echo $semestre?>" class="cajas lead"maxlength=2 id="semestre"placeholder="Semestre" required>
+                            <input type="text" value="<?php echo $semestre?>" class="cajas lead .validanumericos"maxlength=2 id="semestre"placeholder="Semestre" required>
                         </div>
                     </div>
                 </div>
@@ -175,5 +198,38 @@ $(document).ready(function(){
     });
 });
 
+</script>
+<script>
+    function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+</script>
+<script language="javascript">
+$(function(){
+
+$('.validanumericos').keypress(function(e) {
+  if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+   return false;
+})
+.on("cut copy paste",function(e){
+  e.preventDefault();
+});
+
+});
 </script>
 </html>

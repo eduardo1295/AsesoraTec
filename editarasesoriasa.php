@@ -25,7 +25,7 @@ require_once('php/Clases/admin.php');
 if(isset($_SESSION['usuariologeado'])){
     $codigo = $_GET['cod'];
     $tipo = utf8_decode($_GET['tipo']);
-    $noecon = $_GET['noecon'];
+    $noecon = $_GET['NOECON'];
     $conexion = abrirBD();
     $SQL = "SELECT * FROM asesorias WHERE Codigo= '$codigo'";
     $resultado = $conexion->query($SQL);
@@ -82,14 +82,14 @@ else {
     
     <div class="page-header pb-2 pt-2">
         <h1 class="lead display-3 justify-content-center">Agregar una asesoría
-            <img src="agregar.png" alt="Login">
+            <img src="agregar.png" id="logo" alt="Login">
         </h1>
     </div>
     
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
             <div class="col">
-            
+        
                 <div class="row  mt-4 justify-content-center">
                     <p class="lead mx-2">Información de la asesoría:
                     </p>

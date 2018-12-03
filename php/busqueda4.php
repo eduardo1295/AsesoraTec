@@ -60,7 +60,7 @@ if(isset($_SESSION['usuariologueado'])){
 			</td>
 			<td>
 				<div class="d-flex justify-content-center">
-				<form action="EditarAsesoria.php" method="post"> 
+				<form action="editarasesoriasa.php" method="post"> 
 				<input type="hidden" name="codigo" value="'.$fila['Codigo'].'">
 				<input type="hidden" name="tipo" value="'.utf8_encode($fila['Tipo']).'">
 				<button type="submit" name="editar"class="btn btn-info btn-sm mr-1">Editar</button>
@@ -113,7 +113,11 @@ else {
 	{
 		$tabla.=
 		'<tr>
+<<<<<<< HEAD
         <td><a data-toggle="tooltip" title="Selecciona el codigo" href="editarasesoriasa.php?cod='.$fila['Codigo'].'& tipo='.$fila['Tipo']. '& noecon='.$fila['NOECON'].'">'
+=======
+        <td><a data-toggle="tooltip" title="Selecciona el codigo" href="editarasesoriasa.php?cod='.$fila['Codigo'].'& tipo='.$fila['Tipo']. '& NOECON='.$fila['NOECON'].'">'
+>>>>>>> origin/manny
         .$fila['Codigo'].'</a></td>
 			<td>'.utf8_encode($fila['No_Maestro']).'</td>
 			<td>'.utf8_encode($fila['Nombre_Materia']).'</td>
