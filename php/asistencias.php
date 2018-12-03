@@ -10,7 +10,6 @@ $arr = explode("*",$concatenados);
 $codigo = $arr[0];
 $noecon = $arr[1];
 $query = "SELECT * FROM ASISTENCIASREG WHERE CONTROL_ALUMNO=$nocontrol AND NOECON='$noecon' AND CODIGO_ASESORIA='$codigo'";
-
 if(isset($_POST['busqueda']))
 {
     $q=$conn->real_escape_string($_POST['busqueda']);
