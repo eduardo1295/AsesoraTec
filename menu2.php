@@ -234,7 +234,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             <div class="row justify-content-center">
                 <canvas id="canvas" class="lead" width="500px" height="500px"></canvas>
             </div>
-            <div class="copyright"style="left:0;bottom:0;width:100%;">
+            <div class="copyright"style="left:0;bottom:0;width:100%;position:fixed;">
                 <div class="container">
                     <div class="col py-3">
                         <div class="col text-center">

@@ -87,11 +87,11 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     </div>
 
     <div class="row justify-content-end">
-                <button type="button" tabindex="17" class="mt-2 mr-5 btn btn-primary navegacion" style="border:0; background-color:transparent;cursor:pointer;"
+                <button type="button" tabindex="17" class="mt-2 mr-5 mt-5 btn btn-primary navegacion" style="border:0; background-color:transparent;cursor:pointer;"
                     value="" data-toggle="tooltip" title="Página anterior" onclick="window.location.href='menu2.php'"><img
                         class="hola" src="css/return.png"></button>
     </div>
-    <div class="copyright"style="left:0;bottom:0;width:100%;">
+    <div class="copyright"style="left:0;bottom:0;width:100%;position:fixed;">
                 <div class="container">
                     <div class="col py-3">
                         <div class="col text-center">

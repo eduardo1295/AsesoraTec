@@ -9,6 +9,13 @@
     <title>Editar asesoría</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/pruebaregistrar.css">
+    <style>
+    .copyright{
+        background: blue;
+        color: white;
+    }
+    
+    </style>
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -212,11 +219,9 @@ else {
         </tr>
     </table>
     <br>
-    <br>
-    <div class="mb-2 container w-100">
+    
         <div class="row  justify-content-center">
-            <div class="col">
-                <input type="submit" value="Agregar asesoría" id="editarbtn" class="form-control btn btn-primary"
+                <input type="submit" value="Editar asesoría" id="editarbtn" class="form-control btn btn-primary"
                     data-toggle="modal" data-target="#mensaje">
                 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -237,14 +242,25 @@ else {
                             </div>
                         </div>
                     </div>
-                </div>
+               
             </div>
-            <div class="row justify-content-center">
+            
+        </div>
+        <div class="row justify-content-end">
                 <button type="button" class="mt-2 mr-5 btn btn-primary navegacion" style="border:0; background-color:transparent;cursor:pointer;"
                     value="" data-toggle="tooltip" title="Página anterior" onclick="window.location.href='verasesorias.php'"><img
                         class="hola" src="css/return.png"></button>
             </div>
-        </div>
+    
+    <div class="copyright"style="left:0;bottom:0;width:100%;">
+                <div class="container">
+                    <div class="col py-3">
+                        <div class="col text-center">
+                            Instituto Tecnológico de La Paz. &copy;
+                            
+                        </div>
+                    </div>
+                </div>
     </div>
 
 
