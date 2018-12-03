@@ -66,17 +66,17 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $nombrem;?>" class="cajas lead" id="nombrem" placeholder="Contraseña"maxlength=20 required>
+                        <input type="text"  value="<?php echo $nombrem;?>" class="cajas lead" id="nombrem" placeholder="Contraseña"maxlength=20 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $tipo;?>" class="cajas lead"id="tipo" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="<?php echo $tipo;?>" class="cajas lead"id="tipo" placeholder="Apellido Paterno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $semestre;?>" class="cajas lead" id="semestre" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="<?php echo $semestre;?>" class="cajas lead .validanumericos" id="semestre" placeholder="Semestre"maxlength=50 required>
                     </div>
                 </div>
             </div>
@@ -115,5 +115,38 @@ $(document).ready(function(){
     });
 });
 
+</script>
+<script>
+    function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+</script>
+<script language="javascript">
+$(function(){
+
+$('.validanumericos').keypress(function(e) {
+  if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+   return false;
+})
+.on("cut copy paste",function(e){
+  e.preventDefault();
+});
+
+});
 </script>
 </html>
