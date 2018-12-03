@@ -6,7 +6,7 @@ if($_SESSION['logeado']!="SI")
 }
 require_once('Clases/alumno.php');
 $alumno = new Alumno();
-$contraseña = $_POST['pass'];
+$contraseña = strip_tags($_POST['pass']);
 $nocontrol = $_SESSION['nocontrol'];
 $fecha = $_POST['fecha'];
 $codigo = $_POST['cod'];

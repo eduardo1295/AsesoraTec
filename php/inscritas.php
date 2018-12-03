@@ -17,7 +17,7 @@ if($buscarAsesorias->num_rows > 0)
 {
 
 	$tabla.= 
-	'<div class="row pl-1"><table class="table table-striped">.
+	'<div class="row pl-1"><table class="table table-striped w-100 ml-1">
     <thead class="encabezado">
     <tr>
 		<th class="lead">Codigo</th>
@@ -46,7 +46,7 @@ if($buscarAsesorias->num_rows > 0)
 				
 			$tabla.=
 			'<tr>
-			<td><a href="horarios.php?codigo='.$fila['Codigo_Asesoria'].'&ne='.$fila['NOECON'].'">'.$fila['Codigo_Asesoria'].'</a></td>
+			<td>'.$fila['Codigo_Asesoria'].'</td>
 			<td>'.utf8_encode($asesoria->Nom_Maestro).'</td>
 			<td>'.utf8_encode($asesoria->Nombre).'</td>
 			<td>'.utf8_encode($row['Lunes']).'</td>
@@ -54,8 +54,7 @@ if($buscarAsesorias->num_rows > 0)
 			<td>'.utf8_encode($row['Miercoles']).'</td>
 			<td>'.utf8_encode($row['Jueves']).'</td>
 			<td>'.utf8_encode($row['Viernes']).'</td>
-			<td><a class="btn btn-success btn-sm mr-1" name="'.$fila['Codigo_Asesoria'].'" id="asistencias" href="misasistencias.php?codA='.$fila['Codigo_Asesoria'].'&ne='.$fila['NOECON'].'">Asistencias</a>
-			<button class="btn btn-info btn-sm mr-1" name="'.$fila['Codigo_Asesoria'].'*'.$fila['NOECON'].'" id="registrarAs" data-toggle="modal" data-target="#contra" name="">Reg. asistencia</button>
+			<td><a class="btn btn-success btn-sm mr-1" name="'.$fila['Codigo_Asesoria'].'" id="asistencias" href="misasistencias.php?codA='.$fila['Codigo_Asesoria'].'&ne='.$fila['NOECON'].'">Ver asistencias</a>
 			<button type="button"id="darbaja" class="btn btn-danger btn-sm mr-1" data-id="'.$fila['Codigo_Asesoria'].'">Eliminar</button></td>
 			</td>
 			</tr>

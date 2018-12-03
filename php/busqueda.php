@@ -82,7 +82,7 @@ else {
 			MARTES LIKE '%".$q."%' OR
 			MIERCOLES LIKE '%".$q."%' OR
 			JUEVES LIKE '%".$q."%' OR
-			VIERNES LIKE '%".$q."%'";
+			VIERNES LIKE '%".$q."%' OR NOMBRE_MATERIA LIKE '%".$q."%'";
 	}	
 	require_once('Clases/asesoria.php');
 	$asesoria = new Asesoria();

@@ -33,6 +33,8 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/reloj.js"></script>
         <script src="js/FiltrarInscritas.js"></script>
     <script src="js/EliminarAsesoria.js"></script>
+    <script src="js/alertify.js"></script>
+    <script src="js/alertify.min.js"></script>
 </head>
 <body>
 <div class="row">
@@ -65,7 +67,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             <h4 class="lead">
                 Selecciona el código de una asesoría para mas acciones!
             </h4>
-            <a href="cargaasesoria.php" class="lead">Generar reporte de horario</a>
+            <a href="cargaasesoria.php" class="lead">Imprimir horario</a>
         </div>
         </div>
         <input type="hidden" name="" id="noecon">
@@ -78,7 +80,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     </div>
 
     <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary fixed-bottom navegacion"id="regresar"style="border:0; background-color:transparent;cursor:pointer; " value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"id="regresar"style="border:0; background-color:transparent;cursor:pointer; " value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
     
     <div class="modal fade" id="mensa" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
@@ -143,7 +145,6 @@ $(document).on("click","#darbaja",function(){
                 $("#tabla").load('php/inscritas.php');
             }
         });
-    
 })
 </script>
 </body>

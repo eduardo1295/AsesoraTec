@@ -398,38 +398,182 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
             echo error;
         }  
     }
-    public function cargarHorarios($nocon){
-        try{
-            $conexion = abrirBD();
-            $consulta = "SELECT CODIGO_ASESORIA FROM ASESORIASREG WHERE CONTROL_ALUMNO=?";
-            $sentencia  = $conexion->prepare($consulta);
-            $sentencia->bind_param('s',$nocontrol);
-            $nocontrol = $nocon;
-            $codigos = array();
-            $res = $sentencia->execute();
-            $SQL= "SELECT Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios WHERE  COD_MATERIA= ?";
-            $STMT = $conexion->prepare($SQL);
-            $datos = array();
-            while($row = mysqli_fetch_array($res))
+    public function VerificarHorario($codigo,$noecon,$nocontrol,$horario)
+    {
+        try
+        {
+            $conn = abrirBD();
+            $consultaAsesoriasAlumno = "SELECT CODIGO_ASESORIA FROM ASESORIASREG WHERE CONTROL_ALUMNO='$nocontrol' AND NOECON='$noecon'";
+            $selectAsesorias = $conn->query($consultaAsesoriasAlumno);
+            $lunesForaneo = $horario[4];
+            $martesForaneo= $horario[3];
+            $miercolesForaneo = $horario[2];
+            $juevesForaneo = $horario[1];
+            $viernesForaneo = $horario[0];
+            $horasLunesForaneo;
+            $horasMartesForaneo;
+            $horasMiercolesForaneo;
+            $horasJuevesForaneo;
+            $horasViernesForaneo;
+            if(isset($lunesForaneo))
             {
-                array_push($codigos,$row[0]);
-                $STMT->bind_param('s',$row[0]);
-                $STMT->execute();
-                $STMT->bind_result($lunes,$martes,$miercoles,$Jueves,$Vienes);
-                while( $fila = $STMT->fetch()){
-                    array_push($datos,$lunes);
-                    array_push($datos,$martes);
-                    array_push($datos,$miercoles);
-                    array_push($datos,$Jueves);
-                    array_push($datos,$Vienes);
-                }
+                $horasLunesForaneo = explode("-",$lunesForaneo);
             }
-            $conexion->close();
-            return $datos;
+            if(isset($martesForaneo))
+            {
+                $horasMartesForaneo = explode("-",$martesForaneo);
+            }
+            if(isset($miercolesForaneo))
+            {
+                $horasMiercolesForaneo = explode("-",$miercolesForaneo);
+            }
+            if(isset($juevesForaneo))
+            {
+                $horasJuevesForaneo = explode("-",$juevesForaneo);
+            }
+            if(isset($viernesForaneo))
+            {
+                $horasViernesForaneo = explode("-",$viernesForaneo);
+            }
+            
+            if($selectAsesorias->num_rows>0)
+            {
+                while($fila = $selectAsesorias->fetch_assoc())
+                {   
+                $codAsesoria = $fila['CODIGO_ASESORIA'];
+                $selectHorarioAlumno = "SELECT LUNES,MARTES,MIERCOLES,JUEVES,VIERNES FROM HORARIOS WHERE NOECON='$noecon' AND COD_MATERIA='$codAsesoria'";
+                $regHorario = $conn->query($selectHorarioAlumno);
+                while($row = $regHorario->fetch_assoc())
+                {
+                $lunesTabla = $row['LUNES'];
+                $martesTabla = $row['MARTES'];
+                $miercolesTabla = $row['MIERCOLES'];
+                $juevesTabla = $row['JUEVES'];
+                $viernesTabla = $row['VIERNES'];
+                if(isset($lunesTabla) &&$lunesTabla!="")
+                {
+                    $horaLunesSeparada = explode(" ",$lunesTabla);
+                    $horasInicioYFinalLunes = explode("-",$horaLunesSeparada[0]);
+                }
+                if(isset($martesTabla)&&$martesTabla!="")
+                {
+                    $horaMartesSeparada = explode(" ",$martesTabla);
+                    $horasInicioYFinalMartes = explode("-",$horaMartesSeparada[0]);
+                }
+                if(isset($miercolesTabla)&&$miercolesTabla!="")
+                {
+                    $horaMiercolesSeparada = explode(" ",$miercolesTabla);
+                    $horasInicioYFinalMiercoles = explode("-",$horaMiercolesSeparada[0]);
+                }
+                if(isset($juevesTabla)&&$juevesTabla!="")
+                {
+                    $horaJuevesSeparada = explode(" ",$juevesTabla);
+                    $horasInicioYFinalJueves = explode("-",$horaJuevesSeparada[0]);
+                }
+               
+                if(isset($viernesTabla)&&$viernesTabla!="")
+                {
+                    $horaViernesSeparada = explode(" ",$viernesTabla);
+                    $horasInicioYFinalViernes = explode("-",$horaViernesSeparada[0]);
+                }
+                if($lunesForaneo!=""&&$lunesTabla!="" &&isset($lunesForaneo)&&isset($lunesTabla))
+                {  
+                    if($horasLunesForaneo[0]==$horasInicioYFinalLunes[0])
+                    {
+                        return true;
+                    }
+                    if(isset($horasLunesForaneo[1]) &&$horasInicioYFinalLunes[0])
+                    {  
+                        if((int)$horasInicioYFinalLunes[0]<(int)$horasLunesForaneo[1]&&(int)$horasLunesForaneo[0]!=(int)$horasInicioYFinalLunes[1])
+                        {
+                            
+                            return true;
+                        }
+
+                    }
+                }
+                if(isset($martesForaneo)&&isset($martesTabla)&&$martesForaneo!=""&&$martesTabla!="")
+                {
+                    if(isset($horasMartesForaneo)&&isset($horasInicioYFinalMartes))
+                    {
+                        if($horasMartesForaneo[0]==$horasInicioYFinalMartes[0])
+                        {
+                        return true;
+                        }
+                        if(isset($horasMartesForaneo[1]) &&$horasInicioYFinalMartes[0])
+                        {
+                           
+                            if((int)$horasInicioYFinalMartes[0]<(int)$horasMartesForaneo[1]&&(int)$horasMartesForaneo[0]!=(int)$horasInicioYFinalMartes[1])
+                            {
+                                
+                                return true;
+                            }
+    
+                        }
+                    }
+                }
+                if(isset($miercolesForaneo)&&isset($miercolesTabla)&&$miercolesForaneo!=""&&$miercolesTabla!="")
+                {
+                    if($horasMiercolesForaneo[0]==$horasInicioYFinalMiercoles[0])
+                    {
+                        return true;
+                    }
+                    if(isset($horasMiercolesForaneo[1]) &&$horasInicioYFinalMiercoles[0])
+                    { 
+                        if((int)$horasInicioYFinalMiercoles[0]<(int)$horasMiercolesForaneo[1]&&(int)$horasMiercolesForaneo[0]!=(int)$horasInicioYFinalMiercoles[1])
+                        {
+                            
+                            return true;
+                        }
+
+                    }
+                }
+
+                if(isset($juevesForaneo)&&isset($juevesTabla)&&$juevesForaneo!=""&&$juevesTabla!="")
+                {
+                    if($horasJuevesForaneo[0]==$horasInicioYFinalJueves[0])
+                    {
+                        return true;
+                    }
+                    if(isset($horasJuevesForaneo[1]) &&$horasInicioYFinalJueves[0])
+                    {
+                       
+                        if((int)$horasInicioYFinalJueves[0]<(int)$horasJuevesForaneo[1]&&(int)$horasJuevesForaneo[0]!=(int)$horasInicioYFinalJueves[1])
+                        {
+                          
+                            return true;
+                        }
+
+                    }
+                }
+                if(isset($viernesForaneo)&&isset($viernesTabla)&&$viernesForaneo!=""&&$viernesTabla!="")
+                {
+                    if($horasViernesForaneo[0]==$horasInicioYFinalViernes[0])
+                    {
+                        return true;
+                    }
+                    if(isset($horasViernesForaneo[1]) &&$horasInicioYFinalViernes[0])
+                    {
+                       
+                        if((int)$horasInicioYFinalViernes[0]<(int)$horasViernesForaneo[1] &&(int)$horasViernesForaneo[0]!=(int)$horasInicioYFinalViernes[1])
+                        {
+                            
+                            return true;
+                        }
+
+                    }
+                }
+             }
+            }
+
+          }
+          else
+            return false;
         }
-        catch (Exception $e){
-            $error = $e->getMessage();
-            echo $error;
+        catch (Exception $e)
+        {
+        $error = $e->getMessage();
+        echo $error;
         }
     }
 }

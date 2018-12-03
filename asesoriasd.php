@@ -73,7 +73,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         </div>
     </div>
     <div class="row justify-content-end">    
-        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion fixed-bottom"id="" name=""style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"id="" name=""style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='menu1.php'"><img  src="css/return.png" width="120px"height="120px"></button>
     </div>
     <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">

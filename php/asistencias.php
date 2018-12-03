@@ -10,6 +10,13 @@ $arr = explode("*",$concatenados);
 $codigo = $arr[0];
 $noecon = $arr[1];
 $query = "SELECT * FROM ASISTENCIASREG WHERE CONTROL_ALUMNO=$nocontrol AND NOECON='$noecon' AND CODIGO_ASESORIA='$codigo'";
+
+if(isset($_POST['busqueda']))
+{
+    $q=$conn->real_escape_string($_POST['busqueda']);
+    $query="SELECT * FROM ASISTENCIASREG WHERE 
+        FECHA LIKE '%".$q."%'AND CONTROL_ALUMNO=$nocontrol AND NOECON='$noecon' AND CODIGO_ASESORIA='$codigo' OR PASSWORDDIA LIKE '%".$q."%' AND CONTROL_ALUMNO=$nocontrol AND NOECON='$noecon' AND CODIGO_ASESORIA='$codigo'";
+}	
 $verasistencias = $conn->query($query);
 if($verasistencias->num_rows > 0)
 {
@@ -32,7 +39,7 @@ if($verasistencias->num_rows > 0)
 $tabla.='</table></div>';
 }
 else{
-    $tabla="No tienes asistencias registradas en esta asesoría";
+    $tabla="No se encontraron coincidencias";
 }
 echo $tabla;
 ?>
