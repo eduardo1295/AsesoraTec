@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             if($SalonLibre == true){
                                 $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre,$_SESSION['noeconomico']);    
                                 if($correcto == 1){
-                                    $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro);
+                                    $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro,$nombreMateria);
                                     echo "La asesoria se registro correctamente";
                                 }
                                 else

@@ -99,12 +99,12 @@ class Maestro{
      }
     }
 
-    public function AgregarHorario($codigo,$noecom,$salon,$Horario,$neocon,$nombreMaestro){
+    public function AgregarHorario($codigo,$noecom,$salon,$Horario,$neocon,$nombreMaestro,$nombreMateria){
         try{
         $conexion = abrirBD();
-        $SQL= "INSERT INTO HORARIOS VALUES(?,?,?,?,?,?,?,?)";
+        $SQL= "INSERT INTO HORARIOS VALUES(?,?,?,?,?,?,?,?,?)";
         $sentencia_preparada1 = $conexion->prepare($SQL);
-        $sentencia_preparada1->bind_param("ssssssss",$cod_Mat,$mae,$lun,$mar,$mie,$jue,$vie,$neo);
+        $sentencia_preparada1->bind_param("sssssssss",$cod_Mat,$mae,$lun,$mar,$mie,$jue,$vie,$neo,$nomMat);
         $cod_Mat = utf8_encode($codigo);
         $mae = utf8_decode($nombreMaestro);
         $lun = $Horario[0].' '.$salon[0];
@@ -113,6 +113,7 @@ class Maestro{
         $jue = $Horario[3].' '.$salon[3];
         $vie = $Horario[4].' '.$salon[4];
         $neo = $neocon;
+        $nomMat = $nombreMateria;
         $sentencia_preparada1->execute();
          $conexion->close();
         }
