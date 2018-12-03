@@ -14,7 +14,8 @@ if(isset($_SESSION['maestrologeado'])){
 	$appat =  utf8_encode($maestro->Ap_Pat);
 	$apmat =  utf8_encode($maestro->Ap_Mat);
 	$nombrecompleto = $nombre." ".$appat." ".$apmat;
-	$query= "SELECT Nombre_Materia,Lunes,Martes,Miercoles,Jueves,Viernes,Codigo,Tipo FROM asesorias,horarios WHERE horarios.NOECON = '$nocontrol' AND asesorias.codigo = horarios.Cod_Materia AND asesorias.Activo = 'Si'";
+	$query= "SELECT `Nombre_Materia`,`Lunes`,`Martes`,`Miercoles`,`Jueves`,`Viernes`,Codigo,Tipo FROM asesorias,horarios WHERE horarios.NOECON=$nocontrol AND Codigo = Cod_Materia AND Activo = 'Si'";
+	
 	$buscarAsesorias=$conn->query($query);
 	
 	if ($buscarAsesorias->num_rows > 0)
@@ -81,7 +82,7 @@ else {
 			MARTES LIKE '%".$q."%' OR
 			MIERCOLES LIKE '%".$q."%' OR
 			JUEVES LIKE '%".$q."%' OR
-			VIERNES LIKE '%".$q."%' OR NOMBRE_MATERIA LIKE '%".$q."%'";
+			VIERNES LIKE '%".$q."%' OR NOMBRE_MAT LIKE '%".$q."%'";
 	}	
 	require_once('Clases/asesoria.php');
 	$asesoria = new Asesoria();

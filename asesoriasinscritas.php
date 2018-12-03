@@ -33,8 +33,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/reloj.js"></script>
         <script src="js/FiltrarInscritas.js"></script>
     <script src="js/EliminarAsesoria.js"></script>
-    <script src="js/alertify.js"></script>
-    <script src="js/alertify.min.js"></script>
+   
 </head>
 <body>
 <div class="row">
@@ -145,7 +144,7 @@ $(document).on("click","#darbaja",function(){
                 $("#tabla").load('php/inscritas.php');
             }
         });
-})
+});
 </script>
 </body>
 </html>

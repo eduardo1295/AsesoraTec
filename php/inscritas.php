@@ -55,7 +55,7 @@ if($buscarAsesorias->num_rows > 0)
 			<td>'.utf8_encode($row['Jueves']).'</td>
 			<td>'.utf8_encode($row['Viernes']).'</td>
 			<td><a class="btn btn-success btn-sm mr-1" name="'.$fila['Codigo_Asesoria'].'" id="asistencias" href="misasistencias.php?codA='.$fila['Codigo_Asesoria'].'&ne='.$fila['NOECON'].'">Ver asistencias</a>
-			<button type="button"id="darbaja" class="btn btn-danger btn-sm mr-1" data-id="'.$fila['Codigo_Asesoria'].'">Eliminar</button></td>
+			<button type="button"id="darbaja" class="btn btn-danger btn-sm mr-1" data-id="'.$fila['Codigo_Asesoria'].'">Dar de baja</button></td>
 			</td>
 			</tr>
 			';	
