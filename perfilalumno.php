@@ -96,14 +96,26 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="radio" name="sexo" id="sexo" class="radio my-2 mx-3 lead">
-                        <label for="hombre" class="radio lead">Hombre</label>
-                        <input type="radio" name="sexo" id="sexo" class="radio my-2 mx-3 lead">
-                        <label for="mujer" class="radio lead">Mujer</label>
-                        <input type="radio" name="sexo" id="sexo" class="radio my-2 mx-3 lead">
-                        <label for="No binario" class="radio lead">No binario</label>
+                    <input type="radio" name="sexo" id="hombre" <?php ?> class="radio my-2 mx-3 lead">
+                    <label for="hombre" class="radio lead">Hombre</label>
+                    <input type="radio" name="sexo" id="mujer" class="radio my-2 mx-3 lead">
+                    <label for="mujer" class="radio lead">Mujer</label>
+                    <input type="radio" name="sexo" id="ninguno" class="radio my-2 mx-3 lead">
+                    <label for="No binario" class="radio lead">No binario</label>
                     </div>
                 </div>
+                <script language="javascript">
+                var hombre = document.getElementById('hombre');
+                var mujer = document.getElementById('mujer');
+                var ninguno = document.getElementById('ninguno');
+                var sexo = '<?php echo $sexo ?>';
+                if(sexo=="Hombre")
+                hombre.checked=true;
+                else if(sexo=="Mujer")
+                mujer.checked = true;
+                else if(sexo=="No binario")
+                ninguno.checked=true;
+                </script>
             </div>
         </div>
     </div>

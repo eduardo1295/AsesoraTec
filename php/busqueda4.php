@@ -60,7 +60,7 @@ if(isset($_SESSION['usuariologueado'])){
 			</td>
 			<td>
 				<div class="d-flex justify-content-center">
-				<form action="EditarAsesoria.php" method="post"> 
+				<form action="editarasesoriasa.php" method="post"> 
 				<input type="hidden" name="codigo" value="'.$fila['Codigo'].'">
 				<input type="hidden" name="tipo" value="'.utf8_encode($fila['Tipo']).'">
 				<button type="submit" name="editar"class="btn btn-info btn-sm mr-1">Editar</button>

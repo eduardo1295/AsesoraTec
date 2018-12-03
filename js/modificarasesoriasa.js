@@ -1,6 +1,14 @@
 var bandera = true;
+var editar = "no";
+var mensaje = "";
 $(document).ready(function(){
+    $(document).on("click","#mensajes",function(){
+        if(mensaje == "La asesoria se registro correctamente" || mensaje == "Se ha editado correctamente la asesoría"){
+            window.location.href='menu2.php';
+        }
+    });
     if($("#EditarCodigo").length > 0){
+        editar = "si";
         /*var codigo = $("#EditarCodigo").val();*/
         $("#tipo").val($("#EditarTipo").val());
         $(Agregar_Codigos());
@@ -40,6 +48,42 @@ $(document).ready(function(){
         
         
     });
+    $("#registrarbtn").click(function(){
+        var cod = $("#codigo").val();
+        var nom = $("#nombrea").val();
+        var tip = $("#tipo").val();
+        var mens = $("#mens");
+        var sem = $("#semestre").val();
+        var aseso = $("#asesor").val();
+        var nocontrol = $("#nocontrol").val();
+        var horario = new Array();
+        var salon = new Array();
+        for (let index = 1; index <= 5; index++) {
+            var hora = $("#h"+index);
+            var salo = $("#s"+index);
+            horario.push(hora.val());
+            salon.push(salo.val());
+        }
+        $.ajax({
+            url: 'php/asesoria.php', 
+            method: 'POST',
+            data:{
+                opcion : "Agregar",
+                codigo : cod,
+                nombre: nom,
+                tipo : tip,
+                semestre : sem,
+                horario: horario,
+                salon: salon,
+                asesor: aseso,
+                nocontrol: nocontrol
+            },
+            success: function (data){
+                mens.text(data);
+                mensaje = data;
+            }
+        });
+    });
     $("#editarbtn").click(function(){
         var econ = $("#Mandarecon").val();
         var cod = $("#codigo").val();
@@ -61,7 +105,7 @@ $(document).ready(function(){
             url: 'php/asesoriasa.php', 
             method: 'POST',
             data:{
-                eco : econ,
+                eco : econ, 
                 codigo : cod,
                 nombre: nom,
                 tipo : tip,
@@ -73,20 +117,24 @@ $(document).ready(function(){
             },
             success: function (data){
                 mens.text(data);
+                mensaje = data;
             }
         });
     });
-    
 });
+
+
 function Agregar_Codigos()
 {   
     var dato = $("#tipo").val();
 	$.ajax({
 		url : 'php/materia.php',
 		type : 'POST',
-		dataType : 'html',
+        dataType : 'html',
         data : { opcion: "codigos",
-                busca: dato},
+                busca: dato,
+                edit : editar
+            },
 		})
 	.done(function(resultado){
         $("#co").html(resultado);
@@ -101,13 +149,16 @@ function Agregar_Nombre_Materia(dato)
 		type : 'POST',
 		dataType : 'html',
         data : { opcion: "nombre",
-                busca: dato},
+                busca: dato,
+                edit : editar},
 		})
 	.done(function(resultado){
         $("#nom").html(resultado);
         if($("#EditarCodigo").length > 0 && bandera == true){
             bandera = false;
+            var puto = "asdas";
             var codigo = $("#EditarCodigo").val();
+            $("#codigo").val(codigo);
             buscar_Por_codigo(codigo);
         }
 	})
