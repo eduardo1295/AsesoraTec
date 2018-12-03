@@ -111,7 +111,8 @@
         <div class="row  justify-content-center">
             <button type="submit" value="Registrarme" id="registrara" class="btn btn-success lead w-50" data-toggle="modal"
                 data-target="#mensaje">Registrarme</button>
-            <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
+           
+                <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -123,19 +124,18 @@
                             </button>
                         </div>
                         <div class="modal-body" id="mens">
-                            Alumno registrado!
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='login.php'">Inicio</button>
-                            <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href=">Aceptar</button>
+                            <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
-
 </html>
 <script>
     function mostrar() {

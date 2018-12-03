@@ -3,6 +3,12 @@ include 'plantillahorarioalumno.php';
 require 'php/Clases/conexion.php';
 session_start();
 $nc = $_SESSION['nocontrol'];
+$existe = $alumno->AlumnoExists($nocontrol);
+if($existe == 0)
+{
+    header("Location: login.php");
+    session_destroy();
+}
 $consulta = "SELECT nocontrol, nombre,AP_Pat,Ap_Mat,Semestre from alumno where nocontrol ='$nc'";
 $conexion = abrirBD();
 $resultados =$conexion->query($consulta);

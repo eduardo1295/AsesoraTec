@@ -8,6 +8,12 @@ if($_SESSION['logeado']!='SI'){
 require_once('php/Clases/alumno.php');
 $alumno = new Alumno();
 $nocontrol= $_SESSION['nocontrol'];
+$existe = $alumno->AlumnoExists($nocontrol);
+if($existe == 0)
+{
+    header("Location: login.php");
+    session_destroy();
+}
 $alumno->ObtenerDatos($nocontrol,$alumno);
 $nc = $nocontrol;
 $nombre = utf8_encode($alumno->Nombre);

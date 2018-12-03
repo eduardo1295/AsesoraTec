@@ -9,6 +9,11 @@
     require_once('php/Clases/alumno.php');
     $alumno = new Alumno();
     $nocontrol = $_SESSION['nocontrol'];
+    $existe = $alumno->AlumnoExists($nocontrol);
+    if($existe == 0)
+    {
+        header("Location: login.php");
+    }
     $alumno->ObtenerDatos($nocontrol,$alumno);
     $nombre = $alumno->Nombre;
     $pass = $alumno->Contraseña;

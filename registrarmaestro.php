@@ -96,7 +96,6 @@
                                     </button>
                                 </div>
                                 <div class="modal-body" id="mens">
-                                Maestro registrado!
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>

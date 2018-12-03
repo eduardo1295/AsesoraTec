@@ -255,6 +255,22 @@ public function EliminarAlumno($nc){
          $sentencia_preparada->execute();
          $conn->close();
      }
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM ASESORIASREG WHERE CONTROL_ALUMNO=?"))
+     {
+         $sentencia_preparada->bind_param('s',$nocontrol);
+         $nocontrol = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM ASISTENCIASREG WHERE CONTROL_ALUMNO=?"))
+     {
+         $sentencia_preparada->bind_param('s',$nocontrol);
+         $nocontrol = $nc;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
     }
     catch(Exception $e)
     {
