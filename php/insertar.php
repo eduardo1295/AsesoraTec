@@ -44,6 +44,10 @@ else if(!is_numeric($semestre))
 {
     echo "El semestre debe ser conformado solo por números!";
 }
+  else if(!preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/",$correo))
+  {
+    echo "El formato de un correo electrónico debe ser parecido a: ejemplo@dominio.com";
+  }
 else
 {
     if($nocontrol!=""&&$contraseña!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!="")
