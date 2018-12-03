@@ -128,6 +128,17 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             value="" data-toggle="tooltip" title="Página anterior" onclick="window.location.href='menu1.php'"><img src="css/return.png"
                 width="120px" height="120px"></button>
     </div>
+    <br>
+    <div class="copyright"style="left:0;bottom:0;width:100%;">
+                <div class="container">
+                    <div class="col py-3">
+                        <div class="col text-center">
+                            Instituto Tecnológico de La Paz. &copy;
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
     <?php
 
 
