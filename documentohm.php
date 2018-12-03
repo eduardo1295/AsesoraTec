@@ -38,7 +38,7 @@ $pdf->Cell(40,6,"Viernes",1,1,"C",1);
 while($rows = $resultados2->fetch_assoc())
 {
 $pdf->SetX(20);
-$pdf->SetFont('Arial','B',10);
+$pdf->SetFont('Arial','B',8);
 $pdf->Cell(60,6,$rows['Nombre_Materia'],1,0,"C");
 $pdf->Cell(40,6,$rows['Lunes'],1,0,"C");
 $pdf->Cell(40,6,$rows['Martes'],1,0,"C");
