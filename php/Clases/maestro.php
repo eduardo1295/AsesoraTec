@@ -113,7 +113,7 @@ class Maestro{
         $jue = $Horario[3].' '.$salon[3];
         $vie = $Horario[4].' '.$salon[4];
         $neo = $neocon;
-        $nomMat = $nombreMateria;
+        $nomMat = utf8_decode($nombreMateria);
         $sentencia_preparada1->execute();
          $conexion->close();
         }

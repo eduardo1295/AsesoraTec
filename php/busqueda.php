@@ -17,6 +17,7 @@ if(isset($_SESSION['maestrologeado'])){
 	$query= "SELECT `Nombre_Materia`,`Lunes`,`Martes`,`Miercoles`,`Jueves`,`Viernes`,Codigo,Tipo FROM asesorias,horarios WHERE horarios.NOECON=$nocontrol AND Codigo = Cod_Materia AND Activo = 'Si'";
 	
 	$buscarAsesorias=$conn->query($query);
+	
 	if ($buscarAsesorias->num_rows > 0)
 	{
 	$tabla.= 
