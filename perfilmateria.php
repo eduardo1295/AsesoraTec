@@ -66,12 +66,12 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo utf8_decode($codigo);?>" class="cajas lead" id="codigo" placeholder="Número de control"maxlength=8 required readonly>
+                        <input type="text" value="<?php echo $codigo;?>" class="cajas lead" id="codigo" placeholder="Número de control"maxlength=8 required readonly>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $nombrem;?>" class="cajas lead" id="nombrem" placeholder="Contraseña"maxlength=20 required onkeypress="return soloLetras(event)">
+                        <input type="text"  value="<?php echo $nombrem;?>" class="cajas lead" id="nombrem" placeholder="nombre"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
