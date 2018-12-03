@@ -166,7 +166,7 @@ else {
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Numero de control" value="<?php if(isset($infoAsesorado[1])){echo $infoAsesorado[1];}?>">
+                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Numero de control" value="<?php if(isset($infoAsesorado[1])){echo utf8_encode($infoAsesorado[1]);}?>">
                     </div>
                 </div>
                 <br>
@@ -228,7 +228,7 @@ else {
                                 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                                <button type="button" class="btn btn-primary lead" data-dismiss="modal" id="mensajes">Aceptar</button>
                             </div>
                         </div>
                     </div>

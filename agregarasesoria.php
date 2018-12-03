@@ -179,7 +179,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                                 Asesoría agregada a la lista
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                                <button type="button" id="mensajes" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
                             </div>
                         </div>
                 </div>

@@ -62,8 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre,$_SESSION['noeconomico']);
                                         if($correcto ==1){
                                         $maestro->AgregarAsesor($codigo,$_SESSION['noeconomico'],$nocontrol,$asesor);
-                                        $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro);
-                                        echo ("Se a Registrado Correctamente");
+                                        $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro,$nombreMateria);
+                                        echo ("La asesoría se registro correctamente");
                                         }
                                         else
                                             echo "La asesoria ya ha sido registrada";  
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre,$_SESSION['noeconomico']);    
                                 if($correcto == 1){
                                     $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro,$nombreMateria);
-                                    echo "La asesoria se registro correctamente";
+                                    echo "La asesoría se registro correctamente";
                                 }
                                 else
                                 echo "La asesoria ya ha sido registrada";
@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             }
                         }
                         else {
-                            echo "El horario se cruza con sus asesorias";
+                            echo "El horario se cruza con sus asesorías";
                         }
                 } 
             }
@@ -166,18 +166,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             if($asesor != "" && $nocontrol != ""){
                                 $maestro->ActualizarAsesor($codigo,$_SESSION['noeconomico'],$nocontrol,$asesor);
                                 $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
-                                echo ("Se a editado correctamente la asesoría");
+                                echo ("Se ha editado correctamente la asesoría");
                             }
                             elseif ($asesor != "" || $nocontrol != "")
                                 echo "Faltan datos del asesorado";
                             else {
                                 $maestro->EliminarAsesor($codigo);
                                 $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
-                                echo ("Se a editado correctamente la asesoría");
+                                echo ("Se ha editado correctamente la asesoría");
                             }
                         }
                         else {
-                            echo "El horario se cruza con sus asesorias";
+                            echo "El horario se cruza con sus asesorías";
                         }
                     }
                     else {

@@ -1,6 +1,12 @@
 var bandera = true;
 var editar = "no";
+var mensaje = "";
 $(document).ready(function(){
+    $(document).on("click","#mensajes",function(){
+        if(mensaje == "La asesoria se registro correctamente" || mensaje == "Se ha editado correctamente la asesoría"){
+            window.location.href='menu2.php';
+        }
+    });
     if($("#EditarCodigo").length > 0){
         editar = "si";
         /*var codigo = $("#EditarCodigo").val();*/
@@ -73,10 +79,8 @@ $(document).ready(function(){
                 nocontrol: nocontrol
             },
             success: function (data){
-                if(data == ""){
-                    console.log("putos");
-                }
                 mens.text(data);
+                mensaje = data;
             }
         });
     });
@@ -112,6 +116,7 @@ $(document).ready(function(){
             },
             success: function (data){
                 mens.text(data);
+                mensaje = data;
             }
         });
     });
