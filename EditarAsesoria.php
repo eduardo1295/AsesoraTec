@@ -26,6 +26,11 @@ if(isset($_SESSION['maestrologeado'])){
     $tipo = utf8_decode($_POST['tipo']);
     $conexion = abrirBD();
     $maestro = new maestro();
+    $existe = $maestro->MaestroExists($_SESSION['noeconomico']);
+    if($existe != 1){
+        session_destroy();
+        header("Location: login.php");  
+    }
     $nocontrol= $_SESSION['noeconomico'];
     $maestro->ObtenerDatos($nocontrol,$maestro);
     $nc = $nocontrol;

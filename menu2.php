@@ -3,10 +3,15 @@
 <?php 
 session_start();
 if($_SESSION['maestrologeado']!='SI'){
-    header("Location: login.php");
+    header("php/cerrarsesion.php");
 }
 require_once('php/Clases/maestro.php');
 $maestro = new Maestro();
+$existe = $maestro->MaestroExists($_SESSION['noeconomico']);
+if($existe != 1){
+    session_destroy();
+    header("Location: login.php");
+}
 $noecom= $_SESSION['noeconomico'];
 $maestro->ObtenerDatos($noecom,$maestro);
 
