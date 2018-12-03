@@ -75,6 +75,9 @@ else {
 }
 ?>
 <body>
+<div class="row justify-content-center">
+    <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
+</div>
     <input id="EditarCodigo" type="hidden" name="" value="<?php echo $codigo?>">
     <input id="EditarTipo" type="hidden" name="" value="<?php echo utf8_encode($tipo)?>">
     <input id="Mandarecon" type="hidden" name="" value="<?php echo utf8_encode($noecon)?>">
@@ -185,10 +188,8 @@ else {
     </table>
     <br>
     <br>
-    <div class="mb-2 container w-100">
         <div class="row  justify-content-center">
-            <div class="col">
-                <input type="submit" value="Modificar" id="editarbtn" class="form-control btn btn-primary"
+                <input type="submit" value="Modificar" id="editarbtn" class="form-control btn btn-primary" tabindex="17"
                     data-toggle="modal" data-target="#mensaje">
                 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -209,15 +210,14 @@ else {
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-end">
                 <button type="button" class="mt-2 mr-5 btn btn-primary navegacion" style="border:0; background-color:transparent;cursor:pointer;"
                     value="" data-toggle="tooltip" title="Página anterior" onclick="window.location.href='asesoriasa.php'"><img
                         class="hola" src="css/return.png"></button>
             </div>
         </div>
-    </div>
 
 
 </body>
