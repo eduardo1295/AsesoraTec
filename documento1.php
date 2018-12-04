@@ -17,7 +17,7 @@ $appat =  utf8_encode($maestro->Ap_Pat);
 $apmat =  utf8_encode($maestro->Ap_Mat);
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 $codigo = $_GET['eliminar'];
-$asesoria->ObtenerAsesoria($codigo,$asesoria);
+$asesoria->ObtenerAsesoria($codigo,$nocontrol,$asesoria);
 $mat = $asesoria->Nombre;
 $conexion = abrirBD();
 $SQL = "SELECT`nocontrol`,`nombre`,`Ap_pat`,`Ap_Mat`,`carrera`,`semestre` FROM `alumno`,`asesoriasreg` WHERE `control_alumno` = `nocontrol` AND `codigo_asesoria` = ?";

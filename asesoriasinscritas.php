@@ -131,16 +131,20 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </div>
             </div>
 <script>
-    var codigoEliminar = 0;
+    var codigoEliminar = "";
 $(document).on("click","#darbaja",function(){
     var codigo =codigoEliminar;
+    var arr = codigoEliminar.split("*");
+    var codA = arr[0];
+    var noec = arr[1];
     var res = $("#resul");
     var mens = $("#mensa");
     $.ajax({
             url: 'php/eliminarA.php', 
             method: 'POST',
             data:{
-                cod : codigo,
+                cod : codA,
+                noecon:noec
             },
             success: function (data){
                 $("#tabla").load('php/inscritas.php');
