@@ -11,7 +11,7 @@ if (isset($_POST['cod'])) {
     $conexion = abrirBD();
     $codi = $_POST['cod'];
     $asesoria = new asesoria();
-    $asesoria->ObtenerAsesoria($codi,$asesoria);
+    $asesoria->ObtenerAsesoria($codi,$_SESSION['noeconomico'],$asesoria);
 
     $nc = $_SESSION['noeconomico'];
     $SQL = "SELECT Control_Alumno FROM asesoriasreg WHERE Codigo_Asesoria = ? AND NOECON = ?";
