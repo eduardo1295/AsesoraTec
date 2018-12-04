@@ -3,7 +3,7 @@ var editar = "no";
 var mensaje = "";
 $(document).ready(function(){
     $(document).on("click","#mensajes",function(){
-        if(mensaje == "La asesoria se registro correctamente" || mensaje == "Se ha editado correctamente la asesoría"){
+        if(mensaje == "La asesoría se registro correctamente" || mensaje == "Se ha editado correctamente la asesoría"){
             window.location.href='menu2.php';
         }
     });
