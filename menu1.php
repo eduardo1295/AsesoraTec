@@ -253,7 +253,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 </body>
 <script language="javascript">
      $("#elim").click(function(){
-        window.location.href='eliminar.php';
+        window.location.href='eliminarAl.php';
     });
 </script>
 <script language="javascript">

@@ -106,14 +106,18 @@ else {
 	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
-
-		$asesoria->ObtenerAsesoria($fila['Cod_Materia'],$asesoria);
+		$asesoria->ObtenerAsesoria($fila['Cod_Materia'],$fila['NOECON'],$asesoria);
+		$activo = $asesoria->Activo;
+		if($activo=="Si")
+		{
+		$noecon = $fila['NOECON'];
+		$asesoria->ObtenerAsesoria($fila['Cod_Materia'],$noecon,$asesoria);
 		$codigo = $fila['Cod_Materia'];
 		$concatenacion = $fila['Cod_Materia']."*".$fila['NOECON'];
 		$tabla.=
 		'<tr>
 			<td>'.$fila['Cod_Materia'].'</td>
-			<td>'.utf8_encode($asesoria->Nombre).'</td>
+			<td>'.utf8_encode($fila['Nombre_Mat']).'</td>
 			<td>'.utf8_encode($fila['Maestro']).'</td>
 			<td>'.utf8_encode($fila['Lunes']).'</td>
 			<td>'.utf8_encode($fila['Martes']).'</td>
@@ -124,6 +128,7 @@ else {
 			<button type="button"id="inscribir" class="btn btn-success btn-sm mr-1" data-id="'.$concatenacion.'">Inscribirme</button></td>
 			</td>
 		</tr>';
+		}
 	}
 $tabla.='</table>';
 } else
