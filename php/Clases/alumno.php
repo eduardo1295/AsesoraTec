@@ -524,27 +524,22 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalLunes[0]==(int)$horasLunesForaneo[0])
                     {
-                        echo "Cruza hora inicio";
                         return true;
                     }
                     if((int)$horasInicioYFinalLunes[1]==(int)$horasLunesForaneo[1])
                     {
-                        echo "Cruza hora finalLun";
                         return true;
                     }
                     if((int)$horasInicioYFinalLunes[0]<(int)$horasLunesForaneo[1] &&(int)$horasInicioYFinalLunes[0]>(int)$horasLunesForaneo[0])
                     {
-                        echo "Cruza horaLun";
                         return true;
                     }
                     if((int)$horasInicioYFinalLunes[1]>(int)$horasLunesForaneo[0] &&(int)$horasInicioYFinalLunes[1]<(int)$horasLunesForaneo[0])
                     {
-                        echo "Cruza horaLun";
                         return true;
                     }
                     if((int)$horasInicioYFinalLunes[0]<(int)$horasLunesForaneo[0] &&(int)$horasInicioYFinalLunes[1]>(int)$horasLunesForaneo[0])
                     {
-                        echo "Cruza hora Lun3";
                         return true; 
                     }
                        
@@ -554,27 +549,22 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalMartes[0]==(int)$horasMartesForaneo[0])
                     {
-                        echo "Cruza hora inicioMar";
                         return true;
                     }
                     if((int)$horasInicioYFinalMartes[1]==(int)$horasMartesForaneo[1])
                     {
-                        echo "Cruza hora finalMar";
                         return true;
                     }
                     if((int)$horasInicioYFinalMartes[0]<(int)$horasMartesForaneo[1] &&(int)$horasInicioYFinalMartes[0]>(int)$horasMartesForaneo[0]&&$horasMartesForaneo[1]>$horasInicioYFinalMartes[0])
                     {
-                        echo "Cruza hora aquiMar";
                         return true;
                     }
                     if((int)$horasInicioYFinalMartes[1]>(int)$horasMartesForaneo[0] &&(int)$horasInicioYFinalMartes[1]<(int)$horasMartesForaneo[0])
                     {
-                        echo "Cruza hora aquiMar";
                         return true;
                     }
                     if((int)$horasInicioYFinalMartes[0]<(int)$horasMartesForaneo[0] &&(int)$horasInicioYFinalMartes[1]>(int)$horasMartesForaneo[0])
                     {
-                        echo "Cruza hora aquiMar3";
                         return true; 
                     }
                        
@@ -583,27 +573,22 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalMiercoles[0]==(int)$horasMiercolesForaneo[0])
                     {
-                        echo "Cruza hora inicioMie";
                         return true;
                     }
                     if((int)$horasInicioYFinalMiercoles[1]==(int)$horasMiercolesForaneo[1])
                     {
-                        echo "Cruza hora finalMie";
                         return true;
                     }
                     if((int)$horasInicioYFinalMiercoles[0]<(int)$horasMiercolesForaneo[1] &&(int)$horasInicioYFinalMiercoles[0]>(int)$horasMiercolesForaneo[0]&&(int)$horasMiercolesForaneo[1]>(int)$horasInicioYFinalMiercoles[0])
                     {
-                        echo "Cruza hora aquiMie1";
                         return true;
                     }
                     if((int)$horasInicioYFinalMiercoles[1]>(int)$horasMiercolesForaneo[0] &&(int)$horasInicioYFinalMiercoles[1]<(int)$horasMiercolesForaneo[0])
                     {
-                        echo "Cruza hora aquiMie2";
                         return true;
                     }
                     if((int)$horasInicioYFinalMiercoles[0]<(int)$horasMiercolesForaneo[0] &&(int)$horasInicioYFinalMiercoles[1]>(int)$horasMiercolesForaneo[0])
                     {
-                        echo "Cruza hora aquiMie3";
                         return true; 
                     }
                         
@@ -612,27 +597,22 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalJueves[0]==(int)$horasJuevesForaneo[0])
                     {
-                        echo "Cruza hora inicioJue";
                         return true;
                     }
                     if((int)$horasInicioYFinalJueves[1]==(int)$horasJuevesForaneo[1])
                     {
-                        echo "Cruza hora finalJue";
                         return true;
                     }
                     if((int)$horasInicioYFinalJueves[0]<(int)$horasJuevesForaneo[1] &&(int)$horasInicioYFinalJueves[0]>(int)$horasJuevesForaneo[0]&&$horasJuevesForaneo[1]>$horasInicioYFinalJueves[0])
                     {
-                        echo "Cruza hora aquiJue";
                         return true;
                     }
                     if((int)$horasInicioYFinalJueves[1]>(int)$horasJuevesForaneo[0] &&(int)$horasInicioYFinalJueves[1]<(int)$horasJuevesForaneo[0])
                     {
-                        echo "Cruza hora aquiJue";
                         return true;
                     }
                     if((int)$horasInicioYFinalJueves[0]<(int)$horasJuevesForaneo[0] &&(int)$horasInicioYFinalJueves[1]>(int)$horasJuevesForaneo[0])
                     {
-                        echo "Cruza hora aquiJue3";
                         return true; 
                     }
                        
@@ -642,27 +622,22 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalViernes[0]==(int)$horasViernesForaneo[0])
                     {
-                        echo "Cruza hora inicioVie";
                         return true;
                     }
                     if((int)$horasInicioYFinalViernes[1]==(int)$horasViernesForaneo[1])
                     {
-                        echo "Cruza hora finalVie";
                         return true;
                     }
                     if((int)$horasInicioYFinalViernes[0]<(int)$horasViernesForaneo[1] &&(int)$horasInicioYFinalViernes[0]>(int)$horasViernesForaneo[0])
                     {
-                        echo "Cruza hora aquiVie";
                         return true;
                     }
                     if((int)$horasInicioYFinalViernes[1]>(int)$horasViernesForaneo[0] &&(int)$horasInicioYFinalViernes[1]<(int)$horasViernesForaneo[0])
                     {
-                        echo "Cruza hora aqui";
                         return true;
                     }
                     if((int)$horasInicioYFinalViernes[0]<(int)$horasViernesForaneo[0] &&(int)$horasInicioYFinalViernes[1]>(int)$horasViernesForaneo[0])
                     {
-                        echo "Cruza hora aquiVie3";
                         return true; 
                     }
                        

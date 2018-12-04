@@ -253,12 +253,12 @@ function horarioCruza($noecon,$horamin,$horamax,$maestro){
                         return false;
                         break;
                     }
-                    if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                    if((int)$divhora[0] > (int)$horamin[$w] && (int)$divhora[0] < (int)$horamax[$w] || (int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[0] > (int)$horamax[$w]){
                         /*$horarioLibre = false;*/
                         return false;
                         break;
                     }
-                    if($divhora[0] < $horamin[$w] && $divhora[1] > $horamin[$w]){
+                    if((int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[1] > (int)$horamin[$w]){
                         return false;
                         break;
                     }        
@@ -291,12 +291,12 @@ function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
                         return false;
                         break;
                     }
-                    if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                    if((int)$divhora[0] > (int)$horamin[$w] && (int)$divhora[0] < (int)$horamax[$w] || (int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[0] > (int)$horamax[$w]){
                         /*$horarioLibre = false;*/
                         return false;
                         break;
                     }
-                    if($divhora[0] < $horamin[$w] && $divhora[1] > $horamin[$w]){
+                    if((int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[1] > (int)$horamin[$w]){
                         return false;
                         break;
                     }        

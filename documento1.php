@@ -32,7 +32,7 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetXY(20,40);
-$pdf->Cell(60,8,"Maestro: $nombrecompleto",0,0,'C');
+$pdf->Cell(60,8,"Maestro:".utf8_decode($nombrecompleto),0,0,'C');
 $pdf->Cell(160,8,"Materia: $mat ",0,0,'C');
 
 
