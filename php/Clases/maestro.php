@@ -156,7 +156,7 @@ class Maestro{
             $cod = $codigo;
             $noen = $noecon;
             $nocont = $nocontrol;
-            $nomb = $nombreAsesorado;
+            $nomb = utf8_decode($nombreAsesorado);
             $sentencia_preparada1->execute();
             $conexion->close();
         }
@@ -167,13 +167,16 @@ class Maestro{
     }
     public function ActualizarAsesor($codigo,$noecon,$nocontrol,$nombreAsesorado){
         try{
+            echo $codigo.' '.$noecon.' '.$nocontrol.' '.$nombreAsesorado;
             $conexion = abrirBD();
-            $SQL= "SELECT COUNT(*) FROM ASESORADOS WHERE codigo = '$codigo' AND noControl = '$nocontrol' ";
+            $SQL= "SELECT COUNT(*) FROM ASESORADOS WHERE codigo = '$codigo' AND NoEcon = '$noecon' ";
             $STMT = $conexion->prepare($SQL);
             $STMT->execute();
             $STMT->bind_result($nombre);
-            while( $fila = $STMT->fetch()){
+            while($STMT->fetch()){
+                echo "ENTRO AQUI";
                 $resultado = $nombre;
+                echo $resultado;
             }
             $conexion->close();
             $conexion = abrirBD();
@@ -184,17 +187,18 @@ class Maestro{
                 $cod = $codigo;
                 $noen = $noecon;
                 $nocont = $nocontrol;
-                $nomb = $nombreAsesorado;
+                $nomb = utf8_encode($nombreAsesorado);
                 $sentencia_preparada1->execute();
                 $conexion->close();
             }
             else {
-                $SQL= "UPDATE asesorados SET nocontrol = ?, Nombre =? WHERE NoAsesoria =? ";
+                $SQL= "UPDATE asesorados SET nocontrol = ?, Nombre =? WHERE NoEcon =? AND codigo = ? ";
                 $sentencia_preparada1 = $conexion->prepare($SQL);
-                $sentencia_preparada1->bind_param("sss",$nocont,$nomb,$cod);
+                $sentencia_preparada1->bind_param("ssss",$nocont,$nomb,$cod,$code);
                 $nocont = $nocontrol;
-                $nomb = $nombreAsesorado;
-                $cod = $codigo;
+                $nomb = utf8_decode($nombreAsesorado);
+                $cod = $noecon;
+                $code = $codigo;
                 $sentencia_preparada1->execute();
                 $conexion->close();
             }
