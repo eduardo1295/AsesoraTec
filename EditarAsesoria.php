@@ -173,12 +173,12 @@ else {
                     </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="text" class="cajas lead" id="asesor" placeholder="Alumno a Impartir" value="<?php if(isset($infoAsesorado[0])){echo $infoAsesorado[0];}?>">
+                        <input type="text" class="cajas lead" id="asesor" placeholder="Alumno a Impartir" value="<?php if(isset($infoAsesorado[1])){echo utf8_encode($infoAsesorado[1]);}?>">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Numero de control" value="<?php if(isset($infoAsesorado[1])){echo utf8_encode($infoAsesorado[1]);}?>">
+                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Numero de control" value="<?php if(isset($infoAsesorado[0])){echo utf8_encode($infoAsesorado[0]);}?>">
                     </div>
                 </div>
                 <br>
@@ -190,7 +190,7 @@ else {
     <div class="d-flex justify-content-center">
     <h1 id="titulo_tabla">Horario: </h1> 
     </div>
-    <table class="table	">
+    <table class="table	" data-toggle="tooltip" data-placement="top" title="El Formato del horario debe ser 9 - 11 y solamente en este formato">
         <thead class="encabezado">
             <tr>
             <th class="lead"></th>

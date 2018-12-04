@@ -66,7 +66,7 @@ $(document).ready(function(){
 				data:{
 					cod : datoeliminar,
 				},
-				success: function (){
+				success: function (data){
 					$("#tabla").load('php/busqueda.php');
 				}
 			});
