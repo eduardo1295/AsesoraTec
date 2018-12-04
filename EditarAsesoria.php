@@ -190,7 +190,7 @@ else {
     <div class="d-flex justify-content-center">
     <h1 id="titulo_tabla">Horario: </h1> 
     </div>
-    <table class="table	">
+    <table class="table	" data-toggle="tooltip" data-placement="top" title="El Formato del horario debe ser 9 - 11 y solamente en este formato">
         <thead class="encabezado">
             <tr>
             <th class="lead"></th>
