@@ -120,8 +120,9 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="" class="btn btn-danger lead" id="eliminar" data-dismiss="modal"role="button">Aceptar</a>
-                    <a href="" class="btn btn-info" data-dismiss="modal">Cancelar</a>
+                    <button class="btn btn-danger lead" id="elim" data-dismiss="modal"role="button">Aceptar</button>
+                    <button class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                    
                 </div>
             </div>
         </div>
@@ -260,7 +261,7 @@ $(document).ready(function(){
     $("#modificar").click(function(){
     window.location.href='miperfilmaestro.php';
     });
-    $("#eliminar").click(function(){
+    $("#elim").click(function(){
         window.location.href='eliminar.php';
     });
 });

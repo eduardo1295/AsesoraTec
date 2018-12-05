@@ -52,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         array_push($horamin,"");
                                         array_push($horamax,"");
                                     }
-                                    
                                 }
                                 //Aqui Empieza
                                 $horarioLibre = true;
@@ -102,17 +101,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 array_push($horamin,"");
                                 array_push($horamax,"");
                             }
-                            
                         }
                         //Aqui Empieza
                         $horarioLibre = true;
                         $horarioLibre =  horarioCruza($noecon,$horamin,$horamax,$maestro);
+                        
                         //Aqui Empieza
                         $SalonLibre = true;
                         $SalonLibre = salonEstaOcupado($noecon,$maestro,$horamin,$horamax,$salon);
                         //Aqui Termina
-                        if ($horarioLibre == true) {
-                            if($SalonLibre == true){
+                        if ($horarioLibre == 1) {
+                            if($SalonLibre == 1){
                                 $correcto = $maestro->AgregarAsesoria($codigo,$nombreMaestro,$nombreMateria,$tipo,$semestre,$_SESSION['noeconomico']);    
                                 if($correcto == 1){
                                     $maestro->AgregarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario,$_SESSION['noeconomico'],$nombreMaestro,$nombreMateria);
@@ -122,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 echo "La asesoria ya ha sido registrada";
                             }
                             else{
-                                echo "El salón ya se encuentre ocupado";
+                                echo "El salón se encuentra ocupado el día ".$dias[$diaOcupado];
                             }
                         }
                         else {
@@ -142,7 +141,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         elseif ($opcion == "Editar") {
-            
             $res = horarioVacio($Horario,$salon);
             if ($res == 1) {
                 if($codigo != "" && $nombreMaestro != "" && $nombreMateria != "" && $tipo != "" && $semestre !="" && $bandera == 0){
@@ -163,23 +161,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         //Aqui Empieza
                         $horarioLibre = true;
                         $horarioLibre =  horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigo);
-                        //Aqui Empieza
-                        //$SalonLibre = true;
-                        //$SalonLibre = salonEstaOcupado($noecon,$maestro,$horamin,$horamax,$salon);
-                        //Aqui Termina
-                        if ($horarioLibre == true) {
-                            if($asesor != "" && $nocontrol != ""){
-                                $maestro->ActualizarAsesor($codigo,$_SESSION['noeconomico'],$nocontrol,$asesor);
-                                $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
-                                echo ("Se ha editado correctamente la asesoría");
+                        $SalonLibre = true;
+                        $SalonLibre = salonEstaOcupado($noecon,$maestro,$horamin,$horamax,$salon);
+
+                        if ($horarioLibre == 1) {
+                            if ($SalonLibre == 1) {
+                                if($asesor != "" && $nocontrol != ""){
+                                    $maestro->ActualizarAsesor($codigo,$_SESSION['noeconomico'],$nocontrol,$asesor);
+                                    $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
+                                    echo ("Se ha editado correctamente la asesoría");
+                                }
+                                elseif ($asesor != "" || $nocontrol != "")
+                                    echo "Faltan datos del asesorado";
+                                else {
+                                    $maestro->EliminarAsesor($codigo);
+                                    $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
+                                    echo ("Se ha editado correctamente la asesoría");
+                                }
                             }
-                            elseif ($asesor != "" || $nocontrol != "")
-                                echo "Faltan datos del asesorado";
                             else {
-                                $maestro->EliminarAsesor($codigo);
-                                $maestro->ActualizarHorario($codigo,$_SESSION['noeconomico'],$salon,$Horario);
-                                echo ("Se ha editado correctamente la asesoría");
+                                echo "El salón se encuentra ocupado el día ".$dias[$diaOcupado];
                             }
+                            
                         }
                         else {
                             echo "La asesoría se cruza con ".$materiaOcupada ." el día ".$dias[$diaOcupado] . " en el horario de :" .$horaOcupada;
@@ -247,12 +250,13 @@ function horarioCruza($noecon,$horamin,$horamax,$maestro){
     
     if (isset($horarioOcupado)) {
         for($x=0; $x < count($horarioOcupado) ; $x++){
-            if ($w == 5){
+            if ($w == 6){
                 $w = 0;
             } 
             if($x == $aux){
                 $materiaOcupada = utf8_encode($horarioOcupado[$x]);
                 $aux = $aux +6;
+                
             }
             else{
                 if ($horarioOcupado[$x] != "") {
@@ -294,6 +298,7 @@ function horarioCruza($noecon,$horamin,$horamax,$maestro){
     return true;
 }
 function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
+    global $diaOcupado,$materiaOcupada,$horaOcupada;
     $w = 0;
     $horarioOcupado = $maestro->cargarHorariosEditar($noecon,$codigomat);
     if (isset($horarioOcupado)) {
@@ -301,6 +306,10 @@ function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
             if ($w == 5){
                 $w = 0;
             } 
+            if($x == $aux){
+                $materiaOcupada = utf8_encode($horarioOcupado[$x]);
+                $aux = $aux +6;
+            }
             if ($horarioOcupado[$x] != "") {
                 $valor = explode(" ",$horarioOcupado[$x]);
                 $auxhora = $valor[0];
@@ -337,6 +346,7 @@ function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
 
 
 function salonEstaOcupado($noecon,$maestro,$horamin,$horamax,$salon){
+    global $diaOcupado;
     $w = 0;
     $SalonOcupado = $maestro->cargarTodosHorarios($noecon);
     if (isset($SalonOcupado)) {
@@ -350,14 +360,23 @@ function salonEstaOcupado($noecon,$maestro,$horamin,$horamax,$salon){
                 $auxsalon = $valor[1];
                 $divhora = explode('-',$auxhora);
                 if(isset($divhora[0]) && isset($divhora[1])){
-                    if($divhora[0] == $horamin[$w]){
+                    if((int)$divhora[0] == (int)$horamin[$w]){
                         if($auxsalon == $salon[$w]){
+                            $diaOcupado = $w;
                             return false;
                             break;
                         }
                     }
-                    if($divhora[0] > $horamin[$w] && $divhora[0] < $horamax[$w] || $divhora[0] < $horamin[$w] && $divhora[0] > $horamax[$w]){
+                    if((int)$divhora[0] > (int)$horamin[$w] && (int)$divhora[0] < (int)$horamax[$w] || (int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[0] > (int)$horamax[$w]){
                         if($auxsalon == $salon[$w]){
+                            $diaOcupado = $w;
+                            return false;
+                            break;
+                        }
+                    }
+                    if((int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[1] > (int)$horamin[$w]){
+                        if($auxsalon == $salon[$w]){
+                            $diaOcupado = $w;
                             return false;
                             break;
                         }
