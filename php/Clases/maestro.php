@@ -129,15 +129,16 @@ class Maestro{
             $maestro->ObtenerDatos($noecom,$maestro);
             $nombreCompleto = $maestro->Nombre ." ".$maestro->Ap_Pat." ".$maestro->Ap_Mat;
             $conexion = abrirBD();
-            $SQL= "UPDATE HORARIOS SET Lunes = ?, Martes = ?, Miercoles = ?, Jueves = ?, Viernes = ? WHERE Cod_Materia =?";
+            $SQL= "UPDATE HORARIOS SET Lunes = ?, Martes = ?, Miercoles = ?, Jueves = ?, Viernes = ? WHERE Cod_Materia =? AND NOECON = ?";
             $sentencia_preparada1 = $conexion->prepare($SQL);
-            $sentencia_preparada1->bind_param("ssssss",$lun,$mar,$mie,$jue,$vie,$cod_Mat);
+            $sentencia_preparada1->bind_param("sssssss",$lun,$mar,$mie,$jue,$vie,$cod_Mat,$noe);
             $lun = $Horario[0].' '.$salon[0];
             $mar = $Horario[1].' '.$salon[1];
             $mie = $Horario[2].' '.$salon[2];
             $jue = $Horario[3].' '.$salon[3];
             $vie = $Horario[4].' '.$salon[4];
             $cod_Mat = utf8_encode($codigo);
+            $noe = $noecom;
             $sentencia_preparada1->execute();
             $conexion->close();
         }
@@ -367,14 +368,15 @@ public function EliminarMaestro($nc){
 public function cargarHorarios($noecon){
     try{
         $conexion = abrirBD();
-        $SQL= "SELECT Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios WHERE NOECON = ?";
+        $SQL= "SELECT Nombre_Mat,Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios WHERE NOECON = ?";
         $STMT = $conexion->prepare($SQL);
         $STMT->bind_param('s',$neo);
         $neo = $noecon;
         $STMT->execute();
-        $STMT->bind_result($lunes,$martes,$miercoles,$Jueves,$Vienes);
+        $STMT->bind_result($nombreMat,$lunes,$martes,$miercoles,$Jueves,$Vienes);
         $datos = array();
         while( $fila = $STMT->fetch()){
+            array_push($datos,$nombreMat);
             array_push($datos,$lunes);
             array_push($datos,$martes);
             array_push($datos,$miercoles);

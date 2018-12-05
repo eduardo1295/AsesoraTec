@@ -2,6 +2,10 @@
 require_once('Clases/maestro.php');
 session_start();
 $vacio = 1;
+$diaOcupado= 0;
+$materiaOcupada = "";
+$horaOcupada = "";
+$dias = array("Lunes","Martes","Miecoles","Jueves","Viernes");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $opcion = $_POST['opcion'];
         $maestro = new Maestro();
@@ -74,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     }
                                 }
                                 else{
-                                    echo "El horario se cruza con sus asesorias";
+                                    echo "El horario se cruza el día ".$dias[$diaOcupado];
                                 }
                                 
                             }   
@@ -122,7 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             }
                         }
                         else {
-                            echo "El horario se cruza con sus asesorías";
+                            //echo "La asesoría se cruza el día ".$dias[$diaOcupado]." en la materia ".$materiaOcupada." con el horario de : ".$horaOcupada.'.';
+                            echo "La asesoría se cruza con ".$materiaOcupada ." el día ".$dias[$diaOcupado] . " en el horario de :" .$horaOcupada;
                         }
                 } 
             }
@@ -177,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             }
                         }
                         else {
-                            echo "El horario se cruza con sus asesorías";
+                            echo "La asesoría se cruza con ".$materiaOcupada ." el día ".$dias[$diaOcupado] . " en el horario de :" .$horaOcupada;
                         }
                     }
                     else {
@@ -210,6 +215,7 @@ function horarioCompleto($horario,$salon)
 }
 function horarioVacio($horario,$salon)
 {
+    
     $resultado = 0;
     for ($i=0; $i < 5 ; $i++) { 
         if ($horario[$i] == $salon[$i] && $horario[$i]=="") {
@@ -234,37 +240,52 @@ function ValidarHorario($horario)
     return $resultado;
 }
 function horarioCruza($noecon,$horamin,$horamax,$maestro){
+    global $diaOcupado,$materiaOcupada,$horaOcupada;
     $w = 0;
+    $aux = 0;
     $horarioOcupado = $maestro->cargarHorarios($noecon);
+    
     if (isset($horarioOcupado)) {
-        
         for($x=0; $x < count($horarioOcupado) ; $x++){
             if ($w == 5){
                 $w = 0;
             } 
-            if ($horarioOcupado[$x] != "") {
-                $valor = explode(" ",$horarioOcupado[$x]);
-                $auxhora = $valor[0];
-                $auxsalon = $valor[1];
-                $divhora = explode('-',$auxhora);
-                if(isset($divhora[0]) && isset($divhora[1])){
-                    if($divhora[0] == $horamin[$w]){
-                        /*$horarioLibre = false;*/
-                        return false;
-                        break;
-                    }
-                    if((int)$divhora[0] > (int)$horamin[$w] && (int)$divhora[0] < (int)$horamax[$w] || (int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[0] > (int)$horamax[$w]){
-                        /*$horarioLibre = false;*/
-                        return false;
-                        break;
-                    }
-                    if((int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[1] > (int)$horamin[$w]){
-                        return false;
-                        break;
-                    }        
-                }
+            if($x == $aux){
+                $materiaOcupada = utf8_encode($horarioOcupado[$x]);
+                $aux = $aux +6;
             }
-            $w = $w + 1;
+            else{
+                if ($horarioOcupado[$x] != "") {
+                    $valor = explode(" ",$horarioOcupado[$x]);
+                    $auxhora = $valor[0];
+                    $auxsalon = $valor[1];
+                    $divhora = explode('-',$auxhora);
+                    if(isset($divhora[0]) && isset($divhora[1])){
+                        if($divhora[0] == $horamin[$w]){
+                            $horaOcupada = $auxhora;
+                            /*$horarioLibre = false;*/
+                            $diaOcupado = $w;
+                            return false;
+                            break;
+                        }
+                        if((int)$divhora[0] > (int)$horamin[$w] && (int)$divhora[0] < (int)$horamax[$w] || (int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[0] > (int)$horamax[$w]){
+                            /*$horarioLibre = false;*/
+                            $horaOcupada = $divhora;
+                            $diaOcupado = $w;
+                            return false;
+                            break;
+                        }
+                        if((int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[1] > (int)$horamin[$w]){
+                            $diaOcupado = $w;
+                            $horaOcupada = $divhora;
+                            return false;
+                            break;
+                        }        
+                    }
+                }
+                $w = $w + 1;
+            }
+            
         }
     }
     else {
@@ -287,16 +308,19 @@ function horarioCruzaEditar($noecon,$horamin,$horamax,$maestro,$codigomat){
                 $divhora = explode('-',$auxhora);
                 if(isset($divhora[0]) && isset($divhora[1])){
                     if($divhora[0] == $horamin[$w]){
+                        $diaOcupado = $w;
                         /*$horarioLibre = false;*/
                         return false;
                         break;
                     }
                     if((int)$divhora[0] > (int)$horamin[$w] && (int)$divhora[0] < (int)$horamax[$w] || (int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[0] > (int)$horamax[$w]){
+                        $diaOcupado = $w;
                         /*$horarioLibre = false;*/
                         return false;
                         break;
                     }
                     if((int)$divhora[0] < (int)$horamin[$w] && (int)$divhora[1] > (int)$horamin[$w]){
+                        $diaOcupado = $w;
                         return false;
                         break;
                     }        
