@@ -106,9 +106,13 @@ else {
 	</thead>';
 	while($fila= $buscarAsesorias->fetch_assoc())
 	{
+		require_once('Clases/alumno.php');
 		$asesoria->ObtenerAsesoria($fila['Cod_Materia'],$fila['NOECON'],$asesoria);
+		$alumno = new Alumno();
 		$activo = $asesoria->Activo;
-		if($activo=="Si")
+		$nc = $_SESSION['nocontrol'];
+		$yaregistrado = $alumno->YaInscrito($nc,$fila['Cod_Materia'],$fila['NOECON']); 
+		if($activo=="Si" &&$yaregistrado==0)
 		{
 		$noecon = $fila['NOECON'];
 		$asesoria->ObtenerAsesoria($fila['Cod_Materia'],$noecon,$asesoria);
