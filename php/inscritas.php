@@ -69,7 +69,7 @@ if($buscarAsesorias->num_rows > 0)
 	
 } else
 	{
-		$tabla="No se encontraron coincidencias con sus criterios de búsqueda.";
+		$tabla="No se encontraron coincidencias.";
 	}
 echo $tabla;
 ?>

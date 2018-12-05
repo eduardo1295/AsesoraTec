@@ -137,7 +137,7 @@ else {
 $tabla.='</table>';
 } else
 	{
-		$tabla="No se encontraron coincidencias con sus criterios de búsqueda.";
+		$tabla="No se encontraron coincidencias.";
 	}
 }
 echo $tabla; 

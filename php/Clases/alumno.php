@@ -427,7 +427,7 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
             echo error;
         }  
     }
-    public function VerificarHorario($codigo,$noecon,$nocontrol,$horario)
+    public function VerificarHorario($codigo,$noecon,$nocontrol,$horario,$resultado)
     {
         try
         {
@@ -485,10 +485,11 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {   
                 $codAsesoria = $fila['CODIGO_ASESORIA'];
                 $noe = $fila['NOECON'];
-                $selectHorarioAlumno = "SELECT LUNES,MARTES,MIERCOLES,JUEVES,VIERNES FROM HORARIOS WHERE NOECON='$noe' AND COD_MATERIA='$codAsesoria'";
+                $selectHorarioAlumno = "SELECT LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,NOMBRE_MAT FROM HORARIOS WHERE NOECON='$noe' AND COD_MATERIA='$codAsesoria'";
                 $regHorario = $conn->query($selectHorarioAlumno);
                 while($row = $regHorario->fetch_assoc())
                 {
+                   $nombreMat =$row['NOMBRE_MAT'];     
                   $lunesTabla = $row['LUNES'];
                   $martesTabla = $row['MARTES'];
                   $miercolesTabla = $row['MIERCOLES'];
@@ -524,22 +525,27 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalLunes[0]==(int)$horasLunesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
                         return true;
                     }
                     if((int)$horasInicioYFinalLunes[1]==(int)$horasLunesForaneo[1])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
                         return true;
                     }
                     if((int)$horasInicioYFinalLunes[0]<(int)$horasLunesForaneo[1] &&(int)$horasInicioYFinalLunes[0]>(int)$horasLunesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
                         return true;
                     }
                     if((int)$horasInicioYFinalLunes[1]>(int)$horasLunesForaneo[0] &&(int)$horasInicioYFinalLunes[1]<(int)$horasLunesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
                         return true;
                     }
                     if((int)$horasInicioYFinalLunes[0]<(int)$horasLunesForaneo[0] &&(int)$horasInicioYFinalLunes[1]>(int)$horasLunesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
                         return true; 
                     }
                        
@@ -549,22 +555,27 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalMartes[0]==(int)$horasMartesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
                         return true;
                     }
                     if((int)$horasInicioYFinalMartes[1]==(int)$horasMartesForaneo[1])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
                         return true;
                     }
                     if((int)$horasInicioYFinalMartes[0]<(int)$horasMartesForaneo[1] &&(int)$horasInicioYFinalMartes[0]>(int)$horasMartesForaneo[0]&&$horasMartesForaneo[1]>$horasInicioYFinalMartes[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
                         return true;
                     }
                     if((int)$horasInicioYFinalMartes[1]>(int)$horasMartesForaneo[0] &&(int)$horasInicioYFinalMartes[1]<(int)$horasMartesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
                         return true;
                     }
                     if((int)$horasInicioYFinalMartes[0]<(int)$horasMartesForaneo[0] &&(int)$horasInicioYFinalMartes[1]>(int)$horasMartesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
                         return true; 
                     }
                        
@@ -573,22 +584,27 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalMiercoles[0]==(int)$horasMiercolesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
                         return true;
                     }
                     if((int)$horasInicioYFinalMiercoles[1]==(int)$horasMiercolesForaneo[1])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
                         return true;
                     }
                     if((int)$horasInicioYFinalMiercoles[0]<(int)$horasMiercolesForaneo[1] &&(int)$horasInicioYFinalMiercoles[0]>(int)$horasMiercolesForaneo[0]&&(int)$horasMiercolesForaneo[1]>(int)$horasInicioYFinalMiercoles[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
                         return true;
                     }
                     if((int)$horasInicioYFinalMiercoles[1]>(int)$horasMiercolesForaneo[0] &&(int)$horasInicioYFinalMiercoles[1]<(int)$horasMiercolesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
                         return true;
                     }
                     if((int)$horasInicioYFinalMiercoles[0]<(int)$horasMiercolesForaneo[0] &&(int)$horasInicioYFinalMiercoles[1]>(int)$horasMiercolesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
                         return true; 
                     }
                         
@@ -597,22 +613,27 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalJueves[0]==(int)$horasJuevesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
                         return true;
                     }
                     if((int)$horasInicioYFinalJueves[1]==(int)$horasJuevesForaneo[1])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
                         return true;
                     }
                     if((int)$horasInicioYFinalJueves[0]<(int)$horasJuevesForaneo[1] &&(int)$horasInicioYFinalJueves[0]>(int)$horasJuevesForaneo[0]&&$horasJuevesForaneo[1]>$horasInicioYFinalJueves[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
                         return true;
                     }
                     if((int)$horasInicioYFinalJueves[1]>(int)$horasJuevesForaneo[0] &&(int)$horasInicioYFinalJueves[1]<(int)$horasJuevesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
                         return true;
                     }
                     if((int)$horasInicioYFinalJueves[0]<(int)$horasJuevesForaneo[0] &&(int)$horasInicioYFinalJueves[1]>(int)$horasJuevesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
                         return true; 
                     }
                        
@@ -622,22 +643,27 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
                 {
                     if((int)$horasInicioYFinalViernes[0]==(int)$horasViernesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
                         return true;
                     }
                     if((int)$horasInicioYFinalViernes[1]==(int)$horasViernesForaneo[1])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
                         return true;
                     }
                     if((int)$horasInicioYFinalViernes[0]<(int)$horasViernesForaneo[1] &&(int)$horasInicioYFinalViernes[0]>(int)$horasViernesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
                         return true;
                     }
                     if((int)$horasInicioYFinalViernes[1]>(int)$horasViernesForaneo[0] &&(int)$horasInicioYFinalViernes[1]<(int)$horasViernesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
                         return true;
                     }
                     if((int)$horasInicioYFinalViernes[0]<(int)$horasViernesForaneo[0] &&(int)$horasInicioYFinalViernes[1]>(int)$horasViernesForaneo[0])
                     {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
                         return true; 
                     }
                        

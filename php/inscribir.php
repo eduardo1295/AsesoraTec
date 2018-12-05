@@ -56,7 +56,8 @@ array_push($horario,$auxJue);
 array_push($horario,$auxMie);
 array_push($horario,$auxMar);
 array_push($horario,$auxLun);
-$cruza = $alumno->VerificarHorario($codAsesoria,$noecon,$nocontrol,$horario);
+$res = array();
+$cruza = $alumno->VerificarHorario($codAsesoria,$noecon,$nocontrol,$horario,$res);
  if($yainscrito>0)
  {
      echo "Ya estabas inscrito a esta asesoría.";
@@ -65,8 +66,5 @@ $cruza = $alumno->VerificarHorario($codAsesoria,$noecon,$nocontrol,$horario);
  {
      $alumno->InscribirAsesoria($nocontrol,$codAsesoria,$noecon);
      echo "Te inscribiste a la asesoría!";
- }
- else{
-     echo "Este horario se cruza con tus asesorías."; 
  }
 ?>
