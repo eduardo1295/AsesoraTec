@@ -395,15 +395,16 @@ public function cargarHorarios($noecon){
 public function cargarHorariosEditar($noecon,$codigoMat){
     try{
         $conexion = abrirBD();
-        $SQL= "SELECT Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios WHERE NOECON = ? AND Cod_Materia != ?";
+        $SQL= "SELECT Nombre_Mat,Lunes,Martes,Miercoles,Jueves,Viernes FROM horarios WHERE NOECON = ? AND Cod_Materia != ?";
         $STMT = $conexion->prepare($SQL);
         $STMT->bind_param('ss',$neo,$cod);
         $neo = $noecon;
         $cod = $codigoMat;
         $STMT->execute();
-        $STMT->bind_result($lunes,$martes,$miercoles,$Jueves,$Vienes);
+        $STMT->bind_result($nombreMAt,$lunes,$martes,$miercoles,$Jueves,$Vienes);
         $datos = array();
         while( $fila = $STMT->fetch()){
+            array_push($datos,$nombreMAt);
             array_push($datos,$lunes);
             array_push($datos,$martes);
             array_push($datos,$miercoles);
