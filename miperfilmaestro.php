@@ -10,16 +10,14 @@
     $maestro = new Maestro();
     $noeconomico = $_SESSION['noeconomico'];
     $maestro->ObtenerDatos($noeconomico,$maestro);
-    $nombre =  $maestro->Nombre;
+    $nombre =  utf8_encode($maestro->Nombre);
     $pass =   $maestro->Contraseña;
     $correo=  $maestro->Correo;
     $appat = utf8_encode($maestro->Ap_Pat);
-    $apmat =  $maestro->Ap_Mat;
+    $apmat =  utf8_encode($maestro->Ap_Mat);
     $depto = $maestro->Departamento;
-    
-    ?>
+?>
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -33,12 +31,11 @@
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/ModificarPerfil.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <script src="js/mensaje.js"></script>
 </head>
-<body class="contenedor">
+<body>
     <div class="page-header pb-2 pt-2">
-            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>
+            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" id="logo" alt="Login"></h1>
     </div>        
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
@@ -47,31 +44,30 @@
                     <p class="lead mx-2">Información de la cuenta:
                     </p>
                 </div>
-
          <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $noeconomico?>" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required>
+                        <input type="text" value="<?php echo $noeconomico?>" class="cajas lead" id="nocontrol" placeholder="Número de control"maxlength=8 required readonly>
                         </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="password"  value="<?php echo $pass?>" class="cajas lead  ml-4" id=pass placeholder="Contraseña"maxlength=20 required>
+                        <input type="password"  value="<?php echo $pass?>" class="cajas lead  ml-5" id=pass placeholder="Contraseña"maxlength=20 required>
                         <a class="btn btn-success" onclick="mostrar()"><i class="ojo fas fa fa-eye fa-fw"></i></a>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $appat?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="<?php echo $appat?>" onkeypress="return soloLetras(event)" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $apmat?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="<?php echo $apmat?>" class="cajas lead" id="apmat" onkeypress="return soloLetras(event)" placeholder="Apellido Materno"maxlength=50 required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo $nombre?>" class="cajas lead" id="nombre" placeholder="Nombre"required>
+                        <input type="text" value="<?php echo $nombre?>" class="cajas lead" id="nombre" onkeypress="return soloLetras(event)" placeholder="Nombre"required>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -120,10 +116,10 @@
                                     </button>
                                 </div>
                                 <div class="modal-body" id="mens">
-                                Se ha Actualizado correctamente
+                                
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='menu1.php'">Aceptar</button>
+                                    <button type="button" class="btn btn-primary lead" data-dismiss="modal" onclick="window.location.href='menu2.php'">Aceptar</button>
                                 </div>
                             </div>
                         </div>
@@ -141,5 +137,23 @@
           tipo.type = "password";
       }
   }
+  function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false;
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
 </script>
 </html>

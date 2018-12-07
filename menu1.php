@@ -8,17 +8,23 @@ if($_SESSION['logeado']!='SI'){
 require_once('php/Clases/alumno.php');
 $alumno = new Alumno();
 $nocontrol= $_SESSION['nocontrol'];
+$existe = $alumno->AlumnoExists($nocontrol);
+if($existe == 0)
+{
+    header("Location: login.php");
+    session_destroy();
+}
 $alumno->ObtenerDatos($nocontrol,$alumno);
 $nc = $nocontrol;
-$nombre = $alumno->Nombre;
-$appat = $alumno->Ap_Pat;
-$apmat = $alumno->Ap_Mat;
+$nombre = utf8_encode($alumno->Nombre);
+$appat = utf8_encode($alumno->Ap_Pat);
+$apmat = utf8_encode($alumno->Ap_Mat);
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Asesora-TEC</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/reloj.css">
@@ -38,7 +44,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 <body> 
     
     <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
     </div>
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
@@ -50,7 +56,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="fas fa-user fa-fw"></span>
-                        <?php echo $nombrecompleto?>
+                        <?php echo utf8_encode(utf8_decode($nombrecompleto))?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                         <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
@@ -247,7 +253,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 </body>
 <script language="javascript">
      $("#elim").click(function(){
-        window.location.href='eliminar.php';
+        window.location.href='eliminarAl.php';
     });
 </script>
 <script language="javascript">

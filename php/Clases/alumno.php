@@ -176,14 +176,15 @@ class Alumno{
            echo error;
        }
    }
-   public function InscribirAsesoria($nc,$codigoAsesoria){
+   public function InscribirAsesoria($nc,$codigoAsesoria,$noecon){
     try{
         $conexion = abrirBD();
-        $SQL= "INSERT INTO ASESORIASREG VALUES(?,?)";
+        $SQL= "INSERT INTO ASESORIASREG VALUES(?,?,?)";
         $sentencia_preparada1 = $conexion->prepare($SQL);
-        $sentencia_preparada1->bind_param("ss",$nocontrol,$codigoA);
+        $sentencia_preparada1->bind_param("sss",$nocontrol,$codigoA,$noe);
         $nocontrol =$nc;
         $codigoA = $codigoAsesoria;
+        $noe = $noecon;
         $sentencia_preparada1->execute();
         $conexion->close();
        }
@@ -192,16 +193,17 @@ class Alumno{
         echo $error;
     }
 }
-public function YaInscrito($nc,$codigoAsesoria){
+public function YaInscrito($nc,$codigoAsesoria,$noecon){
     try
     {
         $resultado=0;
         $conn = abrirBD();
-    if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIASREG WHERE CONTROL_ALUMNO=? AND CODIGO_ASESORIA=?"))
+    if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIASREG WHERE CONTROL_ALUMNO=? AND CODIGO_ASESORIA=? AND NOECON=?"))
         {
-            $sentencia_preparada->bind_param('ss',$nocontrol,$cod);
+            $sentencia_preparada->bind_param('sss',$nocontrol,$cod,$ne);
             $nocontrol =$nc;
             $cod = $codigoAsesoria;
+            $ne =$noecon;
             $sentencia_preparada->execute();
             $sentencia_preparada->bind_result($numero);
             while($sentencia_preparada->fetch()){
@@ -254,23 +256,19 @@ public function EliminarAlumno($nc){
          $sentencia_preparada->execute();
          $conn->close();
      }
-    }
-    catch(Exception $e)
-    {
-        $error = $e->getMessage();
-        echo error;
-    }
-}
-public function EliminarAsesoria($nc,$codigoAsesoria)
-{
-    try
-    {
      $conn = abrirBD();
-     if($sentencia_preparada =$conn->prepare("DELETE FROM ASESORIASREG WHERE CONTROL_ALUMNO	=? AND CODIGO_ASESORIA=?"))
+     if($sentencia_preparada =$conn->prepare("DELETE FROM ASESORIASREG WHERE CONTROL_ALUMNO=?"))
      {
-         $sentencia_preparada->bind_param('ss',$nocontrol,$codigo);
+         $sentencia_preparada->bind_param('s',$nocontrol);
          $nocontrol = $nc;
-         $codigo = $codigoAsesoria;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM ASISTENCIASREG WHERE CONTROL_ALUMNO=?"))
+     {
+         $sentencia_preparada->bind_param('s',$nocontrol);
+         $nocontrol = $nc;
          $sentencia_preparada->execute();
          $conn->close();
      }
@@ -279,21 +277,53 @@ public function EliminarAsesoria($nc,$codigoAsesoria)
     {
         $error = $e->getMessage();
         echo error;
+    }
+}
+public function EliminarAsesoria($nc,$codigoAsesoria,$noecon)
+{
+    try
+    {
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM ASESORIASREG WHERE CONTROL_ALUMNO	=? AND CODIGO_ASESORIA=? AND NOECON=?"))
+     {
+         $sentencia_preparada->bind_param('sss',$nocontrol,$codigo,$noe);
+         $nocontrol = $nc;
+         $codigo = $codigoAsesoria;
+         $noe = $noecon;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+     $conn = abrirBD();
+     if($sentencia_preparada =$conn->prepare("DELETE FROM ASISTENCIASREG WHERE CONTROL_ALUMNO=? AND CODIGO_ASESORIA=? AND NOECON=?"))
+     {
+         $sentencia_preparada->bind_param('sss',$nocontrol,$codigo,$noe);
+         $nocontrol = $nc;
+         $codigo = $codigoAsesoria;
+         $noe = $noecon;
+         $sentencia_preparada->execute();
+         $conn->close();
+     }
+
+    }
+    catch(Exception $e)
+    {
+        $error = $e->getMessage();
+        echo error;
     }  
 }
-public function AsistenciaYaRegistrada($nc,$fecha,$codA,$nomM)
+public function AsistenciaYaRegistrada($nc,$fecha,$codA,$ne)
 {
     try
         {
             $resultado=0;
             $conn = abrirBD();
-        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASISTENCIASREG WHERE CONTROL_ALUMNO =? AND CODIGO_ASESORIA=? AND FECHA=? AND NOMBRE_MAESTRO=?"))
+        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASISTENCIASREG WHERE CONTROL_ALUMNO =? AND CODIGO_ASESORIA=? AND FECHA=? AND NOECON=?"))
             {
                 $sentencia_preparada->bind_param('ssss',$nocontrol,$codigo,$fechaHoy,$maestro);
                 $nocontrol = $nc;
                 $codigo = $codA;
                 $fechaHoy = $fecha;
-                $maestro = $nomM;
+                $maestro = $ne;
                 $sentencia_preparada->execute();
                 $sentencia_preparada->bind_result($numero);
                 while($sentencia_preparada->fetch()){
@@ -332,17 +362,18 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$nomM)
             echo $error;
         }  
     }
-    public function ValidaContra($contraseña,$codA,$fecha){
+    public function ValidaContra($contraseña,$codA,$fecha,$ne){
         try
         {
             $resultado=0;
             $conn = abrirBD();
-        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM PASS WHERE PASSW=? AND CODIGO_ASESORIA=? AND FECHA=?"))
+        if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM PASS WHERE PASSW=? AND CODIGO_ASESORIA=? AND FECHA=? AND NOECON=?"))
             {
-                $sentencia_preparada->bind_param('sss',$pass,$codigo,$fechaHoy);
+                $sentencia_preparada->bind_param('ssss',$pass,$codigo,$fechaHoy,$noecon);
                 $pass = $contraseña;
                 $codigo = $codA;
                 $fechaHoy = $fecha;
+                $noecon= $ne;
                 $sentencia_preparada->execute();
                 $sentencia_preparada->bind_result($numero);
                 while($sentencia_preparada->fetch()){
@@ -358,5 +389,297 @@ public function AsistenciaYaRegistrada($nc,$fecha,$codA,$nomM)
         echo $error;
         }
        }
+       public function EliminarAsesoriasReg($nc)
+       {
+        try
+        {
+         $conn = abrirBD();
+         if($sentencia_preparada =$conn->prepare("DELETE FROM ASESORIASREG WHERE CONTROL_ALUMNO	=? "))
+         {
+             $sentencia_preparada->bind_param('s',$nocontrol);
+             $nocontrol = $nc;
+             $sentencia_preparada->execute();
+             $conn->close();
+         }
+        }
+        catch(Exception $e)
+        {
+            $error = $e->getMessage();
+            echo error;
+        }  
+       }
+       public function EliminarAsistenciasReg($nc)
+       {
+        try
+        {
+         $conn = abrirBD();
+         if($sentencia_preparada =$conn->prepare("DELETE FROM ASISTENCIASREG WHERE CONTROL_ALUMNO=?"))
+         {
+             $sentencia_preparada->bind_param('s',$nocontrol);
+             $nocontrol = $nc;
+             $sentencia_preparada->execute();
+             $conn->close();
+         }
+        }
+        catch(Exception $e)
+        {
+            $error = $e->getMessage();
+            echo error;
+        }  
+    }
+    public function VerificarHorario($codigo,$noecon,$nocontrol,$horario,$resultado)
+    {
+        try
+        {
+            $conn = abrirBD();
+            $consultaAsesoriasAlumno = "SELECT CODIGO_ASESORIA,NOECON FROM ASESORIASREG WHERE CONTROL_ALUMNO=$nocontrol";
+            $selectAsesorias = $conn->query($consultaAsesoriasAlumno);
+            $lunesForaneo = $horario[4];
+            $martesForaneo= $horario[3];
+            $miercolesForaneo = $horario[2];
+            $juevesForaneo = $horario[1];
+            $viernesForaneo = $horario[0];
+            $horasLunesForaneo;
+            $horasMartesForaneo;
+            $horasMiercolesForaneo;
+            $horasJuevesForaneo;
+            $horasViernesForaneo;
+            if($lunesForaneo!="")
+            {
+                $horasLunesForaneo = explode("-",$lunesForaneo);
+            }
+            if($martesForaneo!="")
+            {
+                $horasMartesForaneo = explode("-",$martesForaneo);
+            }
+            if($miercolesForaneo!="")
+            {
+                $horasMiercolesForaneo = explode("-",$miercolesForaneo);
+            }
+            if($juevesForaneo!="")
+            {
+                $horasJuevesForaneo = explode("-",$juevesForaneo);
+            }
+            if($viernesForaneo!="")
+            {
+                $horasViernesForaneo = explode("-",$viernesForaneo);
+            }
+            /*
+            
+            echo $horasMartesForaneo[0];
+            if(isset($horasMartesForaneo[1]))
+            echo $horasMartesForaneo[1];
+            echo $horasMiercolesForaneo[0];
+            if(isset($horasMiercolesForaneo[1]))
+            echo $horasMiercolesForaneo[1];
+            echo $horasJuevesForaneo[0];
+            if(isset($horasJuevesForaneo[1]))
+            echo $horasJuevesForaneo[1];
+            echo $horasViernesForaneo[0];
+            if(isset($horasViernesForaneo[1]))
+            echo $horasViernesForaneo[1];
+            */
+            if($selectAsesorias->num_rows>0)
+            {
+                while($fila = $selectAsesorias->fetch_assoc())
+                {   
+                $codAsesoria = $fila['CODIGO_ASESORIA'];
+                $noe = $fila['NOECON'];
+                $selectHorarioAlumno = "SELECT LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,NOMBRE_MAT FROM HORARIOS WHERE NOECON='$noe' AND COD_MATERIA='$codAsesoria'";
+                $regHorario = $conn->query($selectHorarioAlumno);
+                while($row = $regHorario->fetch_assoc())
+                {
+                   $nombreMat =$row['NOMBRE_MAT'];     
+                  $lunesTabla = $row['LUNES'];
+                  $martesTabla = $row['MARTES'];
+                  $miercolesTabla = $row['MIERCOLES'];
+                  $juevesTabla = $row['JUEVES'];
+                  $viernesTabla = $row['VIERNES'];
+                if(isset($lunesTabla) &&$lunesTabla!="")
+                {
+                    $horaLunesSeparada = explode(" ",$lunesTabla);
+                    $horasInicioYFinalLunes = explode("-",$horaLunesSeparada[0]);
+                }
+                if(isset($martesTabla)&&$martesTabla!="")
+                {
+                    $horaMartesSeparada = explode(" ",$martesTabla);
+                    $horasInicioYFinalMartes = explode("-",$horaMartesSeparada[0]);
+                }
+                if(isset($miercolesTabla)&&$miercolesTabla!="")
+                {
+                    $horaMiercolesSeparada = explode(" ",$miercolesTabla);
+                    $horasInicioYFinalMiercoles = explode("-",$horaMiercolesSeparada[0]);
+                }
+                if(isset($juevesTabla)&&$juevesTabla!="")
+                {
+                    $horaJuevesSeparada = explode(" ",$juevesTabla);
+                    $horasInicioYFinalJueves = explode("-",$horaJuevesSeparada[0]);
+                }
+               
+                if(isset($viernesTabla)&&$viernesTabla!="")
+                {
+                    $horaViernesSeparada = explode(" ",$viernesTabla);
+                    $horasInicioYFinalViernes = explode("-",$horaViernesSeparada[0]);
+                }
+                if($lunesForaneo!=""&&isset($horasInicioYFinalLunes[1]))
+                {
+                    if((int)$horasInicioYFinalLunes[0]==(int)$horasLunesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalLunes[1]==(int)$horasLunesForaneo[1])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalLunes[0]<(int)$horasLunesForaneo[1] &&(int)$horasInicioYFinalLunes[0]>(int)$horasLunesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalLunes[1]>(int)$horasLunesForaneo[0] &&(int)$horasInicioYFinalLunes[1]<(int)$horasLunesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalLunes[0]<(int)$horasLunesForaneo[0] &&(int)$horasInicioYFinalLunes[1]>(int)$horasLunesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día lunes";
+                        return true; 
+                    }
+                       
+                        
+                }
+                if($martesForaneo!=""&&isset($horasInicioYFinalMartes[1]))
+                {
+                    if((int)$horasInicioYFinalMartes[0]==(int)$horasMartesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalMartes[1]==(int)$horasMartesForaneo[1])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalMartes[0]<(int)$horasMartesForaneo[1] &&(int)$horasInicioYFinalMartes[0]>(int)$horasMartesForaneo[0]&&$horasMartesForaneo[1]>$horasInicioYFinalMartes[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalMartes[1]>(int)$horasMartesForaneo[0] &&(int)$horasInicioYFinalMartes[1]<(int)$horasMartesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalMartes[0]<(int)$horasMartesForaneo[0] &&(int)$horasInicioYFinalMartes[1]>(int)$horasMartesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día martes";
+                        return true; 
+                    }
+                       
+                }
+                if($miercolesForaneo!=""&&isset($horasInicioYFinalMiercoles[1]))
+                {
+                    if((int)$horasInicioYFinalMiercoles[0]==(int)$horasMiercolesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalMiercoles[1]==(int)$horasMiercolesForaneo[1])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalMiercoles[0]<(int)$horasMiercolesForaneo[1] &&(int)$horasInicioYFinalMiercoles[0]>(int)$horasMiercolesForaneo[0]&&(int)$horasMiercolesForaneo[1]>(int)$horasInicioYFinalMiercoles[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalMiercoles[1]>(int)$horasMiercolesForaneo[0] &&(int)$horasInicioYFinalMiercoles[1]<(int)$horasMiercolesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalMiercoles[0]<(int)$horasMiercolesForaneo[0] &&(int)$horasInicioYFinalMiercoles[1]>(int)$horasMiercolesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día miércoles";
+                        return true; 
+                    }
+                        
+                }
+                if($juevesForaneo!=""&&isset($horasInicioYFinalJueves[1]))
+                {
+                    if((int)$horasInicioYFinalJueves[0]==(int)$horasJuevesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalJueves[1]==(int)$horasJuevesForaneo[1])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalJueves[0]<(int)$horasJuevesForaneo[1] &&(int)$horasInicioYFinalJueves[0]>(int)$horasJuevesForaneo[0]&&$horasJuevesForaneo[1]>$horasInicioYFinalJueves[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalJueves[1]>(int)$horasJuevesForaneo[0] &&(int)$horasInicioYFinalJueves[1]<(int)$horasJuevesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalJueves[0]<(int)$horasJuevesForaneo[0] &&(int)$horasInicioYFinalJueves[1]>(int)$horasJuevesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día jueves";
+                        return true; 
+                    }
+                       
+                        
+                }
+                if($viernesForaneo!=""&&isset($horasInicioYFinalViernes[1]))
+                {
+                    if((int)$horasInicioYFinalViernes[0]==(int)$horasViernesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalViernes[1]==(int)$horasViernesForaneo[1])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalViernes[0]<(int)$horasViernesForaneo[1] &&(int)$horasInicioYFinalViernes[0]>(int)$horasViernesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalViernes[1]>(int)$horasViernesForaneo[0] &&(int)$horasInicioYFinalViernes[1]<(int)$horasViernesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
+                        return true;
+                    }
+                    if((int)$horasInicioYFinalViernes[0]<(int)$horasViernesForaneo[0] &&(int)$horasInicioYFinalViernes[1]>(int)$horasViernesForaneo[0])
+                    {
+                        echo "Este horario se cruza con tu asesoría de ".utf8_encode($nombreMat)." el día viernes";
+                        return true; 
+                    }
+                       
+                }
+             }
+            }
+
+          }
+          else
+            return false;
+        }
+        catch (Exception $e)
+        {
+        $error = $e->getMessage();
+        echo $error;
+        }
+    }
 }
 ?>

@@ -4,11 +4,16 @@
 session_start();
 require_once('php/Clases/admin.php');
 require_once('php/Clases/conexion.php');
+require_once('php/Clases/maestro.php');
 if($_SESSION['usuariologeado']!='SI'){
     header("Location: login.php");
 }
-
+if(empty($_GET['cod']))
+{
+    header("Location: menumaestros.php");
+}
 $admin = new Admin();
+$alumno= new maestro();
 $usuario= $_SESSION['usuario'];
 $admin->ObtenerDatos($usuario,$admin);
 $nc = $admin;
@@ -18,6 +23,9 @@ $apmat = $admin->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
 $numeco = $_GET['cod'];
+if($alumno->MaestroExists($numeco)==0){
+    header("Location: menumaestros.php");
+}
 $sql = "SELECT noecon,pass,Nombre,Ap_Pat,Ap_Mat,Departamento,Correo FROM maestros WHERE noecon='$numeco'";
 $conn = abrirBD();
 $resultado = $conn->query($sql);
@@ -38,7 +46,8 @@ $conn->close();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Maestro Datos</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/pruebaregistrar.css">
+    <link rel="stylesheet" href="css/botones.css">
+    <link rel="stylesheet" href="css/mno.css">
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -50,7 +59,7 @@ $conn->close();
 </head>
 <body class="contenedor">
 <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
+        <img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
     </div>
 <div class="page-header pb-2 pt-2">
             <h1 class="lead display-3 justify-content-center">Informacion Maestro<img src="asesor.png" alt="Login"></h1>
@@ -65,7 +74,7 @@ $conn->close();
 
          <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $numeco;?>" class="cajas lead" id="noeconomico" placeholder="Número de Economico"maxlength=8 required>
+                        <input type="text" value="<?php echo $numeco;?>" class="cajas lead" id="noeconomico" placeholder="Número de Economico"maxlength=8 required readonly>
                         </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
@@ -76,22 +85,22 @@ $conn->close();
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $Ape_pat;?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"  value="<?php echo utf8_encode($Ape_pat);?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $Ape_mat;?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="<?php echo utf8_encode($Ape_mat);?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo $Nombrem;?>" class="cajas lead" id="nombre" placeholder="Departamento"required>
+                        <input type="text" value="<?php echo utf8_encode($Nombrem);?>" class="cajas lead" id="nombre" placeholder="Departamento"required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                 <input type="e-mail" value="<?php echo $Departamento;?>" id="departamento" class="cajas lead"maxlength=128 placeholder="Correo"required>
+                 <input type="e-mail" value="<?php echo utf8_encode($Departamento);?>" id="departamento" class="cajas lead"maxlength=128 placeholder="Correo"required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -104,8 +113,8 @@ $conn->close();
     </div>
     <div class="mb-2 mt-2 container w-100">
         <div class="row  justify-content-center">
-            <input type="submit" value="Guardar"  id="guardarbtn"class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
-            <input type="submit" value="Borrar"  id="borrarbtn"class="btn btn-primary lead" data-toggle="modal" data-target="#mensaje">
+            <input type="submit" value="Guardar"  id="guardarbtn"class="btn btn-success lead" data-toggle="modal" data-target="#mensaje">
+            <input type="submit" value="Borrar"  id="borrarbtn"class="btn btn-danger lead" data-toggle="modal" data-target="#mensaje">
             <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -127,6 +136,16 @@ $conn->close();
                     </div>
         </div>
      </div>
+     <div class="copyright"style="left:0;bottom:0;width:100%;">
+                <div class="container">
+                    <div class="col py-3">
+                        <div class="col text-center">
+                            Instituto Tecnológico de La Paz. &copy;
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 <script>
   function mostrar(){
@@ -137,5 +156,46 @@ $conn->close();
           tipo.type = "password";
       }
   }
+</script>
+<script language="javascript">
+$(document).ready(function(){
+    $("#borrarbtn").click(function(){
+    window.location.href='eliminarmaestro.php?nc=<?php echo $numeco;?>';
+    });
+});
+
+</script>
+<script>
+    function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+</script>
+<script language="javascript">
+$(function(){
+
+$('.validanumericos').keypress(function(e) {
+  if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+   return false;
+})
+.on("cut copy paste",function(e){
+  e.preventDefault();
+});
+
+});
 </script>
 </html>

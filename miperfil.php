@@ -9,6 +9,11 @@
     require_once('php/Clases/alumno.php');
     $alumno = new Alumno();
     $nocontrol = $_SESSION['nocontrol'];
+    $existe = $alumno->AlumnoExists($nocontrol);
+    if($existe == 0)
+    {
+        header("Location: login.php");
+    }
     $alumno->ObtenerDatos($nocontrol,$alumno);
     $nombre = $alumno->Nombre;
     $pass = $alumno->Contraseña;
@@ -39,10 +44,10 @@
 </head>
 <body>
     <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
     </div>
     <div class="page-header pb-2 pt-2 row justify-content-center">
-            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="asesor.png" alt="Login"></h1>
+            <h1 class="lead display-3 justify-content-center">Ver mi perfil <img src="alumno.png" id="logo" alt=""></h1>
     </div>        
     <div class="container mt-3 forma">
         <div class="row justify-content-center" style="border:1px solid white;">
@@ -58,23 +63,23 @@
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="password"  value="<?php echo $pass?>" class="cajas lead  ml-4" id=pass placeholder="Contraseña"maxlength=20 required>
+                        <input type="password"  value="<?php echo $pass?>" class="cajas lead  ml-5" id=pass placeholder="Contraseña"maxlength=20 required>
                         <a class="btn btn-success" onclick="mostrar()"><i class="ojo fas fa fa-eye fa-fw"></i></a>
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text"  value="<?php echo $appat?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required>
+                        <input type="text"   value="<?php echo utf8_encode($appat)?>" class="cajas lead"id="appat" placeholder="Apellido Paterno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center" required>
                     <div class="row">
-                        <input type="text" value="<?php echo $apmat?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required>
+                        <input type="text" value="<?php echo utf8_encode($apmat)?>" class="cajas lead" id="apmat" placeholder="Apellido Materno"maxlength=50 required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row ">
-                        <input type="text" value="<?php echo $nombre?>" class="cajas lead" id="nombre" placeholder="Nombre"required>
+                        <input type="text" value="<?php echo $nombre?>" class="cajas lead" id="nombre" placeholder="Nombre"required onkeypress="return soloLetras(event)">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
@@ -124,7 +129,7 @@
                     </div>
                     <div class="row my-3 justify-content-center">
                         <div class="row">
-                            <input type="text" value="<?php echo $semestre?>" class="cajas lead"maxlength=2 id="semestre"placeholder="Semestre" required>
+                            <input type="text" value="<?php echo $semestre?>" class="cajas lead validanumericos"maxlength=2 id="semestre"placeholder="Semestre" required>
                         </div>
                     </div>
                 </div>
@@ -167,5 +172,38 @@
           tipo.type = "password";
       }
   }
+</script>
+<script>
+    function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+</script>
+<script language="javascript">
+$(function(){
+
+$('.validanumericos').keypress(function(e) {
+  if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+   return false;
+})
+.on("cut copy paste",function(e){
+  e.preventDefault();
+});
+
+});
 </script>
 </html>

@@ -124,15 +124,21 @@ $conn->close();
                         <th class="lead">Viernes</th> 
                     </tr>
                     <?php
+                    $codigo = "";
+                    $lunes ="";
+                    $martes ="";
+                    $miercoles="";
+                    $jueves="";
+                    $viernes = "";
                         while($row=mysqli_fetch_array($resultado)){
                     ?>
                     <tr class="alert alert-primary">
-                    <td><?php echo $row[0]; ?></td>
-                    <td><?php echo $row[2]; ?></td>
-                    <td><?php echo $row[3]; ?></td>
-                    <td><?php echo $row[4]; ?></td>
-                    <td><?php echo $row[5]; ?></td>
-                    <td><?php echo $row[6];}?></td>
+                    <td><?php $codigo = $row[0];echo $row[0]; ?></td>
+                    <td><?php $lunes = $row[2]; echo $row[2]; ?></td>
+                    <td><?php $martes = $row[3]; echo $row[3]; ?></td>
+                    <td><?php $miercoles = $row[4];echo $row[4]; ?></td>
+                    <td><?php $jueves = $row[5]; echo $row[5]; ?></td>
+                    <td><?php $viernes = $row[6];echo $row[6];}?></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -148,19 +154,82 @@ $alumno = new Alumno();
 $res = $alumno->YaInscrito($nc,$codAsesoria);
     if($res ==0)
     {
-    $alumno->InscribirAsesoria($nc,$codAsesoria);
-    echo '<div class="alert alert-success alert-dismissible mt-5">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Exito!</strong> Te has registrado en esta asesoría!
-  </div>';
-   }
-    else
+    $horalunes = explode(" ",$lunes);
+    $horamartes = explode(" ",$martes);
+    $horamiercoles = explode(" ",$miercoles);
+    $horajueves = explode(" ",$jueves);
+    $horaviernes = explode(" ",$viernes);
+    $dialunes = $horalunes[0];
+    $diamartes = $horamartes[0];
+    $diamiercoles = $horamiercoles[0];
+    $diajueves = $horajueves[0];
+    $diaviernes = $horaviernes[0];
+    if(!isset($dialunes))
+        $dialunes="0-0";  
+    if($diamartes=="")
+        $diamartes="0-0";  
+    if($diamiercoles=="")
+        $diamiercoles="0-0";  
+    if($diajueves=="")
+        $diajueves="0-0";  
+    if($diaviernes=="")
+        $diaviernes="0-0";  
+        $sql = "SELECT CODIGO_ASESORIA FROM ASESORIASREG WHERE CONTROL_ALUMNO=$nc";
+    $conn = abrirBD();
+    $res = $conn->query($sql);
+    $conn->close();
+    $valor = 0;
+    while($renglon = mysqli_fetch_array($res))
+    {
+        $cA= $renglon[0];
+        $consulta2 = "SELECT LUNES,MARTES,MIERCOLES,JUEVES,VIERNES FROM HORARIOS WHERE COD_MATERIA='$cA'";
+        $conn = abrirBD();
+        $r = $conn->query($consulta2);
+        $conn->close();
+        while($ren = mysqli_fetch_array($r))
+        {
+            $lunesH= $ren[0];
+            $inicioLunes = "";
+            $finLunes ="";
+            $band = false;
+            for($i = 0;$i<strlen($lunesH);$i++)
+            {
+                if($band == false)
+                    $inicioLunes.= $lunesH[$i];
+                else
+                $finLunes.= $lunesH[$i];
+                if($lunesH[$i] == "-")
+                    $band=true;
+            }
+            echo $inicioLunes;
+            $martesH = $ren[1];
+            $miercolesH = $ren[2];
+            $juevesH = $ren[3];
+            $viernesH = $ren[4];
+        }
+    }
+    if($valor == 1)
     {
         echo '<div class="alert alert-danger alert-dismissible mt-5">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Error!</strong> Ya estabas registrado en esta asesoría!
+        <strong>Error!</strong> Esta asesoría se te cruza con otra de tu carga!
       </div>';
     }
+    else{
+        $alumno->InscribirAsesoria($nc,$codAsesoria);
+        echo '<div class="alert alert-success alert-dismissible mt-5">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Exito!</strong> Te has registrado en esta asesoría!
+        </div>';
+    }
+  }
+  else
+  {
+      echo '<div class="alert alert-danger alert-dismissible mt-5">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Error!</strong> Ya estabas registrado en esta asesoría!
+    </div>';
+  }
 }
 ?>
 <script>

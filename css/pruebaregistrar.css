@@ -1,15 +1,8 @@
-body{
-
-}
 label{
     color: white;
 }
 input{
     text-align: center;
-}
-
-img{
-    height: 60px;
 }
 h1{
     color:white;
@@ -60,4 +53,7 @@ p{
 .hola{
     width:120px;
     height:120px;
+}
+#logo{
+    width:90px;
 }

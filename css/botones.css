@@ -1,0 +1,69 @@
+body{
+
+}
+label{
+    color: white;
+}
+input{
+    text-align: center;
+}
+
+img{
+    height: 60px;
+}
+h1{
+    color:white;
+    text-align: center;
+}
+.page-header{
+    background:blue;
+}
+hr{
+    color:white;
+    background: white;
+}
+select{
+    border-radius: 10px;
+    width: 350px;
+}
+.radio{
+    width: auto;
+    color:white;
+}
+#guardarbtn{
+width: 150px;
+height: 100px;
+}
+#borrarbtn{
+    width: 150px;
+    height: 70px;
+    margin-left: 20px;
+}
+#eliminarbtn{
+    width: 150px;
+    height: 70px;
+    margin-left: 20px;
+}
+input{
+width: 350px;
+}
+.forma{
+    width: 500px;
+    background:blue;
+}
+h3{
+    color: white;
+}
+p{
+    color:white;
+}
+.ojo{
+    color:white;
+}
+#registrara{
+    height: 70px;
+}
+.hola{
+    width:120px;
+    height:120px;
+}

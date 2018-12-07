@@ -2,16 +2,67 @@
     require('Clases/alumno.php');
     $alumno = new Alumno();
     $alumno->setNo_Control($_POST['noc']);
-    $nocontrol = $_POST['noc'];
+    $nocontrol = strip_tags($_POST['noc']);
     $nc=$nocontrol;
-    $alumno->setContraseña($_POST['pwd']);
-    $alumno->setNombre($_POST['nom']);
-    $alumno->setAp_Pat($_POST['ap']);
-    $alumno->setAp_Mat($_POST['am']);
-    $alumno->setCarrera($_POST['car']);
-    $alumno->setSemestre($_POST['sem']);
-    $alumno->setSexo($_POST['sex']);
-    $alumno->setCorreo($_POST['email']);
-    $alumno->ActualizarDatos($alumno);
-    echo "Perfil guardado!";
+    $pass =strip_tags($_POST['pwd']);
+    $nombre =strip_tags($_POST['nom']);
+    $appat =strip_tags($_POST['ap']);
+    $apmat =strip_tags($_POST['am']);
+    $carrera =strip_tags($_POST['car']);
+    $semestre =strip_tags($_POST['sem']);
+    $sexo=strip_tags($_POST['sex']);
+    $correo = strip_tags($_POST['email']);
+if(strlen($nc)!=8)
+{
+    echo "El número de control debe ser de 8 caracteres";
+}
+else if(strlen($nombre)>50)
+{
+echo "Nombre demasiado largo (Máx. 50 carac.)";
+}
+else if(strlen($pass)>20)
+{
+echo "Contraseña es demasiado larga (Máx. 20 carac.)";
+}
+else if(strlen($appat)>50)
+{
+echo "Apellido paterno demasiado largo (Máx. 50 carac.)";
+}
+else if(strlen($apmat)>50)
+{
+echo "Apellido materno demasiado largo (Máx. 50 carac.)";
+}
+else if(strlen($correo)>128)
+{
+echo "Correo demasiado largo (Máx. 128 carac.)";
+}
+else if(strlen($carrera)>50)
+{
+echo "El nombre de la carrera es demasiado largo (Máx. 50 carac.)";
+}
+else if(!is_numeric($semestre))
+{
+    echo "El semestre debe ser conformado solo por números!";
+}
+else if((int)$semestre>14)
+{
+    echo "El semestre no puede ser mayor a 14!";
+}
+else{
+    if($nc!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!=""){
+        $alumno->setContraseña(strip_tags($_POST['pwd']));
+        $alumno->setNombre(strip_tags(utf8_decode($_POST['nom'])));
+        $alumno->setAp_Pat(strip_tags(utf8_decode($_POST['ap'])));
+        $alumno->setAp_Mat(strip_tags(utf8_decode($_POST['am'])));
+        $alumno->setCarrera(strip_tags(utf8_decode($_POST['car'])));
+        $alumno->setSemestre(strip_tags(utf8_decode($_POST['sem'])));
+        $alumno->setSexo(strip_tags($_POST['sex']));
+        $alumno->setCorreo(strip_tags($_POST['email']));
+        $alumno->ActualizarDatos($alumno);
+        echo "Perfil guardado!";
+    }
+    else{
+        echo ("Faltan llenar campos");
+    }
+}
 ?>

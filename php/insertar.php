@@ -3,15 +3,15 @@
     require_once('Clases/alumno.php');
     session_start();
     $alumno = new Alumno();
-    $nocontrol =$_POST['noc'];
-    $contraseña =$_POST['pwd'];
-    $nombre =$_POST['nom'];
-    $appat =$_POST['ap'];
-    $apmat =$_POST['am'];
-    $carrera =$_POST['car'];
-    $semestre =$_POST['sem'];
-    $sexo=$_POST['sex'];
-    $correo = $_POST['email'];
+    $nocontrol = strip_tags($_POST['noc']);
+    $contraseña =strip_tags($_POST['pwd']);
+    $nombre =strip_tags($_POST['nom']);
+    $appat =strip_tags($_POST['ap']);
+    $apmat =strip_tags($_POST['am']);
+    $carrera =strip_tags($_POST['car']);
+    $semestre =strip_tags($_POST['sem']);
+    $sexo=strip_tags($_POST['sex']);
+    $correo = strip_tags($_POST['email']);
 if(strlen($nocontrol)!=8)
 {
     echo "El número de control debe ser de 8 caracteres";
@@ -40,29 +40,33 @@ else if(strlen($carrera)>50)
 {
 echo "El nombre de la carrera es demasiado largo (Máx. 50 carac.)";
 }
-else if(!isnumeric($semestre))
+else if(!is_numeric($semestre))
 {
     echo "El semestre debe ser conformado solo por números!";
 }
+  else if(!preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/",$correo))
+  {
+    echo "El formato de un correo electrónico debe ser parecido a: ejemplo@dominio.com";
+  }
 else
 {
-if($nocontrol!=""&&$contraseña!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!="")
-{
-    $client = new SoapClient("https://siia.lapaz.tecnm.mx/webserviceitlp.asmx?WSDL");
-    $result = $client->estaInscrito(array('control' =>$nocontrol, 'contrasena' => '*3%f&Y2b'))->estaInscritoResult;
-    if($result == false)
+    if($nocontrol!=""&&$contraseña!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semestre!=""&&$correo!="")
     {
-     echo "El alumno no esta vigente en el Instituto Tecnológico de La Paz";
-    }
-    else
-    {
+        $client = new SoapClient("https://siia.lapaz.tecnm.mx/webserviceitlp.asmx?WSDL");
+        $result = $client->estaInscrito(array('control' =>$nocontrol, 'contrasena' => '*3%f&Y2b'))->estaInscritoResult;
+        if($result == false)
+         {
+            echo "El alumno no esta vigente en el Instituto Tecnológico de La Paz";
+         }
+        else
+        {
         $existe = $alumno->AlumnoExists($_POST['noc']);
         if($existe>0)
         {
-        echo("Ya existe un alumno registrado con ese numero de control!");
+        echo("Ya existe un alumno registrado con ese número de control!");
         }
-            else
-            {
+        else
+        {
             $alumno->setNo_Control($_POST['noc']);
             $alumno->setContraseña($_POST['pwd']);
             $alumno->setNombre($_POST['nom']);
@@ -73,14 +77,15 @@ if($nocontrol!=""&&$contraseña!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$semes
             $alumno->setSexo($sexo);
             $alumno->setCorreo($_POST['email']);
             $alumno->InsertarAlumno($alumno);
+            header("Refresh: 3; URL=login.php");
             echo("Alumno registrado!");
-            }
-        }    
+         }
+      }
     }
     else
     {
     echo("Faltan campos por llenar!");
-    }
+    }  
 }
 ?>
     

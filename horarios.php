@@ -16,6 +16,7 @@ $apmat = $alumno->Ap_Mat;
 $nombrecompleto = $nombre." ".$appat." ".$apmat;
 $codigo = $_GET['codigo'];
 $codAsesoria = $_GET['codigo'];
+$noecon = $_GET['ne'];
 $asesoria = new Asesoria();
 $existe = $asesoria->AsesoriaExiste($codigo);
 $registrado = $asesoria->EstoyRegistrado($codigo,$_SESSION['nocontrol']);
@@ -51,7 +52,7 @@ $conn->close();
 
 <body>
 <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
     </div>
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 ml-1 py-3 col"style="color:white">
@@ -195,7 +196,7 @@ $(document).ready(function(){
         var codigoA = '<?php echo $codAsesoria?>';
         var nocontrol = '<?php echo $nocontrol?>';
         var contraseñaR = $("#contraseñaR").val();
-        var nombre  = '<?php echo $nom_maestro?>';
+        var noecon  = '<?php echo utf8_encode($noecon)?>';
         var fecha = new Date();
         var res = $("#res");
         var fechaActual = fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear();
@@ -207,7 +208,7 @@ $(document).ready(function(){
               control:nocontrol,
               contra:contraseñaR,
               fecha:fechaActual,
-              nm:nombre
+              ne:noecon
             },
             success: function (data){
                 res.text(data);

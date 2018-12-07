@@ -39,21 +39,23 @@ class Asesoria{
     {
         $this->NoEconomico = $noec;
     }
-    public function ObtenerAsesoria($cod,$asesoria){
+    public function ObtenerAsesoria($cod,$noecon,$asesoria){
             try
             {
              $conn = abrirBD();
-             if($sentencia_preparada =$conn->prepare("SELECT * FROM ASESORIAS WHERE CODIGO=?"))
+             if($sentencia_preparada =$conn->prepare("SELECT * FROM ASESORIAS WHERE CODIGO=? AND NOECON=?"))
                  {
-                     $sentencia_preparada->bind_param('s',$codigo);
+                     $sentencia_preparada->bind_param('ss',$codigo,$ne);
                      $codigo =$cod;
+                     $ne = $noecon;
                      $sentencia_preparada->execute();
-                     $sentencia_preparada->bind_result($codi,$nombrem,$materia,$depar,$semestre,$activo);
+                     $sentencia_preparada->bind_result($codi,$nombrem,$materia,$depar,$semestre,$activo,$noecon);
                      while($sentencia_preparada->fetch()){
                          $asesoria->setNombre($materia);
                          $asesoria->setNom_Maestro($nombrem);
                          $asesoria->setDepartamento($depar);
                          $asesoria->setSemestre($semestre);
+                         $asesoria->setNoEcon($noecon);
                          $asesoria->setActivo($activo);
                         }
                     $conn->close();
@@ -65,16 +67,17 @@ class Asesoria{
              echo $error;
             }
     }
-    public function AsesoriaExiste($cod)
+    public function AsesoriaExiste($cod,$noecon)
     {
         try
         {
             $resultado=0;
          $conn = abrirBD();
-         if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIAS WHERE CODIGO=?"))
+         if($sentencia_preparada =$conn->prepare("SELECT count(*) FROM ASESORIAS WHERE CODIGO=? AND NOECON=? AND ACTIVO ='Si'"))
              {
-                 $sentencia_preparada->bind_param('s',$codigo);
+                 $sentencia_preparada->bind_param('ss',$codigo,$numecon);
                  $codigo =$cod;
+                 $numecon = $noecon;
                  $sentencia_preparada->execute();
                  $sentencia_preparada->bind_result($numero);
                  while($sentencia_preparada->fetch()){

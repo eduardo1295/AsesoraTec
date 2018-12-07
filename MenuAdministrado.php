@@ -26,7 +26,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <title>Asesora-TEC</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/reloj.css">
-    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/sidebars.css">
     <link rel="stylesheet" href="css/simple-sidebar.css">
     <link rel="stylesheet" href="css/mno.css">
     <link rel="stylesheet" href="css/fontawesome-all.css">
@@ -34,6 +34,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
     <script src="js/reloj.js"></script>
 
 
@@ -41,7 +42,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 
 <body>
     <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
     </div>
         <div class="row"style="background:blue;"> 
             <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
@@ -53,7 +54,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
             <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="fas fa-user fa-fw"></span>
-                <?php echo $nombrecompleto?>
+                <?php echo utf8_encode(utf8_decode($nombrecompleto))?>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                 <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
@@ -66,12 +67,16 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
         <div class="barra w-25 col">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active lead" href="#">
-                        <i class="fas fa-home fa-fw"></i>Inicio</a>
+                    <a class="nav-link active lead" href="#" id="inicio">
+                    <i class="fas fa-home fa-fw"></i>Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" href="asesoriasa.php">
                         <i class="fas fa fa-eye fa-fw"></i>Ver las asesorías</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lead" href="cambiarnombre.php">
+                        <i class="fas fa fa-pencil fa-fw"></i>Cambiar Nombre de Jefes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-5">
@@ -101,6 +106,22 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                             <li class="nav-item lead">
                                 <a class="nav-link lead" href="documentocb.php">
                                     <i class="fas fa-file fa-fw"></i>Reporte de Ciencias Basicas</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lead" data-toggle="collapse" href="#item-9">
+                        <i class="fas fa fa-file fa-fw"></i> Generar Horarios</a>
+                        <div id="item-9" class="collapse">
+                        <ul class="nav flex-column ml-3">
+                            <li class="nav-item">
+                                <a class="nav-link active lead"  href="listadoalumnos.php">
+                                    <i class="fas fa fa-file fa-fw"></i>Horarios Alumnos</a>
+                            </li>
+                            <li class="nav-item lead">
+                                <a class="nav-link lead" href="listadosmaestros.php">
+                                    <i class="fas fa-file fa-fw"></i>Horarios Maestros</a>
                             </li>
                         </ul>
                     </div>
@@ -193,7 +214,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-primary lead" href="php/cerrarsesion.php">Aceptar</a>
+                            <a class="btn btn-warning lead" href="php/cerrarsesion.php"style="color:white;">Aceptar</a>
                             <button type="button" class="btn btn-primary lead" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>

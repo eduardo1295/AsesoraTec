@@ -3,10 +3,15 @@
 <?php 
 session_start();
 if($_SESSION['maestrologeado']!='SI'){
-    header("Location: login.php");
+    header("php/cerrarsesion.php");
 }
 require_once('php/Clases/maestro.php');
 $maestro = new Maestro();
+$existe = $maestro->MaestroExists($_SESSION['noeconomico']);
+if($existe != 1){
+    session_destroy();
+    header("Location: login.php");
+}
 $noecom= $_SESSION['noeconomico'];
 $maestro->ObtenerDatos($noecom,$maestro);
 
@@ -39,7 +44,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
 <body> 
     
     <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
+        <img src="bannerac.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray;">
     </div>
     <div class="row"style="background:blue;"> 
         <div class="page-header encabezado w-100 ml-3 py-3 col"style="color:white">
@@ -51,7 +56,7 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="fas fa-user fa-fw"></span>
-                        <?php echo $nombrecompleto?>
+                        <?php echo utf8_encode(utf8_decode($nombrecompleto))?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
                         <a href='miperfilmaestro.php' class="dropdown-item lead">Mi perfil</a>
@@ -71,11 +76,15 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" href="verasesorias.php">
-                        <i class="fas fa fa-eye fa-fw"></i>mis asesorías</a>
+                        <i class="fas fa fa-eye fa-fw"></i>Mis asesorías</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" href="agregarasesoria.php">
-                        <i class="fas fa fa-search-plus fa-fw"></i>Inscribirme en Asesoría</a>
+                        <i class="fas fa fa-search-plus fa-fw"></i>Agregar Asesoría</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lead" href="listadoDeAsistencia.php">
+                        <i class="fas fa fa-address-book-o fa-fw"></i>Lista de Asistencia.</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link lead" data-toggle="collapse" href="#item-1">
@@ -111,8 +120,9 @@ $nombrecompleto = $nombre." ".$appat." ".$apmat;
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="" class="btn btn-danger lead" id="eliminar" data-dismiss="modal"role="button">Aceptar</a>
-                    <a href="" class="btn btn-info" data-dismiss="modal">Cancelar</a>
+                    <button class="btn btn-danger lead" id="elim" data-dismiss="modal"role="button">Aceptar</button>
+                    <button class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                    
                 </div>
             </div>
         </div>
@@ -251,7 +261,7 @@ $(document).ready(function(){
     $("#modificar").click(function(){
     window.location.href='miperfilmaestro.php';
     });
-    $("#eliminar").click(function(){
+    $("#elim").click(function(){
         window.location.href='eliminar.php';
     });
 });

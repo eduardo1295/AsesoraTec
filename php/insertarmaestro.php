@@ -1,13 +1,39 @@
 
 <?php 
 require_once('Clases/maestro.php');
-$noeconomico = $_POST['noec'];
-$pass = $_POST['pwd'];
-$nombre = $_POST['nom'];
-$appat = $_POST['ap'];
-$apmat = $_POST['am'];
-$correo = $_POST['email'];
-$depto = $_POST['dep'];
+$noeconomico = strip_tags($_POST['noec']);
+$pass = strip_tags($_POST['pwd']);
+$nombre = strip_tags($_POST['nom']);
+$appat = strip_tags($_POST['ap']);
+$apmat = strip_tags($_POST['am']);
+$correo = strip_tags($_POST['email']);
+$depto = strip_tags($_POST['dep']);
+if(strlen($noeconomico)>3)
+{
+echo "El número económico debe ser igual o menor a 3 digitos";
+}
+else if(strlen($nombre)>50)
+{
+echo "Nombre demasiado largo (Máx. 50 carac.)";
+}
+else if(strlen($pass)>20)
+{
+echo "Contraseña demasiado larga (Máx. 20 carac.)";
+}
+else if(strlen($appat)>50)
+{
+echo "Apellido paterno demasiado largo (Máx. 50 carac.)";
+}
+else if(strlen($apmat)>50)
+{
+echo "Apellido materno demasiado largo (Máx. 50 carac.)";
+}
+else if(!preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/",$correo))
+{
+  echo "El formato de un correo electrónico debe ser parecido a: ejemplo@dominio.com";
+}
+else
+{
 if($noeconomico!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$correo!="")
 {
     $maestro = new Maestro();
@@ -42,5 +68,6 @@ if($noeconomico!=""&&$pass!=""&&$nombre!=""&&$appat!=""&&$apmat!=""&&$correo!=""
 else
 {
     echo("Faltan campos por llenar");
+}
 }
 ?>

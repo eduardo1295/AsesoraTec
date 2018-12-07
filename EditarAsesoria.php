@@ -9,6 +9,13 @@
     <title>Editar asesoría</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/pruebaregistrar.css">
+    <style>
+    .copyright{
+        background: blue;
+        color: white;
+    }
+    
+    </style>
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -26,6 +33,18 @@ if(isset($_SESSION['maestrologeado'])){
     $tipo = utf8_decode($_POST['tipo']);
     $conexion = abrirBD();
     $maestro = new maestro();
+    $existe = $maestro->MaestroExists($_SESSION['noeconomico']);
+    if($existe != 1){
+        session_destroy();
+        header("Location: login.php");  
+    }
+    $nocontrol= $_SESSION['noeconomico'];
+    $maestro->ObtenerDatos($nocontrol,$maestro);
+    $nc = $nocontrol;
+    $nombre = utf8_encode($maestro->Nombre);
+    $appat =  utf8_encode($maestro->Ap_Pat);
+    $apmat =  utf8_encode($maestro->Ap_Mat);
+    $nombrecompleto = $nombre." ".$appat." ".$apmat;
     $SQL = "SELECT * FROM ASESORIAS WHERE Codigo= '$codigo'";
     $resultado = $conexion->query($SQL);
     $conexion->close();
@@ -77,10 +96,29 @@ else {
     <input id="EditarCodigo" type="hidden" name="" value="<?php echo $codigo?>">
     <input id="EditarTipo" type="hidden" name="" value="<?php echo utf8_encode($tipo)?>">
     
-    <div class="page-header pb-2 pt-2">
-        <h1 class="lead display-3 justify-content-center">Agregar una asesoría
-            <img src="agregar.png" alt="Login">
-        </h1>
+    <div class="row justify-content-center">
+    <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray;">
+</div>
+    <div class="row"style="background:blue;"> 
+        <div class="page-header encabezado w-100 py-3 col"style="color:white">
+        <div class="row">
+        <h1 class="lead display-4 ml-4">Editar asesoría</h1>
+        </div>          
+        </div>
+        <div class="col mt-4" style="background:blue">
+            <div class="row justify-content-end mr-2 mt-1">
+                <div class="dropdown ">
+                    <button id="usuario" class="btn btn-primary dropdown-toggle lead mx-3" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="fas fa-user fa-fw"></span>
+                            <?php echo $nombrecompleto?>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario">
+                        <a href='miperfil.php' class="dropdown-item lead">Mi perfil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <div class="container mt-3 forma">
@@ -96,7 +134,7 @@ else {
                 </div>
                 <div class="row  justify-content-center">
                     <div class="row" id="tip">
-                        <select name="" id="tipo" class="lead">
+                        <select name="" id="tipo" class="lead" disabled="false">
                         <option value="Ciencias Básicas">Ciencias Básicas</option>
                         <option value="Asignatura de la Carrera">Asignatura de la Carrera</option>
                         <option value="Asignatura Equivalentes">Asignatura Equivalentes</option>
@@ -135,12 +173,12 @@ else {
                     </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="text" class="cajas lead" id="asesor" placeholder="Alumno a Impartir" value="<?php if(isset($infoAsesorado[0])){echo $infoAsesorado[0];}?>">
+                        <input type="text" class="cajas lead" id="asesor" placeholder="Alumno a Impartir" value="<?php if(isset($infoAsesorado[1])){echo utf8_encode($infoAsesorado[1]);}?>">
                     </div>
                 </div>
                 <div class="row my-3 justify-content-center">
                     <div class="row">
-                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Numero de control" value="<?php if(isset($infoAsesorado[1])){echo $infoAsesorado[1];}?>">
+                        <input type="text" class="cajas lead" id="nocontrol" placeholder="Numero de control" value="<?php if(isset($infoAsesorado[0])){echo utf8_encode($infoAsesorado[0]);}?>">
                     </div>
                 </div>
                 <br>
@@ -152,7 +190,7 @@ else {
     <div class="d-flex justify-content-center">
     <h1 id="titulo_tabla">Horario: </h1> 
     </div>
-    <table class="table	">
+    <table class="table	" data-toggle="tooltip" data-placement="top" title="El Formato del horario debe ser 9 - 11 y solamente en este formato">
         <thead class="encabezado">
             <tr>
             <th class="lead"></th>
@@ -181,11 +219,9 @@ else {
         </tr>
     </table>
     <br>
-    <br>
-    <div class="mb-2 container w-100">
+    
         <div class="row  justify-content-center">
-            <div class="col">
-                <input type="submit" value="Agregar asesoría" id="editarbtn" class="form-control btn btn-primary"
+                <input type="submit" value="Editar asesoría" id="editarbtn" class="form-control btn btn-primary"
                     data-toggle="modal" data-target="#mensaje">
                 <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -202,18 +238,29 @@ else {
                                 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
+                                <button type="button" class="btn btn-primary lead" data-dismiss="modal" id="mensajes">Aceptar</button>
                             </div>
                         </div>
                     </div>
-                </div>
+               
             </div>
-            <div class="row justify-content-center">
+            
+        </div>
+        <div class="row justify-content-end">
                 <button type="button" class="mt-2 mr-5 btn btn-primary navegacion" style="border:0; background-color:transparent;cursor:pointer;"
                     value="" data-toggle="tooltip" title="Página anterior" onclick="window.location.href='verasesorias.php'"><img
                         class="hola" src="css/return.png"></button>
             </div>
-        </div>
+    
+    <div class="copyright"style="left:0;bottom:0;width:100%;">
+                <div class="container">
+                    <div class="col py-3">
+                        <div class="col text-center">
+                            Instituto Tecnológico de La Paz. &copy;
+                            
+                        </div>
+                    </div>
+                </div>
     </div>
 
 

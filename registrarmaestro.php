@@ -17,10 +17,10 @@
 </head>
 <body>
 <div class="row justify-content-center">
-        <img src="banner.png" alt="" class="w-100 ml-2 mr-2" style="border:3px solid gray; height:100px">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
     </div>
     <div class="page-header pb-2 pt-2">
-        <h1 class="lead display-3 justify-content-center">Registrar una cuenta <img src="asesor.png" alt="Login"></h1>
+        <h1 class="lead display-3 justify-content-center">Registrar una cuenta <img id="logo" src="asesor.png" alt="Login"></h1>
 </div>        
 <div class="container mt-3 forma">
     <div class="row justify-content-center" style="border:1px solid white;">
@@ -31,7 +31,7 @@
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Número económico" id="noec" maxlength=8 required>
+                    <input type="text" class="cajas lead validanumericos" placeholder="Número económico" id="noec" maxlength=8 required>
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
@@ -42,17 +42,17 @@
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Apellido Paterno" id="appatm"maxlength=50 required>
+                    <input type="text" class="cajas lead" placeholder="Apellido Paterno" id="appatm"maxlength=50 required onkeypress="return soloLetras(event)">
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row">
-                    <input type="text" class="cajas lead" placeholder="Apellido Materno"id="apmatm"maxlength=50 required>
+                    <input type="text" class="cajas lead" placeholder="Apellido Materno"id="apmatm"maxlength=50 required onkeypress="return soloLetras(event)">
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
                 <div class="row ">
-                    <input type="text" class="cajas lead" placeholder="Nombre"maxlength=50 id="nombrem"required>
+                    <input type="text" class="cajas lead" placeholder="Nombre"maxlength=50 id="nombrem"required onkeypress="return soloLetras(event)">
                 </div>
             </div>
             <div class="row my-3 justify-content-center">
@@ -83,7 +83,7 @@
 </div>
 <div class="mb-2 mt-2 container w-100">
     <div class="row  justify-content-center">
-        <button type="submit" id="registrarm" class="btn btn-primary lead w-50" data-toggle="modal" data-target="#mensaje"> Registrarme</button>
+        <button type="submit" id="registrarm" class="btn btn-success lead w-50" data-toggle="modal" data-target="#mensaje"> Registrarme</button>
         <div class="modal fade" id="mensaje" tabindex="-1" role="dialog" aria-label="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -96,7 +96,6 @@
                                     </button>
                                 </div>
                                 <div class="modal-body" id="mens">
-                                Maestro registrado!
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary lead" data-dismiss="modal">Aceptar</button>
@@ -106,6 +105,16 @@
                     </div>
     </div>
 </div>
+<div class="copyright"style="left:0;bottom:0;width:100%; background:blue; color:white;">
+                <div class="container">
+                    <div class="col py-3">
+                        <div class="col text-center">
+                            Instituto Tecnológico de La Paz. &copy;
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 </html>
 <script>
@@ -117,4 +126,37 @@
           tipo.type = "password";
       }
   }
+</script>
+<script>
+    function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+</script>
+<script language="javascript">
+$(function(){
+
+$('.validanumericos').keypress(function(e) {
+  if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+   return false;
+})
+.on("cut copy paste",function(e){
+  e.preventDefault();
+});
+
+});
 </script>

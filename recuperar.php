@@ -20,8 +20,11 @@ use PHPMailer\PHPMailer\Exception;
 </head>
 
 <body>
-    <div class="page-header pb-2 pt-2 encabezado">
-        <h3 class="display-4 lead mx-5">Recuperar Contraseña</h3>
+    <div class="row justify-content-center">
+        <img src="bannerac.png" alt="" class="w-100" style="border:3px solid gray; height:100px">
+    </div>
+    <div class="page-header pb-2 pt-2 w-100 encabezado">
+        <h3 class="display-4 lead">Recuperar Contraseña</h3>
     </div>
     <div class="container mt-3" style="border:1px solid gray">
         <h3 class="display-4 lead">
@@ -67,14 +70,24 @@ use PHPMailer\PHPMailer\Exception;
                 <p>Si aún asi no puedes ingresar, <a href="registrar.php">crea una nueva cuenta</a></p>
             </div>
     </div>
+    <div class="row justify-content-end">    
+        <button type="button"class="mt-2 mr-5 btn btn-primary navegacion"style="border:0; background-color:transparent;cursor:pointer;" value=""data-toggle="tooltip" title="Página anterior"onclick="window.location.href='login.php'"><img  src="css/return.png" width="120px"height="120px"></button>
+    </div>
+   
 </body>
 </html>
 <?php
 if(isset($_POST['recuperarbtn']))
 {
-    $nocontrol =$_POST['numero'];
+    $nocontrol =strip_tags($_POST['numero']);
     require_once("php/Clases/alumno.php");
+    require_once("php/Clases/maestro.php");
     $alumno = new Alumno();
+    $maestro = new Maestro();
+    $existeMaestro =  $maestro->MaestroExists($nocontrol);
+    $existe = $alumno->AlumnoExists($nocontrol);  
+    if($existe>0)
+    {
     $alumno->ObtenerDatos($nocontrol,$alumno);
     $correo = $alumno->Correo;
     $nombre = $alumno->Nombre;
@@ -112,5 +125,51 @@ if(isset($_POST['recuperarbtn']))
     } else {
       echo "<p class='lead'style='color:green'>Mensaje enviado!</p>";
     }
+  }
+  else if($existeMaestro>0)
+  {
+    $maestro->ObtenerDatos($nocontrol,$maestro);
+    $correo = $maestro->Correo;
+    echo $correo;
+    $nombre = $maestro->Nombre;
+    $contraseña = $maestro->Contraseña;
+    date_default_timezone_set('Etc/UTC');
+    require_once 'mail/src/PHPMailer.php';
+    require_once 'mail/src/Exception.php';
+    require_once 'mail/src/SMTP.php';
+    $mail = new PHPMailer;
+    $mail->isSMTP();
+    //Enable SMTP debugging
+    // 0 = off (for production use)
+    // 1 = client messages
+    // 2 = client and server messages
+    $mail->SMTPDebug = false;
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = "fernandoinzv@gmail.com";
+    $mail->Password = "inzunza123";
+    
+    $mail->setFrom('fernandoinzv@gmail.com', 'Administrador de Asesora-TEC');
+    //$mail->addReplyTo('pruebas22@itlp.edu.mx', 'Jose Rodriguez');
+    $mail->addAddress($correo, $nombre);
+    $mail->Subject = utf8_decode('Recuperación de contraseña');
+    $mail->msgHTML("La contraseña de tu cuenta en Asesora-TEC es: ".$contraseña);
+    $mail->AltBody = 'This is a plain-text message body';
+    //$mail->addAttachment('images/phpmailer_mini.png');
+    //send the message, check for errors
+    
+    if (!$mail->send()) {
+      //  echo "Mailer Error: " . $mail->ErrorInfo;
+      echo "<p class='lead'style='color:red'>Error al enviar el mensaje </p>";
+    } else {
+      echo "<p class='lead'style='color:green'>Mensaje enviado!</p>";
+    } 
+  }
+  else
+  {
+    echo "<p class='lead'style='color:red'>Tu número de control/económico no esta registrado en el sistema </p>"; 
+  }
 }
 ?>
